@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="87d05039-f36d-4ccc-862b-2c3540f4317b" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1UR3eejUfZm7dmNdHVN0UlvRT5g" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/thomasmylonas/PetstoreApiWebApp" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.30882353" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.importing" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.thomasmylonas.PetstoreApiWebApp" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.thomasmylonas.PetstoreApiWebApp.models" />
+      <recent name="config" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Tonkat 8.0.27" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.0.27" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
+      <option name="UPDATING_POLICY" value="update-resources" />
+      <deployment>
+        <artifact name="PetstoreApiWebApp:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/PetstoreApiWebApp_war_exploded" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_PetstoreApiWebApp" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="50928" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="PetstoreApiWebApp:war exploded" />
+        </option>
+      </method>
+    </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="87d05039-f36d-4ccc-862b-2c3540f4317b" name="Default Changelist" comment="" />
+      <created>1575305676623</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1575305676623</updated>
+      <workItem from="1575305678121" duration="1754000" />
+      <workItem from="1575319613753" duration="1226000" />
+      <workItem from="1575722332397" duration="6000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="96" y="3" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1575306209125">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="96" y="3" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.689@0.0.1280.689" timestamp="1575306209125" />
+    <state x="446" y="54" key="#com.intellij.ide.util.MemberChooser" timestamp="1575320490626">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="446" y="54" key="#com.intellij.ide.util.MemberChooser/0.0.1280.689@0.0.1280.689" timestamp="1575320490626" />
+    <state x="371" y="126" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1575320188841">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="371" y="126" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1280.689@0.0.1280.689" timestamp="1575320188841" />
+    <state x="92" y="274" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1575306636674">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="92" y="274" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.689@0.0.1280.689" timestamp="1575306636674" />
+    <state x="443" y="214" width="451" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1575306687815">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="443" y="214" width="451" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.689@0.0.1280.689" timestamp="1575306687815" />
+    <state x="421" y="103" key="FileChooserDialogImpl" timestamp="1575306646332">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="421" y="103" key="FileChooserDialogImpl/0.0.1280.689@0.0.1280.689" timestamp="1575306646332" />
+    <state x="144" y="0" key="SettingsEditor" timestamp="1575306161731">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="144" y="0" key="SettingsEditor/0.0.1280.689@0.0.1280.689" timestamp="1575306161731" />
+    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup" timestamp="1575305984450">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup/0.0.1280.689@0.0.1280.689" timestamp="1575305984450" />
+  </component>
+</project>
