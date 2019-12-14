@@ -1,0 +1,42 @@
+package com.thomasmylonas.petstore_api_web_app.controllers;
+
+import com.thomasmylonas.petstore_api_web_app.daos.PetDao;
+import com.thomasmylonas.petstore_api_web_app.models.Pet;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+public class PetController /*implements GeneralController<Pet>*/ {
+
+    @Autowired
+    private PetDao petDao;
+
+//    @Override
+    @RequestMapping(path = "pet",
+            method = RequestMethod.GET)//,
+            //consumes = "application/json")
+    public Pet getById(int id) {
+        System.out.println(petDao.getOne(id));
+        return petDao.getOne(id);
+    }
+
+//    @Override
+//    public Pet postById(long id, Pet pet) {
+//        return null;
+//    }
+//
+//    @Override
+//    public Pet deleteById(long id) {
+//        return null;
+//    }
+//
+//    @Override
+//    public Pet post(Pet pet) {
+//        return null;
+//    }
+//
+//    @Override
+//    public Pet put(Pet pet) {
+//        return null;
+//    }
+}

@@ -1,7 +1,7 @@
-package com.thomasmylonas.PetstoreApiWebApp;
+package com.thomasmylonas.petstore_api_web_app;
 
-import com.thomasmylonas.PetstoreApiWebApp.config.RootConfig;
-import com.thomasmylonas.PetstoreApiWebApp.config.WebConfig;
+import com.thomasmylonas.petstore_api_web_app.config.RootConfig;
+import com.thomasmylonas.petstore_api_web_app.config.WebConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {

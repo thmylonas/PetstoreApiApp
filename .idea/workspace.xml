@@ -1,18 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="PetstoreApiWebApp:war exploded" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="87d05039-f36d-4ccc-862b-2c3540f4317b" name="Default Changelist" comment="" />
+    <list default="true" id="87d05039-f36d-4ccc-862b-2c3540f4317b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/config/RootConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/config/WebConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/controllers/GeneralController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/controllers/PetController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/daos/PetDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/context.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/thomasmylonas/petstore_api_web_app/config/WebConfigTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/PetstoreApiWebApp/ApplicationInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/ApplicationInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/PetstoreApiWebApp/config/RootConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/PetstoreApiWebApp/config/WebConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/PetstoreApiWebApp/controllers/GeneralController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/PetstoreApiWebApp/controllers/PetController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/PetstoreApiWebApp/models/Pet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/models/Pet.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="petstoredb" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="petstoredb" type="feb32156:DbDataSourceImpl" />
+        <item name="TOM: schema" type="3abd1b6a:OraImplModel$Schema" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -23,31 +83,88 @@
     </option>
   </component>
   <component name="ProjectId" id="1UR3eejUfZm7dmNdHVN0UlvRT5g" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="oracle" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/thomasmylonas/PetstoreApiWebApp" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/META-INF" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.30882353" />
-    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.importing" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.thomasmylonas.petstore_api_web_app.config" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Thomas_Mylonas\Documents\0.BitBucket_Projects\JavaEE_Projects\PetstoreApiWebApp\src\main\resources\META-INF" />
+      <recent name="C:\Users\Thomas_Mylonas\Documents\0.BitBucket_Projects\JavaEE_Projects\PetstoreApiWebApp\src\main\webapp\META-INF" />
+      <recent name="C:\Users\Thomas_Mylonas\Documents\0.BitBucket_Projects\JavaEE_Projects\PetstoreApiWebApp\src\main\resources" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.thomasmylonas.PetstoreApiWebApp.daos" />
       <recent name="com.thomasmylonas.PetstoreApiWebApp" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.thomasmylonas.PetstoreApiWebApp.models" />
       <recent name="config" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Tomcat Server.Tonkat 8.0.27">
+    <configuration name="WebConfigTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PetstoreApiWebApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.thomasmylonas.petstore_api_web_app.config.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.thomasmylonas.petstore_api_web_app.config" />
+      <option name="MAIN_CLASS_NAME" value="com.thomasmylonas.petstore_api_web_app.config.WebConfigTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WebConfigTest.dataSource" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PetstoreApiWebApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.thomasmylonas.petstore_api_web_app.config.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.thomasmylonas.petstore_api_web_app.config" />
+      <option name="MAIN_CLASS_NAME" value="com.thomasmylonas.petstore_api_web_app.config.WebConfigTest" />
+      <option name="METHOD_NAME" value="dataSource" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Tonkat 8.0.27" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.0.27" ALTERNATIVE_JRE_ENABLED="false">
       <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
       <option name="UPDATING_POLICY" value="update-resources" />
@@ -121,13 +238,30 @@
         </option>
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.WebConfigTest.dataSource" />
+        <item itemvalue="JUnit.WebConfigTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
       <list>
         <serviceView>
+          <option name="contentProportion" value="0.17384106" />
           <treeState>
-            <expand />
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+            </expand>
             <select />
           </treeState>
         </serviceView>
@@ -147,44 +281,146 @@
       <workItem from="1575305678121" duration="1754000" />
       <workItem from="1575319613753" duration="1226000" />
       <workItem from="1575722332397" duration="6000" />
+      <workItem from="1575926838101" duration="5174000" />
+      <workItem from="1576088964629" duration="1969000" />
+      <workItem from="1576097157126" duration="10619000" />
+      <workItem from="1576177214961" duration="374000" />
+      <workItem from="1576177596037" duration="807000" />
+      <workItem from="1576189160601" duration="3100000" />
+      <workItem from="1576317734803" duration="3836000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="96" y="3" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1575306209125">
+    <state x="125" y="11" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576320239660">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="96" y="3" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.689@0.0.1280.689" timestamp="1575306209125" />
-    <state x="446" y="54" key="#com.intellij.ide.util.MemberChooser" timestamp="1575320490626">
+    <state x="125" y="11" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.689@0.0.1280.689" timestamp="1576320239660" />
+    <state x="446" y="54" key="#com.intellij.ide.util.MemberChooser" timestamp="1576098306905">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="446" y="54" key="#com.intellij.ide.util.MemberChooser/0.0.1280.689@0.0.1280.689" timestamp="1575320490626" />
-    <state x="371" y="126" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1575320188841">
+    <state x="446" y="54" key="#com.intellij.ide.util.MemberChooser/0.0.1280.689@0.0.1280.689" timestamp="1576098306905" />
+    <state x="371" y="126" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1576097560273">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="371" y="126" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1280.689@0.0.1280.689" timestamp="1575320188841" />
+    <state x="371" y="126" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1280.689@0.0.1280.689" timestamp="1576097560273" />
+    <state x="269" y="260" width="850" height="168" key="#com.intellij.javaee.module.view.common.J2EE.J2EEDeploymentDescriptorLocationPanel.changeDDPath" timestamp="1575927853830">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="269" y="260" width="850" height="168" key="#com.intellij.javaee.module.view.common.J2EE.J2EEDeploymentDescriptorLocationPanel.changeDDPath/0.0.1280.689@0.0.1280.689" timestamp="1575927853830" />
     <state x="92" y="274" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1575306636674">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="92" y="274" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.689@0.0.1280.689" timestamp="1575306636674" />
-    <state x="443" y="214" width="451" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1575306687815">
+    <state x="443" y="214" width="480" height="223" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1576097563676">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="443" y="214" width="451" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.689@0.0.1280.689" timestamp="1575306687815" />
-    <state x="421" y="103" key="FileChooserDialogImpl" timestamp="1575306646332">
+    <state x="443" y="214" width="480" height="223" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.689@0.0.1280.689" timestamp="1576097563676" />
+    <state x="421" y="103" key="FileChooserDialogImpl" timestamp="1576189500508">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="421" y="103" key="FileChooserDialogImpl/0.0.1280.689@0.0.1280.689" timestamp="1575306646332" />
-    <state x="144" y="0" key="SettingsEditor" timestamp="1575306161731">
+    <state x="421" y="103" key="FileChooserDialogImpl/0.0.1280.689@0.0.1280.689" timestamp="1576189500508" />
+    <state width="997" height="159" key="GridCell.Tab.-1.bottom" timestamp="1576321905167">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="144" y="0" key="SettingsEditor/0.0.1280.689@0.0.1280.689" timestamp="1575306161731" />
-    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup" timestamp="1575305984450">
+    <state width="997" height="159" key="GridCell.Tab.-1.bottom/0.0.1280.689@0.0.1280.689" timestamp="1576321905167" />
+    <state width="997" height="159" key="GridCell.Tab.-1.center" timestamp="1576321905167">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup/0.0.1280.689@0.0.1280.689" timestamp="1575305984450" />
+    <state width="997" height="159" key="GridCell.Tab.-1.center/0.0.1280.689@0.0.1280.689" timestamp="1576321905167" />
+    <state width="997" height="159" key="GridCell.Tab.-1.left" timestamp="1576321905167">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="997" height="159" key="GridCell.Tab.-1.left/0.0.1280.689@0.0.1280.689" timestamp="1576321905167" />
+    <state width="997" height="159" key="GridCell.Tab.-1.right" timestamp="1576321905167">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="997" height="159" key="GridCell.Tab.-1.right/0.0.1280.689@0.0.1280.689" timestamp="1576321905167" />
+    <state width="1237" height="198" key="GridCell.Tab.0.bottom" timestamp="1576322437487">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="1237" height="198" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1576322437487" />
+    <state width="1237" height="198" key="GridCell.Tab.0.center" timestamp="1576322437486">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="1237" height="198" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1576322437486" />
+    <state width="1237" height="198" key="GridCell.Tab.0.left" timestamp="1576322437486">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="1237" height="198" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1576322437486" />
+    <state width="1237" height="198" key="GridCell.Tab.0.right" timestamp="1576322437487">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="1237" height="198" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1576322437487" />
+    <state width="1237" height="198" key="GridCell.Tab.1.bottom" timestamp="1576322437487">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="1237" height="198" key="GridCell.Tab.1.bottom/0.0.1280.689@0.0.1280.689" timestamp="1576322437487" />
+    <state width="1237" height="198" key="GridCell.Tab.1.center" timestamp="1576322437487">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="1237" height="198" key="GridCell.Tab.1.center/0.0.1280.689@0.0.1280.689" timestamp="1576322437487" />
+    <state width="1237" height="198" key="GridCell.Tab.1.left" timestamp="1576322437487">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="1237" height="198" key="GridCell.Tab.1.left/0.0.1280.689@0.0.1280.689" timestamp="1576322437487" />
+    <state width="1237" height="198" key="GridCell.Tab.1.right" timestamp="1576322437487">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="1237" height="198" key="GridCell.Tab.1.right/0.0.1280.689@0.0.1280.689" timestamp="1576322437487" />
+    <state width="997" height="159" key="GridCell.Tab.2.bottom" timestamp="1576322437479">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="997" height="159" key="GridCell.Tab.2.bottom/0.0.1280.689@0.0.1280.689" timestamp="1576322437479" />
+    <state width="997" height="159" key="GridCell.Tab.2.center" timestamp="1576322437478">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="997" height="159" key="GridCell.Tab.2.center/0.0.1280.689@0.0.1280.689" timestamp="1576322437478" />
+    <state width="997" height="159" key="GridCell.Tab.2.left" timestamp="1576322437478">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="997" height="159" key="GridCell.Tab.2.left/0.0.1280.689@0.0.1280.689" timestamp="1576322437478" />
+    <state width="997" height="159" key="GridCell.Tab.2.right" timestamp="1576322437478">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="997" height="159" key="GridCell.Tab.2.right/0.0.1280.689@0.0.1280.689" timestamp="1576322437478" />
+    <state width="997" height="159" key="GridCell.Tab.3.bottom" timestamp="1576322437479">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="997" height="159" key="GridCell.Tab.3.bottom/0.0.1280.689@0.0.1280.689" timestamp="1576322437479" />
+    <state width="997" height="159" key="GridCell.Tab.3.center" timestamp="1576322437479">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="997" height="159" key="GridCell.Tab.3.center/0.0.1280.689@0.0.1280.689" timestamp="1576322437479" />
+    <state width="997" height="159" key="GridCell.Tab.3.left" timestamp="1576322437479">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="997" height="159" key="GridCell.Tab.3.left/0.0.1280.689@0.0.1280.689" timestamp="1576322437479" />
+    <state width="997" height="159" key="GridCell.Tab.3.right" timestamp="1576322437479">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="997" height="159" key="GridCell.Tab.3.right/0.0.1280.689@0.0.1280.689" timestamp="1576322437479" />
+    <state x="144" y="0" key="SettingsEditor" timestamp="1576322379126">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="144" y="0" key="SettingsEditor/0.0.1280.689@0.0.1280.689" timestamp="1576322379126" />
+    <state x="367" y="65" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1576320548951">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="367" y="65" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1280.689@0.0.1280.689" timestamp="1576320548951" />
+    <state x="346" y="106" width="588" height="478" key="find.popup" timestamp="1576089647673">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="346" y="106" width="588" height="478" key="find.popup/0.0.1280.689@0.0.1280.689" timestamp="1576089647673" />
+    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup" timestamp="1576318939843">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup/0.0.1280.689@0.0.1280.689" timestamp="1576318939843" />
   </component>
 </project>
