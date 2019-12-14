@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
 <Context>
-    <!-- java:comp/env/ -->
-    <!-- driverClassName="oracle.jdbc.driver.OracleDriver" -->
-    <!-- driverClassName="oracle.jdbc.OracleDriver" -->
+    <!--
+    java:comp/env/
+    driverClassName="oracle.jdbc.driver.OracleDriver"
+    driverClassName="oracle.jdbc.OracleDriver"
+    -->
     <Resource
             name="jdbc/petstoredb"
             type="javax.sql.DataSource"

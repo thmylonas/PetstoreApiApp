@@ -20,7 +20,7 @@ public class PetDao implements JpaRepository<Pet, Integer> {
 
     @Autowired
     private LocalContainerEntityManagerFactoryBean entityManagerFactoryBean;
-//    @PersistenceContext
+    // @PersistenceContext
     private EntityManager em;
 
     public PetDao() {
