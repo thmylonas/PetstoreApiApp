@@ -7,7 +7,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87d05039-f36d-4ccc-862b-2c3540f4317b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/config/RootConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/config/WebConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/controllers/GeneralController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/controllers/PetController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/daos/PetDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/context.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/thomasmylonas/petstore_api_web_app/config/WebConfigTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/PetstoreApiWebApp/ApplicationInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/ApplicationInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/PetstoreApiWebApp/config/RootConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/PetstoreApiWebApp/config/WebConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/PetstoreApiWebApp/controllers/GeneralController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/PetstoreApiWebApp/controllers/PetController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/PetstoreApiWebApp/models/Pet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/models/Pet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -238,6 +256,11 @@
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
             </expand>
             <select />
           </treeState>
@@ -265,39 +288,14 @@
       <workItem from="1576177596037" duration="807000" />
       <workItem from="1576189160601" duration="3100000" />
       <workItem from="1576317734803" duration="3836000" />
-      <workItem from="1576329065484" duration="189000" />
-      <workItem from="1576329665882" duration="80000" />
     </task>
-    <task id="LOCAL-00001" summary="Effort to connect the API with DataSource/Database. The efforts are not successful...">
-      <created>1576329228699</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1576329228699</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Effort to connect the API with DataSource/Database. The efforts are not successful..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Effort to connect the API with DataSource/Database. The efforts are not successful..." />
   </component>
   <component name="WindowStateProjectService">
     <state x="125" y="11" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576320239660">
@@ -324,10 +322,6 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="443" y="214" width="480" height="223" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.689@0.0.1280.689" timestamp="1576097563676" />
-    <state x="19" y="0" key="CommitChangelistDialog2" timestamp="1576329227215">
-      <screen x="0" y="0" width="1280" height="689" />
-    </state>
-    <state x="19" y="0" key="CommitChangelistDialog2/0.0.1280.689@0.0.1280.689" timestamp="1576329227215" />
     <state x="421" y="103" key="FileChooserDialogImpl" timestamp="1576189500508">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
@@ -416,10 +410,6 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="144" y="0" key="SettingsEditor/0.0.1280.689@0.0.1280.689" timestamp="1576322379126" />
-    <state x="233" y="81" key="Vcs.Push.Dialog.v2" timestamp="1576329237455">
-      <screen x="0" y="0" width="1280" height="689" />
-    </state>
-    <state x="233" y="81" key="Vcs.Push.Dialog.v2/0.0.1280.689@0.0.1280.689" timestamp="1576329237455" />
     <state x="367" y="65" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1576320548951">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
