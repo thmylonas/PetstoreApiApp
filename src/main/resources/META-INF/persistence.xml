@@ -38,6 +38,12 @@ defined in class path resource [com/thomasmylonas/petstore_api_web_app/config/We
 Unsatisfied dependency expressed through method 'entityManagerFactoryBean' parameter 0; nested exception
 is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'javax.sql.DataSource'
 available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name
+'entityManagerFactoryBean' defined in com.thomasmylonas.petstore_api_web_app.config.DataAccessConfig:
+Unsatisfied dependency expressed through method 'entityManagerFactoryBean' parameter 0; nested exception is
+org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'javax.sql.DataSource'
+available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 -->
 
             <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform" />

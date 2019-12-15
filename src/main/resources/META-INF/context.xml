@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
-<Context>
+<Context reloadable="true">
     <!--
     java:comp/env/
     driverClassName="oracle.jdbc.driver.OracleDriver"
@@ -13,6 +13,14 @@
             driverClassName="oracle.jdbc.OracleDriver"
             url="jdbc:oracle:thin:@localhost:1521:petstoredb"
             username="tom"
-            password="aaaa"/>
+            password="aaaa"
+            maxTotal="20"
+            maxIdle="10"
+            maxWaitMillis="-1"/>
+
+    <!--<ResourceLink
+            global="jdbc/petstoredb"
+            name="jdbc/petstoredb"
+            type="javax.sql.Datasource"/>-->
 
 </Context>

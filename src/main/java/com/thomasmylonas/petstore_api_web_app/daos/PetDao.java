@@ -15,7 +15,7 @@ import javax.persistence.EntityManagerFactory;
 import java.util.List;
 import java.util.Optional;
 
-@Component(value = "petDao")
+//@Component  // (value = "petDao") // With this, 2 beans are created
 public class PetDao implements JpaRepository<Pet, Integer> {
 
     @Autowired

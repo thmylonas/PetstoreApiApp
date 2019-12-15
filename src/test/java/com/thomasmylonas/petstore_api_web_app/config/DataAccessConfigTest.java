@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 
 import javax.sql.DataSource;
 
-class DataAccessTest {
+class DataAccessConfigTest {
 
     private DataAccessConfig dataAccessConfig;
 
@@ -22,5 +22,10 @@ class DataAccessTest {
     void dataSource() {
         DataSource actual = dataAccessConfig.dataSource();
         Assertions.assertNotNull(actual);
+//        Assertions.assertNull(actual);
     }
 }
+
+/*
+javax.naming.NoInitialContextException: Need to specify class name in environment or system property, or as an applet parameter, or in an application resource file:  java.naming.factory.initial
+*/

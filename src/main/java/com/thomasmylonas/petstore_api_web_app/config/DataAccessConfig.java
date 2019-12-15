@@ -1,5 +1,8 @@
 package com.thomasmylonas.petstore_api_web_app.config;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
@@ -9,6 +12,8 @@ import org.springframework.jndi.JndiObjectFactoryBean;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+
+import java.util.Properties;
 
 @Configuration
 @ComponentScan(basePackages = {"com.thomasmylonas.petstore_api_web_app"})
@@ -33,12 +38,27 @@ public class DataAccessConfig {
 
     @Bean(name = "dataSource")
     DataSource dataSource() {
-        JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("jdbc/petstoredb");
-        jndiObjectFactoryBean.setResourceRef(false);
-        jndiObjectFactoryBean.setProxyInterface(javax.sql.DataSource.class);
-//        jndiObjectFactoryBean.setLookupOnStartup(false);
-        return (DataSource) jndiObjectFactoryBean.getObject();
+//        JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
+//        jndiObjectFactoryBean.setJndiName("jdbc/petstoredb");
+//        jndiObjectFactoryBean.setResourceRef(false);
+//        jndiObjectFactoryBean.setProxyInterface(javax.sql.DataSource.class);
+////        jndiObjectFactoryBean.setLookupOnStartup(false);
+//        return (DataSource) jndiObjectFactoryBean.getObject();
+
+        Properties env = new Properties( );
+        env.put(Context.INITIAL_CONTEXT_FACTORY, org.apache.naming.java.javaURLContextFactory.class.getName());
+        env.put(Context.PROVIDER_URL, "localhost:8080");
+
+        Context initContext = null;
+        DataSource ds = null;
+        try {
+            initContext = new InitialContext(env);
+            Context envContext  = (Context)initContext.lookup("java:/comp/env");
+            ds = (DataSource)envContext.lookup("jdbc/petstoredb");
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+        return ds;
     }
 
     @Bean(name = "jpaVendorAdapter")
