@@ -27,7 +27,7 @@ public class PetController implements WebMvcConfigurer /*implements GeneralContr
 
     @RequestMapping(path = "pet", method = RequestMethod.GET)
     public String getHome() {
-//        System.out.println("Aaaaaaaaaaaaaaaaaaaaaaaaaa" + petDao.getOne(id));
+//        System.out.println("Aaaaaaaaaaaaaaaaaaaaaaaaaa" + petDao.getOne(1));
         return "home";
     }
 

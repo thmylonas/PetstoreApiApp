@@ -24,7 +24,7 @@ public class PetDao implements JpaRepository<Pet, Integer> {
     private EntityManager em;
 
     public PetDao() {
-        EntityManagerFactory emf = entityManagerFactoryBean.getNativeEntityManagerFactory();
+        EntityManagerFactory emf = entityManagerFactoryBean.getObject();
         em = emf.createEntityManager();
     }
 

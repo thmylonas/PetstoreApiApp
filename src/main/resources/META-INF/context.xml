@@ -6,7 +6,7 @@
     driverClassName="oracle.jdbc.driver.OracleDriver"
     driverClassName="oracle.jdbc.OracleDriver"
     -->
-    <Resource
+    <!--<Resource
             name="jdbc/petstoredb"
             type="javax.sql.DataSource"
             auth="Container"
@@ -16,7 +16,7 @@
             password="aaaa"
             maxTotal="20"
             maxIdle="10"
-            maxWaitMillis="-1"/>
+            maxWaitMillis="-1"/>-->
 
     <!--<ResourceLink
             global="jdbc/petstoredb"
