@@ -2,11 +2,29 @@ package com.thomasmylonas.petstore_api_web_app.models;
 
 import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
+
 @Component
+@Entity
 public class Pet {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID", updatable = false, nullable = false)
+    private Integer id;
+    @Column(name = "PET_NAME", nullable = false)
     private String name;
+    @Column(name = "PET_TYPE", nullable = false)
     private String type;
+    @Column(name = "PET_AGE", nullable = false)
     private int age;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

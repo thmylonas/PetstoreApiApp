@@ -13,21 +13,21 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @RequestMapping(path = "/")
 public class PetController implements WebMvcConfigurer /*implements GeneralController<Pet>*/ {
 
-//    @Autowired
-//    private PetDao petDao;
-//
-//    //    @Override
-//    @RequestMapping(path = "/pet2",
-//            method = RequestMethod.GET)//,
-//    //consumes = "application/json")
-//    public Pet getById(int id) {
-//        System.out.println("Aaaaaaaaaaaaaaaaaaaaaaaaaa" + petDao.getOne(id));
-//        return petDao.getOne(id);
-//    }
+    @Autowired
+    private PetDao petDao;
+
+    //    @Override
+    @RequestMapping(path = "/pet2",
+            method = RequestMethod.GET)//,
+    //consumes = "application/json")
+    public Pet getById(int id) {
+        System.out.println("Aaaaaaaaaaaaaaaaaaaaaaaaaa" + petDao.getOne(id));
+        return petDao.getOne(id);
+    }
 
     @RequestMapping(path = "pet", method = RequestMethod.GET)
     public String getHome() {
-//        System.out.println("Aaaaaaaaaaaaaaaaaaaaaaaaaa" + petDao.getOne(1));
+        System.out.println("Aaaaaaaaaaaaaaaaaaaaaaaaaa" + petDao.getOne(1));
         return "home";
     }
 

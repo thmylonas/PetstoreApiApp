@@ -15,15 +15,14 @@ import javax.persistence.EntityManagerFactory;
 import java.util.List;
 import java.util.Optional;
 
-//@Component  // (value = "petDao") // With this, 2 beans are created
+@Component  // (value = "petDao") // With this, 2 beans are created
 public class PetDao implements JpaRepository<Pet, Integer> {
 
-    @Autowired
-    private LocalContainerEntityManagerFactoryBean entityManagerFactoryBean;
+//    private final LocalContainerEntityManagerFactoryBean entityManagerFactoryBean;
     // @PersistenceContext
     private EntityManager em;
 
-    public PetDao() {
+    public PetDao(LocalContainerEntityManagerFactoryBean entityManagerFactoryBean) {
         EntityManagerFactory emf = entityManagerFactoryBean.getObject();
         em = emf.createEntityManager();
     }

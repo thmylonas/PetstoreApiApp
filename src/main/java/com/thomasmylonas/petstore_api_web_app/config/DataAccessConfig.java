@@ -30,8 +30,8 @@ public class DataAccessConfig {
         return emfb;
     }
 
-    @Bean(name = "dataSource")
-    DataSource dataSource() {
+    @Bean(name = "dataSource1")
+    DataSource dataSource1() {
         Context initContext = null;
         DataSource ds = null;
         try {
@@ -73,12 +73,19 @@ public class DataAccessConfig {
         return ds;
     }
 
-    DataSource b() {
+    @Bean(name = "dataSource")
+    DataSource dataSource() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("jdbc/petstoredb");
-        jndiObjectFactoryBean.setResourceRef(false);
+//        jndiObjectFactoryBean.setJndiName("jdbc/petstoredb");
+        jndiObjectFactoryBean.setJndiName("java:comp/env/jdbc/petstoredb");
+//        jndiObjectFactoryBean.setResourceRef(true);
         jndiObjectFactoryBean.setProxyInterface(javax.sql.DataSource.class);
 //        jndiObjectFactoryBean.setLookupOnStartup(false);
+        try {
+            jndiObjectFactoryBean.afterPropertiesSet();
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
         return (DataSource) jndiObjectFactoryBean.getObject();
     }
 
