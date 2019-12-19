@@ -1,10 +1,7 @@
 package com.thomasmylonas.petstore_api_web_app.models;
 
-import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
 
-@Component
 @Entity
 public class Pet {
     @Id

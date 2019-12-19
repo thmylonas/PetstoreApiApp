@@ -1,7 +1,6 @@
 package com.thomasmylonas.petstore_api_web_app.daos;
 
 import com.thomasmylonas.petstore_api_web_app.models.Pet;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,7 +17,6 @@ import java.util.Optional;
 @Component  // (value = "petDao") // With this, 2 beans are created
 public class PetDao implements JpaRepository<Pet, Integer> {
 
-//    private final LocalContainerEntityManagerFactoryBean entityManagerFactoryBean;
     // @PersistenceContext
     private EntityManager em;
 

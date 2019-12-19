@@ -9,18 +9,17 @@
       xmlns:p="http://primefaces.org/ui">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>PetstoreApiWebApp Home Page</title>
+    <title>Pet Page</title>
 </head>
 <body>
 
-<h2>PetstoreApiWebApp Home Page</h2>
-
-<h:outputText>
-    Welcome to the PetstoreApiWebApp Home Page
-</h:outputText>
+<h2>Pet Page</h2>
+<h:outputText>PetstoreApiWebApp Home Page</h:outputText>
 <br/>
-<!--<h:outputLink value="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet">Pet page</h:outputLink>-->
-<a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet">Pet page</a>
+<h:outputText value="${petBackingBean.id}"/>
+<h:outputText value="${petBackingBean.name}"/>
+<h:outputText value="${petBackingBean.type}"/>
+<h:outputText value="${petBackingBean.age}"/>
 
 </body>
 </html>

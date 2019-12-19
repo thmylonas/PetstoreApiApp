@@ -170,7 +170,11 @@
             <version>0.8</version>
             <scope>test</scope>
         </dependency>
-        <!-- com.oracle, ojdbc8 -->
+
+        <!--
+        This dependency "com.oracle, ojdbc8" has to be installed manually using the command:
+        "mvn install:install-file -Dfile=path/to/file/ojdbc8.jar -DgroupId=com.oracle -DartifactId=ojdbc8 -Dversion=19.3 -Dpackaging=jar"
+        -->
         <dependency>
             <groupId>com.oracle</groupId>
             <artifactId>ojdbc8</artifactId>

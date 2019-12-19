@@ -4,8 +4,10 @@ import com.thomasmylonas.petstore_api_web_app.daos.PetDao;
 import com.thomasmylonas.petstore_api_web_app.models.Pet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -17,18 +19,21 @@ public class PetController implements WebMvcConfigurer /*implements GeneralContr
     private PetDao petDao;
 
     //    @Override
-    @RequestMapping(path = "/pet2",
-            method = RequestMethod.GET)//,
-    //consumes = "application/json")
-    public Pet getById(int id) {
-        System.out.println("Aaaaaaaaaaaaaaaaaaaaaaaaaa" + petDao.getOne(id));
+    @RequestMapping(path = "pet/{id}", method = RequestMethod.GET)
+    public Pet getById(@PathVariable int id) {
+        System.out.println("The pet with id = " + id + ", is the\n" + petDao.getOne(id));
         return petDao.getOne(id);
     }
 
-    @RequestMapping(path = "pet", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String getHome() {
-        System.out.println("Aaaaaaaaaaaaaaaaaaaaaaaaaa" + petDao.getOne(1));
         return "home";
+    }
+
+    @RequestMapping(path = "pet", method = RequestMethod.GET)
+    public String getPetPage() {
+        System.out.println("The pet with id = 1, is the\n" + petDao.getOne(1));
+        return "pet";
     }
 
 //    @Override
