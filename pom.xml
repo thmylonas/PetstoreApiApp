@@ -170,6 +170,13 @@
             <version>0.8</version>
             <scope>test</scope>
         </dependency>
+        <!-- com.oracle, ojdbc8 -->
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <version>19.3</version>
+            <!-- mvn install:install-file -Dfile=path/to/file/ojdbc8.jar -DgroupId=com.oracle -DartifactId=ojdbc8 -Dversion=19.3 -Dpackaging=jar -->
+        </dependency>
     </dependencies>
 
     <build>
