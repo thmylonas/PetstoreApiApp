@@ -173,13 +173,23 @@
 
         <!--
         This dependency "com.oracle, ojdbc8" has to be installed manually using the command:
-        "mvn install:install-file -Dfile=path/to/file/ojdbc8.jar -DgroupId=com.oracle -DartifactId=ojdbc8 -Dversion=19.3 -Dpackaging=jar"
+        "mvn install:install-file -Dfile=ojdbc8.jar -DgroupId=com.oracle -DartifactId=ojdbc8 -Dversion=19.3 -Dpackaging=jar"
         -->
         <dependency>
             <groupId>com.oracle</groupId>
             <artifactId>ojdbc8</artifactId>
             <version>19.3</version>
-            <!-- mvn install:install-file -Dfile=path/to/file/ojdbc8.jar -DgroupId=com.oracle -DartifactId=ojdbc8 -Dversion=19.3 -Dpackaging=jar -->
+            <!-- mvn install:install-file -Dfile=ojdbc8.jar -DgroupId=com.oracle -DartifactId=ojdbc8 -Dversion=19.3 -Dpackaging=jar -->
+        </dependency>
+        <!--
+        This dependency "com.oracle, ojdbc10" has to be installed manually using the command:
+        "mvn install:install-file -Dfile=ojdbc10.jar -DgroupId=com.oracle -DartifactId=ojdbc10 -Dversion=19.3 -Dpackaging=jar"
+        -->
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc10</artifactId>
+            <version>19.3</version>
+            <!-- mvn install:install-file -Dfile=ojdbc10.jar -DgroupId=com.oracle -DartifactId=ojdbc10 -Dversion=19.3 -Dpackaging=jar -->
         </dependency>
     </dependencies>
 

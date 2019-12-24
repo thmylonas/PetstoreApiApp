@@ -1,7 +1,6 @@
 package com.thomasmylonas.petstore_api_web_app.views_backingbeans;
 
 import com.thomasmylonas.petstore_api_web_app.daos.PetDao;
-import com.thomasmylonas.petstore_api_web_app.models.Pet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

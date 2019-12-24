@@ -7,18 +7,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Controller
 @RequestMapping(path = "/")
-public class PetController implements WebMvcConfigurer /*implements GeneralController<Pet>*/ {
+public class PetController implements WebMvcConfigurer {
 
     @Autowired
     private PetDao petDao;
 
-    //    @Override
     @RequestMapping(path = "pet/{id}", method = RequestMethod.GET)
     public Pet getById(@PathVariable int id) {
         System.out.println("The pet with id = " + id + ", is the\n" + petDao.getOne(id));
@@ -35,26 +33,6 @@ public class PetController implements WebMvcConfigurer /*implements GeneralContr
         System.out.println("The pet with id = 1, is the\n" + petDao.getOne(1));
         return "pet";
     }
-
-//    @Override
-//    public Pet postById(long id, Pet pet) {
-//        return null;
-//    }
-//
-//    @Override
-//    public Pet deleteById(long id) {
-//        return null;
-//    }
-//
-//    @Override
-//    public Pet post(Pet pet) {
-//        return null;
-//    }
-//
-//    @Override
-//    public Pet put(Pet pet) {
-//        return null;
-//    }
 
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {

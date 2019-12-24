@@ -25,7 +25,3 @@ class DataAccessConfigTest {
 //        Assertions.assertNull(actual);
     }
 }
-
-/*
-javax.naming.NoInitialContextException: Need to specify class name in environment or system property, or as an applet parameter, or in an application resource file:  java.naming.factory.initial
-*/

@@ -5,58 +5,14 @@
              version="2.2">
     
     <persistence-unit name="Petstore_PU">
-        <description>A Persistence Unit connected with the Petstore_DB</description>
+        <!--<description>A Persistence Unit connected with the Petstore_DB</description>
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <jta-data-source>jdbc/petstoredb</jta-data-source>
+        <jta-data-source>jdbc/oracledb</jta-data-source>
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="create"/>
-            <!-- No Oracle12cDialect: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment] -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle12cDialect"/>
-
-<!--
-        jndiObjectFactoryBean.setResourceRef(true);
-
-No hibernate.transaction.jta.platform:
-org.springframework.beans.factory.BeanCreationException:
-Error creating bean with name 'entityManagerFactoryBean'
-defined in com.thomasmylonas.petstore_api_web_appapp.config.RootConfig:
-Invocation of init method failed; nested exception is javax.persistence.PersistenceException:
-[PersistenceUnit: Petstore_PU] Unable to build Hibernate SessionFactory;
-nested exception is org.hibernate.HibernateException: DdlTransactionIsolatorJtaImpl could not locate
-TransactionManager to suspend any current transaction; base JtaPlatform impl
-(org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform@29c43795)?
-******
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactoryBean'
-defined in com.thomasmylonas.petstore_api_web_appapp.config.RootConfig: Invocation of init method failed;
-nested exception is javax.persistence.PersistenceException: [PersistenceUnit: Petstore_PU]
-Unable to build Hibernate SessionFactory; nested exception is org.hibernate.engine.jndi.JndiException:
-Unable to lookup JNDI name [java:appserver/TransactionManager]
--->
-<!--
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'entityManagerFactoryBean'
-defined in class path resource [com/thomasmylonas/petstore_api_web_app/config/WebConfig.class]:
-Unsatisfied dependency expressed through method 'entityManagerFactoryBean' parameter 0; nested exception
-is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'javax.sql.DataSource'
-available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name
-'entityManagerFactoryBean' defined in com.thomasmylonas.petstore_api_web_app.config.DataAccessConfig:
-Unsatisfied dependency expressed through method 'entityManagerFactoryBean' parameter 0; nested exception is
-org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'javax.sql.DataSource'
-available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
--->
-
             <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform" />
-        </properties>
+        </properties>-->
     </persistence-unit>
 
 </persistence>
-
-<!--
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name
-'entityManagerFactoryBean' defined in com.thomasmylonas.petstore_api_web_appapp.config.RootConfig:
-Invocation of init method failed; nested exception is javax.persistence.PersistenceException:
-[PersistenceUnit: Petstore_PU] Unable to build Hibernate SessionFactory;
-nested exception is org.hibernate.engine.jndi.JndiException:
-Unable to lookup JNDI name [java:appserver/TransactionManager]
--->

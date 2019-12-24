@@ -1,34 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
 <Context reloadable="true">
-    <!--
-    java:comp/env/
-    driverClassName="oracle.jdbc.driver.OracleDriver"
-    driverClassName="oracle.jdbc.OracleDriver"
-    -->
+
     <Resource
-            name="jdbc/petstoredb"
+            name="jdbc/oracledb"
             type="javax.sql.DataSource"
             auth="Container"
             driverClassName="oracle.jdbc.OracleDriver"
-            url="jdbc:oracle:thin:@localhost:1521:petstoredb"
-            username="tom"
+            url="jdbc:oracle:thin:@localhost:1521:oracledb"
+            username="petstoredb"
             password="aaaa"
             maxTotal="20"
             maxIdle="10"
             maxWaitMillis="-1"/>
 
-    <!--<ResourceLink
-            global="jdbc/petstoredb"
-            name="jdbc/petstoredb"
-            type="javax.sql.Datasource"/>-->
-
 </Context>
-
-<!--
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactoryBean'
-defined in com.thomasmylonas.petstore_api_web_app.config.DataAccessConfig: Invocation of init method failed;
-nested exception is java.lang.UnsupportedClassVersionError: oracle/jdbc/OracleDriver has been compiled by a more
-recent version of the Java Runtime (class file version 54.0), this version of the Java Runtime only recognizes
-class file versions up to 52.0
--->
