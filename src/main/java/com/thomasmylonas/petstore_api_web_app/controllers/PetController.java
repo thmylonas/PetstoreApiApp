@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(path = "/")
 public class PetController implements WebMvcConfigurer {
@@ -28,8 +30,19 @@ public class PetController implements WebMvcConfigurer {
             produces = "application/json")
     public @ResponseBody
     Pet getById(@PathVariable int id) {
-        LOGGER.info("The pet with id = " + id + ", is the\n" + petDao.getOne(id));
-        return petDao.getOne(id);
+        Pet pet = petDao.getOne(id);
+        LOGGER.info("The pet with id = " + id + ", is the\n" + pet);
+        return pet;
+    }
+
+    @RequestMapping(path = "pet/all",
+            method = RequestMethod.GET,
+            produces = "application/json")
+    public @ResponseBody
+    List<Pet> getAll() {
+        List<Pet> petList = petDao.findAll();
+        LOGGER.info("All pets are: \n" + petList);
+        return petList;
     }
 
     @RequestMapping(method = RequestMethod.GET)

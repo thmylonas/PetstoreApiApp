@@ -11,6 +11,10 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +31,12 @@ public class PetDao implements JpaRepository<Pet, Integer> {
 
     @Override
     public List<Pet> findAll() {
-        return null;
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Pet> cq = cb.createQuery(Pet.class);
+        Root<Pet> rootEntry = cq.from(Pet.class);
+        CriteriaQuery<Pet> all = cq.select(rootEntry);
+        TypedQuery<Pet> allQuery = em.createQuery(all);
+        return allQuery.getResultList();
     }
 
     @Override
