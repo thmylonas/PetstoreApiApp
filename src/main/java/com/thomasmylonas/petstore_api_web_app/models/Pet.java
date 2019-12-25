@@ -1,19 +1,32 @@
 package com.thomasmylonas.petstore_api_web_app.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Pet {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", updatable = false, nullable = false)
     private Integer id;
-    @Column(name = "PET_NAME", nullable = false)
+    @Column(name = "PET_NAME", nullable = false, length = 25)
     private String name;
-    @Column(name = "PET_TYPE", nullable = false)
-    private String type;
-    @Column(name = "PET_AGE", nullable = false)
-    private int age;
+    @Lob
+    @Column(name = "PHOTO_URLS", nullable = false)
+    private String photoUrls;
+
+    // Mappings - ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "STATUS_ID")
+    private Status status;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "PET_CATEGORY_ID")
+    private Category category;
+
+    // Mappings - OneToMany
+    @OneToMany(mappedBy = "pet")
+    private List<Tag> tagList;
 
     public Integer getId() {
         return id;
@@ -31,28 +44,47 @@ public class Pet {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
+    public String getPhotoUrls() {
+        return photoUrls;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setPhotoUrls(String photoUrls) {
+        this.photoUrls = photoUrls;
     }
 
-    public int getAge() {
-        return age;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public List<Tag> getTagList() {
+        return tagList;
+    }
+
+    public void setTagList(List<Tag> tagList) {
+        this.tagList = tagList;
     }
 
     @Override
     public String toString() {
         return "Pet{" +
-                "name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                ", age=" + age +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", photoUrls='" + photoUrls + '\'' +
+                ", status=" + status +
+                ", category=" + category +
+                ", tagList=" + tagList +
                 '}';
     }
 }
