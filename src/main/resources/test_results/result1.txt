@@ -1,0 +1,26 @@
+The pet with id = 1, is the
+Pet{
+    id=1,
+    name='Bo',
+    photoUrls='https://i.ytimg.com/vi/MPV2METPeJU/maxresdefault.jpg',
+    status=
+        Status{
+            id=1,
+            name='AVAILABLE'
+        },
+    category=
+        Category{
+            id=1,
+            name='Dog'
+        },
+    tagList=[
+        Tag{
+            id=1,
+            name='Aaa'
+        },
+        Tag{
+            id=2,
+            name='Bbb'
+        }
+    ]
+}

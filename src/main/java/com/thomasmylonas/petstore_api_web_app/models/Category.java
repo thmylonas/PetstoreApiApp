@@ -3,7 +3,8 @@ package com.thomasmylonas.petstore_api_web_app.models;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
+@Entity(name = "PET_CATEGORY")
+//@Table(schema = "petstoredb", name = "PET_CATEGORY")
 public class Category {
 
     @Id

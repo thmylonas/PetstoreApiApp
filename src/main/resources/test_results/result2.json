@@ -1,0 +1,15 @@
+{
+  "id": 1,
+  "name": "Bo",
+  "photoUrls": "https://i.ytimg.com/vi/MPV2METPeJU/maxresdefault.jpg",
+  "tagList": [
+    {
+      "id": 1,
+      "name": "Aaa"
+    },
+    {
+      "id": 2,
+      "name": "Bbb"
+    }
+  ]
+}

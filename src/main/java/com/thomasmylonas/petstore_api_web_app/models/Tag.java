@@ -1,8 +1,11 @@
 package com.thomasmylonas.petstore_api_web_app.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "PET_TAG")
+//@Table(schema = "petstoredb", name = "TAG")
 public class Tag {
 
     @Id
@@ -13,7 +16,7 @@ public class Tag {
     private String name;
 
     // Mappings - ManyToOne
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "PET_ID")
     private Pet pet;
 
@@ -33,6 +36,7 @@ public class Tag {
         this.name = name;
     }
 
+    @JsonIgnore
     public Pet getPet() {
         return pet;
     }

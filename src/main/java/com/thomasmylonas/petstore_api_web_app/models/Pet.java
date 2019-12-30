@@ -1,9 +1,12 @@
 package com.thomasmylonas.petstore_api_web_app.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
+@Entity(name = "PET")
+//@Table(schema = "petstoredb", name = "PET")
 public class Pet {
 
     @Id
@@ -52,6 +55,7 @@ public class Pet {
         this.photoUrls = photoUrls;
     }
 
+    @JsonIgnore
     public Status getStatus() {
         return status;
     }
@@ -60,6 +64,7 @@ public class Pet {
         this.status = status;
     }
 
+    @JsonIgnore
     public Category getCategory() {
         return category;
     }
