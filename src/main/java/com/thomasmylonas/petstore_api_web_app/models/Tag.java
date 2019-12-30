@@ -18,6 +18,7 @@ public class Tag {
     // Mappings - ManyToOne
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "PET_ID")
+    @JsonIgnore
     private Pet pet;
 
     public Integer getId() {
@@ -36,7 +37,6 @@ public class Tag {
         this.name = name;
     }
 
-    @JsonIgnore
     public Pet getPet() {
         return pet;
     }

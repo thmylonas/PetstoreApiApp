@@ -1,8 +1,12 @@
 {
   "id": 1,
+  "category": {
+    "id": 1,
+    "name": "Dog"
+  },
   "name": "Bo",
   "photoUrls": "https://i.ytimg.com/vi/MPV2METPeJU/maxresdefault.jpg",
-  "tagList": [
+  "tags": [
     {
       "id": 1,
       "name": "Aaa"
@@ -11,5 +15,6 @@
       "id": 2,
       "name": "Bbb"
     }
-  ]
+  ],
+  "status": "AVAILABLE"
 }

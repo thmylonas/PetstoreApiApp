@@ -1,11 +1,12 @@
 package com.thomasmylonas.petstore_api_web_app.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "PET")
+@JsonPropertyOrder({"id", "category", "name", "photoUrls", "tags", "status"})
 //@Table(schema = "petstoredb", name = "PET")
 public class Pet {
 
@@ -29,7 +30,7 @@ public class Pet {
 
     // Mappings - OneToMany
     @OneToMany(mappedBy = "pet")
-    private List<Tag> tagList;
+    private List<Tag> tags;
 
     public Integer getId() {
         return id;
@@ -55,16 +56,14 @@ public class Pet {
         this.photoUrls = photoUrls;
     }
 
-    @JsonIgnore
-    public Status getStatus() {
-        return status;
+    public String getStatus() {
+        return status.getName();
     }
 
     public void setStatus(Status status) {
         this.status = status;
     }
 
-    @JsonIgnore
     public Category getCategory() {
         return category;
     }
@@ -73,12 +72,12 @@ public class Pet {
         this.category = category;
     }
 
-    public List<Tag> getTagList() {
-        return tagList;
+    public List<Tag> getTags() {
+        return tags;
     }
 
-    public void setTagList(List<Tag> tagList) {
-        this.tagList = tagList;
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
     }
 
     @Override
@@ -89,7 +88,7 @@ public class Pet {
                 ", photoUrls='" + photoUrls + '\'' +
                 ", status=" + status +
                 ", category=" + category +
-                ", tagList=" + tagList +
+                ", tagList=" + tags +
                 '}';
     }
 }

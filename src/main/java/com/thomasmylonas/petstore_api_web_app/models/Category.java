@@ -1,5 +1,7 @@
 package com.thomasmylonas.petstore_api_web_app.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -16,6 +18,7 @@ public class Category {
 
     // Mappings - OneToMany
     @OneToMany(mappedBy = "category")
+    @JsonIgnore
     private List<Pet> petList;
 
     public Integer getId() {
