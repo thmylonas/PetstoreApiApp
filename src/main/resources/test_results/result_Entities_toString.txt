@@ -1,19 +1,14 @@
 The pet with id = 1, is the
+
 Pet{
     id=1,
     name='Bo',
-    photoUrls='https://i.ytimg.com/vi/MPV2METPeJU/maxresdefault.jpg',
-    status=
-        Status{
-            id=1,
-            name='AVAILABLE'
-        },
-    category=
-        Category{
-            id=1,
-            name='Dog'
-        },
-    tagList=[
+    status=AVAILABLE,
+    category=Category{
+        id=1,
+        name='Dog'
+    },
+    tags=[
         Tag{
             id=1,
             name='Aaa'
@@ -22,5 +17,8 @@ Pet{
             id=2,
             name='Bbb'
         }
+    ],
+    photoUrls=[
+        https://i.ytimg.com/vi/MPV2METPeJU/maxresdefault.jpg
     ]
 }

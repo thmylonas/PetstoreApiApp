@@ -5,7 +5,9 @@
     "name": "Dog"
   },
   "name": "Bo",
-  "photoUrls": "https://i.ytimg.com/vi/MPV2METPeJU/maxresdefault.jpg",
+  "photoUrls": [
+    "https://i.ytimg.com/vi/MPV2METPeJU/maxresdefault.jpg"
+  ],
   "tags": [
     {
       "id": 1,
