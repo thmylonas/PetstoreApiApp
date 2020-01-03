@@ -1,21 +1,21 @@
 package com.thomasmylonas.petstore_api_web_app.controllers;
 
-import com.thomasmylonas.petstore_api_web_app.config.DataAccessConfig;
-import com.thomasmylonas.petstore_api_web_app.daos.PetDao;
-import com.thomasmylonas.petstore_api_web_app.models.Pet;
+import com.thomasmylonas.petstore_api_web_app.data_access.daos.PetDao;
+import com.thomasmylonas.petstore_api_web_app.exception_handlers.exceptions.ResourceNotFoundException;
+import com.thomasmylonas.petstore_api_web_app.data_access.entities.Pet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Controller
@@ -27,7 +27,7 @@ public class PetController implements WebMvcConfigurer {
     @Autowired
     private PetDao petDao;
 
-    @RequestMapping(path = "pet/{id}",
+    /*@RequestMapping(path = "pet/{id}",
             method = RequestMethod.GET,
             produces = "application/json")
     public @ResponseBody
@@ -35,6 +35,19 @@ public class PetController implements WebMvcConfigurer {
         Pet pet = petDao.getOne(id);
         LOGGER.info("The pet with id = " + id + ", is the\n" + pet);
         return pet;
+    }*/
+
+    @RequestMapping(path = "pet/{id}",
+            method = RequestMethod.GET,
+            produces = "application/json")
+    public ResponseEntity<Pet> getById(@PathVariable int id) {
+        Pet pet = petDao.getOne(id);
+        if (pet == null) {
+            LOGGER.info("The pet with id = " + id + ", is not found");
+            throw new ResourceNotFoundException(id, "The pet with id = %d, is not found");
+        }
+        LOGGER.info("The pet with id = " + id + ", is the\n" + pet);
+        return new ResponseEntity<>(pet, HttpStatus.OK);
     }
 
     @RequestMapping(path = "pet/all",

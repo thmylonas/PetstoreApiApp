@@ -1,22 +1,21 @@
-package com.thomasmylonas.petstore_api_web_app.models;
+package com.thomasmylonas.petstore_api_web_app.data_access.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
-@Entity(name = "PHOTO_URLS")
-//@Table(schema = "petstoredb", name = "PHOTO_URLS")
-public class PhotoUrls {
+@Entity(name = "PET_TAG")
+public class Tag {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", updatable = false, nullable = false)
     private Integer id;
-    @Column(name = "URL_NAME", nullable = false, length = 1999)
+    @Column(name = "TAG_NAME", nullable = false, length = 20)
     private String name;
 
     // Mappings - ManyToOne
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "PET_ID")
     @JsonIgnore
     private Pet pet;
@@ -47,7 +46,7 @@ public class PhotoUrls {
 
     @Override
     public String toString() {
-        return "PhotoUrls{" +
+        return "Tag{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_web_app.models;
+package com.thomasmylonas.petstore_api_web_app.data_access.entities;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 @Entity(name = "PET")
 @JsonPropertyOrder({"id", "category", "name", "photoUrls", "tags", "status"})
-//@Table(schema = "petstoredb", name = "PET")
 public class Pet {
 
     @Id

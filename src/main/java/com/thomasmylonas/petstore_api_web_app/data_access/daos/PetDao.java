@@ -1,6 +1,6 @@
-package com.thomasmylonas.petstore_api_web_app.daos;
+package com.thomasmylonas.petstore_api_web_app.data_access.daos;
 
-import com.thomasmylonas.petstore_api_web_app.models.Pet;
+import com.thomasmylonas.petstore_api_web_app.data_access.entities.Pet;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,6 +27,11 @@ public class PetDao implements JpaRepository<Pet, Integer> {
     public PetDao(LocalContainerEntityManagerFactoryBean entityManagerFactoryBean) {
         EntityManagerFactory emf = entityManagerFactoryBean.getObject();
         em = emf.createEntityManager();
+    }
+
+    @Override
+    public Pet getOne(Integer id) {
+        return em.find(Pet.class, id);
     }
 
     @Override
@@ -117,11 +122,6 @@ public class PetDao implements JpaRepository<Pet, Integer> {
     @Override
     public void deleteAllInBatch() {
 
-    }
-
-    @Override
-    public Pet getOne(Integer id) {
-        return em.find(Pet.class, id);
     }
 
     @Override

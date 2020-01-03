@@ -7,11 +7,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87d05039-f36d-4ccc-862b-2c3540f4317b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/models/PhotoUrls.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/exception_handlers/exceptions/ResourceNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/exception_handlers/handlers/ExceptionsHandlerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/models/ErrorStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/test_results/Proxeiro.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/test_results/ResponseEntity-ResourceNotFoundException.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/models/Pet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/models/Pet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/test_results/result_Entities_toString.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_results/result_Entities_toString.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/test_results/result_In_JSON.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_results/result_In_JSON.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/controllers/PetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/controllers/PetController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/daos/PetDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/data_access/daos/PetDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/models/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/data_access/entities/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/models/Pet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/data_access/entities/Pet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/models/PhotoUrls.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/data_access/entities/PhotoUrls.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/models/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/data_access/entities/Status.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/models/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/data_access/entities/Tag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/views_backingbeans/PetBackingBean.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pet.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pet.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/thomasmylonas/petstore_api_web_app/config/DataAccessConfigTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +110,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../MySpringHibernateJsfWebApp" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/data_access" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -107,7 +120,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.23563218" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -117,8 +130,11 @@
       <recent name="" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.thomasmylonas.petstore_api_web_app.data_access.entities" />
+      <recent name="com.thomasmylonas.petstore_api_web_app.models" />
+      <recent name="com.thomasmylonas.petstore_api_web_app.exception_handlers.handlers" />
+      <recent name="com.thomasmylonas.petstore_api_web_app.exception_handlers.exceptions" />
       <recent name="com.thomasmylonas.PetstoreApiWebApp.daos" />
-      <recent name="com.thomasmylonas.PetstoreApiWebApp" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Thomas_Mylonas\Documents\0.BitBucket_Projects\JavaEE_Projects\PetstoreApiWebApp\src\main\resources\META-INF" />
@@ -129,6 +145,7 @@
       <recent name="C:\Users\Thomas_Mylonas\Documents\0.BitBucket_Projects\JavaEE_Projects\PetstoreApiWebApp\src\main\webapp\WEB-INF\views" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.thomasmylonas.petstore_api_web_app.controllers" />
       <recent name="com.thomasmylonas.petstore_api_web_app.models" />
       <recent name="com.thomasmylonas.petstore_api_web_app.views_backingbeans" />
       <recent name="com.thomasmylonas.petstore_api_web_app.config" />
@@ -269,7 +286,7 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
             </expand>
             <select />
@@ -360,6 +377,24 @@
       <workItem from="1577800917790" duration="2116000" />
       <workItem from="1577806061421" duration="950000" />
       <workItem from="1577807340255" duration="2257000" />
+      <workItem from="1577812101589" duration="471000" />
+      <workItem from="1577815486573" duration="838000" />
+      <workItem from="1577819354173" duration="375000" />
+      <workItem from="1577823055965" duration="88000" />
+      <workItem from="1577840643421" duration="3421000" />
+      <workItem from="1577869341399" duration="1823000" />
+      <workItem from="1577881157194" duration="5859000" />
+      <workItem from="1577891297704" duration="7101000" />
+      <workItem from="1577899455888" duration="235000" />
+      <workItem from="1577899703849" duration="725000" />
+      <workItem from="1577906673624" duration="404000" />
+      <workItem from="1577907083166" duration="173000" />
+      <workItem from="1577913247987" duration="1575000" />
+      <workItem from="1577915193325" duration="267000" />
+      <workItem from="1578005687396" duration="3726000" />
+      <workItem from="1578009542169" duration="4422000" />
+      <workItem from="1578014042990" duration="150000" />
+      <workItem from="1578014197574" duration="666000" />
     </task>
     <task id="LOCAL-00001" summary="Effort to connect the API with DataSource/Database. The efforts are partially successful. The app does not output errors...">
       <created>1576351103301</created>
@@ -438,7 +473,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577748188690</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="A change in the database is made. The new table &quot;PHOTO_URLS&quot; is created with the appropriate relations. The appropriate hibernate mappings are made also, with the new entity &quot;PhotoUrls&quot;. It works in success...">
+      <created>1577812532865</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1577812532865</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -470,52 +512,57 @@
     <MESSAGE value="An effort to implement the mappings (ManyToOne) between entities relations. Not successful..." />
     <MESSAGE value="The relations (ManyToOne) between entities made successfully. Jackson dependencies added in pom.xml. There are some issues with @JsonIgnore, Eager/Lazy fetching..." />
     <MESSAGE value="Correction to &quot;JSON infinite recursion&quot; using the @JsonIgnore, the JSON serialization order using the @JsonPropertyOrder, and exporting the status as a String..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Correction to &quot;JSON infinite recursion&quot; using the @JsonIgnore, the JSON serialization order using the @JsonPropertyOrder, and exporting the status as a String..." />
+    <MESSAGE value="A change in the database is made. The new table &quot;PHOTO_URLS&quot; is created with the appropriate relations. The appropriate hibernate mappings are made also, with the new entity &quot;PhotoUrls&quot;. It works in success..." />
+    <option name="LAST_COMMIT_MESSAGE" value="A change in the database is made. The new table &quot;PHOTO_URLS&quot; is created with the appropriate relations. The appropriate hibernate mappings are made also, with the new entity &quot;PhotoUrls&quot;. It works in success..." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="233" y="6" key="#Assign_Data_Sources" timestamp="1577453923546">
+    <state x="233" y="6" key="#Assign_Data_Sources" timestamp="1578011171575">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="233" y="6" key="#Assign_Data_Sources/0.0.1280.689@0.0.1280.689" timestamp="1577453923546" />
+    <state x="233" y="6" key="#Assign_Data_Sources/0.0.1280.689@0.0.1280.689" timestamp="1578011171575" />
     <state x="125" y="5" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1577801183433">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="125" y="5" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.689@0.0.1280.689" timestamp="1577801183433" />
     <state x="-60" y="185" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.870@0.0.1600.870" timestamp="1577200254562" />
-    <state x="446" y="54" key="#com.intellij.ide.util.MemberChooser" timestamp="1577810330410">
+    <state x="446" y="54" key="#com.intellij.ide.util.MemberChooser" timestamp="1578007457898">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="446" y="54" key="#com.intellij.ide.util.MemberChooser/0.0.1280.689@0.0.1280.689" timestamp="1577810330410" />
+    <state x="446" y="54" key="#com.intellij.ide.util.MemberChooser/0.0.1280.689@0.0.1280.689" timestamp="1578007457898" />
     <state x="558" y="68" key="#com.intellij.ide.util.MemberChooser/0.0.1600.870@0.0.1600.870" timestamp="1576457434445" />
-    <state x="371" y="126" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1576753929084">
+    <state x="371" y="126" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1578012067604">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="371" y="126" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1280.689@0.0.1280.689" timestamp="1576753929084" />
+    <state x="371" y="126" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1280.689@0.0.1280.689" timestamp="1578012067604" />
     <state x="269" y="260" width="850" height="168" key="#com.intellij.javaee.module.view.common.J2EE.J2EEDeploymentDescriptorLocationPanel.changeDDPath" timestamp="1575927853830">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="269" y="260" width="850" height="168" key="#com.intellij.javaee.module.view.common.J2EE.J2EEDeploymentDescriptorLocationPanel.changeDDPath/0.0.1280.689@0.0.1280.689" timestamp="1575927853830" />
-    <state x="92" y="274" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1575306636674">
+    <state x="92" y="274" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1578011979810">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="92" y="274" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.689@0.0.1280.689" timestamp="1575306636674" />
-    <state x="443" y="214" width="480" height="223" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1576097563676">
+    <state x="92" y="274" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.689@0.0.1280.689" timestamp="1578011979810" />
+    <state x="443" y="214" width="627" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1578012069640">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="443" y="214" width="480" height="223" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.689@0.0.1280.689" timestamp="1576097563676" />
+    <state x="443" y="214" width="627" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.689@0.0.1280.689" timestamp="1578012069640" />
     <state x="487" y="225" width="446" height="239" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1576350510910">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="487" y="225" width="446" height="239" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1280.689@0.0.1280.689" timestamp="1576350510910" />
-    <state x="194" y="33" width="857" height="589" key="#xdebugger.evaluate" timestamp="1577719713846">
+    <state x="223" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1577915399911">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="194" y="33" width="857" height="589" key="#xdebugger.evaluate/0.0.1280.689@0.0.1280.689" timestamp="1577719713846" />
+    <state x="223" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.689@0.0.1280.689" timestamp="1577915399911" />
+    <state x="194" y="33" width="857" height="589" key="#xdebugger.evaluate" timestamp="1578009011880">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="194" y="33" width="857" height="589" key="#xdebugger.evaluate/0.0.1280.689@0.0.1280.689" timestamp="1578009011880" />
     <state x="112" y="68" width="954" height="583" key="#xdebugger.evaluate/0.0.1600.870@0.0.1600.870" timestamp="1576485765089" />
-    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1577748187490">
+    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1577812531739">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1280.689@0.0.1280.689" timestamp="1577748187490" />
+    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1280.689@0.0.1280.689" timestamp="1577812531739" />
     <state width="870" height="553" key="DebuggerActiveHint" timestamp="1577450116334">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
@@ -526,10 +573,10 @@
     </state>
     <state x="58" y="70" width="1133" height="544" key="DiffContextDialog/0.0.1280.689@0.0.1280.689" timestamp="1577380565105" />
     <state x="73" y="89" width="1416" height="686" key="DiffContextDialog/0.0.1600.870@0.0.1600.870" timestamp="1577204412996" />
-    <state x="421" y="103" key="FileChooserDialogImpl" timestamp="1577214093970">
+    <state x="421" y="103" key="FileChooserDialogImpl" timestamp="1578011988225">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="421" y="103" key="FileChooserDialogImpl/0.0.1280.689@0.0.1280.689" timestamp="1577214093970" />
+    <state x="421" y="103" key="FileChooserDialogImpl/0.0.1280.689@0.0.1280.689" timestamp="1578011988225" />
     <state x="526" y="130" key="FileChooserDialogImpl/0.0.1600.870@0.0.1600.870" timestamp="1577150932950" />
     <state width="997" height="149" key="GridCell.Tab.-1.bottom" timestamp="1577716884344">
       <screen x="0" y="0" width="1280" height="689" />
@@ -551,85 +598,85 @@
     </state>
     <state width="997" height="149" key="GridCell.Tab.-1.right/0.0.1280.689@0.0.1280.689" timestamp="1577716884344" />
     <state width="1262" height="218" key="GridCell.Tab.-1.right/0.0.1600.870@0.0.1600.870" timestamp="1576484318251" />
-    <state width="997" height="149" key="GridCell.Tab.0.bottom" timestamp="1577812098257">
+    <state width="997" height="149" key="GridCell.Tab.0.bottom" timestamp="1578014896338">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="997" height="149" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1577812098257" />
+    <state width="997" height="149" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1578014896338" />
     <state width="1262" height="218" key="GridCell.Tab.0.bottom/0.0.1600.870@0.0.1600.870" timestamp="1577204541264" />
-    <state width="997" height="149" key="GridCell.Tab.0.center" timestamp="1577812098257">
+    <state width="997" height="149" key="GridCell.Tab.0.center" timestamp="1578014896338">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="997" height="149" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1577812098257" />
+    <state width="997" height="149" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1578014896338" />
     <state width="1262" height="218" key="GridCell.Tab.0.center/0.0.1600.870@0.0.1600.870" timestamp="1577204541264" />
-    <state width="997" height="149" key="GridCell.Tab.0.left" timestamp="1577812098257">
+    <state width="997" height="149" key="GridCell.Tab.0.left" timestamp="1578014896338">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="997" height="149" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1577812098257" />
+    <state width="997" height="149" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1578014896338" />
     <state width="1262" height="218" key="GridCell.Tab.0.left/0.0.1600.870@0.0.1600.870" timestamp="1577204541264" />
-    <state width="997" height="149" key="GridCell.Tab.0.right" timestamp="1577812098257">
+    <state width="997" height="149" key="GridCell.Tab.0.right" timestamp="1578014896338">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="997" height="149" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1577812098257" />
+    <state width="997" height="149" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1578014896338" />
     <state width="1262" height="218" key="GridCell.Tab.0.right/0.0.1600.870@0.0.1600.870" timestamp="1577204541264" />
-    <state width="997" height="149" key="GridCell.Tab.1.bottom" timestamp="1577812098258">
+    <state width="997" height="149" key="GridCell.Tab.1.bottom" timestamp="1578014896338">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="997" height="149" key="GridCell.Tab.1.bottom/0.0.1280.689@0.0.1280.689" timestamp="1577812098258" />
+    <state width="997" height="149" key="GridCell.Tab.1.bottom/0.0.1280.689@0.0.1280.689" timestamp="1578014896338" />
     <state width="1262" height="218" key="GridCell.Tab.1.bottom/0.0.1600.870@0.0.1600.870" timestamp="1577204541264" />
-    <state width="997" height="149" key="GridCell.Tab.1.center" timestamp="1577812098258">
+    <state width="997" height="149" key="GridCell.Tab.1.center" timestamp="1578014896338">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="997" height="149" key="GridCell.Tab.1.center/0.0.1280.689@0.0.1280.689" timestamp="1577812098258" />
+    <state width="997" height="149" key="GridCell.Tab.1.center/0.0.1280.689@0.0.1280.689" timestamp="1578014896338" />
     <state width="1262" height="218" key="GridCell.Tab.1.center/0.0.1600.870@0.0.1600.870" timestamp="1577204541264" />
-    <state width="997" height="149" key="GridCell.Tab.1.left" timestamp="1577812098257">
+    <state width="997" height="149" key="GridCell.Tab.1.left" timestamp="1578014896338">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="997" height="149" key="GridCell.Tab.1.left/0.0.1280.689@0.0.1280.689" timestamp="1577812098257" />
+    <state width="997" height="149" key="GridCell.Tab.1.left/0.0.1280.689@0.0.1280.689" timestamp="1578014896338" />
     <state width="1262" height="218" key="GridCell.Tab.1.left/0.0.1600.870@0.0.1600.870" timestamp="1577204541264" />
-    <state width="997" height="149" key="GridCell.Tab.1.right" timestamp="1577812098258">
+    <state width="997" height="149" key="GridCell.Tab.1.right" timestamp="1578014896338">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="997" height="149" key="GridCell.Tab.1.right/0.0.1280.689@0.0.1280.689" timestamp="1577812098258" />
+    <state width="997" height="149" key="GridCell.Tab.1.right/0.0.1280.689@0.0.1280.689" timestamp="1578014896338" />
     <state width="1262" height="218" key="GridCell.Tab.1.right/0.0.1600.870@0.0.1600.870" timestamp="1577204541264" />
-    <state width="997" height="149" key="GridCell.Tab.2.bottom" timestamp="1577812098258">
+    <state width="997" height="149" key="GridCell.Tab.2.bottom" timestamp="1578014896338">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="997" height="149" key="GridCell.Tab.2.bottom/0.0.1280.689@0.0.1280.689" timestamp="1577812098258" />
+    <state width="997" height="149" key="GridCell.Tab.2.bottom/0.0.1280.689@0.0.1280.689" timestamp="1578014896338" />
     <state width="1262" height="218" key="GridCell.Tab.2.bottom/0.0.1600.870@0.0.1600.870" timestamp="1577204541265" />
-    <state width="997" height="149" key="GridCell.Tab.2.center" timestamp="1577812098258">
+    <state width="997" height="149" key="GridCell.Tab.2.center" timestamp="1578014896338">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="997" height="149" key="GridCell.Tab.2.center/0.0.1280.689@0.0.1280.689" timestamp="1577812098258" />
+    <state width="997" height="149" key="GridCell.Tab.2.center/0.0.1280.689@0.0.1280.689" timestamp="1578014896338" />
     <state width="1262" height="218" key="GridCell.Tab.2.center/0.0.1600.870@0.0.1600.870" timestamp="1577204541265" />
-    <state width="997" height="149" key="GridCell.Tab.2.left" timestamp="1577812098258">
+    <state width="997" height="149" key="GridCell.Tab.2.left" timestamp="1578014896338">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="997" height="149" key="GridCell.Tab.2.left/0.0.1280.689@0.0.1280.689" timestamp="1577812098258" />
+    <state width="997" height="149" key="GridCell.Tab.2.left/0.0.1280.689@0.0.1280.689" timestamp="1578014896338" />
     <state width="1262" height="218" key="GridCell.Tab.2.left/0.0.1600.870@0.0.1600.870" timestamp="1577204541265" />
-    <state width="997" height="149" key="GridCell.Tab.2.right" timestamp="1577812098258">
+    <state width="997" height="149" key="GridCell.Tab.2.right" timestamp="1578014896338">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="997" height="149" key="GridCell.Tab.2.right/0.0.1280.689@0.0.1280.689" timestamp="1577812098258" />
+    <state width="997" height="149" key="GridCell.Tab.2.right/0.0.1280.689@0.0.1280.689" timestamp="1578014896338" />
     <state width="1262" height="218" key="GridCell.Tab.2.right/0.0.1600.870@0.0.1600.870" timestamp="1577204541265" />
-    <state width="997" height="149" key="GridCell.Tab.3.bottom" timestamp="1577812098258">
+    <state width="997" height="149" key="GridCell.Tab.3.bottom" timestamp="1578014896338">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="997" height="149" key="GridCell.Tab.3.bottom/0.0.1280.689@0.0.1280.689" timestamp="1577812098258" />
+    <state width="997" height="149" key="GridCell.Tab.3.bottom/0.0.1280.689@0.0.1280.689" timestamp="1578014896338" />
     <state width="1262" height="218" key="GridCell.Tab.3.bottom/0.0.1600.870@0.0.1600.870" timestamp="1577204541265" />
-    <state width="997" height="149" key="GridCell.Tab.3.center" timestamp="1577812098258">
+    <state width="997" height="149" key="GridCell.Tab.3.center" timestamp="1578014896338">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="997" height="149" key="GridCell.Tab.3.center/0.0.1280.689@0.0.1280.689" timestamp="1577812098258" />
+    <state width="997" height="149" key="GridCell.Tab.3.center/0.0.1280.689@0.0.1280.689" timestamp="1578014896338" />
     <state width="1262" height="218" key="GridCell.Tab.3.center/0.0.1600.870@0.0.1600.870" timestamp="1577204541264" />
-    <state width="997" height="149" key="GridCell.Tab.3.left" timestamp="1577812098258">
+    <state width="997" height="149" key="GridCell.Tab.3.left" timestamp="1578014896338">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="997" height="149" key="GridCell.Tab.3.left/0.0.1280.689@0.0.1280.689" timestamp="1577812098258" />
+    <state width="997" height="149" key="GridCell.Tab.3.left/0.0.1280.689@0.0.1280.689" timestamp="1578014896338" />
     <state width="1262" height="218" key="GridCell.Tab.3.left/0.0.1600.870@0.0.1600.870" timestamp="1577204541264" />
-    <state width="997" height="149" key="GridCell.Tab.3.right" timestamp="1577812098258">
+    <state width="997" height="149" key="GridCell.Tab.3.right" timestamp="1578014896338">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="997" height="149" key="GridCell.Tab.3.right/0.0.1280.689@0.0.1280.689" timestamp="1577812098258" />
+    <state width="997" height="149" key="GridCell.Tab.3.right/0.0.1280.689@0.0.1280.689" timestamp="1578014896338" />
     <state width="1262" height="218" key="GridCell.Tab.3.right/0.0.1600.870@0.0.1600.870" timestamp="1577204541264" />
     <state width="1262" height="218" key="GridCell.Tab.4.bottom" timestamp="1576454156887">
       <screen x="0" y="0" width="1600" height="870" />
@@ -651,19 +698,19 @@
       <screen x="0" y="0" width="1600" height="870" />
     </state>
     <state x="428" y="148" key="RollbackChangesDialog/0.0.1600.870@0.0.1600.870" timestamp="1576453996689" />
-    <state x="71" y="0" key="SettingsEditor" timestamp="1577743677776">
+    <state x="71" y="0" key="SettingsEditor" timestamp="1577899690264">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="71" y="0" key="SettingsEditor/0.0.1280.689@0.0.1280.689" timestamp="1577743677776" />
+    <state x="71" y="0" key="SettingsEditor/0.0.1280.689@0.0.1280.689" timestamp="1577899690264" />
     <state x="180" y="0" key="SettingsEditor/0.0.1600.870@0.0.1600.870" timestamp="1576455464681" />
     <state width="242" height="198" key="ShowFilterAction_Filter_Popup" timestamp="1576434274416">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state width="242" height="198" key="ShowFilterAction_Filter_Popup/0.0.1280.689@0.0.1280.689" timestamp="1576434274416" />
-    <state x="233" y="81" key="Vcs.Push.Dialog.v2" timestamp="1577748195260">
+    <state x="233" y="81" key="Vcs.Push.Dialog.v2" timestamp="1577812539899">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="233" y="81" key="Vcs.Push.Dialog.v2/0.0.1280.689@0.0.1280.689" timestamp="1577748195260" />
+    <state x="233" y="81" key="Vcs.Push.Dialog.v2/0.0.1280.689@0.0.1280.689" timestamp="1577812539899" />
     <state width="647" height="351" key="XDebugger.FullValuePopup" timestamp="1577453271857">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
@@ -686,10 +733,10 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="367" y="65" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1280.689@0.0.1280.689" timestamp="1576320548951" />
-    <state x="346" y="106" width="616" height="478" key="find.popup" timestamp="1577810133525">
+    <state x="346" y="106" width="616" height="478" key="find.popup" timestamp="1577823084987">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="346" y="106" width="616" height="478" key="find.popup/0.0.1280.689@0.0.1280.689" timestamp="1577810133525" />
+    <state x="346" y="106" width="616" height="478" key="find.popup/0.0.1280.689@0.0.1280.689" timestamp="1577823084987" />
     <state x="303" y="10" width="672" height="678" key="search.everywhere.popup" timestamp="1576695737707">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
@@ -708,9 +755,14 @@
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/daos/PetDao.java</url>
-          <line>123</line>
-          <option name="timeStamp" value="3" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/exception_handlers/handlers/ExceptionsHandlerController.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/data_access/daos/PetDao.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

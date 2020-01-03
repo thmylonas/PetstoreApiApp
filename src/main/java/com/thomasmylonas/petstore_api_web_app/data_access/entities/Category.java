@@ -1,25 +1,24 @@
-package com.thomasmylonas.petstore_api_web_app.models;
+package com.thomasmylonas.petstore_api_web_app.data_access.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Entity(name = "PET_TAG")
-//@Table(schema = "petstoredb", name = "TAG")
-public class Tag {
+@Entity(name = "PET_CATEGORY")
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", updatable = false, nullable = false)
     private Integer id;
-    @Column(name = "TAG_NAME", nullable = false, length = 20)
+    @Column(name = "CATEGORY_NAME", nullable = false, length = 25)
     private String name;
 
-    // Mappings - ManyToOne
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "PET_ID")
+    // Mappings - OneToMany
+    @OneToMany(mappedBy = "category")
     @JsonIgnore
-    private Pet pet;
+    private List<Pet> petList;
 
     public Integer getId() {
         return id;
@@ -37,17 +36,9 @@ public class Tag {
         this.name = name;
     }
 
-    public Pet getPet() {
-        return pet;
-    }
-
-    public void setPet(Pet pet) {
-        this.pet = pet;
-    }
-
     @Override
     public String toString() {
-        return "Tag{" +
+        return "Category{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

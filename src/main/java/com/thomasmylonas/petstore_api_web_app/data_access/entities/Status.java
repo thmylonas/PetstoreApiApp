@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_web_app.models;
+package com.thomasmylonas.petstore_api_web_app.data_access.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -6,7 +6,6 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "STATUS")
-//@Table(schema = "petstoredb", name = "STATUS")
 public class Status {
 
     @Id

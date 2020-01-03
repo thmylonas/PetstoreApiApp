@@ -1,0 +1,290 @@
+{
+  "Title":
+  {
+    "return": "ResponseEntity<ResourceNotFoundException>"
+  },
+  "return":
+  {
+    "cause": null,
+    "stackTrace": [
+      {
+        "methodName": "getById",
+        "fileName": "PetController.java",
+        "lineNumber": 50,
+        "className": "com.thomasmylonas.petstore_api_web_app.controllers.PetController",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "invoke0",
+        "fileName": "NativeMethodAccessorImpl.java",
+        "lineNumber": -2,
+        "className": "sun.reflect.NativeMethodAccessorImpl",
+        "nativeMethod": true
+      },
+      {
+        "methodName": "invoke",
+        "fileName": "NativeMethodAccessorImpl.java",
+        "lineNumber": 62,
+        "className": "sun.reflect.NativeMethodAccessorImpl",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "invoke",
+        "fileName": "DelegatingMethodAccessorImpl.java",
+        "lineNumber": 43,
+        "className": "sun.reflect.DelegatingMethodAccessorImpl",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "invoke",
+        "fileName": "Method.java",
+        "lineNumber": 498,
+        "className": "java.lang.reflect.Method",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "doInvoke",
+        "fileName": "InvocableHandlerMethod.java",
+        "lineNumber": 190,
+        "className": "org.springframework.web.method.support.InvocableHandlerMethod",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "invokeForRequest",
+        "fileName": "InvocableHandlerMethod.java",
+        "lineNumber": 138,
+        "className": "org.springframework.web.method.support.InvocableHandlerMethod",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "invokeAndHandle",
+        "fileName": "ServletInvocableHandlerMethod.java",
+        "lineNumber": 106,
+        "className": "org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "invokeHandlerMethod",
+        "fileName": "RequestMappingHandlerAdapter.java",
+        "lineNumber": 888,
+        "className": "org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "handleInternal",
+        "fileName": "RequestMappingHandlerAdapter.java",
+        "lineNumber": 793,
+        "className": "org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "handle",
+        "fileName": "AbstractHandlerMethodAdapter.java",
+        "lineNumber": 87,
+        "className": "org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "doDispatch",
+        "fileName": "DispatcherServlet.java",
+        "lineNumber": 1040,
+        "className": "org.springframework.web.servlet.DispatcherServlet",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "doService",
+        "fileName": "DispatcherServlet.java",
+        "lineNumber": 943,
+        "className": "org.springframework.web.servlet.DispatcherServlet",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "processRequest",
+        "fileName": "FrameworkServlet.java",
+        "lineNumber": 1006,
+        "className": "org.springframework.web.servlet.FrameworkServlet",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "doGet",
+        "fileName": "FrameworkServlet.java",
+        "lineNumber": 898,
+        "className": "org.springframework.web.servlet.FrameworkServlet",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "service",
+        "fileName": "HttpServlet.java",
+        "lineNumber": 622,
+        "className": "javax.servlet.http.HttpServlet",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "service",
+        "fileName": "FrameworkServlet.java",
+        "lineNumber": 883,
+        "className": "org.springframework.web.servlet.FrameworkServlet",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "service",
+        "fileName": "HttpServlet.java",
+        "lineNumber": 729,
+        "className": "javax.servlet.http.HttpServlet",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "internalDoFilter",
+        "fileName": "ApplicationFilterChain.java",
+        "lineNumber": 291,
+        "className": "org.apache.catalina.core.ApplicationFilterChain",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "doFilter",
+        "fileName": "ApplicationFilterChain.java",
+        "lineNumber": 206,
+        "className": "org.apache.catalina.core.ApplicationFilterChain",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "doFilter",
+        "fileName": "WsFilter.java",
+        "lineNumber": 52,
+        "className": "org.apache.tomcat.websocket.server.WsFilter",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "internalDoFilter",
+        "fileName": "ApplicationFilterChain.java",
+        "lineNumber": 239,
+        "className": "org.apache.catalina.core.ApplicationFilterChain",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "doFilter",
+        "fileName": "ApplicationFilterChain.java",
+        "lineNumber": 206,
+        "className": "org.apache.catalina.core.ApplicationFilterChain",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "invoke",
+        "fileName": "StandardWrapperValve.java",
+        "lineNumber": 217,
+        "className": "org.apache.catalina.core.StandardWrapperValve",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "invoke",
+        "fileName": "StandardContextValve.java",
+        "lineNumber": 106,
+        "className": "org.apache.catalina.core.StandardContextValve",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "invoke",
+        "fileName": "AuthenticatorBase.java",
+        "lineNumber": 502,
+        "className": "org.apache.catalina.authenticator.AuthenticatorBase",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "invoke",
+        "fileName": "StandardHostValve.java",
+        "lineNumber": 142,
+        "className": "org.apache.catalina.core.StandardHostValve",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "invoke",
+        "fileName": "ErrorReportValve.java",
+        "lineNumber": 79,
+        "className": "org.apache.catalina.valves.ErrorReportValve",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "invoke",
+        "fileName": "AbstractAccessLogValve.java",
+        "lineNumber": 616,
+        "className": "org.apache.catalina.valves.AbstractAccessLogValve",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "invoke",
+        "fileName": "StandardEngineValve.java",
+        "lineNumber": 88,
+        "className": "org.apache.catalina.core.StandardEngineValve",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "service",
+        "fileName": "CoyoteAdapter.java",
+        "lineNumber": 518,
+        "className": "org.apache.catalina.connector.CoyoteAdapter",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "process",
+        "fileName": "AbstractHttp11Processor.java",
+        "lineNumber": 1091,
+        "className": "org.apache.coyote.http11.AbstractHttp11Processor",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "process",
+        "fileName": "AbstractProtocol.java",
+        "lineNumber": 673,
+        "className": "org.apache.coyote.AbstractProtocol$AbstractConnectionHandler",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "doRun",
+        "fileName": "NioEndpoint.java",
+        "lineNumber": 1500,
+        "className": "org.apache.tomcat.util.net.NioEndpoint$SocketProcessor",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "run",
+        "fileName": "NioEndpoint.java",
+        "lineNumber": 1456,
+        "className": "org.apache.tomcat.util.net.NioEndpoint$SocketProcessor",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "runWorker",
+        "fileName": "ThreadPoolExecutor.java",
+        "lineNumber": 1149,
+        "className": "java.util.concurrent.ThreadPoolExecutor",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "run",
+        "fileName": "ThreadPoolExecutor.java",
+        "lineNumber": 624,
+        "className": "java.util.concurrent.ThreadPoolExecutor$Worker",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "run",
+        "fileName": "TaskThread.java",
+        "lineNumber": 61,
+        "className": "org.apache.tomcat.util.threads.TaskThread$WrappingRunnable",
+        "nativeMethod": false
+      },
+      {
+        "methodName": "run",
+        "fileName": "Thread.java",
+        "lineNumber": 748,
+        "className": "java.lang.Thread",
+        "nativeMethod": false
+      }
+    ],
+    "resourceId": 88,
+    "myMessage": "The pet with id = 88, is not found",
+    "localizedMessage": "The pet with id = %d, is not found",
+    "message": "The pet with id = %d, is not found",
+    "suppressed": []
+  }
+}
