@@ -18,6 +18,44 @@
 <h:outputText>
     Welcome to the Pet Home Page
 </h:outputText>
+<br/>
+<ul>
+    <li>
+        <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=available">
+            findByStatus?status=available
+        </a>
+    </li>
+    <li>
+        <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=pending">
+            findByStatus?status=pending
+        </a>
+    </li>
+    <li>
+        <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=sold">
+            findByStatus?status=sold
+        </a>
+    </li>
+    <li>
+        <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=available,pending">
+            findByStatus?status=available,pending
+        </a>
+    </li>
+    <li>
+        <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=available,sold">
+            findByStatus?status=available,sold
+        </a>
+    </li>
+    <li>
+        <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=pending,sold">
+            findByStatus?status=pending,sold
+        </a>
+    </li>
+    <li>
+        <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=available,pending,sold">
+            findByStatus?status=available,pending,sold
+        </a>
+    </li>
+</ul>
 
 </body>
 </html>

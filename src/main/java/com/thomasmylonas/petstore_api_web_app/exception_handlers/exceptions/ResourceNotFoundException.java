@@ -4,26 +4,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
-public class ResourceNotFoundException extends RuntimeException {
+public class ResourceNotFoundException extends BaseRuntimeException {
 
     private long resourceId;
-    private String myMessage; // "message" in SuperClass not settable
 
     public ResourceNotFoundException(long resourceId, String message) {
         super(message);
+        super.setMyMessage(message);
         this.resourceId = resourceId;
-        myMessage = message;
     }
 
     public long getResourceId() {
         return resourceId;
-    }
-
-    public String getMyMessage() {
-        return myMessage;
-    }
-
-    public void setMyMessage(String myMessage) {
-        this.myMessage = myMessage;
     }
 }
