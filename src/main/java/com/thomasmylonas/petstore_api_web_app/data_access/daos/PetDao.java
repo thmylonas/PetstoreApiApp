@@ -1,6 +1,7 @@
 package com.thomasmylonas.petstore_api_web_app.data_access.daos;
 
 import com.thomasmylonas.petstore_api_web_app.data_access.entities.Pet;
+import org.hibernate.Transaction;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +16,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,10 +25,12 @@ public class PetDao implements JpaRepository<Pet, Integer> {
 
     // @PersistenceContext
     private EntityManager em;
+    private Transaction tx;
 
     public PetDao(LocalContainerEntityManagerFactoryBean entityManagerFactoryBean) {
         EntityManagerFactory emf = entityManagerFactoryBean.getObject();
-        em = emf.createEntityManager();
+        this.em = emf.createEntityManager();
+        this.tx = (Transaction) em.getTransaction();
     }
 
     @Override
@@ -42,6 +46,20 @@ public class PetDao implements JpaRepository<Pet, Integer> {
         CriteriaQuery<Pet> all = cq.select(rootEntry);
         TypedQuery<Pet> allQuery = em.createQuery(all);
         return allQuery.getResultList();
+    }
+
+    @Override
+//    @Transactional
+    public <S extends Pet> S save(S s) {
+        S sPersisted = null;
+        try {
+            tx.begin();
+            sPersisted = em.merge(s);
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+        }
+        return sPersisted;
     }
 
     @Override
@@ -82,11 +100,6 @@ public class PetDao implements JpaRepository<Pet, Integer> {
     @Override
     public void deleteAll() {
 
-    }
-
-    @Override
-    public <S extends Pet> S save(S s) {
-        return null;
     }
 
     @Override

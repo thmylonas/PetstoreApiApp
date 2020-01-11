@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 @Entity(name = "PHOTO_URLS")
-public class PhotoUrls {
+public class PhotoUrl {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,6 +19,15 @@ public class PhotoUrls {
     @JoinColumn(name = "PET_ID")
     @JsonIgnore
     private Pet pet;
+
+    public PhotoUrl() {
+    }
+
+    public PhotoUrl(Integer id,
+                    String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public Integer getId() {
         return id;
@@ -46,7 +55,7 @@ public class PhotoUrls {
 
     @Override
     public String toString() {
-        return "PhotoUrls{" +
+        return "PhotoUrl{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

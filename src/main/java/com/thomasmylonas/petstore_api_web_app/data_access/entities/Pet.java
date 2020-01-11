@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Entity(name = "PET")
 @JsonPropertyOrder({"id", "category", "name", "photoUrls", "tags", "status"})
@@ -29,7 +28,23 @@ public class Pet {
     @OneToMany(mappedBy = "pet")
     private List<Tag> tags;
     @OneToMany(mappedBy = "pet")
-    private List<PhotoUrls> photoUrls;
+    private List<PhotoUrl> photoUrls;
+
+    public Pet() {
+    }
+
+    public Pet(Integer id,
+               String name,
+               Status status,
+               Category category,
+               List<Tag> tags, List<PhotoUrl> photoUrls) {
+        this.id = id;
+        this.name = name;
+        this.status = status;
+        this.category = category;
+        this.tags = tags;
+        this.photoUrls = photoUrls;
+    }
 
     public Integer getId() {
         return id;
@@ -47,8 +62,8 @@ public class Pet {
         this.name = name;
     }
 
-    public String getStatus() {
-        return status.getName();
+    public Status getStatus() {
+        return status;
     }
 
     public void setStatus(Status status) {
@@ -71,23 +86,11 @@ public class Pet {
         this.tags = tags;
     }
 
-    public List<String> getPhotoUrls() {
-        return photoUrls.stream().map(PhotoUrls::getName).collect(Collectors.toList());
+    public List<PhotoUrl> getPhotoUrls() {
+        return photoUrls;
     }
 
-    public void setPhotoUrls(List<PhotoUrls> photoUrls) {
+    public void setPhotoUrls(List<PhotoUrl> photoUrls) {
         this.photoUrls = photoUrls;
-    }
-
-    @Override
-    public String toString() {
-        return "Pet{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", status=" + getStatus() +
-                ", category=" + category +
-                ", tags=" + tags +
-                ", photoUrls=" + getPhotoUrls() +
-                '}';
     }
 }

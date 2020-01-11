@@ -1,6 +1,8 @@
 log4j2.xml
 pom.xml
 Proxeiro.txt
+Fetch Eager/Lazy
+Cascade
 
 Controllers
 Daos

@@ -20,6 +20,15 @@ public class Tag {
     @JsonIgnore
     private Pet pet;
 
+    public Tag() {
+    }
+
+    public Tag(Integer id,
+               String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Integer getId() {
         return id;
     }

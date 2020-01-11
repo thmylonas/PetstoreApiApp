@@ -1,0 +1,31 @@
+{
+  "id": 100,
+  "category": {
+    "id": 5,
+    "name": "Fish"
+  },
+  "name": "Phphph",
+  "photoUrls": [
+    "https://scitechdaily.com/images/Siamese-Fighting-Fish-777x602.jpg",
+    "https://scx1.b-cdn.net/csz/news/800/2016/researcherst.png"
+  ],
+  "tags": [
+    {
+      "id": 1,
+      "name": "Aaa"
+    },
+    {
+      "id": 2,
+      "name": "Bbb"
+    },
+    {
+      "id": 4,
+      "name": "Ddd"
+    },
+    {
+      "id": 5,
+      "name": "Eee"
+    }
+  ],
+  "status": "SOLD"
+}

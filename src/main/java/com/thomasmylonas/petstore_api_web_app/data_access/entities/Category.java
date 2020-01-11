@@ -20,6 +20,15 @@ public class Category {
     @JsonIgnore
     private List<Pet> petList;
 
+    public Category() {
+    }
+
+    public Category(Integer id,
+                    String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -34,6 +43,14 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Pet> getPetList() {
+        return petList;
+    }
+
+    public void setPetList(List<Pet> petList) {
+        this.petList = petList;
     }
 
     @Override

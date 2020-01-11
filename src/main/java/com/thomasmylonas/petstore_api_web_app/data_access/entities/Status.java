@@ -20,6 +20,15 @@ public class Status {
     @JsonIgnore
     private List<Pet> petList;
 
+    public Status() {
+    }
+
+    public Status(Integer id,
+                  String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Integer getId() {
         return id;
     }
