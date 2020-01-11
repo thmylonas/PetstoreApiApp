@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity(name = "PET")
 @JsonPropertyOrder({"id", "category", "name", "photoUrls", "tags", "status"})
@@ -62,8 +63,8 @@ public class Pet {
         this.name = name;
     }
 
-    public Status getStatus() {
-        return status;
+    public String getStatus() {
+        return status.getName();
     }
 
     public void setStatus(Status status) {
@@ -86,11 +87,23 @@ public class Pet {
         this.tags = tags;
     }
 
-    public List<PhotoUrl> getPhotoUrls() {
-        return photoUrls;
+    public List<String> getPhotoUrls() {
+        return photoUrls.stream().map(PhotoUrl::getName).collect(Collectors.toList());
     }
 
     public void setPhotoUrls(List<PhotoUrl> photoUrls) {
         this.photoUrls = photoUrls;
+    }
+
+    @Override
+    public String toString() {
+        return "Pet{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", status=" + getStatus() +
+                ", category=" + category +
+                ", tags=" + tags +
+                ", photoUrls=" + getPhotoUrls() +
+                '}';
     }
 }

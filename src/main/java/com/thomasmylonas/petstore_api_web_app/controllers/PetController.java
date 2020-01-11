@@ -18,7 +18,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -57,37 +56,38 @@ public class PetController implements WebMvcConfigurer {
      * @param status status: available, pending, sold, and all the combinations
      * @return petList filtered by status
      */
-//    @RequestMapping(path = "/findByStatus",
-//            method = RequestMethod.GET,
-//            produces = "application/json")
-//    public ResponseEntity<List<Pet>> findByStatus(@RequestParam(value = "status", defaultValue = "available") String status) {
-//
-//        String[] statusArray = status.split(",");
-//
-//        for (String s : statusArray) {
-//            if (!s.equals("available") && !s.equals("sold") && !s.equals("pending")) {
-//                LOGGER.info("400 - Invalid status value");
-//                throw new InvalidInputSuppliedException("400 - Invalid status value");
-//            }
-//        }
-//
-//        List<Pet> petList = petDao.findAll();
-//        List<Pet> filteredPetList =
-//                petList.stream()
-//                        .filter(
-//                                pet -> {
-//                                    for (String s : statusArray) {
-//                                        if (pet.getStatus().toLowerCase().equals(s)) {
-//                                            return true;
-//                                        }
-//                                    }
-//                                    return false;
-//                                }
-//                        )
-//                        .collect(Collectors.toList());
-//        LOGGER.info("All pets filtered by status are: \n" + petList);
-//        return new ResponseEntity<>(filteredPetList, HttpStatus.OK);
-//    }
+    @RequestMapping(path = "/findByStatus",
+            method = RequestMethod.GET,
+            produces = "application/json")
+    public ResponseEntity<List<Pet>> findByStatus(@RequestParam(value = "status", defaultValue = "available") String status) {
+
+        String[] statusArray = status.split(",");
+
+        for (String s : statusArray) {
+            if (!s.equals("available") && !s.equals("sold") && !s.equals("pending")) {
+                LOGGER.info("400 - Invalid status value");
+                throw new InvalidInputSuppliedException("400 - Invalid status value");
+            }
+        }
+
+        List<Pet> petList = petDao.findAll();
+        List<Pet> filteredPetList =
+                petList.stream()
+                        .filter(
+                                pet -> {
+                                    for (String s : statusArray) {
+                                        if (pet.getStatus().toLowerCase().equals(s)) {
+                                            return true;
+                                        }
+                                    }
+                                    return false;
+                                }
+                        )
+                        .collect(Collectors.toList());
+        LOGGER.info("All pets filtered by status are: \n" + petList);
+        return new ResponseEntity<>(filteredPetList, HttpStatus.OK);
+    }
+
     @RequestMapping(
             method = RequestMethod.POST,
             consumes = "application/json")
