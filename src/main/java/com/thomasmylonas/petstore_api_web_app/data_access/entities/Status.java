@@ -1,11 +1,13 @@
 package com.thomasmylonas.petstore_api_web_app.data_access.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "STATUS")
+@JsonPropertyOrder({"id", "name"})
 public class Status {
 
     @Id
@@ -16,18 +18,9 @@ public class Status {
     private String name;
 
     // Mappings - OneToMany
-    @OneToMany(mappedBy = "status")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
     @JsonIgnore
     private List<Pet> petList;
-
-    public Status() {
-    }
-
-    public Status(Integer id,
-                  String name) {
-        this.id = id;
-        this.name = name;
-    }
 
     public Integer getId() {
         return id;

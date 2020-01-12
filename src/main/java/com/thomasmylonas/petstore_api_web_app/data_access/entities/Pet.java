@@ -26,26 +26,10 @@ public class Pet {
     private Category category;
 
     // Mappings - OneToMany
-    @OneToMany(mappedBy = "pet")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
     private List<Tag> tags;
-    @OneToMany(mappedBy = "pet")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
     private List<PhotoUrl> photoUrls;
-
-    public Pet() {
-    }
-
-    public Pet(Integer id,
-               String name,
-               Status status,
-               Category category,
-               List<Tag> tags, List<PhotoUrl> photoUrls) {
-        this.id = id;
-        this.name = name;
-        this.status = status;
-        this.category = category;
-        this.tags = tags;
-        this.photoUrls = photoUrls;
-    }
 
     public Integer getId() {
         return id;

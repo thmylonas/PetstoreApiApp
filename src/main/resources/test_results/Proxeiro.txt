@@ -6,3 +6,74 @@ Cascade
 
 Controllers
 Daos
+
+========================================================================================================================
+
+The GET request procedure
+----------------------------
+When the client request for a new resource, the WebApp returns to the client the whole resource object entity
+(eg. Pet entity), with all its containing object entities.
+If the client needs from the resource particular info, we use the getters to filter what client needs from this entity.
+For example:
+public String getStatus() {return status.getName();}
+
+The POST request procedure
+------------------------------
+Every entity we construct, we construct it according to what the client needs to GET or to POST.
+This means that the entity we construct is what we need to produce to, or to consume from the client.
+So, when the client wants to store to the database a new instance of this entity, the client needs to send
+the whole entity as it is, with all its containing object entities.
+In this case the setters have to set the whole containing object entities.
+For example:
+It is a mistake to set only the name of the entity "Status", because what we send to the server, is an entity which needs an
+id, so it can be saved to the database normally.
+The following snippet is a mistake:
+public void setStatus(Status status) {this.status.setName(status.getName());}
+
+Constructors and Setters
+---------------------------
+When the client sends a new resource to be saved to the server, the entity's attributes have to be filled with the data
+the client sends to the server.
+This is done by the setters in the entities. So the constructors are not needed at all.
+
+Errors during the conversion of the entity to needed representation
+----------------------------------------------------------------------
+If we do mistakes like the followings:
+1. The client does not send the whole entity as it is, with all its containing object entities.
+2. The setters or the constructor do not set the whole containing object entities.
+
+The conversion between the resource representation (eg. JSON) and the entities will fail, and the request
+handler of the controller, will never be called. This is because the controller does not deal with the
+representation of the resource, but is dealing with entities.
+
+Possible errors during the conversion of the entity to needed representation
+--------------------------------------------------------------------------------
+1. No use of constructors OR Use of constructors WITHOUT "@JsonCreator(mode = JsonCreator.Mode.PROPERTIES)" and "@JsonProperty"
+[Error]
+WARN  DefaultHandlerExceptionResolver:199 - Resolved [org.springframework.http.converter.HttpMessageNotReadableException:
+JSON parse error: Cannot construct instance of `com.thomasmylonas.petstore_api_web_app.data_access.entities.PhotoUrl`
+(although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value
+('https://scitechdaily.com/images/Siamese-Fighting-Fish-777x602.jpg');
+nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException:
+Cannot construct instance of `com.thomasmylonas.petstore_api_web_app.data_access.entities.PhotoUrl`
+(although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value
+('https://scitechdaily.com/images/Siamese-Fighting-Fish-777x602.jpg') at [Source: (PushbackInputStream); line: 9, column: 5]
+(through reference chain: com.thomasmylonas.petstore_api_web_app.data_access.entities.Pet["photoUrls"]->java.util.ArrayList[0])]
+
+2. Use of constructors WITH "@JsonCreator(mode = JsonCreator.Mode.PROPERTIES)" and "@JsonProperty"
+[Error]
+WARN  MappingJackson2HttpMessageConverter:127 - Failed to evaluate Jackson deserialization for type
+[[simple type, class com.thomasmylonas.petstore_api_web_app.data_access.entities.Pet]]:
+com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Invalid type definition for type
+`com.thomasmylonas.petstore_api_web_app.data_access.entities.Pet`: Argument #0 has no property name,
+is not Injectable: can not use as Creator [constructor for com.thomasmylonas.petstore_api_web_app.data_access.entities.Pet,
+annotations: {interface com.fasterxml.jackson.annotation.JsonCreator=@com.fasterxml.jackson.annotation.JsonCreator(mode=PROPERTIES)}]
+WARN  DefaultHandlerExceptionResolver:199 -
+Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/json' not supported]
+
+3. [Error]
+WARN  DefaultHandlerExceptionResolver:199 -
+Resolved [org.springframework.http.converter.HttpMessageNotReadableException:
+JSON parse error: null; nested exception is com.fasterxml.jackson.databind.JsonMappingException: N/A
+at [Source: (PushbackInputStream); line: 17, column: 3]
+(through reference chain: com.thomasmylonas.petstore_api_web_app.data_access.entities.Pet["photoUrls"])]

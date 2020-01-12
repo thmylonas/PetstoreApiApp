@@ -1,10 +1,12 @@
 package com.thomasmylonas.petstore_api_web_app.data_access.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import javax.persistence.*;
 
 @Entity(name = "PET_TAG")
+@JsonPropertyOrder({"id", "name"})
 public class Tag {
 
     @Id
@@ -19,15 +21,6 @@ public class Tag {
     @JoinColumn(name = "PET_ID")
     @JsonIgnore
     private Pet pet;
-
-    public Tag() {
-    }
-
-    public Tag(Integer id,
-               String name) {
-        this.id = id;
-        this.name = name;
-    }
 
     public Integer getId() {
         return id;
