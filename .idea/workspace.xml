@@ -8,13 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="87d05039-f36d-4ccc-862b-2c3540f4317b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/data_access/entities/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/data_access/entities/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/data_access/entities/Pet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/data_access/entities/Pet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/data_access/entities/PhotoUrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/data_access/entities/PhotoUrl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/data_access/entities/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/data_access/entities/Status.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/data_access/entities/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thomasmylonas/petstore_api_web_app/data_access/entities/Tag.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/test_results/Proxeiro.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_results/Proxeiro.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/test_results/pets_to_save/PetToStore_AsNeeded.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_results/pets_to_save/PetToStore_PartiallySetted.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -276,11 +270,6 @@
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
             </expand>
             <select />
           </treeState>
@@ -429,6 +418,9 @@
       <workItem from="1578823537251" duration="1085000" />
       <workItem from="1578824634195" duration="4671000" />
       <workItem from="1578829590865" duration="85000" />
+      <workItem from="1578829679147" duration="212000" />
+      <workItem from="1578838381566" duration="1425000" />
+      <workItem from="1578844558934" duration="24000" />
     </task>
     <task id="LOCAL-00001" summary="Effort to connect the API with DataSource/Database. The efforts are partially successful. The app does not output errors...">
       <created>1576351103301</created>
@@ -542,7 +534,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578744836702</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="The errors during the conversion of the entity to needed representation are solved, with explanations in the Proxeiro file. The error now is in the hibernate...">
+      <created>1578829845949</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1578829845949</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -578,7 +577,8 @@
     <MESSAGE value="For the path: &quot;pet/{id}&quot;, the case of &quot;404-NotFound&quot; is taken care off, and handled properly, so the app will not lead to failure page..." />
     <MESSAGE value="The request to the path: &quot;/pet/findByStatus&quot;, is finished (with the error status)..." />
     <MESSAGE value="Post a Pet, 1st try: All entities have &quot;full&quot; all of their containing objects (contructors, getters, setters). The request is handled normally from POST method, but it fails to post..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Post a Pet, 1st try: All entities have &quot;full&quot; all of their containing objects (contructors, getters, setters). The request is handled normally from POST method, but it fails to post..." />
+    <MESSAGE value="The errors during the conversion of the entity to needed representation are solved, with explanations in the Proxeiro file. The error now is in the hibernate..." />
+    <option name="LAST_COMMIT_MESSAGE" value="The errors during the conversion of the entity to needed representation are solved, with explanations in the Proxeiro file. The error now is in the hibernate..." />
   </component>
   <component name="WindowStateProjectService">
     <state x="233" y="6" key="#Assign_Data_Sources" timestamp="1578011171575">
@@ -624,10 +624,10 @@
     </state>
     <state x="194" y="33" width="857" height="589" key="#xdebugger.evaluate/0.0.1280.689@0.0.1280.689" timestamp="1578825202846" />
     <state x="112" y="68" width="954" height="583" key="#xdebugger.evaluate/0.0.1600.870@0.0.1600.870" timestamp="1576485765089" />
-    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1578744835270">
+    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1578829844716">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1280.689@0.0.1280.689" timestamp="1578744835270" />
+    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1280.689@0.0.1280.689" timestamp="1578829844716" />
     <state width="870" height="553" key="DebuggerActiveHint" timestamp="1578825969506">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
@@ -777,10 +777,10 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="490" y="267" key="VCS.ChangelistChooser/0.0.1280.689@0.0.1280.689" timestamp="1578140738029" />
-    <state x="233" y="81" key="Vcs.Push.Dialog.v2" timestamp="1578744842510">
+    <state x="233" y="81" key="Vcs.Push.Dialog.v2" timestamp="1578829851117">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="233" y="81" key="Vcs.Push.Dialog.v2/0.0.1280.689@0.0.1280.689" timestamp="1578744842510" />
+    <state x="233" y="81" key="Vcs.Push.Dialog.v2/0.0.1280.689@0.0.1280.689" timestamp="1578829851117" />
     <state width="647" height="351" key="XDebugger.FullValuePopup" timestamp="1578101380738">
       <screen x="0" y="0" width="1280" height="689" />
     </state>

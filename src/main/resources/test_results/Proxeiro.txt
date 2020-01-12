@@ -41,6 +41,9 @@ Errors during the conversion of the entity to needed representation
 If we do mistakes like the followings:
 1. The client does not send the whole entity as it is, with all its containing object entities.
 2. The setters or the constructor do not set the whole containing object entities.
+3. If for an attribute, we use 2 setters which have the same name but different parameters, the converter will
+be confused which of them can use to set the attribute.
+eg. void setAttr(int i){...}, and void setAttr(Integer i){...}
 
 The conversion between the resource representation (eg. JSON) and the entities will fail, and the request
 handler of the controller, will never be called. This is because the controller does not deal with the
