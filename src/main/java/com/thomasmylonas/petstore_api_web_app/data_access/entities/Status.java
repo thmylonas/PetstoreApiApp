@@ -11,14 +11,15 @@ import java.util.List;
 public class Status {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator")
+    @SequenceGenerator(name = "generator", sequenceName = "ID_SEQUENCE_STATUS", allocationSize = 1)
     @Column(name = "ID", updatable = false, nullable = false)
     private Integer id;
     @Column(name = "STATUS_NAME", nullable = false, length = 15)
     private String name;
 
     // Mappings - OneToMany
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
+    @OneToMany(cascade = CascadeType.REFRESH, mappedBy = "status")
     @JsonIgnore
     private List<Pet> petList;
 

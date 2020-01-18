@@ -1,5 +1,5 @@
 {
-  "id": 100,
+  "id": null,
   "category": {
     "id": 5,
     "name": "Fish"
@@ -7,30 +7,26 @@
   "name": "Phphph",
   "photoUrls": [
     {
-      "id": 15,
+      "id": null,
       "name": "https://scitechdaily.com/images/Siamese-Fighting-Fish-777x602.jpg"
     },
     {
-      "id": 25,
+      "id": null,
       "name": "https://scx1.b-cdn.net/csz/news/800/2016/researcherst.png"
     }
   ],
   "tags": [
     {
-      "id": 1,
-      "name": "Aaa"
+      "id": null,
+      "name": "Phphph_Tag_A"
     },
     {
-      "id": 2,
-      "name": "Bbb"
+      "id": null,
+      "name": "Phphph_Tag_B"
     },
     {
-      "id": 4,
-      "name": "Ddd"
-    },
-    {
-      "id": 5,
-      "name": "Eee"
+      "id": null,
+      "name": "Phphph_Tag_C"
     }
   ],
   "status": {

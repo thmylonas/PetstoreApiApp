@@ -1,6 +1,8 @@
 package com.thomasmylonas.petstore_api_web_app.data_access.daos;
 
 import com.thomasmylonas.petstore_api_web_app.data_access.entities.Pet;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Transaction;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -22,6 +24,8 @@ import java.util.Optional;
 
 @Component  // (value = "petDao") // With this, 2 beans are created
 public class PetDao implements JpaRepository<Pet, Integer> {
+
+    private static final Logger LOGGER = LogManager.getLogger(PetDao.class.getName());
 
     // @PersistenceContext
     private EntityManager em;
@@ -52,14 +56,18 @@ public class PetDao implements JpaRepository<Pet, Integer> {
 //    @Transactional
     public <S extends Pet> S save(S s) {
         S sPersisted = null;
+        // "Evaluate" window: s.photoUrls
         try {
             tx.begin();
-            sPersisted = em.merge(s);
+//            sPersisted = em.merge(s);
+            em.persist(s);
+            em.flush();
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
+            LOGGER.error(e.getMessage());
         }
-        return sPersisted;
+        return s;
     }
 
     @Override

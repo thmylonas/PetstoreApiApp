@@ -14,6 +14,8 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
+import java.util.Properties;
+
 @Configuration
 @ComponentScan(basePackages = {"com.thomasmylonas.petstore_api_web_app"})
 public class DataAccessConfig {
@@ -25,6 +27,11 @@ public class DataAccessConfig {
         LocalContainerEntityManagerFactoryBean emfb = new LocalContainerEntityManagerFactoryBean();
         emfb.setDataSource(dataSource);
         emfb.setJpaVendorAdapter(jpaVendorAdapter);
+
+        Properties properties = new Properties();
+//        properties.setProperty("hibernate.hbm2ddl.auto", "update");
+        properties.put("hibernate.id.new_generator_mappings", "true");
+        emfb.setJpaProperties(properties);
 
         emfb.setPackagesToScan("com.thomasmylonas.petstore_api_web_app");
         return emfb;

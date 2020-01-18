@@ -11,14 +11,15 @@ import java.util.List;
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator")
+    @SequenceGenerator(name = "generator", sequenceName = "ID_SEQUENCE_CATEGORY", allocationSize = 1)
     @Column(name = "ID", updatable = false, nullable = false)
     private Integer id;
     @Column(name = "CATEGORY_NAME", nullable = false, length = 25)
     private String name;
 
     // Mappings - OneToMany
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+    @OneToMany(cascade = CascadeType.REFRESH, mappedBy = "category")
     @JsonIgnore
     private List<Pet> petList;
 

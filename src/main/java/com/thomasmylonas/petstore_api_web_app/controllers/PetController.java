@@ -136,3 +136,41 @@ public class PetController implements WebMvcConfigurer {
     }
     */
 }
+
+/*
+Hibernate: select pet0_.ID as ID1_0_0_, pet0_.PET_CATEGORY_ID as PET_CATEGORY_ID3_0_0_, pet0_.PET_NAME as PET_NAME2_0_0_, pet0_.STATUS_ID as STATUS_ID4_0_0_ from PET pet0_ where pet0_.ID=?
+Hibernate: select category0_.ID as ID1_1_0_, category0_.CATEGORY_NAME as CATEGORY_NAME2_1_0_ from PET_CATEGORY category0_ where category0_.ID=?
+Hibernate: select status0_.ID as ID1_4_0_, status0_.STATUS_NAME as STATUS_NAME2_4_0_ from STATUS status0_ where status0_.ID=?
+Hibernate: select hibernate_sequence.nextval from dual
+Hibernate: select photourl0_.ID as ID1_3_0_, photourl0_.URL_NAME as URL_NAME2_3_0_, photourl0_.PET_ID as PET_ID3_3_0_ from PHOTO_URLS photourl0_ where photourl0_.ID=?
+
+result: Method threw 'javax.persistence.EntityNotFoundException' exception.
+detailMessage:
+Unable to find com.thomasmylonas.petstore_api_web_app.data_access.entities.PhotoUrl with id 6
+cause:
+javax.persistence.EntityNotFoundException: Unable to find
+com.thomasmylonas.petstore_api_web_app.data_access.entities.PhotoUrl with id 6
+*/
+
+/*
+sPersisted = em.merge(s);
+----------------------------
+Hibernate: select pet0_.ID as ID1_0_0_, pet0_.PET_CATEGORY_ID as PET_CATEGORY_ID3_0_0_, pet0_.PET_NAME as PET_NAME2_0_0_, pet0_.STATUS_ID as STATUS_ID4_0_0_ from PET pet0_ where pet0_.ID=?
+Hibernate: select category0_.ID as ID1_1_0_, category0_.CATEGORY_NAME as CATEGORY_NAME2_1_0_ from PET_CATEGORY category0_ where category0_.ID=?
+Hibernate: select status0_.ID as ID1_4_0_, status0_.STATUS_NAME as STATUS_NAME2_4_0_ from STATUS status0_ where status0_.ID=?
+Hibernate: select photourl0_.ID as ID1_3_0_, photourl0_.URL_NAME as URL_NAME2_3_0_, photourl0_.PET_ID as PET_ID3_3_0_ from PHOTO_URLS photourl0_ where photourl0_.ID=?
+
+em.persist(s);
+--------------------
+Hibernate: insert into PET (PET_CATEGORY_ID, PET_NAME, STATUS_ID, ID) values (?, ?, ?, ?)
+Hibernate: insert into PHOTO_URLS (URL_NAME, PET_ID, ID) values (?, ?, ?)
+Hibernate: insert into PHOTO_URLS (URL_NAME, PET_ID, ID) values (?, ?, ?)
+
+result: Method threw 'javax.persistence.EntityExistsException' exception.
+detailMessage: A different object with the same identifier value was already associated with the session : [com.thomasmylonas.petstore_api_web_app.data_access.entities.Pet#5]
+cause: javax.persistence.EntityExistsException: A different object with the same identifier value was already associated with the session : [com.thomasmylonas.petstore_api_web_app.data_access.entities.Pet#5]
+*/
+
+/*
+
+ */

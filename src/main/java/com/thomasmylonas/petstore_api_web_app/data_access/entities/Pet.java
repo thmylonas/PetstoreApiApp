@@ -11,7 +11,8 @@ import java.util.stream.Collectors;
 public class Pet {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator")
+    @SequenceGenerator(name = "generator", sequenceName = "ID_SEQUENCE_PET", allocationSize = 1)
     @Column(name = "ID", updatable = false, nullable = false)
     private Integer id;
     @Column(name = "PET_NAME", nullable = false, length = 25)
@@ -26,9 +27,9 @@ public class Pet {
     private Category category;
 
     // Mappings - OneToMany
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
+    @OneToMany(mappedBy = "pet", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
     private List<Tag> tags;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
+    @OneToMany(mappedBy = "pet", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
     private List<PhotoUrl> photoUrls;
 
     public Integer getId() {
@@ -68,6 +69,9 @@ public class Pet {
     }
 
     public void setTags(List<Tag> tags) {
+        tags.stream().forEach(tag -> {
+            tag.setPet(this);
+        });
         this.tags = tags;
     }
 
@@ -76,8 +80,16 @@ public class Pet {
     }
 
     public void setPhotoUrls(List<PhotoUrl> photoUrls) {
+        photoUrls.stream().forEach(photoUrl -> {
+            photoUrl.setPet(this);
+        });
         this.photoUrls = photoUrls;
     }
+//    public void setPhotoUrls(List<PhotoUrl> photoUrls) {
+//        for (int i = 0; i < photoUrls.size(); i++) {
+//            this.photoUrls.set(i, photoUrls.get(i));
+//        }
+//    }
 
     @Override
     public String toString() {

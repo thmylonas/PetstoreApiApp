@@ -5,19 +5,20 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import javax.persistence.*;
 
-@Entity(name = "PHOTO_URLS")
+@Entity(name = "PHOTO_URL")
 @JsonPropertyOrder({"id", "name"})
 public class PhotoUrl {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator")
+    @SequenceGenerator(name = "generator", sequenceName = "ID_SEQUENCE_PHOTO_URL", allocationSize = 1)
     @Column(name = "ID", updatable = false, nullable = false)
     private Integer id;
     @Column(name = "URL_NAME", nullable = false, length = 1999)
     private String name;
 
     // Mappings - ManyToOne
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "PET_ID")
     @JsonIgnore
     private Pet pet;
