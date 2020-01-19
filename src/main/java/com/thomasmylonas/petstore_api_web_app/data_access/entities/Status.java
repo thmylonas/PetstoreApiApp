@@ -19,7 +19,7 @@ public class Status {
     private String name;
 
     // Mappings - OneToMany
-    @OneToMany(cascade = CascadeType.REFRESH, mappedBy = "status")
+    @OneToMany(mappedBy = "status", cascade = CascadeType.REFRESH)
     @JsonIgnore
     private List<Pet> petList;
 

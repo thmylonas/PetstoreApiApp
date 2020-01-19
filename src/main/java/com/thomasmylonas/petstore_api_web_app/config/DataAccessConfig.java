@@ -30,7 +30,7 @@ public class DataAccessConfig {
 
         Properties properties = new Properties();
 //        properties.setProperty("hibernate.hbm2ddl.auto", "update");
-        properties.put("hibernate.id.new_generator_mappings", "true");
+//        properties.put("hibernate.id.new_generator_mappings", "true");
         emfb.setJpaProperties(properties);
 
         emfb.setPackagesToScan("com.thomasmylonas.petstore_api_web_app");

@@ -19,7 +19,7 @@ public class Category {
     private String name;
 
     // Mappings - OneToMany
-    @OneToMany(cascade = CascadeType.REFRESH, mappedBy = "category")
+    @OneToMany(mappedBy = "category", cascade = CascadeType.REFRESH)
     @JsonIgnore
     private List<Pet> petList;
 
