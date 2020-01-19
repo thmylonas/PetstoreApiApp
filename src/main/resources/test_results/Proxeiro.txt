@@ -2,7 +2,6 @@ log4j2.xml
 pom.xml
 Proxeiro.txt
 Fetch Eager/Lazy
-Cascade
 
 Controllers
 Daos
@@ -133,13 +132,13 @@ https://stackoverflow.com/questions/47932776/foreign-key-in-the-child-table-is-n
 
 Exceptional case A:
 -----------------------
-Persists the Pet, but not PhotoUrl, Tag
+Persists the Pet, but not PhotoUrl, Tag.
 [Output:]
 Hibernate: select category_.ID, category_.CATEGORY_NAME as CATEGORY_NAME2_1_ from PET_CATEGORY category_ where category_.ID=?
 Hibernate: select status_.ID, status_.STATUS_NAME as STATUS_NAME2_4_ from STATUS status_ where status_.ID=?
 Hibernate: insert into PET (PET_CATEGORY_ID, PET_NAME, STATUS_ID, ID) values (?, ?, ?, ?)
 [Cause:]
-When you do the followings:
+When you do the followings together:
 1. Use the method: EntityManager.persist(...), with "CascadeType.MERGE"
 2. NO GenerationType strategy declared.
 
@@ -158,9 +157,19 @@ Hibernate: insert into PET_TAG (TAG_NAME, PET_ID, ID) values (?, ?, ?)
 Hibernate: insert into PET_TAG (TAG_NAME, PET_ID, ID) values (?, ?, ?)
 Hibernate: insert into PET_TAG (TAG_NAME, PET_ID, ID) values (?, ?, ?)
 [Cause:]
-When you do the followings:
+When you do the followings together:
 1. Use the method: EntityManager.persist(...), with "CascadeType.PERSIST"
 2. NO GenerationType strategy declared.
+
+Use of: sPersisted = em.merge(s);
+------------------------------------
+[Error]
+result: Method threw 'javax.persistence.EntityNotFoundException' exception.
+detailMessage:
+Unable to find com.thomasmylonas.petstore_api_web_app.data_access.entities.PhotoUrl with id 6
+cause:
+javax.persistence.EntityNotFoundException: Unable to find
+com.thomasmylonas.petstore_api_web_app.data_access.entities.PhotoUrl with id 6
 
 Significant notes
 =====================
@@ -179,7 +188,7 @@ We should never cascade from "Child entity" to "Parent entity". Always cascade f
 Because, a child entity cannot be created prior to its parent.
 
 Errors Template
--------------------
+====================
 result:
 detailMessage:
 cause:
