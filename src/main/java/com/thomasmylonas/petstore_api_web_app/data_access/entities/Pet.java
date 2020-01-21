@@ -52,6 +52,10 @@ public class Pet {
         return status.getName();
     }
 
+    public Status getStatus(int unused) {
+        return status;
+    }
+
     public void setStatus(Status status) {
         this.status = status;
     }

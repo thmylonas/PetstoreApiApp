@@ -13,6 +13,7 @@ public class PhotoUrl {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator")
     @SequenceGenerator(name = "generator", sequenceName = "ID_SEQUENCE_PHOTO_URL", allocationSize = 1)
     @Column(name = "ID", updatable = false, nullable = false)
+    @JsonIgnore
     private Integer id;
     @Column(name = "URL_NAME", nullable = false, length = 1999)
     private String name;

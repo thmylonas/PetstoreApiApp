@@ -1,6 +1,7 @@
 package com.thomasmylonas.petstore_api_web_app.controllers;
 
 import com.thomasmylonas.petstore_api_web_app.data_access.daos.PetDao;
+import com.thomasmylonas.petstore_api_web_app.data_access.entities.Status;
 import com.thomasmylonas.petstore_api_web_app.exception_handlers.exceptions.InvalidInputSuppliedException;
 import com.thomasmylonas.petstore_api_web_app.exception_handlers.exceptions.ResourceNotFoundException;
 import com.thomasmylonas.petstore_api_web_app.data_access.entities.Pet;
@@ -98,6 +99,9 @@ public class PetController implements WebMvcConfigurer {
 //            LOGGER.info("The pet with id = " + id + ", is not found");
 //            throw new ResourceNotFoundException(id, "The pet with id = %d, is not found");
         }
+
+        pet.getStatus(0).setId(Status.StatusEnum.getId(pet.getStatus()));
+
         Pet petPersisted = petDao.save(pet);
 
         HttpHeaders headers = new HttpHeaders();

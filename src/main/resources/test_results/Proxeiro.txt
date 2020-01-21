@@ -171,6 +171,21 @@ cause:
 javax.persistence.EntityNotFoundException: Unable to find
 com.thomasmylonas.petstore_api_web_app.data_access.entities.PhotoUrl with id 6
 
+Error if the "State" object is given as input without id [PetToStore_FullObjects4.json]
+--------------------------------------------------------------------------------------------
+[Error]
+result: javax.persistence.RollbackException: Error while committing the transaction
+detailMessage: org.hibernate.TransientPropertyValueException:
+    object references an unsaved transient instance - save the transient instance before flushing :
+    com.thomasmylonas.petstore_api_web_app.data_access.entities.Pet.status ->
+    com.thomasmylonas.petstore_api_web_app.data_access.entities.Status
+transientEntityName: com.thomasmylonas.petstore_api_web_app.data_access.entities.Status
+cause: org.hibernate.TransientPropertyValueException: object references an unsaved transient instance -
+save the transient instance before flushing : com.thomasmylonas.petstore_api_web_app.data_access.entities.Pet.status ->
+com.thomasmylonas.petstore_api_web_app.data_access.entities.Status
+[Solution]
+pet.getStatus(0).setId(Status.StatusEnum.getId(pet.getStatus()));
+
 Significant notes
 =====================
 

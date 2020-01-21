@@ -10,10 +10,29 @@ import java.util.List;
 @JsonPropertyOrder({"id", "name"})
 public class Status {
 
+    public enum StatusEnum {
+        AVAILABLE,
+        PENDING,
+        SOLD;
+
+        static public Integer getId(String name) {
+
+            if (name.equalsIgnoreCase(AVAILABLE.name())) {
+                return 1;
+            } else if (name.equalsIgnoreCase(PENDING.name())) {
+                return 2;
+            } else if (name.equalsIgnoreCase(SOLD.name())) {
+                return 3;
+            }
+            return -1;
+        }
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator")
     @SequenceGenerator(name = "generator", sequenceName = "ID_SEQUENCE_STATUS", allocationSize = 1)
     @Column(name = "ID", updatable = false, nullable = false)
+    @JsonIgnore
     private Integer id;
     @Column(name = "STATUS_NAME", nullable = false, length = 15)
     private String name;
