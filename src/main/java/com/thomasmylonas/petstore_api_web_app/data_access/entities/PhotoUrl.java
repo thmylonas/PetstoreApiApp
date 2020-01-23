@@ -24,6 +24,15 @@ public class PhotoUrl {
     @JsonIgnore
     private Pet pet;
 
+    public PhotoUrl() {
+    }
+
+    public PhotoUrl(Integer id,
+                    String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Integer getId() {
         return id;
     }

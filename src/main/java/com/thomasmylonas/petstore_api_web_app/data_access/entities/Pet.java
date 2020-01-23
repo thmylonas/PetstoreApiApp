@@ -1,13 +1,13 @@
 package com.thomasmylonas.petstore_api_web_app.data_access.entities;
 
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.thomasmylonas.petstore_api_web_app.models.PetModel;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Entity(name = "PET")
-@JsonPropertyOrder({"id", "category", "name", "photoUrls", "tags", "status"})
 public class Pet {
 
     @Id
@@ -28,9 +28,26 @@ public class Pet {
 
     // Mappings - OneToMany
     @OneToMany(mappedBy = "pet", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
+//    @Cascade({org.hibernate.annotations.CascadeType.REMOVE})
     private List<Tag> tags;
     @OneToMany(mappedBy = "pet", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
+//    @Cascade({org.hibernate.annotations.CascadeType.REMOVE})
     private List<PhotoUrl> photoUrls;
+
+    public Pet() {
+    }
+
+    public Pet(PetModel petModel) {
+        this.id = petModel.getId();
+        this.name = petModel.getName();
+        this.status = new Status(Status.StatusEnum.getId(petModel.getStatus()), petModel.getStatus());
+        this.category = petModel.getCategory();
+        this.tags = petModel.getTags();
+        photoUrls = new ArrayList<>();
+        for (int i = 0; i < petModel.getPhotoUrls().size(); i++) {
+            photoUrls.add(new PhotoUrl(null, petModel.getPhotoUrls().get(i)));
+        }
+    }
 
     public Integer getId() {
         return id;
@@ -48,11 +65,7 @@ public class Pet {
         this.name = name;
     }
 
-    public String getStatus() {
-        return status.getName();
-    }
-
-    public Status getStatus(int unused) {
+    public Status getStatus() {
         return status;
     }
 
@@ -79,8 +92,8 @@ public class Pet {
         this.tags = tags;
     }
 
-    public List<String> getPhotoUrls() {
-        return photoUrls.stream().map(PhotoUrl::getName).collect(Collectors.toList());
+    public List<PhotoUrl> getPhotoUrls() {
+        return photoUrls;
     }
 
     public void setPhotoUrls(List<PhotoUrl> photoUrls) {
@@ -89,11 +102,6 @@ public class Pet {
         });
         this.photoUrls = photoUrls;
     }
-//    public void setPhotoUrls(List<PhotoUrl> photoUrls) {
-//        for (int i = 0; i < photoUrls.size(); i++) {
-//            this.photoUrls.set(i, photoUrls.get(i));
-//        }
-//    }
 
     @Override
     public String toString() {

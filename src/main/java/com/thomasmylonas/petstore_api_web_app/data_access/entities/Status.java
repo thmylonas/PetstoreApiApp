@@ -42,6 +42,18 @@ public class Status {
     @JsonIgnore
     private List<Pet> petList;
 
+    public Status() {
+    }
+
+    public Status(Integer id,
+                  String name//,
+//                  List<Pet> petList
+    ) {
+        this.id = id;
+        this.name = name;
+//        this.petList = petList;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -1,11 +1,11 @@
 package com.thomasmylonas.petstore_api_web_app.controllers;
 
 import com.thomasmylonas.petstore_api_web_app.data_access.daos.PetDao;
-import com.thomasmylonas.petstore_api_web_app.data_access.entities.Status;
+import com.thomasmylonas.petstore_api_web_app.data_access.entities.*;
 import com.thomasmylonas.petstore_api_web_app.exception_handlers.exceptions.InvalidInputSuppliedException;
 import com.thomasmylonas.petstore_api_web_app.exception_handlers.exceptions.ResourceNotFoundException;
-import com.thomasmylonas.petstore_api_web_app.data_access.entities.Pet;
 import com.thomasmylonas.petstore_api_web_app.helpers.UsefulUtils;
+import com.thomasmylonas.petstore_api_web_app.models.PetModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +19,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,7 +35,7 @@ public class PetController implements WebMvcConfigurer {
     @RequestMapping(path = "/{id}",
             method = RequestMethod.GET,
             produces = "application/json")
-    public ResponseEntity<Pet> getById(@PathVariable int id) {
+    public ResponseEntity<PetModel> getById(@PathVariable int id) {
 
         if (id < 1
             //|| !UsefulUtils.isInteger(String.valueOf(id))
@@ -48,7 +49,7 @@ public class PetController implements WebMvcConfigurer {
             throw new ResourceNotFoundException(id, "The pet with id = %d, is not found");
         }
         LOGGER.info("The pet with id = " + id + ", is the\n" + pet);
-        return new ResponseEntity<>(pet, HttpStatus.OK);
+        return new ResponseEntity<>(new PetModel(pet), HttpStatus.OK);
     }
 
     /**
@@ -60,7 +61,7 @@ public class PetController implements WebMvcConfigurer {
     @RequestMapping(path = "/findByStatus",
             method = RequestMethod.GET,
             produces = "application/json")
-    public ResponseEntity<List<Pet>> findByStatus(@RequestParam(value = "status", defaultValue = "available") String status) {
+    public ResponseEntity<List<PetModel>> findByStatus(@RequestParam(value = "status", defaultValue = "available") String status) {
 
         String[] statusArray = status.split(",");
 
@@ -77,7 +78,7 @@ public class PetController implements WebMvcConfigurer {
                         .filter(
                                 pet -> {
                                     for (String s : statusArray) {
-                                        if (pet.getStatus().toLowerCase().equals(s)) {
+                                        if (pet.getStatus().getName().toLowerCase().equals(s)) {
                                             return true;
                                         }
                                     }
@@ -85,23 +86,29 @@ public class PetController implements WebMvcConfigurer {
                                 }
                         )
                         .collect(Collectors.toList());
-        LOGGER.info("All pets filtered by status are: \n" + petList);
-        return new ResponseEntity<>(filteredPetList, HttpStatus.OK);
+        LOGGER.info("All pets filtered by status are: \n" + filteredPetList);
+
+        List<PetModel> filteredPetModelList = new ArrayList<>();
+        for (int i = 0; i < filteredPetList.size(); i++) {
+            filteredPetModelList.add(new PetModel(filteredPetList.get(i)));
+        }
+        return new ResponseEntity<>(filteredPetModelList, HttpStatus.OK);
     }
 
     @RequestMapping(
             method = RequestMethod.POST,
             consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Pet> postNewPet(@RequestBody Pet pet, UriComponentsBuilder ucb) {
+    public ResponseEntity<Pet> postNewPet(@RequestBody PetModel petModel, UriComponentsBuilder ucb) {
 
-        if (pet == null) {
+        if (petModel == null) {
 //            LOGGER.info("The pet with id = " + id + ", is not found");
 //            throw new ResourceNotFoundException(id, "The pet with id = %d, is not found");
         }
 
-        pet.getStatus(0).setId(Status.StatusEnum.getId(pet.getStatus()));
-
+        Pet pet = new Pet(petModel);
+        pet.setPhotoUrls(pet.getPhotoUrls());
+        pet.setTags(pet.getTags());
         Pet petPersisted = petDao.save(pet);
 
         HttpHeaders headers = new HttpHeaders();
@@ -111,8 +118,24 @@ public class PetController implements WebMvcConfigurer {
                 .build().toUri();
         headers.setLocation(locationUri);
 
-        LOGGER.info("The new pet:\n" + pet + "\nis added, with the id = " + petPersisted.getId());
+        LOGGER.info("The new pet:\n" + petPersisted + "\nis added, with the id = " + petPersisted.getId());
         return new ResponseEntity<>(petPersisted, headers, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(path = "/{id}",
+            method = RequestMethod.DELETE//,
+            //consumes = "application/json"
+    )
+    public void deletePet(@PathVariable int id) {
+
+//        if (id...) {
+//            LOGGER.info("The pet with id = " + id + ", is not found");
+//            throw new ResourceNotFoundException(id, "The pet with id = %d, is not found");
+//        }
+
+        petDao.deleteById(id);
+
+        LOGGER.info("The pet with the id: " + id + " is deleted");
     }
 
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {

@@ -208,3 +208,10 @@ result:
 detailMessage:
 cause:
 sqlException:
+
+
+result: Method threw 'javax.persistence.PersistenceException' exception.
+detailMessage: org.hibernate.exception.ConstraintViolationException: could not execute statement
+cause: org.hibernate.exception.ConstraintViolationException: could not execute statement
+		java.sql.SQLIntegrityConstraintViolationException: ORA-02292: ο περιορισμός ακεραιότητας (PETSTOREDB.SYS_C007746) παραβιάσθηκε - βρέθηκε θυγατρική εγγραφή
+sqlException: java.sql.SQLIntegrityConstraintViolationException: ORA-02292: ο περιορισμός ακεραιότητας (PETSTOREDB.SYS_C007746) παραβιάσθηκε - βρέθηκε θυγατρική εγγραφή

@@ -16,6 +16,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
@@ -46,8 +47,8 @@ public class PetDao implements JpaRepository<Pet, Integer> {
     public List<Pet> findAll() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Pet> cq = cb.createQuery(Pet.class);
-        Root<Pet> rootEntry = cq.from(Pet.class);
-        CriteriaQuery<Pet> all = cq.select(rootEntry);
+        Root<Pet> petRoot = cq.from(Pet.class);
+        CriteriaQuery<Pet> all = cq.select(petRoot);
         TypedQuery<Pet> allQuery = em.createQuery(all);
         return allQuery.getResultList();
     }
@@ -71,6 +72,26 @@ public class PetDao implements JpaRepository<Pet, Integer> {
     }
 
     @Override
+    public void deleteById(Integer id) {
+
+        try {
+            tx.begin();
+
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaDelete<Pet> criteriaQuery = cb.createCriteriaDelete(Pet.class);
+            Root<Pet> petRoot = criteriaQuery.from(Pet.class);
+            criteriaQuery.where(cb.equal(petRoot.get("id"), id));
+
+            int idDeleted = em.createQuery(criteriaQuery).executeUpdate();
+
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+            LOGGER.error(e.getMessage());
+        }
+    }
+
+    @Override
     public List<Pet> findAll(Sort sort) {
         return null;
     }
@@ -88,11 +109,6 @@ public class PetDao implements JpaRepository<Pet, Integer> {
     @Override
     public long count() {
         return 0;
-    }
-
-    @Override
-    public void deleteById(Integer integer) {
-
     }
 
     @Override
