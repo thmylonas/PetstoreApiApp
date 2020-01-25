@@ -171,7 +171,7 @@ cause:
 javax.persistence.EntityNotFoundException: Unable to find
 com.thomasmylonas.petstore_api_web_app.data_access.entities.PhotoUrl with id 6
 
-Error if the "State" object is given as input without id [PetToStore_FullObjects4.json]
+Error if the "Status" object is given as input without id [PetToStore_FullObjects3.json]
 --------------------------------------------------------------------------------------------
 [Error]
 result: javax.persistence.RollbackException: Error while committing the transaction
@@ -185,6 +185,29 @@ save the transient instance before flushing : com.thomasmylonas.petstore_api_web
 com.thomasmylonas.petstore_api_web_app.data_access.entities.Status
 [Solution]
 pet.getStatus(0).setId(Status.StatusEnum.getId(pet.getStatus()));
+
+HttpMediaTypeNotSupportedException < HttpMediaTypeException < ServletException
+----------------------------------------------------------------------------------
+When the RequestBody is "null", or "random text" as a JSON type, the following "HttpMediaTypeNotSupportedException" is thrown.
+It seems that this Exception is thrown only runtime...
+[Error]
+WARN  DefaultHandlerExceptionResolver:199 -
+Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type '' not supported]
+[Attention]
+Other possible Exception is "UnsupportedMediaException" but is this case is never thrown.
+
+HttpMessageNotReadableException
+-----------------------------------
+When the RequestBody is not like the "PetModel", but it is like any other model [PetToStore_FullObjects2.json],
+the following "HttpMediaTypeNotSupportedException" is thrown.
+[Error]
+WARN  DefaultHandlerExceptionResolver:199 -
+Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error:
+Cannot deserialize instance of `java.lang.String` out of START_OBJECT token; nested exception is
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.lang.String`
+out of START_OBJECT token
+at [Source: (PushbackInputStream); line: 9, column: 5] (through reference chain:
+com.thomasmylonas.petstore_api_web_app.models.PetModel["photoUrls"]->java.util.ArrayList[0])]
 
 Significant notes
 =====================
@@ -209,7 +232,11 @@ detailMessage:
 cause:
 sqlException:
 
+ERRORS DURING DELETING PARENT ENTITY WITH CHILD ENTITIES
+==============================================================
 
+Error while Delete request
+-----------------------------
 result: Method threw 'javax.persistence.PersistenceException' exception.
 detailMessage: org.hibernate.exception.ConstraintViolationException: could not execute statement
 cause: org.hibernate.exception.ConstraintViolationException: could not execute statement

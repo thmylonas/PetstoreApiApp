@@ -4,7 +4,6 @@ import com.thomasmylonas.petstore_api_web_app.data_access.daos.PetDao;
 import com.thomasmylonas.petstore_api_web_app.data_access.entities.*;
 import com.thomasmylonas.petstore_api_web_app.exception_handlers.exceptions.InvalidInputSuppliedException;
 import com.thomasmylonas.petstore_api_web_app.exception_handlers.exceptions.ResourceNotFoundException;
-import com.thomasmylonas.petstore_api_web_app.helpers.UsefulUtils;
 import com.thomasmylonas.petstore_api_web_app.models.PetModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -95,16 +96,23 @@ public class PetController implements WebMvcConfigurer {
         return new ResponseEntity<>(filteredPetModelList, HttpStatus.OK);
     }
 
+    /**
+     * http://localhost:8080/PetstoreApiWebApp_war_exploded/pet
+     * It posts a new Pet and its dependent Entities, and the Exceptions thrown are handled
+     * in the "ExceptionsHandlerController"
+     *
+     * @param petModel
+     * @param ucb
+     * @return
+     * @throws HttpMessageNotReadableException
+     * @throws HttpMediaTypeNotSupportedException Thrown runtime, when RequestBody is null or not valid JSON
+     */
     @RequestMapping(
             method = RequestMethod.POST,
             consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Pet> postNewPet(@RequestBody PetModel petModel, UriComponentsBuilder ucb) {
-
-        if (petModel == null) {
-//            LOGGER.info("The pet with id = " + id + ", is not found");
-//            throw new ResourceNotFoundException(id, "The pet with id = %d, is not found");
-        }
+    public ResponseEntity<Pet> postNewPet(@RequestBody PetModel petModel, UriComponentsBuilder ucb)
+            throws HttpMessageNotReadableException, HttpMediaTypeNotSupportedException {
 
         Pet pet = new Pet(petModel);
         pet.setPhotoUrls(pet.getPhotoUrls());

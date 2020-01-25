@@ -7,11 +7,9 @@
   "name": "Phphph",
   "photoUrls": [
     {
-      "id": null,
       "name": "https://scitechdaily.com/images/Siamese-Fighting-Fish-777x602.jpg"
     },
     {
-      "id": null,
       "name": "https://scx1.b-cdn.net/csz/news/800/2016/researcherst.png"
     }
   ],
@@ -30,7 +28,6 @@
     }
   ],
   "status": {
-    "id": 3,
     "name": "SOLD"
   }
 }
