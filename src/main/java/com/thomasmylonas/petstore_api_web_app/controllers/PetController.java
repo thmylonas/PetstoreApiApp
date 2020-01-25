@@ -38,8 +38,7 @@ public class PetController implements WebMvcConfigurer {
             produces = "application/json")
     public ResponseEntity<PetModel> getById(@PathVariable int id) {
 
-        if (id < 1
-            //|| !UsefulUtils.isInteger(String.valueOf(id))
+        if (id < 1 //|| !UsefulUtils.isInteger(String.valueOf(id))
         ) {
             LOGGER.info("400 - Invalid ID supplied");
             throw new InvalidInputSuppliedException("400 - Invalid ID supplied");
@@ -131,19 +130,24 @@ public class PetController implements WebMvcConfigurer {
     }
 
     @RequestMapping(path = "/{id}",
-            method = RequestMethod.DELETE//,
-            //consumes = "application/json"
-    )
-    public void deletePet(@PathVariable int id) {
+            method = RequestMethod.DELETE,
+            produces = "application/json")
+    public /*ResponseEntity<PetModel>*/ void deletePet(@PathVariable int id) {
 
-//        if (id...) {
-//            LOGGER.info("The pet with id = " + id + ", is not found");
-//            throw new ResourceNotFoundException(id, "The pet with id = %d, is not found");
-//        }
+        if (id < 1 //|| !UsefulUtils.isInteger(String.valueOf(id))
+        ) {
+            LOGGER.info("400 - Invalid ID supplied");
+            throw new InvalidInputSuppliedException("400 - Invalid ID supplied");
+        }
 
-        petDao.deleteById(id);
-
-        LOGGER.info("The pet with the id: " + id + " is deleted");
+        try {
+            petDao.deleteById(id);
+            LOGGER.info("The pet with the id: " + id + " is deleted");
+        } catch (ResourceNotFoundException e) {
+            LOGGER.info("The pet with id = " + id + ", is not found");
+            throw new ResourceNotFoundException(e.getResourceId(), e.getMyMessage());
+        }
+//        return new ResponseEntity<>(new PetModel(pet), HttpStatus.OK);
     }
 
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {

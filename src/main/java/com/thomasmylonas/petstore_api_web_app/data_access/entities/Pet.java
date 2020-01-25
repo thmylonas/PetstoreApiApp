@@ -19,19 +19,17 @@ public class Pet {
     private String name;
 
     // Mappings - ManyToOne
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "STATUS_ID")
     private Status status;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PET_CATEGORY_ID")
     private Category category;
 
     // Mappings - OneToMany
     @OneToMany(mappedBy = "pet", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
-//    @Cascade({org.hibernate.annotations.CascadeType.REMOVE})
     private List<Tag> tags;
     @OneToMany(mappedBy = "pet", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
-//    @Cascade({org.hibernate.annotations.CascadeType.REMOVE})
     private List<PhotoUrl> photoUrls;
 
     public Pet() {

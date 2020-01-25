@@ -1,6 +1,7 @@
 package com.thomasmylonas.petstore_api_web_app.data_access.daos;
 
 import com.thomasmylonas.petstore_api_web_app.data_access.entities.Pet;
+import com.thomasmylonas.petstore_api_web_app.exception_handlers.exceptions.ResourceNotFoundException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Transaction;
@@ -16,7 +17,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
@@ -47,8 +47,8 @@ public class PetDao implements JpaRepository<Pet, Integer> {
     public List<Pet> findAll() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Pet> cq = cb.createQuery(Pet.class);
-        Root<Pet> petRoot = cq.from(Pet.class);
-        CriteriaQuery<Pet> all = cq.select(petRoot);
+        Root<Pet> pet = cq.from(Pet.class);
+        CriteriaQuery<Pet> all = cq.select(pet);
         TypedQuery<Pet> allQuery = em.createQuery(all);
         return allQuery.getResultList();
     }
@@ -77,12 +77,13 @@ public class PetDao implements JpaRepository<Pet, Integer> {
         try {
             tx.begin();
 
-            CriteriaBuilder cb = em.getCriteriaBuilder();
-            CriteriaDelete<Pet> criteriaQuery = cb.createCriteriaDelete(Pet.class);
-            Root<Pet> petRoot = criteriaQuery.from(Pet.class);
-            criteriaQuery.where(cb.equal(petRoot.get("id"), id));
+            Pet petToDelete = em.find(Pet.class, id);
 
-            int idDeleted = em.createQuery(criteriaQuery).executeUpdate();
+            if (petToDelete == null) {
+                throw new ResourceNotFoundException(id, "The pet with id = %d, is not found");
+            }
+
+            em.remove(petToDelete);
 
             tx.commit();
         } catch (Exception e) {

@@ -46,12 +46,9 @@ public class Status {
     }
 
     public Status(Integer id,
-                  String name//,
-//                  List<Pet> petList
-    ) {
+                  String name) {
         this.id = id;
         this.name = name;
-//        this.petList = petList;
     }
 
     public Integer getId() {

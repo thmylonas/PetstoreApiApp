@@ -18,7 +18,7 @@ public class Tag {
     private String name;
 
     // Mappings - ManyToOne
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PET_ID")
     @JsonIgnore
     private Pet pet;
