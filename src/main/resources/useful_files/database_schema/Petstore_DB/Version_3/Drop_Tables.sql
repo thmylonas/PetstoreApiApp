@@ -1,0 +1,5 @@
+--DROP TABLE photo_url;
+--DROP TABLE pet_tag;
+--DROP TABLE pet;
+--DROP TABLE status;
+--DROP TABLE pet_category;
