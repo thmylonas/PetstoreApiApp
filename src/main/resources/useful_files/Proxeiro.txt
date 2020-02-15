@@ -267,3 +267,11 @@ Root<Pet> pet = criteriaQuery.from(Pet.class);
 criteriaQuery.where(cb.equal(pet.get("id"), id));
 
 int idDeleted = em.createQuery(criteriaQuery).executeUpdate();
+
+Others
+---------
+1. Every the project is re-imported by maven, the project module and the Java compiler use java 1.5.
+2. Why the META-INF/context.xml, must be in "webapp", and not at the "resources".
+3. "workspace.xml", must be excluded from git.
+4. Get rid from the project URL the "PetstoreApiWebApp_war_exploded", and become:
+    http://localhost:8080/PetstoreApiWebApp

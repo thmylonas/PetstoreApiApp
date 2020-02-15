@@ -1,7 +1,6 @@
 package com.thomasmylonas.petstore_api_web_app.data_access.entities;
 
 import com.thomasmylonas.petstore_api_web_app.models.PetModel;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -19,10 +18,10 @@ public class Pet {
     private String name;
 
     // Mappings - ManyToOne
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "STATUS_ID")
     private Status status;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "PET_CATEGORY_ID")
     private Category category;
 
