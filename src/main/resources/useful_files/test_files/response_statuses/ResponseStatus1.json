@@ -1,0 +1,5 @@
+{
+  "responseCode": 404,
+  "responseMessage": "The pet with id = 2020, is not found",
+  "responseDescription": "404 NOT_FOUND: The pet with id = 2020, is not found"
+}

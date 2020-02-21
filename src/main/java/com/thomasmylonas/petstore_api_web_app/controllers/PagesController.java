@@ -1,18 +1,11 @@
 package com.thomasmylonas.petstore_api_web_app.controllers;
 
-import com.thomasmylonas.petstore_api_web_app.data_access.daos.PetDao;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Controller
 @RequestMapping(path = "/")
-public class PagesController implements WebMvcConfigurer {
-
-    @Autowired
-    private PetDao petDao;
+public class PagesController extends BaseController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String getHome() {
@@ -31,9 +24,5 @@ public class PagesController implements WebMvcConfigurer {
             method = RequestMethod.GET)
     public String getPetFindByStatusPage() {
         return "result_page";
-    }
-
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
     }
 }

@@ -5,8 +5,7 @@ import com.thomasmylonas.petstore_api_web_app.data_access.entities.*;
 import com.thomasmylonas.petstore_api_web_app.exception_handlers.exceptions.InvalidInputSuppliedException;
 import com.thomasmylonas.petstore_api_web_app.exception_handlers.exceptions.ResourceNotFoundException;
 import com.thomasmylonas.petstore_api_web_app.models.PetModel;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.thomasmylonas.petstore_api_web_app.models.response_status_models.SuccessStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -15,8 +14,6 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
@@ -26,12 +23,12 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(path = "/pet")
-public class PetController implements WebMvcConfigurer {
-
-    private static final Logger LOGGER = LogManager.getLogger(PetController.class.getName());
+public class PetController extends BaseController {
 
     @Autowired
     private PetDao petDao;
+    @Autowired
+    private SuccessStatus successStatus;
 
     @RequestMapping(path = "/{id}",
             method = RequestMethod.GET,
@@ -132,7 +129,7 @@ public class PetController implements WebMvcConfigurer {
     @RequestMapping(path = "/{id}",
             method = RequestMethod.DELETE,
             produces = "application/json")
-    public /*ResponseEntity<PetModel>*/ void deletePet(@PathVariable int id) {
+    public ResponseEntity<SuccessStatus> deletePet(@PathVariable int id) {
 
         if (id < 1 //|| !UsefulUtils.isInteger(String.valueOf(id))
         ) {
@@ -147,19 +144,16 @@ public class PetController implements WebMvcConfigurer {
             LOGGER.info("The pet with id = " + id + ", is not found");
             throw new ResourceNotFoundException(e.getResourceId(), e.getMyMessage());
         }
-//        return new ResponseEntity<>(new PetModel(pet), HttpStatus.OK);
-    }
-
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
+        return new ResponseEntity<>(successStatus, HttpStatus.OK);
     }
 
     /*
+    @Deprecated
     @RequestMapping(path = "/{id}",
             method = RequestMethod.GET,
             produces = "application/json")
     public @ResponseBody
-    Pet getById(@PathVariable int id) {
+    Pet getByIdSimpleVersion(@PathVariable int id) {
         Pet pet = petDao.getOne(id);
         LOGGER.info("The pet with id = " + id + ", is the\n" + pet);
         return pet;
