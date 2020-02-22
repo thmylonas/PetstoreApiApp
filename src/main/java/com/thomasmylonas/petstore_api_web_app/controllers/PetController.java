@@ -100,7 +100,7 @@ public class PetController extends BaseController {
      * @param petModel
      * @param ucb
      * @return
-     * @throws HttpMessageNotReadableException
+     * @throws HttpMessageNotReadableException Thrown when RequestBody is not like "PetModel", but like other models
      * @throws HttpMediaTypeNotSupportedException Thrown runtime, when RequestBody is null or not valid JSON
      */
     @RequestMapping(

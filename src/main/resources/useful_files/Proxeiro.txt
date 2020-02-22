@@ -275,3 +275,4 @@ Others
 3. "workspace.xml", must be excluded from git.
 4. Get rid from the project URL the "PetstoreApiWebApp_war_exploded", and become:
     http://localhost:8080/PetstoreApiWebApp
+5. Better check of the: HttpMediaTypeNotSupportedException, HttpMessageNotReadableException...
