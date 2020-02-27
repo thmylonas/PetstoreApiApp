@@ -42,10 +42,10 @@ public class PetController extends BaseController {
         }
         Pet pet = petDao.getOne(id);
         if (pet == null) {
-            LOGGER.info("The pet with id = " + id + ", is not found");
-            throw new ResourceNotFoundException(id, "The pet with id = %d, is not found");
+            LOGGER.info("The pet with id: " + id + ", is not found");
+            throw new ResourceNotFoundException(id, "The pet with id: %d, is not found");
         }
-        LOGGER.info("The pet with id = " + id + ", is the\n" + pet);
+        LOGGER.info("The pet with id: " + id + ", is the\n" + pet);
         return new ResponseEntity<>(new PetModel(pet), HttpStatus.OK);
     }
 
@@ -100,7 +100,7 @@ public class PetController extends BaseController {
      * @param petModel
      * @param ucb
      * @return
-     * @throws HttpMessageNotReadableException Thrown when RequestBody is not like "PetModel", but like other models
+     * @throws HttpMessageNotReadableException    Thrown when RequestBody is not like "PetModel", but like other models
      * @throws HttpMediaTypeNotSupportedException Thrown runtime, when RequestBody is null or not valid JSON
      */
     @RequestMapping(
@@ -122,7 +122,7 @@ public class PetController extends BaseController {
                 .build().toUri();
         headers.setLocation(locationUri);
 
-        LOGGER.info("The new pet:\n" + petPersisted + "\nis added, with the id = " + petPersisted.getId());
+        LOGGER.info("The new pet:\n" + petPersisted + "\nis added, with the id: " + petPersisted.getId());
         return new ResponseEntity<>(petPersisted, headers, HttpStatus.CREATED);
     }
 
@@ -139,9 +139,11 @@ public class PetController extends BaseController {
 
         try {
             petDao.deleteById(id);
-            LOGGER.info("The pet with the id: " + id + " is deleted");
+            String message = String.format("The pet with the id: " + id + ", is deleted", id);
+            setResponseStatus(successStatus, null, HttpStatus.OK, message);
+            LOGGER.info("The pet with the id: " + id + ", is deleted");
         } catch (ResourceNotFoundException e) {
-            LOGGER.info("The pet with id = " + id + ", is not found");
+            LOGGER.info("The pet with id: " + id + ", is not found");
             throw new ResourceNotFoundException(e.getResourceId(), e.getMyMessage());
         }
         return new ResponseEntity<>(successStatus, HttpStatus.OK);
@@ -155,7 +157,7 @@ public class PetController extends BaseController {
     public @ResponseBody
     Pet getByIdSimpleVersion(@PathVariable int id) {
         Pet pet = petDao.getOne(id);
-        LOGGER.info("The pet with id = " + id + ", is the\n" + pet);
+        LOGGER.info("The pet with id: " + id + ", is the\n" + pet);
         return pet;
     }
     @RequestMapping(path = "/all",

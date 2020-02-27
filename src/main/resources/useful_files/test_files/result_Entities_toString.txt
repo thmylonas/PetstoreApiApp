@@ -1,4 +1,4 @@
-The pet with id = 1, is the
+The pet with id: 1, is the
 
 Pet{
     id=1,

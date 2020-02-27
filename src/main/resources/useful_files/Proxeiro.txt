@@ -249,7 +249,7 @@ Hibernate: delete from PET where ID=29
 2020-01-25 17:14:57 [http-nio-8080-exec-2] ERROR SqlExceptionHelper:142 - ORA-02292: ? ??????????? ???????????? (PETSTOREDB.SYS_C007746) ???????????? - ??????? ????????? ???????
 
 2020-01-25 17:14:57 [http-nio-8080-exec-2] ERROR PetDao:90 - org.hibernate.exception.ConstraintViolationException: could not execute statement
-2020-01-25 17:14:57 [http-nio-8080-exec-2] INFO  PetController:146 - The pet with the id: 29 is deleted
+2020-01-25 17:14:57 [http-nio-8080-exec-2] INFO  PetController:146 - The pet with the id: 29, is deleted
 
 
 result: Method threw 'javax.persistence.PersistenceException' exception.
@@ -276,3 +276,6 @@ Others
 4. Get rid from the project URL the "PetstoreApiWebApp_war_exploded", and become:
     http://localhost:8080/PetstoreApiWebApp
 5. Better check of the: HttpMediaTypeNotSupportedException, HttpMessageNotReadableException...
+6. After the transaction finishes, make a good clean up...
+7. @Transactional
+8. Use in ExceptionsHandlerController: ResponseEntity<ErrorStatus>

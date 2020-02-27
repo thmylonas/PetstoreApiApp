@@ -282,9 +282,9 @@
       }
     ],
     "resourceId": 88,
-    "myMessage": "The pet with id = 88, is not found",
-    "localizedMessage": "The pet with id = %d, is not found",
-    "message": "The pet with id = %d, is not found",
+    "myMessage": "The pet with id: 88, is not found",
+    "localizedMessage": "The pet with id: %d, is not found",
+    "message": "The pet with id: %d, is not found",
     "suppressed": []
   }
 }

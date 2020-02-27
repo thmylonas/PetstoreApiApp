@@ -40,7 +40,15 @@ public class PetDao implements JpaRepository<Pet, Integer> {
 
     @Override
     public Pet getOne(Integer id) {
-        return em.find(Pet.class, id);
+
+        Pet petResult = null;
+        try {
+            petResult = em.find(Pet.class, id);
+        } catch (IllegalArgumentException e) {
+            tx.rollback();
+            LOGGER.error(e.getMessage());
+        }
+        return petResult;
     }
 
     @Override
@@ -56,10 +64,13 @@ public class PetDao implements JpaRepository<Pet, Integer> {
     @Override
 //    @Transactional
     public <S extends Pet> S save(S s) {
+
         S sPersisted = null;
         // "Evaluate" window: s.photoUrls
         try {
-            tx.begin();
+            if (!tx.isActive()) {
+                tx.begin();
+            }
 //            sPersisted = em.merge(s);
             em.persist(s);
             em.flush();
@@ -75,18 +86,16 @@ public class PetDao implements JpaRepository<Pet, Integer> {
     public void deleteById(Integer id) {
 
         try {
-            tx.begin();
-
-            Pet petToDelete = em.find(Pet.class, id);
-
-            if (petToDelete == null) {
-                throw new ResourceNotFoundException(id, "The pet with id = %d, is not found");
+            if (!tx.isActive()) {
+                tx.begin();
             }
-
+            Pet petToDelete = em.find(Pet.class, id);
+            if (petToDelete == null) {
+                throw new ResourceNotFoundException(id, "The pet with id: %d, is not found");
+            }
             em.remove(petToDelete);
-
             tx.commit();
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             tx.rollback();
             LOGGER.error(e.getMessage());
         }

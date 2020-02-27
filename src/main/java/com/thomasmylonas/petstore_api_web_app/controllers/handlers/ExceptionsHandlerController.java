@@ -18,6 +18,7 @@ public class ExceptionsHandlerController extends BaseController {
 
     @ExceptionHandler(value = {ResourceNotFoundException.class})
     @ResponseBody
+    @ResponseStatus(value = HttpStatus.NOT_FOUND) // NOT_FOUND(404, "Not Found")
     public ErrorStatus resourceNotFound(ResourceNotFoundException e) {
 
         long resourceId = e.getResourceId();
@@ -29,6 +30,7 @@ public class ExceptionsHandlerController extends BaseController {
 
     @ExceptionHandler(value = {InvalidInputSuppliedException.class})
     @ResponseBody
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST) // BAD_REQUEST(400, "Bad Request")
     public ErrorStatus invalidInputSupplied(InvalidInputSuppliedException e) {
         e.setMyMessage(e.getMyMessage());
         setResponseStatus(errorStatus, e, HttpStatus.BAD_REQUEST, e.getMyMessage());
