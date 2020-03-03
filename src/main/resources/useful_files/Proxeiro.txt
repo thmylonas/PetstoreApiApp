@@ -279,3 +279,4 @@ Others
 6. After the transaction finishes, make a good clean up...
 7. @Transactional
 8. Use in ExceptionsHandlerController: ResponseEntity<ErrorStatus>
+9. "Evaluate" window: s.photoUrls: public <S extends Pet> S save(S s) > PetDao

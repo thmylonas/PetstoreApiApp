@@ -40,7 +40,7 @@ public class PetController extends BaseController {
             LOGGER.info("400 - Invalid ID supplied");
             throw new InvalidInputSuppliedException("400 - Invalid ID supplied");
         }
-        Pet pet = petDao.getOne(id);
+        Pet pet = petDao.findById(id);
         if (pet == null) {
             LOGGER.info("The pet with id: " + id + ", is not found");
             throw new ResourceNotFoundException(id, "The pet with id: %d, is not found");
@@ -124,6 +124,22 @@ public class PetController extends BaseController {
 
         LOGGER.info("The new pet:\n" + petPersisted + "\nis added, with the id: " + petPersisted.getId());
         return new ResponseEntity<>(petPersisted, headers, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(
+            method = RequestMethod.PUT,
+            consumes = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Pet> updatePet(@RequestBody PetModel petModel) { //throws HttpMessageNotReadableException, HttpMediaTypeNotSupportedException
+
+        Pet pet = new Pet(petModel);
+        pet.setPhotoUrls(pet.getPhotoUrls());
+        pet.setTags(pet.getTags());
+        petDao.update(pet);
+
+//        LOGGER.info("The new pet:\n" + petPersisted + "\nis added, with the id: " + petPersisted.getId());
+        return new ResponseEntity<>(null, HttpStatus.OK);
+        // 400: Invalid ID supplied, 404: Pet not found, 405: Validation exception
     }
 
     @RequestMapping(path = "/{id}",

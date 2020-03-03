@@ -26,9 +26,13 @@ public class Pet {
     private Category category;
 
     // Mappings - OneToMany
-    @OneToMany(mappedBy = "pet", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
+    @OneToMany(mappedBy = "pet",
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE},
+            orphanRemoval = true)
     private List<Tag> tags;
-    @OneToMany(mappedBy = "pet", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
+    @OneToMany(mappedBy = "pet",
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE},
+            orphanRemoval = true)
     private List<PhotoUrl> photoUrls;
 
     public Pet() {
