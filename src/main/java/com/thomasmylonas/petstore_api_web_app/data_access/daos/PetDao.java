@@ -84,19 +84,26 @@ public class PetDao implements GenericJpaDao<Pet, Integer> {
     }
 
     @Override
-    public <S extends Pet> void update(S pet) {
+    public <S extends Pet> S update(S pet) {
 
+        Pet updatedPet = null;
+        Integer id = pet.getId();
         try {
             if (!tx.isActive()) {
                 tx.begin();
             }
-            em.merge(pet);
+            Pet petToUpdate = em.find(Pet.class, id);
+            if (petToUpdate == null) {
+                throw new IllegalArgumentException();
+            }
+            updatedPet = em.merge(pet);
             em.flush();
             tx.commit();
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             tx.rollback();
             LOGGER.error(e.getMessage());
         }
+        return (S) updatedPet;
     }
 
     @Override

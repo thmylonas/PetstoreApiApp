@@ -107,7 +107,7 @@ public class PetController extends BaseController {
             method = RequestMethod.POST,
             consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Pet> postNewPet(@RequestBody PetModel petModel, UriComponentsBuilder ucb)
+    public ResponseEntity<Pet> saveNewPet(@RequestBody PetModel petModel, UriComponentsBuilder ucb)
             throws HttpMessageNotReadableException, HttpMediaTypeNotSupportedException {
 
         Pet pet = new Pet(petModel);
@@ -126,20 +126,41 @@ public class PetController extends BaseController {
         return new ResponseEntity<>(petPersisted, headers, HttpStatus.CREATED);
     }
 
+    /**
+     * http://localhost:8080/PetstoreApiWebApp_war_exploded/pet
+     * It updates an existing Pet and its dependent Entities with the given Pet, with the same id,
+     * and the Exceptions thrown are handled in the "ExceptionsHandlerController"
+     *
+     * @param petModel
+     * @return
+     * @throws InvalidInputSuppliedException
+     * @throws ResourceNotFoundException
+     * @throws Exception                     405: Validation exception
+     */
     @RequestMapping(
             method = RequestMethod.PUT,
             consumes = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Pet> updatePet(@RequestBody PetModel petModel) { //throws HttpMessageNotReadableException, HttpMediaTypeNotSupportedException
+    public ResponseEntity<Pet> updatePet(@RequestBody PetModel petModel) {
+
+        Pet updatedPet;
+        Integer id = petModel.getId();
+        if (id < 1 //|| !UsefulUtils.isInteger(String.valueOf(id))
+        ) {
+            LOGGER.info("400 - Invalid ID supplied");
+            throw new InvalidInputSuppliedException("400 - Invalid ID supplied");
+        }
 
         Pet pet = new Pet(petModel);
         pet.setPhotoUrls(pet.getPhotoUrls());
         pet.setTags(pet.getTags());
-        petDao.update(pet);
+        updatedPet = petDao.update(pet);
 
-//        LOGGER.info("The new pet:\n" + petPersisted + "\nis added, with the id: " + petPersisted.getId());
-        return new ResponseEntity<>(null, HttpStatus.OK);
-        // 400: Invalid ID supplied, 404: Pet not found, 405: Validation exception
+        if (updatedPet == null) {
+            throw new ResourceNotFoundException(0, "404 - Pet not found");
+        }
+        LOGGER.info("The updated pet is:\n" + new PetModel(updatedPet));
+        return new ResponseEntity<>(updatedPet, HttpStatus.OK);
     }
 
     @RequestMapping(path = "/{id}",

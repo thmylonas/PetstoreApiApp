@@ -59,7 +59,7 @@ public interface GenericJpaDao<T, ID> extends Repository<T, ID> {
      *
      * @param entity must not be {@literal null}.
      */
-    <S extends T> void update(S entity);
+    <S extends T> S update(S entity);
 
     /**
      * Update the entity with the given entity, with the given id.
