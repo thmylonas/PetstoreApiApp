@@ -1,5 +1,6 @@
 package com.thomasmylonas.petstore_api_web_app.controllers;
 
+import com.thomasmylonas.petstore_api_web_app.controllers.interface_controllers.PetController;
 import com.thomasmylonas.petstore_api_web_app.data_access.daos.PetDao;
 import com.thomasmylonas.petstore_api_web_app.data_access.entities.*;
 import com.thomasmylonas.petstore_api_web_app.exception_handlers.exceptions.InvalidInputSuppliedException;
@@ -23,7 +24,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(path = "/pet")
-public class PetController extends BaseController {
+public class PetControllerImpl extends BaseController implements PetController<Pet, PetModel> {
 
     @Autowired
     private PetDao petDao;
@@ -49,12 +50,6 @@ public class PetController extends BaseController {
         return new ResponseEntity<>(new PetModel(pet), HttpStatus.OK);
     }
 
-    /**
-     * http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=sold
-     *
-     * @param status status: available, pending, sold, and all the combinations
-     * @return petList filtered by status
-     */
     @RequestMapping(path = "/findByStatus",
             method = RequestMethod.GET,
             produces = "application/json")
@@ -92,22 +87,11 @@ public class PetController extends BaseController {
         return new ResponseEntity<>(filteredPetModelList, HttpStatus.OK);
     }
 
-    /**
-     * http://localhost:8080/PetstoreApiWebApp_war_exploded/pet
-     * It posts a new Pet and its dependent Entities, and the Exceptions thrown are handled
-     * in the "ExceptionsHandlerController"
-     *
-     * @param petModel
-     * @param ucb
-     * @return
-     * @throws HttpMessageNotReadableException    Thrown when RequestBody is not like "PetModel", but like other models
-     * @throws HttpMediaTypeNotSupportedException Thrown runtime, when RequestBody is null or not valid JSON
-     */
     @RequestMapping(
             method = RequestMethod.POST,
             consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Pet> saveNewPet(@RequestBody PetModel petModel, UriComponentsBuilder ucb)
+    public ResponseEntity<Pet> save(@RequestBody PetModel petModel, UriComponentsBuilder ucb)
             throws HttpMessageNotReadableException, HttpMediaTypeNotSupportedException {
 
         Pet pet = new Pet(petModel);
@@ -126,22 +110,11 @@ public class PetController extends BaseController {
         return new ResponseEntity<>(petPersisted, headers, HttpStatus.CREATED);
     }
 
-    /**
-     * http://localhost:8080/PetstoreApiWebApp_war_exploded/pet
-     * It updates an existing Pet and its dependent Entities with the given Pet, with the same id,
-     * and the Exceptions thrown are handled in the "ExceptionsHandlerController"
-     *
-     * @param petModel
-     * @return
-     * @throws InvalidInputSuppliedException
-     * @throws ResourceNotFoundException
-     * @throws Exception                     405: Validation exception
-     */
     @RequestMapping(
             method = RequestMethod.PUT,
             consumes = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Pet> updatePet(@RequestBody PetModel petModel) {
+    public ResponseEntity<Pet> update(@RequestBody PetModel petModel) {
 
         Pet updatedPet;
         Integer id = petModel.getId();
@@ -166,7 +139,7 @@ public class PetController extends BaseController {
     @RequestMapping(path = "/{id}",
             method = RequestMethod.DELETE,
             produces = "application/json")
-    public ResponseEntity<SuccessStatus> deletePet(@PathVariable int id) {
+    public ResponseEntity<SuccessStatus> delete(@PathVariable int id) {
 
         if (id < 1 //|| !UsefulUtils.isInteger(String.valueOf(id))
         ) {
