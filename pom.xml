@@ -125,10 +125,15 @@
             <version>${springframework.data.version}</version>
         </dependency>
 
-        <!-- com.sun.faces/jsf-api -->
+        <!-- com.sun.faces/jsf-api, com.sun.faces/jsf-impl -->
         <dependency>
             <groupId>com.sun.faces</groupId>
             <artifactId>jsf-api</artifactId>
+            <version>2.2.20</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-impl</artifactId>
             <version>2.2.20</version>
         </dependency>
 
@@ -203,6 +208,13 @@
             <artifactId>jackson-annotations</artifactId>
             <version>2.10.1</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/javax.el/javax.el-api -->
+        <!--<dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>javax.el-api</artifactId>
+            <version>3.0.1-b06</version>
+        </dependency>-->
 
     </dependencies>
 

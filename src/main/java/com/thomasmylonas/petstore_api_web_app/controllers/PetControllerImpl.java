@@ -31,6 +31,7 @@ public class PetControllerImpl extends BaseController implements PetController<P
     @Autowired
     private SuccessStatus successStatus;
 
+    @Override
     @RequestMapping(path = "/{id}",
             method = RequestMethod.GET,
             produces = "application/json")
@@ -50,6 +51,7 @@ public class PetControllerImpl extends BaseController implements PetController<P
         return new ResponseEntity<>(new PetModel(pet), HttpStatus.OK);
     }
 
+    @Override
     @RequestMapping(path = "/findByStatus",
             method = RequestMethod.GET,
             produces = "application/json")
@@ -87,6 +89,7 @@ public class PetControllerImpl extends BaseController implements PetController<P
         return new ResponseEntity<>(filteredPetModelList, HttpStatus.OK);
     }
 
+    @Override
     @RequestMapping(
             method = RequestMethod.POST,
             consumes = "application/json")
@@ -110,6 +113,28 @@ public class PetControllerImpl extends BaseController implements PetController<P
         return new ResponseEntity<>(petPersisted, headers, HttpStatus.CREATED);
     }
 
+//    @Override
+    @RequestMapping(path = "/{id}",
+            method = RequestMethod.POST,
+            consumes = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Pet> updateWithForm(@PathVariable int id) {
+
+        if (id < 1 //|| !UsefulUtils.isInteger(String.valueOf(id))
+        ) {
+            LOGGER.info("400 - Invalid ID supplied");
+            throw new InvalidInputSuppliedException("400 - Invalid ID supplied");
+        }
+//        Pet pet = new Pet(petModel);
+//        pet.setPhotoUrls(pet.getPhotoUrls());
+//        pet.setTags(pet.getTags());
+//        Pet petPersisted = petDao.save(pet);
+
+//        LOGGER.info("The new pet:\n" + petPersisted + "\nis added, with the id: " + petPersisted.getId());
+        return new ResponseEntity<>(null, HttpStatus.CREATED);
+    }
+
+    @Override
     @RequestMapping(
             method = RequestMethod.PUT,
             consumes = "application/json")
@@ -136,6 +161,7 @@ public class PetControllerImpl extends BaseController implements PetController<P
         return new ResponseEntity<>(updatedPet, HttpStatus.OK);
     }
 
+    @Override
     @RequestMapping(path = "/{id}",
             method = RequestMethod.DELETE,
             produces = "application/json")
@@ -170,6 +196,7 @@ public class PetControllerImpl extends BaseController implements PetController<P
         LOGGER.info("The pet with id: " + id + ", is the\n" + pet);
         return pet;
     }
+    @Override
     @RequestMapping(path = "/all",
             method = RequestMethod.GET,
             produces = "application/json")

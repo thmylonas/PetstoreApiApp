@@ -1,92 +1,133 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
+
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+<h:head>
+    <!--    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>-->
     <title>Pet Page</title>
-</head>
-<body>
+</h:head>
+<h:body>
 
-<h1>Pet Page</h1>
+    <h:outputStylesheet library="css" name="style.css"/>
 
-<h:outputText>
-    Welcome to the Pet Home Page
-</h:outputText>
-<br/>
+    <h1>Pet Page</h1>
 
-<h2>/pet/{id}</h2>
-<ul>
-    <li>
-        <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/1">
-            http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/1
-        </a>
-    </li>
-    <li>
-        <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/2">
-            http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/2
-        </a>
-    </li>
-    <li>
-        <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/3">
-            http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/3
-        </a>
-    </li>
-    <li>
-        <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/4">
-            http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/4
-        </a>
-    </li>
-    <li>
-        <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/2020">
-            http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/2020
-        </a>
-    </li>
-</ul>
+    <h:outputText value="Welcome to the Pet Home Page"/>
 
-<h2>/pet/findByStatus</h2>
-<ul>
-    <li>
-        <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=available">
-            http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=available
-        </a>
-    </li>
-    <li>
-        <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=pending">
-            http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=pending
-        </a>
-    </li>
-    <li>
-        <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=sold">
-            http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=sold
-        </a>
-    </li>
-    <li>
-        <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=available,pending">
-            http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=available,pending
-        </a>
-    </li>
-    <li>
-        <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=available,sold">
-            http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=available,sold
-        </a>
-    </li>
-    <li>
-        <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=pending,sold">
-            http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=pending,sold
-        </a>
-    </li>
-    <li>
-        <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=available,pending,sold">
-            http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=available,pending,sold
-        </a>
-    </li>
-</ul>
+    <br/>
 
-</body>
+    <h2>/pet/{id}</h2>
+    <ul>
+        <li>
+            <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/1">
+                http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/1
+            </a>
+        </li>
+        <li>
+            <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/2">
+                http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/2
+            </a>
+        </li>
+        <li>
+            <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/3">
+                http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/3
+            </a>
+        </li>
+        <li>
+            <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/4">
+                http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/4
+            </a>
+        </li>
+        <li>
+            <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/2020">
+                http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/2020
+            </a>
+        </li>
+    </ul>
+
+    <h2>/pet/findByStatus</h2>
+    <ul>
+        <li>
+            <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=available">
+                http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=available
+            </a>
+        </li>
+        <li>
+            <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=pending">
+                http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=pending
+            </a>
+        </li>
+        <li>
+            <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=sold">
+                http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=sold
+            </a>
+        </li>
+        <li>
+            <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=available,pending">
+                http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=available,pending
+            </a>
+        </li>
+        <li>
+            <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=available,sold">
+                http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=available,sold
+            </a>
+        </li>
+        <li>
+            <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=pending,sold">
+                http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=pending,sold
+            </a>
+        </li>
+        <li>
+            <a href="http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=available,pending,sold">
+                http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=available,pending,sold
+            </a>
+        </li>
+    </ul>
+
+    <h2>Update a Pet with the values:</h2>
+
+    <f:view>
+        <form method="POST" action="">
+
+            <p:panelGrid columns="2">
+                <p:outputLabel for="petId" value="Insert the ID of the pet:"/>
+                <h:panelGroup>
+                    <p:inputText id="petId"/>
+                    <h:outputText value="(ID of pet that needs to be updated)" styleClass="nearInputInfo"/>
+                </h:panelGroup>
+
+                <h:outputLabel for="petName" value="Insert the name of the pet:"/>
+                <h:panelGroup>
+                    <p:inputText id="petName"/>
+                    <h:outputText value="(Updated name of the pet)" styleClass="nearInputInfo"/>
+                </h:panelGroup>
+
+                <h:outputLabel for="petStatus" value="Insert the status of the pet:"/>
+                <h:panelGroup>
+                    <p:inputText id="petStatus"/>
+                    <h:outputText value="(Updated status of the pet)" styleClass="nearInputInfo"/>
+                </h:panelGroup>
+            </p:panelGrid>
+
+            <br/>
+
+        </form>
+    </f:view>
+
+</h:body>
 </html>
+
+        <!--
+        <h:outputText value="(ID of pet that needs to be updated)"/>
+        <h:outputText value="(Updated name of the pet)"/>
+        <h:outputText value="(Updated status of the pet)"/>
+        petId
+        name (formData)
+        status (formData)
+        -->
