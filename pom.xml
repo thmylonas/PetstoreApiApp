@@ -13,6 +13,11 @@
     <url>http://localhost:8080/PetstoreApiWebApp_war_exploded</url>
 
     <properties>
+        <!-- Set maven.compiler.source, maven.compiler.target -->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <!-- Set sourceEncoding -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <springframework.version>5.2.1.RELEASE</springframework.version>

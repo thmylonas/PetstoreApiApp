@@ -7,6 +7,8 @@
          http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          id="WebApp_ID" version="3.0">
 
+    <display-name>Web Application with Spring MVC, Maven (no archetype)</display-name>
+
     <!-- Just here so the JSF implementation can initialize, *not* used at runtime -->
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
