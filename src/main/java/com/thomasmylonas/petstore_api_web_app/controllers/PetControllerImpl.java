@@ -1,8 +1,8 @@
 package com.thomasmylonas.petstore_api_web_app.controllers;
 
 import com.thomasmylonas.petstore_api_web_app.controllers.interface_controllers.PetController;
-import com.thomasmylonas.petstore_api_web_app.data_access.daos.PetDao;
 import com.thomasmylonas.petstore_api_web_app.data_access.entities.*;
+import com.thomasmylonas.petstore_api_web_app.data_access.repositories.PetRepository;
 import com.thomasmylonas.petstore_api_web_app.exception_handlers.exceptions.InvalidInputSuppliedException;
 import com.thomasmylonas.petstore_api_web_app.exception_handlers.exceptions.ResourceNotFoundException;
 import com.thomasmylonas.petstore_api_web_app.models.PetModel;
@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 public class PetControllerImpl extends BaseController implements PetController<Pet, PetModel> {
 
     @Autowired
-    private PetDao petDao;
+    private PetRepository petRepository;
     @Autowired
     private SuccessStatus successStatus;
 
@@ -35,14 +35,14 @@ public class PetControllerImpl extends BaseController implements PetController<P
     @RequestMapping(path = "/{id}",
             method = RequestMethod.GET,
             produces = "application/json")
-    public ResponseEntity<PetModel> getById(@PathVariable int id) {
+    public ResponseEntity<PetModel> getById(@PathVariable Long id) {
 
         if (id < 1 //|| !UsefulUtils.isInteger(String.valueOf(id))
         ) {
             LOGGER.info("400 - Invalid ID supplied");
             throw new InvalidInputSuppliedException("400 - Invalid ID supplied");
         }
-        Pet pet = petDao.findById(id);
+        Pet pet = petRepository.findById(id).orElse(null);
         if (pet == null) {
             LOGGER.info("The pet with id: " + id + ", is not found");
             throw new ResourceNotFoundException(id, "The pet with id: %d, is not found");
@@ -66,7 +66,7 @@ public class PetControllerImpl extends BaseController implements PetController<P
             }
         }
 
-        List<Pet> petList = petDao.findAll();
+        List<Pet> petList = petRepository.findAll();
         List<Pet> filteredPetList =
                 petList.stream()
                         .filter(
@@ -100,10 +100,10 @@ public class PetControllerImpl extends BaseController implements PetController<P
         Pet pet = new Pet(petModel);
         pet.setPhotoUrls(pet.getPhotoUrls());
         pet.setTags(pet.getTags());
-        Pet petPersisted = petDao.save(pet);
+        Pet petPersisted = petRepository.save(pet);
 
         HttpHeaders headers = new HttpHeaders();
-//        URI locationUri = URI.create("http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/" + petPersisted.getId());
+//        URI locationUri = URI.create("http://localhost:8080/pet/" + petPersisted.getId());
         URI locationUri = ucb.path("/pet")
                 .path(String.valueOf(petPersisted.getId()))
                 .build().toUri();
@@ -113,7 +113,7 @@ public class PetControllerImpl extends BaseController implements PetController<P
         return new ResponseEntity<>(petPersisted, headers, HttpStatus.CREATED);
     }
 
-//    @Override
+    //    @Override
     @RequestMapping(path = "/{id}",
             method = RequestMethod.POST,
             consumes = "application/json")
@@ -128,7 +128,7 @@ public class PetControllerImpl extends BaseController implements PetController<P
 //        Pet pet = new Pet(petModel);
 //        pet.setPhotoUrls(pet.getPhotoUrls());
 //        pet.setTags(pet.getTags());
-//        Pet petPersisted = petDao.save(pet);
+//        Pet petPersisted = petRepository.save(pet);
 
 //        LOGGER.info("The new pet:\n" + petPersisted + "\nis added, with the id: " + petPersisted.getId());
         return new ResponseEntity<>(null, HttpStatus.CREATED);
@@ -142,7 +142,7 @@ public class PetControllerImpl extends BaseController implements PetController<P
     public ResponseEntity<Pet> update(@RequestBody PetModel petModel) {
 
         Pet updatedPet;
-        Integer id = petModel.getId();
+        Long id = petModel.getId();
         if (id < 1 //|| !UsefulUtils.isInteger(String.valueOf(id))
         ) {
             LOGGER.info("400 - Invalid ID supplied");
@@ -152,7 +152,7 @@ public class PetControllerImpl extends BaseController implements PetController<P
         Pet pet = new Pet(petModel);
         pet.setPhotoUrls(pet.getPhotoUrls());
         pet.setTags(pet.getTags());
-        updatedPet = petDao.update(pet);
+        updatedPet = new Pet();//petRepository.update(pet);
 
         if (updatedPet == null) {
             throw new ResourceNotFoundException(0, "404 - Pet not found");
@@ -165,7 +165,7 @@ public class PetControllerImpl extends BaseController implements PetController<P
     @RequestMapping(path = "/{id}",
             method = RequestMethod.DELETE,
             produces = "application/json")
-    public ResponseEntity<SuccessStatus> delete(@PathVariable int id) {
+    public ResponseEntity<SuccessStatus> delete(@PathVariable Long id) {
 
         if (id < 1 //|| !UsefulUtils.isInteger(String.valueOf(id))
         ) {
@@ -174,7 +174,7 @@ public class PetControllerImpl extends BaseController implements PetController<P
         }
 
         try {
-            petDao.deleteById(id);
+            petRepository.deleteById(id);
             String message = String.format("The pet with the id: " + id + ", is deleted", id);
             setResponseStatus(successStatus, null, HttpStatus.OK, message);
             LOGGER.info("The pet with the id: " + id + ", is deleted");
@@ -192,7 +192,7 @@ public class PetControllerImpl extends BaseController implements PetController<P
             produces = "application/json")
     public @ResponseBody
     Pet getByIdSimpleVersion(@PathVariable int id) {
-        Pet pet = petDao.getOne(id);
+        Pet pet = petRepository.getOne(id);
         LOGGER.info("The pet with id: " + id + ", is the\n" + pet);
         return pet;
     }
@@ -202,7 +202,7 @@ public class PetControllerImpl extends BaseController implements PetController<P
             produces = "application/json")
     public @ResponseBody
     List<Pet> getAll() {
-        List<Pet> petList = petDao.findAll();
+        List<Pet> petList = petRepository.findAll();
         LOGGER.info("All pets are: \n" + petList);
         return petList;
     }

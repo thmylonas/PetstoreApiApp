@@ -9,7 +9,7 @@ import java.util.List;
 @JsonPropertyOrder({"id", "category", "name", "photoUrls", "tags", "status"})
 public class PetModel {
 
-    private Integer id;
+    private Long id;
     private Category category;
     private String name;
     private List<String> photoUrls;
@@ -31,11 +31,11 @@ public class PetModel {
         }
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

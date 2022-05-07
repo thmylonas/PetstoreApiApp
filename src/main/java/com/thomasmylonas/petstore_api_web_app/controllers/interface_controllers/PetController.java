@@ -8,7 +8,7 @@ import java.util.List;
 public interface PetController<T, TModel> extends EntityController<T, TModel> {
 
     /**
-     * http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/findByStatus?status=sold
+     * http://localhost:8080/pet/findByStatus?status=sold
      * It returns the list of Entities (Pets) filtered by status
      *
      * @param status status: available, pending, sold, and all the combinations

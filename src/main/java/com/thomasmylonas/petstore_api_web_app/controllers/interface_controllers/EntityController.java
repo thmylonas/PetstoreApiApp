@@ -11,7 +11,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 public interface EntityController<T, TModel> {
 
     /**
-     * http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/{id}
+     * http://localhost:8080/pet/{id}
      * It returns the Entity, with the given in the parameter id
      *
      * @param id The @PathVariable of the request
@@ -19,7 +19,7 @@ public interface EntityController<T, TModel> {
      * @throws InvalidInputSuppliedException If the input is invalid (eg. negative id)
      * @throws ResourceNotFoundException     If the resource is not found
      */
-    ResponseEntity<TModel> getById(int id);
+    ResponseEntity<TModel> getById(Long id);
 
     /**
      * It returns the list of all Entities
@@ -29,7 +29,7 @@ public interface EntityController<T, TModel> {
 //    List<T> getAll();
 
     /**
-     * http://localhost:8080/PetstoreApiWebApp_war_exploded/pet
+     * http://localhost:8080/pet
      * It saves a new Entity and its dependent Entities, and the Exceptions thrown are handled
      * in the "ExceptionsHandlerController"
      *
@@ -43,7 +43,7 @@ public interface EntityController<T, TModel> {
             throws HttpMessageNotReadableException, HttpMediaTypeNotSupportedException;
 
     /**
-     * http://localhost:8080/PetstoreApiWebApp_war_exploded/pet
+     * http://localhost:8080/pet
      * It updates an existing Entity and its dependent Entities, with the given in the parameter Entity,
      * with the same id, and the Exceptions thrown are handled in the "ExceptionsHandlerController"
      *
@@ -56,7 +56,7 @@ public interface EntityController<T, TModel> {
     ResponseEntity<T> update(TModel entityModel);
 
     /**
-     * http://localhost:8080/PetstoreApiWebApp_war_exploded/pet/{id}
+     * http://localhost:8080/pet/{id}
      * It deletes the Entity, with the given in the parameter id
      *
      * @param id The @PathVariable of the request
@@ -64,5 +64,5 @@ public interface EntityController<T, TModel> {
      * @throws InvalidInputSuppliedException If the input is invalid (eg. negative id)
      * @throws ResourceNotFoundException     If the resource to be deleted is not found
      */
-    ResponseEntity<SuccessStatus> delete(int id);
+    ResponseEntity<SuccessStatus> delete(Long id);
 }
