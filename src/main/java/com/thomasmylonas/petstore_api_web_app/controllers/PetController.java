@@ -1,18 +1,17 @@
 package com.thomasmylonas.petstore_api_web_app.controllers;
 
-import com.thomasmylonas.petstore_api_web_app.controllers.interface_controllers.PetController;
-import com.thomasmylonas.petstore_api_web_app.data_access.entities.*;
-import com.thomasmylonas.petstore_api_web_app.data_access.repositories.PetRepository;
+import com.thomasmylonas.petstore_api_web_app.controllers._base.AbstractController;
+import com.thomasmylonas.petstore_api_web_app.data_access_layer.entities.*;
+import com.thomasmylonas.petstore_api_web_app.data_access_layer.repositories.PetRepository;
 import com.thomasmylonas.petstore_api_web_app.exception_handlers.exceptions.InvalidInputSuppliedException;
 import com.thomasmylonas.petstore_api_web_app.exception_handlers.exceptions.ResourceNotFoundException;
-import com.thomasmylonas.petstore_api_web_app.models.PetModel;
-import com.thomasmylonas.petstore_api_web_app.models.response_status_models.SuccessStatus;
+import com.thomasmylonas.petstore_api_web_app.service_layer.models.PetModel;
+import com.thomasmylonas.petstore_api_web_app.service_layer.models.response_status_models.SuccessStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -22,19 +21,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Controller
+@RestController
 @RequestMapping(path = "/pet")
-public class PetControllerImpl extends BaseController implements PetController<Pet, PetModel> {
+public class PetController extends AbstractController {
 
     @Autowired
     private PetRepository petRepository;
     @Autowired
     private SuccessStatus successStatus;
 
-    @Override
-    @RequestMapping(path = "/{id}",
-            method = RequestMethod.GET,
-            produces = "application/json")
+    // http://localhost:8080/pet/{id}
+    @GetMapping(path = {"/{id}"})
     public ResponseEntity<PetModel> getById(@PathVariable Long id) {
 
         if (id < 1 //|| !UsefulUtils.isInteger(String.valueOf(id))
@@ -51,11 +48,9 @@ public class PetControllerImpl extends BaseController implements PetController<P
         return new ResponseEntity<>(new PetModel(pet), HttpStatus.OK);
     }
 
-    @Override
-    @RequestMapping(path = "/findByStatus",
-            method = RequestMethod.GET,
-            produces = "application/json")
-    public ResponseEntity<List<PetModel>> findByStatus(@RequestParam(value = "status", defaultValue = "available") String status) {
+    @GetMapping(path = {"/findByStatus"})
+    public ResponseEntity<List<PetModel>> findByStatus(
+            @RequestParam(value = "status", defaultValue = "available") String status) {
 
         String[] statusArray = status.split(",");
 
@@ -89,10 +84,8 @@ public class PetControllerImpl extends BaseController implements PetController<P
         return new ResponseEntity<>(filteredPetModelList, HttpStatus.OK);
     }
 
-    @Override
-    @RequestMapping(
-            method = RequestMethod.POST,
-            consumes = "application/json")
+    // http://localhost:8080/pet
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Pet> save(@RequestBody PetModel petModel, UriComponentsBuilder ucb)
             throws HttpMessageNotReadableException, HttpMediaTypeNotSupportedException {
@@ -113,10 +106,7 @@ public class PetControllerImpl extends BaseController implements PetController<P
         return new ResponseEntity<>(petPersisted, headers, HttpStatus.CREATED);
     }
 
-    //    @Override
-    @RequestMapping(path = "/{id}",
-            method = RequestMethod.POST,
-            consumes = "application/json")
+    @PostMapping(path = {"/{id}"})
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Pet> updateWithForm(@PathVariable int id) {
 
@@ -134,10 +124,8 @@ public class PetControllerImpl extends BaseController implements PetController<P
         return new ResponseEntity<>(null, HttpStatus.CREATED);
     }
 
-    @Override
-    @RequestMapping(
-            method = RequestMethod.PUT,
-            consumes = "application/json")
+    // http://localhost:8080/pet
+    @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Pet> update(@RequestBody PetModel petModel) {
 
@@ -161,10 +149,8 @@ public class PetControllerImpl extends BaseController implements PetController<P
         return new ResponseEntity<>(updatedPet, HttpStatus.OK);
     }
 
-    @Override
-    @RequestMapping(path = "/{id}",
-            method = RequestMethod.DELETE,
-            produces = "application/json")
+    // http://localhost:8080/pet/{id}
+    @DeleteMapping(path = {"/{id}"})
     public ResponseEntity<SuccessStatus> delete(@PathVariable Long id) {
 
         if (id < 1 //|| !UsefulUtils.isInteger(String.valueOf(id))
@@ -185,26 +171,17 @@ public class PetControllerImpl extends BaseController implements PetController<P
         return new ResponseEntity<>(successStatus, HttpStatus.OK);
     }
 
-    /*
-    @Deprecated
-    @RequestMapping(path = "/{id}",
-            method = RequestMethod.GET,
-            produces = "application/json")
-    public @ResponseBody
-    Pet getByIdSimpleVersion(@PathVariable int id) {
+    /*@Deprecated
+    @GetMapping(path = {"/{id}"})
+    public Pet getByIdSimpleVersion(@PathVariable Long id) {
         Pet pet = petRepository.getOne(id);
         LOGGER.info("The pet with id: " + id + ", is the\n" + pet);
         return pet;
     }
-    @Override
-    @RequestMapping(path = "/all",
-            method = RequestMethod.GET,
-            produces = "application/json")
-    public @ResponseBody
-    List<Pet> getAll() {
+    @GetMapping(path = {"/all"})
+    public List<Pet> getAll() {
         List<Pet> petList = petRepository.findAll();
         LOGGER.info("All pets are: \n" + petList);
         return petList;
-    }
-    */
+    }*/
 }

@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_web_app.data_access.entities;
+package com.thomasmylonas.petstore_api_web_app.data_access_layer.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;

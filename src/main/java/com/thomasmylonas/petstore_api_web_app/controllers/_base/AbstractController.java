@@ -1,16 +1,15 @@
-package com.thomasmylonas.petstore_api_web_app.controllers;
+package com.thomasmylonas.petstore_api_web_app.controllers._base;
 
-import com.thomasmylonas.petstore_api_web_app.models.response_status_models.ServerResponseStatus;
+import com.thomasmylonas.petstore_api_web_app.service_layer.models.response_status_models.ServerResponseStatus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-public abstract class BaseController implements WebMvcConfigurer {
+public abstract class AbstractController implements WebMvcConfigurer {
 
-    protected static final Logger LOGGER = LogManager.getLogger(BaseController.class.getName());
+    protected static final Logger LOGGER = LogManager.getLogger(AbstractController.class.getName());
 
     public void setResponseStatus(ServerResponseStatus responseStatus, Exception e, HttpStatus httpStatus, String message) {
 

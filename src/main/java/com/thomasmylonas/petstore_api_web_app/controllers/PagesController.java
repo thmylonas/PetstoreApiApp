@@ -1,27 +1,26 @@
 package com.thomasmylonas.petstore_api_web_app.controllers;
 
-import org.springframework.stereotype.Controller;
+import com.thomasmylonas.petstore_api_web_app.controllers._base.AbstractController;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping(path = "/")
-public class PagesController extends BaseController {
+public class PagesController extends AbstractController {
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public String getHome() {
         return "home";
     }
 
-    @RequestMapping(path = {"petHomePage"}, method = RequestMethod.GET)
+    @GetMapping(path = {"pet-page"})
     public String getPetPage() {
-        return "petHomePage";
+        return "pet_page";
     }
 
-    @RequestMapping(path = {
+    @GetMapping(path = {
             "pet/findByStatus?status=available",
             "pet/findByStatus?status=sold",
-            "pet/findByStatus?status=pending"},
-            method = RequestMethod.GET)
+            "pet/findByStatus?status=pending"})
     public String getPetFindByStatusPage() {
         return "result_page";
     }

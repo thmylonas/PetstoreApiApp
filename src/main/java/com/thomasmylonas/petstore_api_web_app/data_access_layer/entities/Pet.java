@@ -1,6 +1,6 @@
-package com.thomasmylonas.petstore_api_web_app.data_access.entities;
+package com.thomasmylonas.petstore_api_web_app.data_access_layer.entities;
 
-import com.thomasmylonas.petstore_api_web_app.models.PetModel;
+import com.thomasmylonas.petstore_api_web_app.service_layer.models.PetModel;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -26,13 +26,9 @@ public class Pet {
     private Category category;
 
     // Mappings - OneToMany
-    @OneToMany(mappedBy = "pet",
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE},
-            orphanRemoval = true)
+    @OneToMany(mappedBy = "pet", cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<Tag> tags;
-    @OneToMany(mappedBy = "pet",
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE},
-            orphanRemoval = true)
+    @OneToMany(mappedBy = "pet", cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<PhotoUrl> photoUrls;
 
     public Pet() {

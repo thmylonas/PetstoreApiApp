@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_web_app.data_access.entities;
+package com.thomasmylonas.petstore_api_web_app.data_access_layer.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -6,22 +6,50 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity(name = "PET_CATEGORY")
+@Entity(name = "STATUS")
 @JsonPropertyOrder({"id", "name"})
-public class Category {
+public class Status {
+
+    public enum StatusEnum {
+        AVAILABLE,
+        PENDING,
+        SOLD;
+
+        static public Integer getId(String name) {
+
+            if (name.equalsIgnoreCase(AVAILABLE.name())) {
+                return 1;
+            } else if (name.equalsIgnoreCase(PENDING.name())) {
+                return 2;
+            } else if (name.equalsIgnoreCase(SOLD.name())) {
+                return 3;
+            }
+            return -1;
+        }
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator")
-    @SequenceGenerator(name = "generator", sequenceName = "ID_SEQUENCE_CATEGORY", allocationSize = 1)
+    @SequenceGenerator(name = "generator", sequenceName = "ID_SEQUENCE_STATUS", allocationSize = 1)
     @Column(name = "ID", updatable = false, nullable = false)
+    @JsonIgnore
     private Integer id;
-    @Column(name = "CATEGORY_NAME", nullable = false, length = 25)
+    @Column(name = "STATUS_NAME", nullable = false, length = 15)
     private String name;
 
     // Mappings - OneToMany
-    @OneToMany(mappedBy = "category", cascade = CascadeType.REFRESH)
+    @OneToMany(mappedBy = "status", cascade = CascadeType.REFRESH)
     @JsonIgnore
     private List<Pet> petList;
+
+    public Status() {
+    }
+
+    public Status(Integer id,
+                  String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public Integer getId() {
         return id;
@@ -49,7 +77,7 @@ public class Category {
 
     @Override
     public String toString() {
-        return "Category{" +
+        return "Status{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

@@ -1,11 +1,11 @@
-package com.thomasmylonas.petstore_api_web_app.controllers.interface_controllers;
+package com.thomasmylonas.petstore_api_web_app._temp;
 
 import com.thomasmylonas.petstore_api_web_app.exception_handlers.exceptions.InvalidInputSuppliedException;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-public interface PetController<T, TModel> extends EntityController<T, TModel> {
+public interface _temp_PetController<T, TModel> extends EntityController<T, TModel> {
 
     /**
      * http://localhost:8080/pet/findByStatus?status=sold

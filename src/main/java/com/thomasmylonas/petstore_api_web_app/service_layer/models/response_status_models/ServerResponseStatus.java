@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_web_app.models.response_status_models;
+package com.thomasmylonas.petstore_api_web_app.service_layer.models.response_status_models;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 

@@ -11,3 +11,5 @@ Others to be done
 - Use in ExceptionsHandlerController: ResponseEntity<ErrorStatus>
 - "Evaluate" window: s.photoUrls: public <S extends Pet> S save(S s) > PetDao
 - Make the log4j2.xml as in "MySpringHibernateJpaApp"
+
+produces = MediaType.APPLICATION_XML_VALUE

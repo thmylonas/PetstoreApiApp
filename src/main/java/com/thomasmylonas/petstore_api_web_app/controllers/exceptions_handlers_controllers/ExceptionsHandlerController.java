@@ -1,8 +1,8 @@
-package com.thomasmylonas.petstore_api_web_app.controllers.handlers;
+package com.thomasmylonas.petstore_api_web_app.controllers.exceptions_handlers_controllers;
 
-import com.thomasmylonas.petstore_api_web_app.controllers.BaseController;
+import com.thomasmylonas.petstore_api_web_app.controllers._base.AbstractController;
 import com.thomasmylonas.petstore_api_web_app.exception_handlers.exceptions.InvalidInputSuppliedException;
-import com.thomasmylonas.petstore_api_web_app.models.response_status_models.ErrorStatus;
+import com.thomasmylonas.petstore_api_web_app.service_layer.models.response_status_models.ErrorStatus;
 import com.thomasmylonas.petstore_api_web_app.exception_handlers.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,14 +10,13 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.annotation.*;
 
-@ControllerAdvice
-public class ExceptionsHandlerController extends BaseController {
+@RestControllerAdvice
+public class ExceptionsHandlerController extends AbstractController {
 
     @Autowired
     private ErrorStatus errorStatus;
 
     @ExceptionHandler(value = {ResourceNotFoundException.class})
-    @ResponseBody
     @ResponseStatus(value = HttpStatus.NOT_FOUND) // NOT_FOUND(404, "Not Found")
     public ErrorStatus resourceNotFound(ResourceNotFoundException e) {
 
@@ -29,7 +28,6 @@ public class ExceptionsHandlerController extends BaseController {
     }
 
     @ExceptionHandler(value = {InvalidInputSuppliedException.class})
-    @ResponseBody
     @ResponseStatus(value = HttpStatus.BAD_REQUEST) // BAD_REQUEST(400, "Bad Request")
     public ErrorStatus invalidInputSupplied(InvalidInputSuppliedException e) {
         e.setMyMessage(e.getMyMessage());
@@ -38,7 +36,6 @@ public class ExceptionsHandlerController extends BaseController {
     }
 
     @ExceptionHandler(value = {HttpMessageNotReadableException.class})
-    @ResponseBody
     @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED) // METHOD_NOT_ALLOWED(405, "Method Not Allowed")
     public ErrorStatus invalidBodyInput(HttpMessageNotReadableException e) {
         setResponseStatus(errorStatus, e, HttpStatus.METHOD_NOT_ALLOWED, "Invalid input");
@@ -46,7 +43,6 @@ public class ExceptionsHandlerController extends BaseController {
     }
 
     @ExceptionHandler(value = {HttpMediaTypeNotSupportedException.class})
-    @ResponseBody
     @ResponseStatus(HttpStatus.UNSUPPORTED_MEDIA_TYPE) // UNSUPPORTED_MEDIA_TYPE(415, "Unsupported Media Type")
     public ErrorStatus mediaTypeNotSupported(HttpMediaTypeNotSupportedException e) {
         setResponseStatus(errorStatus, e, HttpStatus.UNSUPPORTED_MEDIA_TYPE, "Media type not supported");
