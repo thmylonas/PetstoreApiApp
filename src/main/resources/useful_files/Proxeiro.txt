@@ -13,3 +13,15 @@ Others to be done
 - Make the log4j2.xml as in "MySpringHibernateJpaApp"
 
 produces = MediaType.APPLICATION_XML_VALUE
+
+----------------------------------------------------
+https://stackoverflow.com/questions/21703565/how-can-i-untrack-a-file-from-a-git-repository-in-intellij
+How can I untrack a file from a git repository in Intellij
+
+git rm -r --cached .idea/
+git commit -m'.idea/ removed'
+echo '.idea/' >> .gitignore
+
+git rm --cached .gitignore
+git commit -m'.gitignore removed'
+echo '.gitignore' >> .gitignore
