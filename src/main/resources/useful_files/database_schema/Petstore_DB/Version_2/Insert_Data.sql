@@ -30,12 +30,7 @@
 --INSERT INTO pet_tag VALUES (5, 'Eee', 4);
 --INSERT INTO pet_tag VALUES (6, 'Eee', 4);
 
-SELECT pet.pet_name, pet.photo_urls, pet_category.category_name FROM pet INNER JOIN pet_tag ON pet_tag.id = pet.id
-INNER JOIN pet_category ON pet_category.id = pet.id;
-
-
-
-
-
-
-
+SELECT pet.pet_name, pet.photo_urls, pet_category.category_name
+FROM pet
+         INNER JOIN pet_tag ON pet_tag.id = pet.id
+         INNER JOIN pet_category ON pet_category.id = pet.id;

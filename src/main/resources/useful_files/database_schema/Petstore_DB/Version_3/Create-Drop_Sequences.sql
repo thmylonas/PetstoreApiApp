@@ -1,4 +1,3 @@
-
 -- General
 -- CREATE SEQUENCE ID_SEQUENCE
 --     INCREMENT BY 1
