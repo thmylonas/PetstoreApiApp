@@ -48,6 +48,7 @@ public class PetController extends AbstractController {
         return new ResponseEntity<>(new PetModel(pet), HttpStatus.OK);
     }
 
+    // http://localhost:8080/pet/findByStatus?status=sold
     @GetMapping(path = {"/findByStatus"})
     public ResponseEntity<List<PetModel>> findByStatus(
             @RequestParam(value = "status", defaultValue = "available") String status) {
