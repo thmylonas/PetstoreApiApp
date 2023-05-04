@@ -51,11 +51,8 @@ VALUES (5, 'https://cdn0.wideopenpets.com/wp-content/uploads/2019/10/Fish-Names-
 --RENAME photo_urls TO photo_url;
 
 --DELETE FROM photo_url;
---ALTER TABLE photo_url 
---  ADD CONSTRAINT fk_delete_cascade 
---  FOREIGN KEY (pet_id) 
---  REFERENCES pet ( id ) 
---  ON DELETE CASCADE;
+-- ALTER TABLE photo_url
+--     ADD CONSTRAINT fk_delete_cascade FOREIGN KEY (pet_id) REFERENCES pet (id) ON DELETE CASCADE;
 
 -- ------------------- INSERT INTO pet_tag ---------------------------------------------------------------------------------
 INSERT INTO pet_tag
