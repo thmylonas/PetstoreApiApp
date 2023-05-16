@@ -14,7 +14,8 @@ public class PhotoUrl {
     @SequenceGenerator(name = "generator", sequenceName = "ID_SEQUENCE_PHOTO_URL", allocationSize = 1)
     @Column(name = "ID", updatable = false, nullable = false)
     @JsonIgnore
-    private Integer id;
+    private Long id;
+
     @Column(name = "URL_NAME", nullable = false, length = 1999)
     private String name;
 
@@ -27,17 +28,22 @@ public class PhotoUrl {
     public PhotoUrl() {
     }
 
-    public PhotoUrl(Integer id,
-                    String name) {
+    public PhotoUrl(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Integer getId() {
+    /*@com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.PROPERTIES)
+    public PhotoUrl(@com.fasterxml.jackson.annotation.JsonProperty Long id, @com.fasterxml.jackson.annotation.JsonProperty String name) {
+        this.id = id;
+        this.name = name;
+    }*/
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
