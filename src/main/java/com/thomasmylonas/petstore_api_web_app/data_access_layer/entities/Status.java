@@ -45,11 +45,16 @@ public class Status {
     public Status() {
     }
 
-    public Status(Integer id,
-                  String name) {
+    public Status(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
+
+	/*@com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.PROPERTIES)
+    public Status(@com.fasterxml.jackson.annotation.JsonProperty Integer id, @com.fasterxml.jackson.annotation.JsonProperty String name) {
+        this.id = id;
+        this.name = name;
+    }*/
 
     public Integer getId() {
         return id;
