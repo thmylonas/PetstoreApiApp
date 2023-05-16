@@ -13,7 +13,8 @@ public class Tag {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator")
     @SequenceGenerator(name = "generator", sequenceName = "ID_SEQUENCE_TAG", allocationSize = 1)
     @Column(name = "ID", updatable = false, nullable = false)
-    private Integer id;
+    private Long id;
+
     @Column(name = "TAG_NAME", nullable = false, length = 20)
     private String name;
 
@@ -23,11 +24,25 @@ public class Tag {
     @JsonIgnore
     private Pet pet;
 
-    public Integer getId() {
+    public Tag() {
+    }
+
+    /*@com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.PROPERTIES)
+    public Tag(@com.fasterxml.jackson.annotation.JsonProperty Long id, @com.fasterxml.jackson.annotation.JsonProperty String name) {
+        this.id = id;
+        this.name = name;
+    }*/
+
+    public Tag(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
