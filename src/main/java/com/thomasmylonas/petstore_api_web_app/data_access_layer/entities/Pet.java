@@ -2,14 +2,17 @@ package com.thomasmylonas.petstore_api_web_app.data_access_layer.entities;
 
 import com.thomasmylonas.petstore_api_web_app.service_layer.models.PetModel;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * All the entities are implemented wrongly
+ * TODO: All the entities are implemented wrongly
  */
 @Entity(name = "PET")
+@JsonPropertyOrder({"id", "category", "name", "photoUrls", "tags", "status"})
 public class Pet {
 
     @Id
@@ -37,6 +40,15 @@ public class Pet {
     public Pet() {
     }
 
+    public Pet(Long id, String name, Status status, Category category, List<Tag> tags, List<PhotoUrl> photoUrls) {
+        this.id = id;
+        this.name = name;
+        this.status = status;
+        this.category = category;
+        this.tags = tags;
+        this.photoUrls = photoUrls;
+    }
+
     public Pet(PetModel petModel) {
         this.id = petModel.getId();
         this.name = petModel.getName();
@@ -48,6 +60,23 @@ public class Pet {
             photoUrls.add(new PhotoUrl(null, petModel.getPhotoUrls().get(i)));
         }
     }
+
+    /*@com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.PROPERTIES)
+    public Pet(@com.fasterxml.jackson.annotation.JsonProperty("id") Long id,
+               @com.fasterxml.jackson.annotation.JsonProperty("name") String name,
+               @com.fasterxml.jackson.annotation.JsonProperty Status status,
+               @com.fasterxml.jackson.annotation.JsonProperty("category") Category category,
+               @com.fasterxml.jackson.annotation.JsonProperty("tags") List<Tag> tags,
+               @com.fasterxml.jackson.annotation.JsonProperty("photoUrls") List<String> photoUrls) {
+        this.id = id;
+        this.name = name;
+        this.status.setName(status.getName());
+        this.category = category;
+        this.tags = tags;
+        for (int i = 0; i < photoUrls.size(); i++) {
+            this.photoUrls.get(i).setName(photoUrls.get(i));
+        }
+    }*/
 
     public Long getId() {
         return id;
@@ -97,10 +126,14 @@ public class Pet {
     }
 
     public void setPhotoUrls(List<PhotoUrl> photoUrls) {
+
         photoUrls.stream().forEach(photoUrl -> {
             photoUrl.setPet(this);
         });
         this.photoUrls = photoUrls;
+        /*for (int i = 0; i < photoUrls.size(); i++) {
+            this.photoUrls.get(i).setName(photoUrls.get(i).getName());
+        }*/
     }
 
     @Override

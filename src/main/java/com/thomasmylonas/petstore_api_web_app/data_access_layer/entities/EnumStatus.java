@@ -1,7 +1,7 @@
 package com.thomasmylonas.petstore_api_web_app.data_access_layer.entities;
 
 /**
- * All the entities are implemented wrongly
+ * TODO: All the entities are implemented wrongly
  */
 public enum EnumStatus {
 

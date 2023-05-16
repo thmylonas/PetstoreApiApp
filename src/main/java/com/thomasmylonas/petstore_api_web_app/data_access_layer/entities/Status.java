@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * All the entities are implemented wrongly
+ * TODO: All the entities are implemented wrongly
  */
 @Entity(name = "STATUS")
 @JsonPropertyOrder({"id", "name"})

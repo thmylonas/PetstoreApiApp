@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import javax.persistence.*;
 
 /**
- * All the entities are implemented wrongly
+ * TODO: All the entities are implemented wrongly
  */
 @Entity(name = "PHOTO_URL")
 @JsonPropertyOrder({"id", "name"})
