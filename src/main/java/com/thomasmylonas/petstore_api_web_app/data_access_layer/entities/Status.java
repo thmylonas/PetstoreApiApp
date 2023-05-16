@@ -15,16 +15,16 @@ public class Status {
         PENDING,
         SOLD;
 
-        static public Integer getId(String name) {
+        static public Long getId(String name) {
 
             if (name.equalsIgnoreCase(AVAILABLE.name())) {
-                return 1;
+                return 1L;
             } else if (name.equalsIgnoreCase(PENDING.name())) {
-                return 2;
+                return 2L;
             } else if (name.equalsIgnoreCase(SOLD.name())) {
-                return 3;
+                return 3L;
             }
-            return -1;
+            return -1L;
         }
     }
 
@@ -33,7 +33,7 @@ public class Status {
     @SequenceGenerator(name = "generator", sequenceName = "ID_SEQUENCE_STATUS", allocationSize = 1)
     @Column(name = "ID", updatable = false, nullable = false)
     @JsonIgnore
-    private Integer id;
+    private Long id;
     @Column(name = "STATUS_NAME", nullable = false, length = 15)
     private String name;
 
@@ -45,22 +45,22 @@ public class Status {
     public Status() {
     }
 
-    public Status(Integer id, String name) {
+    public Status(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
 	/*@com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.PROPERTIES)
-    public Status(@com.fasterxml.jackson.annotation.JsonProperty Integer id, @com.fasterxml.jackson.annotation.JsonProperty String name) {
+    public Status(@com.fasterxml.jackson.annotation.JsonProperty Long id, @com.fasterxml.jackson.annotation.JsonProperty String name) {
         this.id = id;
         this.name = name;
     }*/
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

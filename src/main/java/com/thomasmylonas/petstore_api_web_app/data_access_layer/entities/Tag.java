@@ -27,16 +27,16 @@ public class Tag {
     public Tag() {
     }
 
+    public Tag(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     /*@com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.PROPERTIES)
     public Tag(@com.fasterxml.jackson.annotation.JsonProperty Long id, @com.fasterxml.jackson.annotation.JsonProperty String name) {
         this.id = id;
         this.name = name;
     }*/
-
-    public Tag(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
 
     public Long getId() {
         return id;

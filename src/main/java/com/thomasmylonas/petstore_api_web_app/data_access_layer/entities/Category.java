@@ -14,7 +14,8 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator")
     @SequenceGenerator(name = "generator", sequenceName = "ID_SEQUENCE_CATEGORY", allocationSize = 1)
     @Column(name = "ID", updatable = false, nullable = false)
-    private Integer id;
+    private Long id;
+
     @Column(name = "CATEGORY_NAME", nullable = false, length = 25)
     private String name;
 
@@ -23,11 +24,25 @@ public class Category {
     @JsonIgnore
     private List<Pet> petList;
 
-    public Integer getId() {
+    public Category() {
+    }
+
+    public Category(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    /*@com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.PROPERTIES)
+    public Category(@com.fasterxml.jackson.annotation.JsonProperty Long id, @com.fasterxml.jackson.annotation.JsonProperty String name) {
+        this.id = id;
+        this.name = name;
+    }*/
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
