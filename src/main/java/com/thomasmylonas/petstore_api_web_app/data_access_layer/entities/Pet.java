@@ -6,6 +6,9 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * All the entities are implemented wrongly
+ */
 @Entity(name = "PET")
 public class Pet {
 

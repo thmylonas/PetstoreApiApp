@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * All the entities are implemented wrongly
+ */
 @Entity(name = "STATUS")
 @JsonPropertyOrder({"id", "name"})
 public class Status {
