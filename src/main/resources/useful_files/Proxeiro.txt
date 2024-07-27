@@ -1,3 +1,26 @@
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@Entity
+@JsonPropertyOrder({"id", "category", "name", "photoUrls", "tags", "status"})
+public class Pet {}
+
+@Entity
+@JsonPropertyOrder({"id", "name"})
+public class PhotoUrl {}
+
+@Entity
+@JsonPropertyOrder({"id", "name"})
+public class Status {}
+
+@Entity
+@JsonPropertyOrder({"id", "name"})
+public class Tag {}
+
+@Entity
+@JsonPropertyOrder({"id", "name"})
+public class Category {}
+
+========================================================================================================================
 
 Others to be done
 --------------------

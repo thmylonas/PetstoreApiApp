@@ -2,7 +2,6 @@ package com.thomasmylonas.petstore_api_web_app.data_access_layer.entities;
 
 import com.thomasmylonas.petstore_api_web_app.service_layer.models.PetModel;
 
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,15 +13,13 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * TODO: All the entities are implemented wrongly
- */
-@Entity(name = "PET")
-@JsonPropertyOrder({"id", "category", "name", "photoUrls", "tags", "status"})
+@Entity(name = "Pet")
+@Table(name = "Pet")
 public class Pet {
 
     @Id
