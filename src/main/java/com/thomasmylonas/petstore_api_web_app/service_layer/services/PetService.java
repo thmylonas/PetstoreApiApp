@@ -1,8 +1,8 @@
 package com.thomasmylonas.petstore_api_web_app.service_layer.services;
 
 import com.thomasmylonas.petstore_api_web_app.data_access_layer.entities.Pet;
-import com.thomasmylonas.petstore_api_web_app.exception_handlers.exceptions.InvalidInputSuppliedException;
-import com.thomasmylonas.petstore_api_web_app.exception_handlers.exceptions.ResourceNotFoundException;
+import com.thomasmylonas.petstore_api_web_app.service_layer.exceptions.InvalidInputSuppliedException;
+import com.thomasmylonas.petstore_api_web_app.service_layer.exceptions.ResourceNotFoundException;
 import com.thomasmylonas.petstore_api_web_app.service_layer.models.PetModel;
 import com.thomasmylonas.petstore_api_web_app.service_layer.models.response_status_models.SuccessStatus;
 import org.springframework.http.ResponseEntity;

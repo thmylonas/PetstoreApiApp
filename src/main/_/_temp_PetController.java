@@ -1,6 +1,6 @@
-package com.thomasmylonas.petstore_api_web_app._temp;
+package com.thomasmylonas.petstore_api_web_app._;
 
-import com.thomasmylonas.petstore_api_web_app.exception_handlers.exceptions.InvalidInputSuppliedException;
+import com.thomasmylonas.petstore_api_web_app.service_layer.exceptions.InvalidInputSuppliedException;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

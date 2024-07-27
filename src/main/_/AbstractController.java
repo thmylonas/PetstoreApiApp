@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_web_app.controllers._base;
+package com.thomasmylonas.petstore_api_web_app._;
 
 import com.thomasmylonas.petstore_api_web_app.service_layer.models.response_status_models.ServerResponseStatus;
 import org.apache.logging.log4j.LogManager;

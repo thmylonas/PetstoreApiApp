@@ -1,10 +1,9 @@
 package com.thomasmylonas.petstore_api_web_app.controllers;
 
-import com.thomasmylonas.petstore_api_web_app.controllers._base.AbstractController;
 import com.thomasmylonas.petstore_api_web_app.data_access_layer.entities.*;
 import com.thomasmylonas.petstore_api_web_app.data_access_layer.repositories.PetRepository;
-import com.thomasmylonas.petstore_api_web_app.exception_handlers.exceptions.InvalidInputSuppliedException;
-import com.thomasmylonas.petstore_api_web_app.exception_handlers.exceptions.ResourceNotFoundException;
+import com.thomasmylonas.petstore_api_web_app.service_layer.exceptions.InvalidInputSuppliedException;
+import com.thomasmylonas.petstore_api_web_app.service_layer.exceptions.ResourceNotFoundException;
 import com.thomasmylonas.petstore_api_web_app.service_layer.models.PetModel;
 import com.thomasmylonas.petstore_api_web_app.service_layer.models.response_status_models.SuccessStatus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "/pet")
-public class PetController extends AbstractController {
+public class PetController {
 
     @Autowired
     private PetRepository petRepository;
@@ -36,15 +35,15 @@ public class PetController extends AbstractController {
 
         if (id < 1 //|| !UsefulUtils.isInteger(String.valueOf(id))
         ) {
-            LOGGER.info("400 - Invalid ID supplied");
+//            LOGGER.info("400 - Invalid ID supplied");
             throw new InvalidInputSuppliedException("400 - Invalid ID supplied");
         }
         Pet pet = petRepository.findById(id).orElse(null);
         if (pet == null) {
-            LOGGER.info("The pet with id: " + id + ", is not found");
+//            LOGGER.info("The pet with id: " + id + ", is not found");
             throw new ResourceNotFoundException(id, "The pet with id: %d, is not found");
         }
-        LOGGER.info("The pet with id: " + id + ", is the\n" + pet);
+//        LOGGER.info("The pet with id: " + id + ", is the\n" + pet);
         return new ResponseEntity<>(new PetModel(pet), HttpStatus.OK);
     }
 
@@ -57,7 +56,7 @@ public class PetController extends AbstractController {
 
         for (String s : statusArray) {
             if (!s.equals("available") && !s.equals("sold") && !s.equals("pending")) {
-                LOGGER.info("400 - Invalid status value");
+//                LOGGER.info("400 - Invalid status value");
                 throw new InvalidInputSuppliedException("400 - Invalid status value");
             }
         }
@@ -76,7 +75,7 @@ public class PetController extends AbstractController {
                                 }
                         )
                         .collect(Collectors.toList());
-        LOGGER.info("All pets filtered by status are: \n" + filteredPetList);
+//        LOGGER.info("All pets filtered by status are: \n" + filteredPetList);
 
         List<PetModel> filteredPetModelList = new ArrayList<>();
         for (int i = 0; i < filteredPetList.size(); i++) {
@@ -103,7 +102,7 @@ public class PetController extends AbstractController {
                 .build().toUri();
         headers.setLocation(locationUri);
 
-        LOGGER.info("The new pet:\n" + petPersisted + "\nis added, with the id: " + petPersisted.getId());
+//        LOGGER.info("The new pet:\n" + petPersisted + "\nis added, with the id: " + petPersisted.getId());
         return new ResponseEntity<>(petPersisted, headers, HttpStatus.CREATED);
     }
 
@@ -113,7 +112,7 @@ public class PetController extends AbstractController {
 
         if (id < 1 //|| !UsefulUtils.isInteger(String.valueOf(id))
         ) {
-            LOGGER.info("400 - Invalid ID supplied");
+//            LOGGER.info("400 - Invalid ID supplied");
             throw new InvalidInputSuppliedException("400 - Invalid ID supplied");
         }
 //        Pet pet = new Pet(petModel);
@@ -134,7 +133,7 @@ public class PetController extends AbstractController {
         Long id = petModel.getId();
         if (id < 1 //|| !UsefulUtils.isInteger(String.valueOf(id))
         ) {
-            LOGGER.info("400 - Invalid ID supplied");
+//            LOGGER.info("400 - Invalid ID supplied");
             throw new InvalidInputSuppliedException("400 - Invalid ID supplied");
         }
 
@@ -146,7 +145,7 @@ public class PetController extends AbstractController {
         if (updatedPet == null) {
             throw new ResourceNotFoundException(0, "404 - Pet not found");
         }
-        LOGGER.info("The updated pet is:\n" + new PetModel(updatedPet));
+//        LOGGER.info("The updated pet is:\n" + new PetModel(updatedPet));
         return new ResponseEntity<>(updatedPet, HttpStatus.OK);
     }
 
@@ -156,17 +155,17 @@ public class PetController extends AbstractController {
 
         if (id < 1 //|| !UsefulUtils.isInteger(String.valueOf(id))
         ) {
-            LOGGER.info("400 - Invalid ID supplied");
+//            LOGGER.info("400 - Invalid ID supplied");
             throw new InvalidInputSuppliedException("400 - Invalid ID supplied");
         }
 
         try {
             petRepository.deleteById(id);
             String message = String.format("The pet with the id: " + id + ", is deleted", id);
-            setResponseStatus(successStatus, null, HttpStatus.OK, message);
-            LOGGER.info("The pet with the id: " + id + ", is deleted");
+//            setResponseStatus(successStatus, null, HttpStatus.OK, message);
+//            LOGGER.info("The pet with the id: " + id + ", is deleted");
         } catch (ResourceNotFoundException e) {
-            LOGGER.info("The pet with id: " + id + ", is not found");
+//            LOGGER.info("The pet with id: " + id + ", is not found");
             throw new ResourceNotFoundException(e.getResourceId(), e.getMyMessage());
         }
         return new ResponseEntity<>(successStatus, HttpStatus.OK);

@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_web_app.exception_handlers.exceptions;
+package com.thomasmylonas.petstore_api_web_app.service_layer.exceptions;
 
 public abstract class BaseRuntimeException extends RuntimeException {
 
