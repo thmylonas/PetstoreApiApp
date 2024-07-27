@@ -21,9 +21,10 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.Oracle12cDialect
+        dialect: org.hibernate.dialect.H2Dialect
         show_sql: true
-        format_sql: true
+        format_sql: false
+
   #Datasource - H2-Database: Other properties
   h2:
     console:
@@ -34,11 +35,11 @@ spring:
         web-allow-others: false
 
   #Datasource - H2-Database: schema/data locations
-  sql:
-    init:
-      #continue-on-error: true
-      schema-locations: classpath:sql_queries/schema.sql
-      #data-locations: classpath:sql_queries/data.sql
+#  sql:
+#    init:
+#      #continue-on-error: true
+#      schema-locations: classpath:sql_queries/schema.sql
+#      #data-locations: classpath:sql_queries/data.sql
 
 logging:
   level:
