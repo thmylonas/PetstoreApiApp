@@ -5,6 +5,8 @@ import com.thomasmylonas.petstore_api_web_app.service_layer.models.PetModel;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,13 +29,13 @@ public class Pet {
     @SequenceGenerator(name = "generator", sequenceName = "ID_SEQUENCE_PET", allocationSize = 1)
     @Column(name = "ID", updatable = false, nullable = false)
     private Long id;
+
     @Column(name = "PET_NAME", nullable = false, length = 25)
     private String name;
 
-    // Mappings - ManyToOne
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "STATUS_ID")
-    private Status status;
+    @Enumerated(value = EnumType.STRING)
+    private StatusEnum status;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "PET_CATEGORY_ID")
     private Category category;
@@ -47,7 +49,7 @@ public class Pet {
     public Pet() {
     }
 
-    public Pet(Long id, String name, Status status, Category category, List<Tag> tags, List<PhotoUrl> photoUrls) {
+    public Pet(Long id, String name, StatusEnum status, Category category, List<Tag> tags, List<PhotoUrl> photoUrls) {
         this.id = id;
         this.name = name;
         this.status = status;
@@ -59,7 +61,6 @@ public class Pet {
     public Pet(PetModel petModel) {
         this.id = petModel.getId();
         this.name = petModel.getName();
-        this.status = new Status(Status.StatusEnum.getId(petModel.getStatus()), petModel.getStatus());
         this.category = petModel.getCategory();
         this.tags = petModel.getTags();
         photoUrls = new ArrayList<>();
@@ -84,11 +85,11 @@ public class Pet {
         this.name = name;
     }
 
-    public Status getStatus() {
+    public StatusEnum getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(StatusEnum status) {
         this.status = status;
     }
 

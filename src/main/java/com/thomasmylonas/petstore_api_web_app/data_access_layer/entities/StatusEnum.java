@@ -1,6 +1,6 @@
 package com.thomasmylonas.petstore_api_web_app.data_access_layer.entities;
 
-public enum EnumStatus {
+public enum StatusEnum {
 
     AVAILABLE("0"),
     PENDING("1"),
@@ -8,7 +8,7 @@ public enum EnumStatus {
 
     final String value;
 
-    EnumStatus(String value) {
+    StatusEnum(String value) {
         this.value = value;
     }
 
