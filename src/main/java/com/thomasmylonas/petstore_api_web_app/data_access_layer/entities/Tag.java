@@ -10,11 +10,18 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity(name = "Tag")
 @Table(name = "Tag") // Pet_Tag
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Tag {
 
     @Id
@@ -29,10 +36,8 @@ public class Tag {
     // Mappings - ManyToOne
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "PET_ID")
+    @ToString.Exclude
     private Pet pet;
-
-    public Tag() {
-    }
 
     public Tag(Long id, String name) {
         this.id = id;

@@ -9,6 +9,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,6 +20,8 @@ import java.util.List;
 @Table(name = "Category") // Pet_Category
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Category {
 
     @Id
@@ -31,7 +35,7 @@ public class Category {
 
     // Mappings - OneToMany
     @OneToMany(mappedBy = "category", cascade = CascadeType.REFRESH)
-    private List<Pet> petList;
+    private List<Pet> pets;
 
     public Category(Long id, String name) {
         this.id = id;

@@ -1,7 +1,5 @@
 package com.thomasmylonas.petstore_api_web_app.data_access_layer.entities;
 
-import com.thomasmylonas.petstore_api_web_app.service_layer.models.PetModel;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,12 +14,20 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "Pet")
 @Table(name = "Pet")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Pet {
 
     @Id
@@ -38,27 +44,17 @@ public class Pet {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "PET_CATEGORY_ID")
+    @ToString.Exclude
     private Category category;
 
     // Mappings - OneToMany
     @OneToMany(mappedBy = "pet", cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<Tag> tags;
+
     @OneToMany(mappedBy = "pet", cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<PhotoUrl> photoUrls;
 
-    public Pet() {
-    }
-
-    public Pet(Long id, String name, StatusEnum status, Category category, List<Tag> tags, List<PhotoUrl> photoUrls) {
-        this.id = id;
-        this.name = name;
-        this.status = status;
-        this.category = category;
-        this.tags = tags;
-        this.photoUrls = photoUrls;
-    }
-
-    public Pet(PetModel petModel) {
+    /*public Pet(PetModel petModel) {
         this.id = petModel.getId();
         this.name = petModel.getName();
         this.category = petModel.getCategory();
@@ -69,51 +65,11 @@ public class Pet {
         }
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public StatusEnum getStatus() {
-        return status;
-    }
-
-    public void setStatus(StatusEnum status) {
-        this.status = status;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public List<Tag> getTags() {
-        return tags;
-    }
-
     public void setTags(List<Tag> tags) {
         tags.stream().forEach(tag -> {
             tag.setPet(this);
         });
         this.tags = tags;
-    }
-
-    public List<PhotoUrl> getPhotoUrls() {
-        return photoUrls;
     }
 
     public void setPhotoUrls(List<PhotoUrl> photoUrls) {
@@ -122,20 +78,8 @@ public class Pet {
             photoUrl.setPet(this);
         });
         this.photoUrls = photoUrls;
-        /*for (int i = 0; i < photoUrls.size(); i++) {
-            this.photoUrls.get(i).setName(photoUrls.get(i).getName());
-        }*/
-    }
-
-    @Override
-    public String toString() {
-        return "Pet{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", status=" + getStatus() +
-                ", category=" + category +
-                ", tags=" + tags +
-                ", photoUrls=" + getPhotoUrls() +
-                '}';
-    }
+//        for (int i = 0; i < photoUrls.size(); i++) {
+//            this.photoUrls.get(i).setName(photoUrls.get(i).getName());
+//        }
+    }*/
 }
