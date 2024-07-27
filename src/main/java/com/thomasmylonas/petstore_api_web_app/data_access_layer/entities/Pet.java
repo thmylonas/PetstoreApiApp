@@ -68,23 +68,6 @@ public class Pet {
         }
     }
 
-    /*@com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.PROPERTIES)
-    public Pet(@com.fasterxml.jackson.annotation.JsonProperty("id") Long id,
-               @com.fasterxml.jackson.annotation.JsonProperty("name") String name,
-               @com.fasterxml.jackson.annotation.JsonProperty Status status,
-               @com.fasterxml.jackson.annotation.JsonProperty("category") Category category,
-               @com.fasterxml.jackson.annotation.JsonProperty("tags") List<Tag> tags,
-               @com.fasterxml.jackson.annotation.JsonProperty("photoUrls") List<String> photoUrls) {
-        this.id = id;
-        this.name = name;
-        this.status.setName(status.getName());
-        this.category = category;
-        this.tags = tags;
-        for (int i = 0; i < photoUrls.size(); i++) {
-            this.photoUrls.get(i).setName(photoUrls.get(i));
-        }
-    }*/
-
     public Long getId() {
         return id;
     }

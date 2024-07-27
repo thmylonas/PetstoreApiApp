@@ -57,12 +57,6 @@ public class Status {
         this.name = name;
     }
 
-	/*@com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.PROPERTIES)
-    public Status(@com.fasterxml.jackson.annotation.JsonProperty Long id, @com.fasterxml.jackson.annotation.JsonProperty String name) {
-        this.id = id;
-        this.name = name;
-    }*/
-
     public Long getId() {
         return id;
     }

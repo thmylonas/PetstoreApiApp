@@ -22,6 +22,45 @@ public class Category {}
 
 ========================================================================================================================
 
+@com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.PROPERTIES)
+public PhotoUrl(@com.fasterxml.jackson.annotation.JsonProperty Long id, @com.fasterxml.jackson.annotation.JsonProperty String name) {
+    this.id = id;
+    this.name = name;
+}
+@com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.PROPERTIES)
+public Pet(@com.fasterxml.jackson.annotation.JsonProperty("id") Long id,
+           @com.fasterxml.jackson.annotation.JsonProperty("name") String name,
+           @com.fasterxml.jackson.annotation.JsonProperty Status status,
+           @com.fasterxml.jackson.annotation.JsonProperty("category") Category category,
+           @com.fasterxml.jackson.annotation.JsonProperty("tags") List<Tag> tags,
+           @com.fasterxml.jackson.annotation.JsonProperty("photoUrls") List<String> photoUrls) {
+    this.id = id;
+    this.name = name;
+    this.status.setName(status.getName());
+    this.category = category;
+    this.tags = tags;
+    for (int i = 0; i < photoUrls.size(); i++) {
+        this.photoUrls.get(i).setName(photoUrls.get(i));
+    }
+}
+@com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.PROPERTIES)
+public Status(@com.fasterxml.jackson.annotation.JsonProperty Long id, @com.fasterxml.jackson.annotation.JsonProperty String name) {
+    this.id = id;
+    this.name = name;
+}
+@com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.PROPERTIES)
+public Tag(@com.fasterxml.jackson.annotation.JsonProperty Long id, @com.fasterxml.jackson.annotation.JsonProperty String name) {
+    this.id = id;
+    this.name = name;
+}
+@com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.PROPERTIES)
+public Category(@com.fasterxml.jackson.annotation.JsonProperty Long id, @com.fasterxml.jackson.annotation.JsonProperty String name) {
+    this.id = id;
+    this.name = name;
+}
+
+========================================================================================================================
+
 Others to be done
 --------------------
 - Why the META-INF/context.xml, must be in "webapp", and not at the "resources".
