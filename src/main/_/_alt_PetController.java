@@ -3,7 +3,6 @@ package com.thomasmylonas.petstore_api_web_app._;
 import com.thomasmylonas.petstore_api_web_app.data_access_layer.entities.Pet;
 import com.thomasmylonas.petstore_api_web_app.data_access_layer.repositories.PetRepository;
 import com.thomasmylonas.petstore_api_web_app.service_layer.exceptions.ResourceNotFoundException;
-import com.thomasmylonas.petstore_api_web_app.service_layer.models.response_status_models.ErrorStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

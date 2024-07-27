@@ -1,11 +1,10 @@
 package com.thomasmylonas.petstore_api_web_app.controllers;
 
-import com.thomasmylonas.petstore_api_web_app.data_access_layer.entities.*;
+import com.thomasmylonas.petstore_api_web_app.data_access_layer.entities.Pet;
 import com.thomasmylonas.petstore_api_web_app.data_access_layer.repositories.PetRepository;
 import com.thomasmylonas.petstore_api_web_app.service_layer.exceptions.InvalidInputSuppliedException;
 import com.thomasmylonas.petstore_api_web_app.service_layer.exceptions.ResourceNotFoundException;
 import com.thomasmylonas.petstore_api_web_app.service_layer.models.PetModel;
-import com.thomasmylonas.petstore_api_web_app.service_layer.models.response_status_models.SuccessStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -26,8 +25,6 @@ public class PetController {
 
     @Autowired
     private PetRepository petRepository;
-    @Autowired
-    private SuccessStatus successStatus;
 
     // http://localhost:8080/pet/{id}
     @GetMapping(path = {"/{id}"})
@@ -67,7 +64,7 @@ public class PetController {
                         .filter(
                                 pet -> {
                                     for (String s : statusArray) {
-                                        if (pet.getStatus().getName().toLowerCase().equals(s)) {
+                                        if (pet.getStatus().getValue().toLowerCase().equals(s)) {
                                             return true;
                                         }
                                     }
@@ -87,10 +84,9 @@ public class PetController {
     // http://localhost:8080/pet
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Pet> save(@RequestBody PetModel petModel, UriComponentsBuilder ucb)
+    public ResponseEntity<Pet> save(@RequestBody Pet pet, UriComponentsBuilder ucb)
             throws HttpMessageNotReadableException, HttpMediaTypeNotSupportedException {
 
-        Pet pet = new Pet(petModel);
         pet.setPhotoUrls(pet.getPhotoUrls());
         pet.setTags(pet.getTags());
         Pet petPersisted = petRepository.save(pet);
@@ -127,17 +123,16 @@ public class PetController {
     // http://localhost:8080/pet
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Pet> update(@RequestBody PetModel petModel) {
+    public ResponseEntity<Pet> update(@RequestBody Pet pet) {
 
         Pet updatedPet;
-        Long id = petModel.getId();
+        Long id = pet.getId();
         if (id < 1 //|| !UsefulUtils.isInteger(String.valueOf(id))
         ) {
 //            LOGGER.info("400 - Invalid ID supplied");
             throw new InvalidInputSuppliedException("400 - Invalid ID supplied");
         }
 
-        Pet pet = new Pet(petModel);
         pet.setPhotoUrls(pet.getPhotoUrls());
         pet.setTags(pet.getTags());
         updatedPet = new Pet();//petRepository.update(pet);
@@ -151,7 +146,7 @@ public class PetController {
 
     // http://localhost:8080/pet/{id}
     @DeleteMapping(path = {"/{id}"})
-    public ResponseEntity<SuccessStatus> delete(@PathVariable Long id) {
+    public ResponseEntity<ResponseStatus> delete(@PathVariable Long id) {
 
         if (id < 1 //|| !UsefulUtils.isInteger(String.valueOf(id))
         ) {
@@ -168,7 +163,7 @@ public class PetController {
 //            LOGGER.info("The pet with id: " + id + ", is not found");
             throw new ResourceNotFoundException(e.getResourceId(), e.getMyMessage());
         }
-        return new ResponseEntity<>(successStatus, HttpStatus.OK);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     /*@Deprecated

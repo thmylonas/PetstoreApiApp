@@ -1,9 +1,9 @@
-package com.thomasmylonas.petstore_api_web_app.service_layer.models.response_status_models;
+package com.thomasmylonas.petstore_api_web_app.service_layer.models;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonPropertyOrder({"responseCode", "responseMessage", "responseDescription"})
-public abstract class ServerResponseStatus {
+public abstract class ResponseStatus {
 
     protected int responseCode;
     protected String responseDescription;

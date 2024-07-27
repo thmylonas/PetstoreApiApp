@@ -4,7 +4,7 @@ import com.thomasmylonas.petstore_api_web_app.data_access_layer.entities.Pet;
 import com.thomasmylonas.petstore_api_web_app.service_layer.exceptions.InvalidInputSuppliedException;
 import com.thomasmylonas.petstore_api_web_app.service_layer.exceptions.ResourceNotFoundException;
 import com.thomasmylonas.petstore_api_web_app.service_layer.models.PetModel;
-import com.thomasmylonas.petstore_api_web_app.service_layer.models.response_status_models.SuccessStatus;
+import com.thomasmylonas.petstore_api_web_app.service_layer.models.ResponseStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
@@ -62,5 +62,5 @@ public interface PetService {
      * @throws InvalidInputSuppliedException If the input is invalid (eg. negative id)
      * @throws ResourceNotFoundException     If the resource to be deleted is not found
      */
-    ResponseEntity<SuccessStatus> delete(Long id);
+    ResponseEntity<ResponseStatus> delete(Long id);
 }

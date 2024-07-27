@@ -22,7 +22,6 @@ public class PetModel {
     public PetModel(Pet pet) {
         this.id = pet.getId();
         this.name = pet.getName();
-        this.status = pet.getStatus().getName();
         this.category = pet.getCategory();
         this.tags = pet.getTags();
         photoUrls = new ArrayList<>();
