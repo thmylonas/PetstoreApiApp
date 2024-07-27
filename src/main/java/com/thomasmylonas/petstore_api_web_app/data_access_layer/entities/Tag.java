@@ -1,6 +1,5 @@
 package com.thomasmylonas.petstore_api_web_app.data_access_layer.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -11,9 +10,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import lombok.Data;
 
 @Entity(name = "Tag")
 @Table(name = "Tag") // Pet_Tag
+@Data
 public class Tag {
 
     @Id
@@ -28,7 +29,6 @@ public class Tag {
     // Mappings - ManyToOne
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "PET_ID")
-    @JsonIgnore
     private Pet pet;
 
     public Tag() {
@@ -37,37 +37,5 @@ public class Tag {
     public Tag(Long id, String name) {
         this.id = id;
         this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Pet getPet() {
-        return pet;
-    }
-
-    public void setPet(Pet pet) {
-        this.pet = pet;
-    }
-
-    @Override
-    public String toString() {
-        return "Tag{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
     }
 }

@@ -61,6 +61,14 @@ public Category(@com.fasterxml.jackson.annotation.JsonProperty Long id, @com.fas
 
 ========================================================================================================================
 
+public class Category {
+    @OneToMany(mappedBy = "category", cascade = CascadeType.REFRESH)
+    @com.fasterxml.jackson.annotation.JsonIgnore
+    private List<Pet> petList;
+}
+
+========================================================================================================================
+
 Others to be done
 --------------------
 - Why the META-INF/context.xml, must be in "webapp", and not at the "resources".

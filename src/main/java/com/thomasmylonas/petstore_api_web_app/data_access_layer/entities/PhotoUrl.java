@@ -1,6 +1,5 @@
 package com.thomasmylonas.petstore_api_web_app.data_access_layer.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -11,16 +10,19 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity(name = "PhotoUrl")
 @Table(name = "Photo_Url")
+@Data
+@NoArgsConstructor
 public class PhotoUrl {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator")
     @SequenceGenerator(name = "generator", sequenceName = "ID_SEQUENCE_PHOTO_URL", allocationSize = 1)
-    @Column(name = "ID", updatable = false, nullable = false)
-    @JsonIgnore
+    @Column(name = "Id", updatable = false, nullable = false)
     private Long id;
 
     @Column(name = "URL_NAME", nullable = false, length = 1999)
@@ -29,46 +31,10 @@ public class PhotoUrl {
     // Mappings - ManyToOne
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "PET_ID")
-    @JsonIgnore
     private Pet pet;
-
-    public PhotoUrl() {
-    }
 
     public PhotoUrl(Long id, String name) {
         this.id = id;
         this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Pet getPet() {
-        return pet;
-    }
-
-    public void setPet(Pet pet) {
-        this.pet = pet;
-    }
-
-    @Override
-    public String toString() {
-        return "PhotoUrl{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
     }
 }
