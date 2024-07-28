@@ -1,3 +1,52 @@
+The best place to put the synchronizing state methods is in the Parent-side.
+
+@Table
+public class Person {
+    //Id, Columns, Getters, Setters
+
+    @OneToOne(mappedBy = "person", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private Phone phone;
+
+    /**
+     * Useful link: "https://vladmihalcea.com/the-best-way-to-map-a-onetoone-relationship-with-jpa-and-hibernate"
+     * The method is used for synchronizing both sides of this bidirectional association.
+     * More specifically, is used both for "setting" (in case of phone != null) and "removing" (in case of phone == null)
+     * the associated Child-side entity.
+     * Especially in the case of "removing":
+     * - From the phone (Child-side) we need to remove, first we need to remove the person it contains,
+     * so this phone will not be referenced from any Parent
+     * - Then we can remove this phone (Child-side) from the person (Parent-side)
+     * With this way will not have this infinite recursion situation
+     * TODO: Do we need all this null checking if we accept the 1-To-Null association, in case of the "@OneToOne(optional = true)" (default) ???
+     */
+    public void setPhone(Phone phone) {
+
+        if (phone == null) {
+            if (this.phone != null) {
+                this.phone.setPerson(null);
+            }
+        } else {
+            phone.setPerson(this);
+        }
+        this.phone = phone;
+    }
+}
+
+Alternative of the previous method is the following code: TODO: I don't know how it works
+https://vladmihalcea.com/a-beginners-guide-to-jpa-and-hibernate-cascade-types
+public void addPhone(Phone phone) {
+    phone.setPerson(this);
+    this.phone = phone;
+}
+public void removePhone(Phone phone) {
+    if (phone != null) {
+        phone.setPerson(null);
+    }
+    this.phone = null;
+}
+
+========================================================================================================================
+
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @Entity
