@@ -1,3 +1,7 @@
+https://petstore.swagger.io/
+
+========================================================================================================================
+
 The best place to put the synchronizing state methods is in the Parent-side.
 
 @Table
