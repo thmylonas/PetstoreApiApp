@@ -4,17 +4,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
-public class ResourceNotFoundException extends BaseRuntimeException {
+public class ResourceNotFoundException extends RuntimeException {
 
-    private long resourceId;
-
-    public ResourceNotFoundException(long resourceId, String message) {
-        super(message);
-        super.setMyMessage(message);
-        this.resourceId = resourceId;
+    public ResourceNotFoundException(Long resourceId) {
+        super("The resource with ID " + resourceId + " is not found!");
     }
 
-    public long getResourceId() {
-        return resourceId;
+    public ResourceNotFoundException(String message) {
+        super(message);
     }
 }

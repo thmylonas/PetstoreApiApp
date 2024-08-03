@@ -1,13 +1,8 @@
 package com.thomasmylonas.petstore_api_web_app.service_layer.services;
 
 import com.thomasmylonas.petstore_api_web_app.data_access_layer.entities.Pet;
-import com.thomasmylonas.petstore_api_web_app.service_layer.exceptions.InvalidInputSuppliedException;
-import com.thomasmylonas.petstore_api_web_app.service_layer.exceptions.ResourceNotFoundException;
-import com.thomasmylonas.petstore_api_web_app.service_layer.models.PetModel;
-import com.thomasmylonas.petstore_api_web_app.service_layer.models.ResponseStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.web.HttpMediaTypeNotSupportedException;
+import com.thomasmylonas.petstore_api_web_app.service_layer.models.PetPage;
+import com.thomasmylonas.petstore_api_web_app.service_layer.models.enums.PetStatusEnum;
 
 import java.util.List;
 
@@ -18,49 +13,53 @@ public interface PetService {
      *
      * @param id The ID of the Pet to fetch
      * @return The Pet we need to fetch
-     * @throws InvalidInputSuppliedException If the input is invalid (e.g. negative id)
-     * @throws ResourceNotFoundException     If the resource is not found
+     * //     * @throws InvalidInputSuppliedException If the input is invalid (e.g. negative id)
+     * //     * @throws ResourceNotFoundException     If the resource is not found
      */
-    Pet getPetById(Long id);
+    Pet fetchPetById(Long id);
+
+    List<Pet> fetchPetsByName(String name);
+
+    List<Pet> fetchPetsByStatus(PetStatusEnum status);
 
     /**
-     * It returns the list of all Entities
+     * It returns the list of all Pets
      *
-     * @return The list of all Entities
+     * @return The list of all Pets
      */
-    List<Pet> getAll();
+    List<Pet> fetchAllPets();
+
+    PetPage fetchPageOfPets();
 
     /**
      * It saves a new Entity and its dependent Entities, and the Exceptions thrown are handled
      * in the "ExceptionsHandlerController"
      *
-     * @param entityModel The @RequestBody of the request
-     * @return The ResponseEntity of the request
-     * @throws HttpMessageNotReadableException    If RequestBody is not like "TModel", but like other models
-     * @throws HttpMediaTypeNotSupportedException Thrown runtime, if RequestBody is null or not valid JSON
+     * @param pet The pet to save
+     * @return The saved pet
+     * //     * @throws HttpMessageNotReadableException    If RequestBody is not like "TModel", but like other models
+     * //     * @throws HttpMediaTypeNotSupportedException Thrown runtime, if RequestBody is null or not valid JSON
      */
-    ResponseEntity<Pet> save(PetModel entityModel)
-            throws HttpMessageNotReadableException, HttpMediaTypeNotSupportedException;
+    Pet savePet(Pet pet);
+
+    List<Pet> savePetsInBatch(List<Pet> pets);
 
     /**
-     * It updates an existing Entity and its dependent Entities, with the given in the parameter Entity,
-     * with the same id, and the Exceptions thrown are handled in the "ExceptionsHandlerController"
-     *
-     * @param entityModel The @RequestBody of the request
+     * @param newPet The new Pet to update from
+     * @param id     The ID of the Pet to update
      * @return The ResponseEntity of the request
-     * @throws InvalidInputSuppliedException If the input is invalid (eg. negative id)
-     * @throws ResourceNotFoundException     If the resource to be updated is not found
-     * @throws Exception                     405: Validation exception // Not implemented
+     * //     * @throws InvalidInputSuppliedException If the input is invalid (eg. negative id)
+     * //     * @throws ResourceNotFoundException     If the resource to be updated is not found
+     * //     * @throws Exception                     405: Validation exception // Not implemented
      */
-    ResponseEntity<Pet> update(PetModel entityModel);
+    Pet update(Pet newPet, Long id);
 
     /**
-     * It deletes the Entity, with the given in the parameter id
+     * It deletes the Pet, with the given in the parameter id
      *
-     * @param id The @PathVariable of the request
-     * @return The ResponseEntity<SuccessStatus>
-     * @throws InvalidInputSuppliedException If the input is invalid (eg. negative id)
-     * @throws ResourceNotFoundException     If the resource to be deleted is not found
+     * @param id The ID of the Pet to delete
+     *           //     * @throws InvalidInputSuppliedException If the input is invalid (eg. negative id)
+     *           //     * @throws ResourceNotFoundException     If the resource to be deleted is not found
      */
-    ResponseEntity<ResponseStatus> delete(Long id);
+    void deletePet(Long id);
 }
