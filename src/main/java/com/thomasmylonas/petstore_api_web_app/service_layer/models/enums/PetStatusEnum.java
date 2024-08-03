@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum StatusEnum {
+public enum PetStatusEnum {
 
     AVAILABLE("available"),
     PENDING("pending"),
