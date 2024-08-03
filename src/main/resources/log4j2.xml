@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN">
 
+<Configuration status="WARN">
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{YYYY-MM-dd HH:mm:ss} [%t] %-5p %c{1}:%L - %msg%n"/>
+            <PatternLayout pattern="%d{YYYY-MM-dd HH:mm:ss} [%t] %p %logger{1}:%L - %msg%n"/>
         </Console>
-
-        <RollingFile name="RollingFile" filename="log/CrunchifyTest.log"
-                     filepattern="${logPath}/%d{YYYYMMddHHmmss}-fargo.log">
-            <PatternLayout pattern="%d{YYYY-MM-dd HH:mm:ss} [%t] %-5p %c{1}:%L - %msg%n"/>
-            <Policies>
-                <SizeBasedTriggeringPolicy size="100 MB"/>
-            </Policies>
-            <DefaultRolloverStrategy max="20"/>
-        </RollingFile>
-
+        <!--<File name="FileAppender" fileName="target/logfile.log" immediateFlush="false" append="true">
+            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5p %logger{36} - %msg%n"/>
+        </File>-->
     </Appenders>
     <Loggers>
-        <Root level="info">
+        <Root level="ALL">
             <AppenderRef ref="Console"/>
-            <AppenderRef ref="RollingFile"/>
+            <!--<AppenderRef ref="FileAppender"/>-->
         </Root>
     </Loggers>
 </Configuration>
+
+        <!--
+        See the link: "https://logging.apache.org/log4j/2.x/manual/layouts.html"
+        %d{pattern}, %date{pattern}: Date Pattern,
+        %t: Thread Name,
+        %p|%level{level=label, level=label,...}, %p|%level{length=n}, %p|%level{lowerCase=true|false}: Log Level Output,
+        %c{precision}, %logger{precision}: Logger Name,
+        %m{ansi}, %msg{ansi}, %message{ansi}: Output of the Logged Message,
+        %n: New Line Symbol
+        %C{precision} or %class{precision}, %F or %file, %l or %location, %L or %line, %M or %method: Location Info Patterns
+        -->
