@@ -87,8 +87,8 @@ public class PetController {
     public ResponseEntity<Pet> save(@RequestBody Pet pet, UriComponentsBuilder ucb)
             throws HttpMessageNotReadableException, HttpMediaTypeNotSupportedException {
 
-        pet.setPhotoUrls(pet.getPhotoUrls());
-        pet.setTags(pet.getTags());
+//        pet.setPhotoUrls(pet.getPhotoUrls());
+//        pet.setTags(pet.getTags());
         Pet petPersisted = petRepository.save(pet);
 
         HttpHeaders headers = new HttpHeaders();
@@ -133,8 +133,8 @@ public class PetController {
             throw new InvalidInputSuppliedException("400 - Invalid ID supplied");
         }
 
-        pet.setPhotoUrls(pet.getPhotoUrls());
-        pet.setTags(pet.getTags());
+//        pet.setPhotoUrls(pet.getPhotoUrls());
+//        pet.setTags(pet.getTags());
         updatedPet = new Pet();//petRepository.update(pet);
 
         if (updatedPet == null) {

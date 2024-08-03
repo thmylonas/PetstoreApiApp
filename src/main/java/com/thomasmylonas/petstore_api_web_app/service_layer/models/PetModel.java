@@ -22,12 +22,12 @@ public class PetModel {
     public PetModel(Pet pet) {
         this.id = pet.getId();
         this.name = pet.getName();
-        this.category = pet.getCategory();
-        this.tags = pet.getTags();
-        photoUrls = new ArrayList<>();
-        for (int i = 0; i < pet.getPhotoUrls().size(); i++) {
-            photoUrls.add(pet.getPhotoUrls().get(i).getName());
-        }
+//        this.category = pet.getCategory();
+//        this.tags = pet.getTags();
+//        photoUrls = new ArrayList<>();
+//        for (int i = 0; i < pet.getPhotoUrls().size(); i++) {
+//            photoUrls.add(pet.getPhotoUrls().get(i).getName());
+//        }
     }
 
     public Long getId() {
