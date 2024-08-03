@@ -8,12 +8,17 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity(name = "Pet")
 @Table(name = "Pets")
@@ -36,9 +41,14 @@ public class Pet {
     @Enumerated(value = EnumType.STRING)
     private PetStatusEnum status;
 
-//    private Category category;
+    @ManyToOne
+    @JoinColumn(name = "Category_Id")
+    private Category category;
+
+    @OneToMany(mappedBy = "pet")
+    private List<Tag> tags;
+
 //    private List<String> photoUrls;
-//    private List<Tag> tags;
 }
 
 
