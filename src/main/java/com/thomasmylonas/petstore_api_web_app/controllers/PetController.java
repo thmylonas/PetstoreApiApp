@@ -1,11 +1,12 @@
 package com.thomasmylonas.petstore_api_web_app.controllers;
 
 import com.thomasmylonas.petstore_api_web_app.data_access_layer.entities.Pet;
-import com.thomasmylonas.petstore_api_web_app.data_access_layer.repositories.PetRepository;
 import com.thomasmylonas.petstore_api_web_app.service_layer.exceptions.InvalidInputSuppliedException;
 import com.thomasmylonas.petstore_api_web_app.service_layer.exceptions.ResourceNotFoundException;
-import com.thomasmylonas.petstore_api_web_app.service_layer.models.PetModel;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.thomasmylonas.petstore_api_web_app.service_layer.services.PetService;
+import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,33 +22,24 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "/pet")
+@RequiredArgsConstructor
 public class PetController {
 
-    @Autowired
-    private PetRepository petRepository;
+    private final static Logger LOGGER = LoggerFactory.getLogger(Class.class.getSimpleName());
 
-    // http://localhost:8080/pet/{id}
-    @GetMapping(path = {"/{id}"})
-    public ResponseEntity<PetModel> getById(@PathVariable Long id) {
+    private final PetService petService;
 
-        if (id < 1 //|| !UsefulUtils.isInteger(String.valueOf(id))
-        ) {
-//            LOGGER.info("400 - Invalid ID supplied");
-            throw new InvalidInputSuppliedException("400 - Invalid ID supplied");
-        }
-        Pet pet = petRepository.findById(id).orElse(null);
-        if (pet == null) {
-//            LOGGER.info("The pet with id: " + id + ", is not found");
-            throw new ResourceNotFoundException(id, "The pet with id: %d, is not found");
-        }
-//        LOGGER.info("The pet with id: " + id + ", is the\n" + pet);
-        return new ResponseEntity<>(new PetModel(pet), HttpStatus.OK);
+    // http://localhost:8080/pet/{petId}
+    @GetMapping(path = {"/{petId}"})
+    public ResponseEntity<Pet> getById(@PathVariable(value = "petId") Long id) {
+        Pet petFetched = petService.fetchPetById(id);
+        LOGGER.info("The pet with ID {}, is the {}", id, petFetched);
+        return new ResponseEntity<>(petFetched, HttpStatus.OK);
     }
 
     // http://localhost:8080/pet/findByStatus?status=sold
     @GetMapping(path = {"/findByStatus"})
-    public ResponseEntity<List<PetModel>> findByStatus(
-            @RequestParam(value = "status", defaultValue = "available") String status) {
+    public ResponseEntity<List<Pet>> findByStatus(@RequestParam(value = "status", defaultValue = "available") String status) {
 
         String[] statusArray = status.split(",");
 
@@ -58,7 +50,7 @@ public class PetController {
             }
         }
 
-        List<Pet> petList = petRepository.findAll();
+        List<Pet> petList = petService.fetchPetsByStatus(null);
         List<Pet> filteredPetList =
                 petList.stream()
                         .filter(
@@ -74,9 +66,9 @@ public class PetController {
                         .collect(Collectors.toList());
 //        LOGGER.info("All pets filtered by status are: \n" + filteredPetList);
 
-        List<PetModel> filteredPetModelList = new ArrayList<>();
+        List<Pet> filteredPetModelList = new ArrayList<>();
         for (int i = 0; i < filteredPetList.size(); i++) {
-            filteredPetModelList.add(new PetModel(filteredPetList.get(i)));
+//            filteredPetModelList.add(new Pet(filteredPetList.get(i)));
         }
         return new ResponseEntity<>(filteredPetModelList, HttpStatus.OK);
     }
@@ -89,7 +81,7 @@ public class PetController {
 
 //        pet.setPhotoUrls(pet.getPhotoUrls());
 //        pet.setTags(pet.getTags());
-        Pet petPersisted = petRepository.save(pet);
+        Pet petPersisted = petService.savePet(pet);
 
         HttpHeaders headers = new HttpHeaders();
 //        URI locationUri = URI.create("http://localhost:8080/pet/" + petPersisted.getId());
@@ -138,7 +130,7 @@ public class PetController {
         updatedPet = new Pet();//petRepository.update(pet);
 
         if (updatedPet == null) {
-            throw new ResourceNotFoundException(0, "404 - Pet not found");
+            throw new ResourceNotFoundException(0L);
         }
 //        LOGGER.info("The updated pet is:\n" + new PetModel(updatedPet));
         return new ResponseEntity<>(updatedPet, HttpStatus.OK);
@@ -155,13 +147,13 @@ public class PetController {
         }
 
         try {
-            petRepository.deleteById(id);
+            petService.deletePet(id);
             String message = String.format("The pet with the id: " + id + ", is deleted", id);
 //            setResponseStatus(successStatus, null, HttpStatus.OK, message);
 //            LOGGER.info("The pet with the id: " + id + ", is deleted");
         } catch (ResourceNotFoundException e) {
 //            LOGGER.info("The pet with id: " + id + ", is not found");
-            throw new ResourceNotFoundException(e.getResourceId(), e.getMyMessage());
+            throw new ResourceNotFoundException(id);
         }
         return new ResponseEntity<>(null, HttpStatus.OK);
     }

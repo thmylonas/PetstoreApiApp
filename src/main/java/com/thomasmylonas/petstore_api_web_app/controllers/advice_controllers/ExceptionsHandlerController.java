@@ -14,9 +14,9 @@ public class ExceptionsHandlerController {
     @ResponseStatus(value = HttpStatus.NOT_FOUND) // NOT_FOUND(404, "Not Found")
     public ResponseStatus resourceNotFound(ResourceNotFoundException e) {
 
-        long resourceId = e.getResourceId();
-        String message = String.format(e.getMyMessage(), resourceId);
-        e.setMyMessage(message);
+//        long resourceId = e.getResourceId();
+//        String message = String.format(e.getMyMessage(), resourceId);
+//        e.setMyMessage(message);
 //        setResponseStatus(errorStatus, e, HttpStatus.NOT_FOUND, e.getMyMessage());
         return null;
     }
@@ -24,7 +24,7 @@ public class ExceptionsHandlerController {
     @ExceptionHandler(value = {InvalidInputSuppliedException.class})
     @ResponseStatus(value = HttpStatus.BAD_REQUEST) // BAD_REQUEST(400, "Bad Request")
     public ResponseStatus invalidInputSupplied(InvalidInputSuppliedException e) {
-        e.setMyMessage(e.getMyMessage());
+//        e.setMyMessage(e.getMyMessage());
 //        setResponseStatus(errorStatus, e, HttpStatus.BAD_REQUEST, e.getMyMessage());
         return null;
     }

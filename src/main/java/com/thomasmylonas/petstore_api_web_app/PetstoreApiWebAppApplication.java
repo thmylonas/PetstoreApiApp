@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * SELECT * FROM CATEGORIES;
  * SELECT * FROM ORDERS;
  * SELECT * FROM PETS;
+ * SELECT * FROM PHOTO_URLS;
  * SELECT * FROM TAGS;
  * SELECT * FROM USERS;
  */
