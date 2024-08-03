@@ -48,7 +48,8 @@ public class Pet {
     @OneToMany(mappedBy = "pet")
     private List<Tag> tags;
 
-//    private List<String> photoUrls;
+    @OneToMany(mappedBy = "pet")
+    private List<PhotoUrl> photoUrls;
 }
 
 

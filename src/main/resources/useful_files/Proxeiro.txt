@@ -1,5 +1,6 @@
-https://petstore.swagger.io/
-
+https://petstore.swagger.io
+https://petstore.elastic.io/docs
+https://github.com/swagger-api/swagger-ui/issues/3954
 ========================================================================================================================
 
 The best place to put the synchronizing state methods is in the Parent-side.
