@@ -66,6 +66,7 @@ Pet{
         xml: OrderedMap { "name": "photoUrl" }
         xml: name: photoUrl
        ]
+       	// [xml: OrderedMap { "name": "photoUrl", "wrapped": true }string]
     tags	[
         xml: OrderedMap { "wrapped": true }
         Tag{
