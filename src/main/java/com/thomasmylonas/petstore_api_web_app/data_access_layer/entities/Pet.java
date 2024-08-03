@@ -10,18 +10,26 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity(name = "Pet")
 @Table(name = "Pets")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Pet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Pet_Generator")
     @SequenceGenerator(name = "Pet_Generator", sequenceName = "Pet_Sequence", initialValue = 1, allocationSize = 1)
-    @Column(name = "Id")
+    @Column(name = "Pet_Id")
     private Long id;
 
-    @Column(name = "Name")
+    @Column(name = "Pet_Name")
     private String name;
 
     @Column(name = "Status")
