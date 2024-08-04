@@ -17,7 +17,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "/pet")
@@ -42,7 +41,7 @@ public class PetController {
      *
      * @param status status: available, pending, sold, and all the combinations
      * @return The petList filtered by status
-     * //     * @throws IllegalArgumentException If the input is invalid (eg. status is not as defined)
+     * //     * @throws IllegalArgumentException If the input is invalid (e.g. status is not as defined)
      */
     @GetMapping(path = {"/findByStatus"})
     public ResponseEntity<List<Pet>> findByStatus(@RequestParam(value = "status", defaultValue = "available") String status) {
@@ -51,25 +50,24 @@ public class PetController {
 
         for (String s : statusArray) {
             if (!s.equals("available") && !s.equals("sold") && !s.equals("pending")) {
-//                LOGGER.info("400 - Invalid status value");
+                LOGGER.info("400 - Invalid status value");
                 throw new IllegalArgumentException("400 - Invalid status value");
             }
         }
 
-        List<Pet> petList = petService.fetchPetsByStatus(null);
+        List<Pet> petList = petService.fetchPetsByStatus(status);
         List<Pet> filteredPetList =
                 petList.stream()
-                        .filter(
-                                pet -> {
+                        .filter(pet -> {
                                     for (String s : statusArray) {
-                                        if (pet.getStatus().getValue().toLowerCase().equals(s)) {
+                                        if (pet.getStatus().getValue().equals(s)) {
                                             return true;
                                         }
                                     }
                                     return false;
                                 }
                         )
-                        .collect(Collectors.toList());
+                        .toList();
 //        LOGGER.info("All pets filtered by status are: \n" + filteredPetList);
 
         List<Pet> filteredPetModelList = new ArrayList<>();
@@ -77,6 +75,14 @@ public class PetController {
 //            filteredPetModelList.add(new Pet(filteredPetList.get(i)));
         }
         return new ResponseEntity<>(filteredPetModelList, HttpStatus.OK);
+    }
+
+    // http://localhost:8080/pet/all-pets
+    @GetMapping(path = {"/all-pets"})
+    public List<Pet> getAll() {
+        List<Pet> pets = petService.fetchAllPets();
+        LOGGER.info("All pets are: {}", pets);
+        return pets;
     }
 
     // http://localhost:8080/pet
@@ -149,18 +155,4 @@ public class PetController {
         LOGGER.info("The pet with ID {}, is deleted", id);
         return ResponseEntity.ok("The pet with ID " + id + ", is deleted");
     }
-
-    /*@Deprecated
-    @GetMapping(path = {"/{id}"})
-    public Pet getByIdSimpleVersion(@PathVariable Long id) {
-        Pet pet = petRepository.getOne(id);
-        LOGGER.info("The pet with id: " + id + ", is the\n" + pet);
-        return pet;
-    }
-    @GetMapping(path = {"/all"})
-    public List<Pet> getAll() {
-        List<Pet> petList = petRepository.findAll();
-        LOGGER.info("All pets are: \n" + petList);
-        return petList;
-    }*/
 }

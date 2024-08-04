@@ -22,17 +22,20 @@ public class PetServiceImpl implements PetService {
             //LOGGER.info("400 - Invalid ID supplied");
             throw new IllegalArgumentException("400 - Invalid ID supplied");
         }*/
-        return petRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
+        return petRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     @Override
     public List<Pet> fetchPetsByName(String name) {
-        return petRepository.findByName(name).orElseThrow(() -> new ResourceNotFoundException("The pet with name " + name + " is not found!"));
+        return petRepository.findByName(name)
+                .orElseThrow(() -> new ResourceNotFoundException("The pet with name " + name + " is not found!"));
     }
 
     @Override
-    public List<Pet> fetchPetsByStatus(PetStatusEnum status) {
-        return petRepository.findByStatus(status).orElseThrow(() -> new ResourceNotFoundException("The pet with status " + status + " is not found!"));
+    public List<Pet> fetchPetsByStatus(String status) {
+        return petRepository.findByStatus(PetStatusEnum.fromValue(status))
+                .orElseThrow(() -> new ResourceNotFoundException("The pet with status " + status + " is not found!"));
     }
 
     @Override
@@ -67,7 +70,8 @@ public class PetServiceImpl implements PetService {
             //LOGGER.info("400 - Invalid ID supplied");
             throw new IllegalArgumentException("400 - Invalid ID supplied");
         }*/
-        petRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
+        petRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(id));
         petRepository.deleteById(id);
     }
 }

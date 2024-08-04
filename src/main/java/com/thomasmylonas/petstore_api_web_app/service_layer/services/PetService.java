@@ -2,7 +2,6 @@ package com.thomasmylonas.petstore_api_web_app.service_layer.services;
 
 import com.thomasmylonas.petstore_api_web_app.data_access_layer.entities.Pet;
 import com.thomasmylonas.petstore_api_web_app.service_layer.models.PetPage;
-import com.thomasmylonas.petstore_api_web_app.service_layer.models.enums.PetStatusEnum;
 
 import java.util.List;
 
@@ -20,7 +19,7 @@ public interface PetService {
 
     List<Pet> fetchPetsByName(String name);
 
-    List<Pet> fetchPetsByStatus(PetStatusEnum status);
+    List<Pet> fetchPetsByStatus(String status);
 
     /**
      * It returns the list of all Pets

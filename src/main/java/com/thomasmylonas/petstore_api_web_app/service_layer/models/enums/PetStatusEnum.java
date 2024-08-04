@@ -12,4 +12,13 @@ public enum PetStatusEnum {
     SOLD("sold");
 
     private final String value;
+
+    public static PetStatusEnum fromValue(String value) {
+        return switch (value) {
+            case "available" -> PetStatusEnum.AVAILABLE;
+            case "pending" -> PetStatusEnum.PENDING;
+            case "sold" -> PetStatusEnum.SOLD;
+            default -> null;
+        };
+    }
 }
