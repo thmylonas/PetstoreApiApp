@@ -8,7 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -102,19 +104,25 @@ public class PetController {
         return ResponseEntity.ok("The pet with ID " + id + ", is deleted");
     }
 
-    @PostMapping(path = {"/{id}"})
-    public ResponseEntity<Pet> updateWithForm(@PathVariable int id) {
+    /**
+     * TODO: Implement this method
+     */
+    @PostMapping(path = {"/{id}"},
+            consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+    public ResponseEntity<Pet> updateWithForm(@PathVariable int id,
+                                              @RequestParam MultiValueMap<String, String> paramMap) throws Exception {
 
-        if (id < 1) { //|| !UsefulUtils.isInteger(String.valueOf(id))
+        /*if (id < 1) { //|| !UsefulUtils.isInteger(String.valueOf(id))
             //LOGGER.info("400 - Invalid ID supplied");
             throw new IllegalArgumentException("400 - Invalid ID supplied");
-        }
+        }*/
+
 //        Pet pet = new Pet(petModel);
 //        pet.setPhotoUrls(pet.getPhotoUrls());
 //        pet.setTags(pet.getTags());
 //        Pet petPersisted = petRepository.save(pet);
 
 //        LOGGER.info("The new pet:\n" + petPersisted + "\nis added, with the id: " + petPersisted.getId());
-        return new ResponseEntity<>(null, HttpStatus.CREATED);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 }

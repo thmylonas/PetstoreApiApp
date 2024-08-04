@@ -1,6 +1,7 @@
 package com.thomasmylonas.petstore_api_web_app.data_access_layer.entities;
 
 import com.thomasmylonas.petstore_api_web_app.service_layer.models.enums.PetStatusEnum;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -41,7 +42,7 @@ public class Pet {
     @Enumerated(value = EnumType.STRING)
     private PetStatusEnum status;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "Category_Id")
     private Category category;
 
