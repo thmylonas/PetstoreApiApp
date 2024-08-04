@@ -179,3 +179,8 @@ echo '.gitignore' >> .gitignore
 </Configuration>
 
 ========================================================================================================================
+@PostMapping
+public ResponseEntity<Pet> save(@RequestBody Pet pet, ...) throws HttpMessageNotReadableException, HttpMediaTypeNotSupportedException {}
+========================================================================================================================
+Use this: ServletUriComponentsBuilder
+========================================================================================================================

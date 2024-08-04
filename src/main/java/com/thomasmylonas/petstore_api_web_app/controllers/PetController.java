@@ -30,7 +30,7 @@ public class PetController {
 
     // http://localhost:8080/pet/{petId}
     @GetMapping(path = {"/{petId}"})
-    public ResponseEntity<Pet> getById(@PathVariable(value = "petId") Long id) {
+    public ResponseEntity<Pet> fetchPetById(@PathVariable(value = "petId") Long id) {
         Pet petFetched = petService.fetchPetById(id);
         LOGGER.info("The pet with ID {}, is the {}", id, petFetched);
         return new ResponseEntity<>(petFetched, HttpStatus.OK);
@@ -45,7 +45,7 @@ public class PetController {
      * @throws IllegalArgumentException If the input is invalid (e.g. status is not as defined)
      */
     @GetMapping(path = {"/findByStatus"})
-    public ResponseEntity<List<Pet>> findByStatus(@RequestParam(value = "status", defaultValue = "available") String status) {
+    public ResponseEntity<List<Pet>> fetchPetsByStatus(@RequestParam(value = "status", defaultValue = "available") String status) {
 
         String[] statuses = status.split(",");
 
@@ -66,40 +66,34 @@ public class PetController {
 
     // http://localhost:8080/pet/all-pets
     @GetMapping(path = {"/all-pets"})
-    public List<Pet> getAll() {
+    public ResponseEntity<List<Pet>> fetchAllPets() {
         List<Pet> pets = petService.fetchAllPets();
         LOGGER.info("All pets are: {}", pets);
-        return pets;
+        return ResponseEntity.ok(pets);
     }
 
     // http://localhost:8080/pet
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Pet> save(@RequestBody Pet pet, UriComponentsBuilder ucb)
-            throws HttpMessageNotReadableException, HttpMediaTypeNotSupportedException {
+    public ResponseEntity<Pet> savePet(@RequestBody Pet pet, UriComponentsBuilder ucb) {
 
-//        pet.setPhotoUrls(pet.getPhotoUrls());
-//        pet.setTags(pet.getTags());
         Pet petPersisted = petService.savePet(pet);
 
         HttpHeaders headers = new HttpHeaders();
-//        URI locationUri = URI.create("http://localhost:8080/pet/" + petPersisted.getId());
         URI locationUri = ucb.path("/pet")
                 .path(String.valueOf(petPersisted.getId()))
                 .build().toUri();
         headers.setLocation(locationUri);
 
-//        LOGGER.info("The new pet:\n" + petPersisted + "\nis added, with the id: " + petPersisted.getId());
-        return new ResponseEntity<>(petPersisted, headers, HttpStatus.CREATED);
+        LOGGER.info("The new pet: {} is persisted, with ID: {}", petPersisted, petPersisted.getId());
+
+        return ResponseEntity.created(locationUri).headers(headers).body(petPersisted);
     }
 
     @PostMapping(path = {"/{id}"})
-    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Pet> updateWithForm(@PathVariable int id) {
 
-        if (id < 1 //|| !UsefulUtils.isInteger(String.valueOf(id))
-        ) {
-//            LOGGER.info("400 - Invalid ID supplied");
+        if (id < 1) { //|| !UsefulUtils.isInteger(String.valueOf(id))
+            //LOGGER.info("400 - Invalid ID supplied");
             throw new IllegalArgumentException("400 - Invalid ID supplied");
         }
 //        Pet pet = new Pet(petModel);
