@@ -1,7 +1,6 @@
 package com.thomasmylonas.petstore_api_web_app.controllers;
 
 import com.thomasmylonas.petstore_api_web_app.data_access_layer.entities.Pet;
-import com.thomasmylonas.petstore_api_web_app.service_layer.exceptions.ResourceNotFoundException;
 import com.thomasmylonas.petstore_api_web_app.service_layer.models.enums.PetStatusEnum;
 import com.thomasmylonas.petstore_api_web_app.service_layer.services.PetService;
 import lombok.RequiredArgsConstructor;
@@ -10,8 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -89,6 +86,22 @@ public class PetController {
         return ResponseEntity.created(locationUri).headers(headers).body(petPersisted);
     }
 
+    // http://localhost:8080/pet/{petId}
+    @PutMapping(path = {"/{petId}"})
+    public ResponseEntity<Pet> updatePet(@PathVariable(value = "petId") Long id, @RequestBody Pet pet) {
+        Pet updatedPet = petService.updatePet(id, pet);
+        LOGGER.info("The updated pet is: {}", updatedPet);
+        return ResponseEntity.ok(updatedPet);
+    }
+
+    // http://localhost:8080/pet/{petId}
+    @DeleteMapping(path = {"/{petId}"})
+    public ResponseEntity<String> delete(@PathVariable(value = "petId") Long id) {
+        petService.deletePet(id);
+        LOGGER.info("The pet with ID {}, is deleted", id);
+        return ResponseEntity.ok("The pet with ID " + id + ", is deleted");
+    }
+
     @PostMapping(path = {"/{id}"})
     public ResponseEntity<Pet> updateWithForm(@PathVariable int id) {
 
@@ -103,37 +116,5 @@ public class PetController {
 
 //        LOGGER.info("The new pet:\n" + petPersisted + "\nis added, with the id: " + petPersisted.getId());
         return new ResponseEntity<>(null, HttpStatus.CREATED);
-    }
-
-    // http://localhost:8080/pet
-    @PutMapping
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Pet> update(@RequestBody Pet pet) {
-
-        Pet updatedPet;
-        Long id = pet.getId();
-        if (id < 1 //|| !UsefulUtils.isInteger(String.valueOf(id))
-        ) {
-//            LOGGER.info("400 - Invalid ID supplied");
-            throw new IllegalArgumentException("400 - Invalid ID supplied");
-        }
-
-//        pet.setPhotoUrls(pet.getPhotoUrls());
-//        pet.setTags(pet.getTags());
-        updatedPet = new Pet();//petRepository.update(pet);
-
-        if (updatedPet == null) {
-            throw new ResourceNotFoundException(0L);
-        }
-//        LOGGER.info("The updated pet is:\n" + new PetModel(updatedPet));
-        return new ResponseEntity<>(updatedPet, HttpStatus.OK);
-    }
-
-    // http://localhost:8080/pet/{petId}
-    @DeleteMapping(path = {"/{petId}"})
-    public ResponseEntity<String> delete(@PathVariable(value = "petId") Long id) {
-        petService.deletePet(id);
-        LOGGER.info("The pet with ID {}, is deleted", id);
-        return ResponseEntity.ok("The pet with ID " + id + ", is deleted");
     }
 }

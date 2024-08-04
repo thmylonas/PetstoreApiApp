@@ -7,6 +7,7 @@ import com.thomasmylonas.petstore_api_web_app.service_layer.models.PetPage;
 import com.thomasmylonas.petstore_api_web_app.service_layer.models.enums.PetStatusEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -59,8 +60,19 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    public Pet update(Pet newPet, Long id) {
-        return null;
+    public Pet updatePet(Long id, Pet pet) {
+
+        /*if (id < 1) { //|| !UsefulUtils.isInteger(String.valueOf(id))
+            //LOGGER.info("400 - Invalid ID supplied");
+            throw new IllegalArgumentException("400 - Invalid ID supplied");
+        }*/
+
+        petRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(id));
+
+        Pet updatedPet = mapPet(pet);
+
+        return petRepository.save(updatedPet);
     }
 
     @Override
@@ -73,5 +85,27 @@ public class PetServiceImpl implements PetService {
         petRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(id));
         petRepository.deleteById(id);
+    }
+
+    private Pet mapPet(Pet pet) {
+
+        Pet updatedPet = new Pet();
+
+        if (StringUtils.hasLength(pet.getName())) {
+            updatedPet.setName(pet.getName());
+        }
+        if (pet.getStatus() != null) {
+            updatedPet.setStatus(pet.getStatus());
+        }
+        if (pet.getCategory() != null) {
+            updatedPet.setCategory(pet.getCategory());
+        }
+        if (pet.getTags() != null) {
+            updatedPet.setTags(pet.getTags());
+        }
+        if (pet.getPhotoUrls() != null) {
+            updatedPet.setPhotoUrls(pet.getPhotoUrls());
+        }
+        return updatedPet;
     }
 }

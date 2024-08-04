@@ -44,14 +44,14 @@ public interface PetService {
     List<Pet> savePetsInBatch(List<Pet> pets);
 
     /**
-     * @param newPet The new Pet to update from
-     * @param id     The ID of the Pet to update
+     * @param pet The new Pet to update from
+     * @param id  The ID of the Pet to update
      * @return The ResponseEntity of the request
      * //     * @throws InvalidInputSuppliedException If the input is invalid (eg. negative id)
      * //     * @throws ResourceNotFoundException     If the resource to be updated is not found
      * //     * @throws Exception                     405: Validation exception // Not implemented
      */
-    Pet update(Pet newPet, Long id);
+    Pet updatePet(Long id, Pet pet);
 
     /**
      * It deletes the Pet, with the given in the parameter id
