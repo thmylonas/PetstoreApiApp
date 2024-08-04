@@ -2,6 +2,7 @@ package com.thomasmylonas.petstore_api_web_app.controllers;
 
 import com.thomasmylonas.petstore_api_web_app.data_access_layer.entities.Pet;
 import com.thomasmylonas.petstore_api_web_app.service_layer.exceptions.ResourceNotFoundException;
+import com.thomasmylonas.petstore_api_web_app.service_layer.models.enums.PetStatusEnum;
 import com.thomasmylonas.petstore_api_web_app.service_layer.services.PetService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -41,40 +42,26 @@ public class PetController {
      *
      * @param status status: available, pending, sold, and all the combinations
      * @return The petList filtered by status
-     * //     * @throws IllegalArgumentException If the input is invalid (e.g. status is not as defined)
+     * @throws IllegalArgumentException If the input is invalid (e.g. status is not as defined)
      */
     @GetMapping(path = {"/findByStatus"})
     public ResponseEntity<List<Pet>> findByStatus(@RequestParam(value = "status", defaultValue = "available") String status) {
 
-        String[] statusArray = status.split(",");
+        String[] statuses = status.split(",");
 
-        for (String s : statusArray) {
-            if (!s.equals("available") && !s.equals("sold") && !s.equals("pending")) {
+        for (String s : statuses) {
+            if (!PetStatusEnum.isPetStatus(s)) {
                 LOGGER.info("400 - Invalid status value");
                 throw new IllegalArgumentException("400 - Invalid status value");
             }
         }
 
-        List<Pet> petList = petService.fetchPetsByStatus(status);
-        List<Pet> filteredPetList =
-                petList.stream()
-                        .filter(pet -> {
-                                    for (String s : statusArray) {
-                                        if (pet.getStatus().getValue().equals(s)) {
-                                            return true;
-                                        }
-                                    }
-                                    return false;
-                                }
-                        )
-                        .toList();
-//        LOGGER.info("All pets filtered by status are: \n" + filteredPetList);
-
-        List<Pet> filteredPetModelList = new ArrayList<>();
-        for (int i = 0; i < filteredPetList.size(); i++) {
-//            filteredPetModelList.add(new Pet(filteredPetList.get(i)));
+        List<Pet> petsByStatus = new ArrayList<>();
+        for (String s : statuses) {
+            petsByStatus.addAll(petService.fetchPetsByStatus(s));
         }
-        return new ResponseEntity<>(filteredPetModelList, HttpStatus.OK);
+        LOGGER.info("All pets filtered by status {} are: {}", status, petsByStatus);
+        return ResponseEntity.ok(petsByStatus);
     }
 
     // http://localhost:8080/pet/all-pets

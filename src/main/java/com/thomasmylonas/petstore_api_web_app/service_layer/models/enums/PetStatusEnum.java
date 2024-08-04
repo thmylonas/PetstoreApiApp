@@ -3,6 +3,8 @@ package com.thomasmylonas.petstore_api_web_app.service_layer.models.enums;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.Arrays;
+
 @Getter
 @AllArgsConstructor
 public enum PetStatusEnum {
@@ -20,5 +22,10 @@ public enum PetStatusEnum {
             case "sold" -> PetStatusEnum.SOLD;
             default -> null;
         };
+    }
+
+    public static boolean isPetStatus(String status) {
+        return Arrays.stream(PetStatusEnum.values())
+                .anyMatch(petStatus -> petStatus.getValue().equals(status.toLowerCase()));
     }
 }
