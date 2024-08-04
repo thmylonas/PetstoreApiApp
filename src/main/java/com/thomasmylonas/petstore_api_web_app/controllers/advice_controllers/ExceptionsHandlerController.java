@@ -1,6 +1,5 @@
 package com.thomasmylonas.petstore_api_web_app.controllers.advice_controllers;
 
-import com.thomasmylonas.petstore_api_web_app.service_layer.exceptions.InvalidInputSuppliedException;
 import com.thomasmylonas.petstore_api_web_app.service_layer.exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -21,9 +20,9 @@ public class ExceptionsHandlerController {
         return null;
     }
 
-    @ExceptionHandler(value = {InvalidInputSuppliedException.class})
+    @ExceptionHandler(value = {IllegalArgumentException.class})
     @ResponseStatus(value = HttpStatus.BAD_REQUEST) // BAD_REQUEST(400, "Bad Request")
-    public ResponseStatus invalidInputSupplied(InvalidInputSuppliedException e) {
+    public ResponseStatus invalidInputSupplied(IllegalArgumentException e) {
 //        e.setMyMessage(e.getMyMessage());
 //        setResponseStatus(errorStatus, e, HttpStatus.BAD_REQUEST, e.getMyMessage());
         return null;

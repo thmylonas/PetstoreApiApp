@@ -1,7 +1,6 @@
 package com.thomasmylonas.petstore_api_web_app.controllers;
 
 import com.thomasmylonas.petstore_api_web_app.data_access_layer.entities.Pet;
-import com.thomasmylonas.petstore_api_web_app.service_layer.exceptions.InvalidInputSuppliedException;
 import com.thomasmylonas.petstore_api_web_app.service_layer.exceptions.ResourceNotFoundException;
 import com.thomasmylonas.petstore_api_web_app.service_layer.services.PetService;
 import lombok.RequiredArgsConstructor;
@@ -37,7 +36,14 @@ public class PetController {
         return new ResponseEntity<>(petFetched, HttpStatus.OK);
     }
 
-    // http://localhost:8080/pet/findByStatus?status=sold
+    /**
+     * http://localhost:8080/pet/findByStatus?status=sold
+     * It returns the list of Pets filtered by status
+     *
+     * @param status status: available, pending, sold, and all the combinations
+     * @return The petList filtered by status
+     * //     * @throws IllegalArgumentException If the input is invalid (eg. status is not as defined)
+     */
     @GetMapping(path = {"/findByStatus"})
     public ResponseEntity<List<Pet>> findByStatus(@RequestParam(value = "status", defaultValue = "available") String status) {
 
@@ -46,7 +52,7 @@ public class PetController {
         for (String s : statusArray) {
             if (!s.equals("available") && !s.equals("sold") && !s.equals("pending")) {
 //                LOGGER.info("400 - Invalid status value");
-                throw new InvalidInputSuppliedException("400 - Invalid status value");
+                throw new IllegalArgumentException("400 - Invalid status value");
             }
         }
 
@@ -101,7 +107,7 @@ public class PetController {
         if (id < 1 //|| !UsefulUtils.isInteger(String.valueOf(id))
         ) {
 //            LOGGER.info("400 - Invalid ID supplied");
-            throw new InvalidInputSuppliedException("400 - Invalid ID supplied");
+            throw new IllegalArgumentException("400 - Invalid ID supplied");
         }
 //        Pet pet = new Pet(petModel);
 //        pet.setPhotoUrls(pet.getPhotoUrls());
@@ -122,7 +128,7 @@ public class PetController {
         if (id < 1 //|| !UsefulUtils.isInteger(String.valueOf(id))
         ) {
 //            LOGGER.info("400 - Invalid ID supplied");
-            throw new InvalidInputSuppliedException("400 - Invalid ID supplied");
+            throw new IllegalArgumentException("400 - Invalid ID supplied");
         }
 
 //        pet.setPhotoUrls(pet.getPhotoUrls());
@@ -136,26 +142,12 @@ public class PetController {
         return new ResponseEntity<>(updatedPet, HttpStatus.OK);
     }
 
-    // http://localhost:8080/pet/{id}
-    @DeleteMapping(path = {"/{id}"})
-    public ResponseEntity<ResponseStatus> delete(@PathVariable Long id) {
-
-        if (id < 1 //|| !UsefulUtils.isInteger(String.valueOf(id))
-        ) {
-//            LOGGER.info("400 - Invalid ID supplied");
-            throw new InvalidInputSuppliedException("400 - Invalid ID supplied");
-        }
-
-        try {
-            petService.deletePet(id);
-            String message = String.format("The pet with the id: " + id + ", is deleted", id);
-//            setResponseStatus(successStatus, null, HttpStatus.OK, message);
-//            LOGGER.info("The pet with the id: " + id + ", is deleted");
-        } catch (ResourceNotFoundException e) {
-//            LOGGER.info("The pet with id: " + id + ", is not found");
-            throw new ResourceNotFoundException(id);
-        }
-        return new ResponseEntity<>(null, HttpStatus.OK);
+    // http://localhost:8080/pet/{petId}
+    @DeleteMapping(path = {"/{petId}"})
+    public ResponseEntity<String> delete(@PathVariable(value = "petId") Long id) {
+        petService.deletePet(id);
+        LOGGER.info("The pet with ID {}, is deleted", id);
+        return ResponseEntity.ok("The pet with ID " + id + ", is deleted");
     }
 
     /*@Deprecated

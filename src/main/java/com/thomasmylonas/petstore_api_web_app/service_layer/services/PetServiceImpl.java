@@ -2,7 +2,6 @@ package com.thomasmylonas.petstore_api_web_app.service_layer.services;
 
 import com.thomasmylonas.petstore_api_web_app.data_access_layer.entities.Pet;
 import com.thomasmylonas.petstore_api_web_app.data_access_layer.repositories.PetRepository;
-import com.thomasmylonas.petstore_api_web_app.service_layer.exceptions.InvalidInputSuppliedException;
 import com.thomasmylonas.petstore_api_web_app.service_layer.exceptions.ResourceNotFoundException;
 import com.thomasmylonas.petstore_api_web_app.service_layer.models.PetPage;
 import com.thomasmylonas.petstore_api_web_app.service_layer.models.enums.PetStatusEnum;
@@ -21,7 +20,7 @@ public class PetServiceImpl implements PetService {
     public Pet fetchPetById(Long id) {
         /*if (id < 1) { //|| !UsefulUtils.isInteger(String.valueOf(id))
             //LOGGER.info("400 - Invalid ID supplied");
-            throw new InvalidInputSuppliedException("400 - Invalid ID supplied");
+            throw new IllegalArgumentException("400 - Invalid ID supplied");
         }*/
         return petRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
     }
@@ -63,6 +62,12 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public void deletePet(Long id) {
+
+        /*if (id < 1) { //|| !UsefulUtils.isInteger(String.valueOf(id))
+            //LOGGER.info("400 - Invalid ID supplied");
+            throw new IllegalArgumentException("400 - Invalid ID supplied");
+        }*/
+        petRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
         petRepository.deleteById(id);
     }
 }
