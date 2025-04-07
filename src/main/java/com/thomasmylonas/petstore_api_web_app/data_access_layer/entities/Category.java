@@ -10,14 +10,16 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
 @Entity(name = "Category")
 @Table(name = "Categories")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -26,10 +28,10 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Category_Generator")
     @SequenceGenerator(name = "Category_Generator", sequenceName = "Category_Sequence", initialValue = 1, allocationSize = 1)
-    @Column(name = "Category_Id")
-    private Long id;
+    @Column(name = "Id")
+    private Integer id;
 
-    @Column(name = "Category_Name")
+    @Column(name = "Name")
     private String name;
 
     @OneToMany(mappedBy = "category")

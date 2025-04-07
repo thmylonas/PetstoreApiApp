@@ -11,12 +11,14 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity(name = "Tag")
 @Table(name = "Tags")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -25,10 +27,10 @@ public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Tag_Generator")
     @SequenceGenerator(name = "Tag_Generator", sequenceName = "Tag_Sequence", initialValue = 1, allocationSize = 1)
-    @Column(name = "Tag_Id")
+    @Column(name = "Id")
     private Long id;
 
-    @Column(name = "Tag_Name")
+    @Column(name = "Name")
     private String name;
 
     @ManyToOne

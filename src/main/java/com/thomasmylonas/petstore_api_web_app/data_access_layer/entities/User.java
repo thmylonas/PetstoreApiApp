@@ -12,12 +12,14 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity(name = "User")
 @Table(name = "Users")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -26,16 +28,16 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "User_Generator")
     @SequenceGenerator(name = "User_Generator", sequenceName = "User_Sequence", initialValue = 1, allocationSize = 1)
-    @Column(name = "User_Id")
-    private int id;
+    @Column(name = "Id")
+    private Long id;
 
     @Column(name = "Username")
     private String username;
 
-    @Column(name = "FirstName")
+    @Column(name = "First_Name")
     private String firstName;
 
-    @Column(name = "LastName")
+    @Column(name = "Last_Name")
     private String lastName;
 
     @Column(name = "Email")
@@ -47,8 +49,8 @@ public class User {
     @Column(name = "Phone")
     private String phone;
 
-    @Column(name = "User_Status")
     @Enumerated(value = EnumType.ORDINAL)
+    @Column(name = "User_Status")
     private UserStatusEnum userStatus;
 }
 

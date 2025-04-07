@@ -11,12 +11,14 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity(name = "PhotoUrl")
-@Table(name = "PhotoUrls")
-@Data
+@Table(name = "Photo_Urls")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -25,10 +27,10 @@ public class PhotoUrl {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Photo_Url_Generator")
     @SequenceGenerator(name = "Photo_Url_Generator", sequenceName = "Photo_Url_Sequence", initialValue = 1, allocationSize = 1)
-    @Column(name = "Photo_Url_Id")
+    @Column(name = "Id")
     private Long id;
 
-    @Column(name = "Photo_Url_Name")
+    @Column(name = "Name")
     private String name;
 
     @ManyToOne

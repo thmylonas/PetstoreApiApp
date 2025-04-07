@@ -16,14 +16,16 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
 @Entity(name = "Pet")
 @Table(name = "Pets")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -32,14 +34,14 @@ public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Pet_Generator")
     @SequenceGenerator(name = "Pet_Generator", sequenceName = "Pet_Sequence", initialValue = 1, allocationSize = 1)
-    @Column(name = "Pet_Id")
+    @Column(name = "Id")
     private Long id;
 
-    @Column(name = "Pet_Name")
+    @Column(name = "Name")
     private String name;
 
-    @Column(name = "Pet_Status")
     @Enumerated(value = EnumType.STRING)
+    @Column(name = "Status")
     private PetStatusEnum status;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
@@ -52,7 +54,6 @@ public class Pet {
     @OneToMany(mappedBy = "pet")
     private List<PhotoUrl> photoUrls;
 }
-
 
 /*
 Pet{
