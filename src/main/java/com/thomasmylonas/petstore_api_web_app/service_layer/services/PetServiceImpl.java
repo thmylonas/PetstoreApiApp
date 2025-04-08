@@ -1,7 +1,7 @@
 package com.thomasmylonas.petstore_api_web_app.service_layer.services;
 
-import com.thomasmylonas.petstore_api_web_app.data_access_layer.entities.Pet;
-import com.thomasmylonas.petstore_api_web_app.data_access_layer.repositories.PetRepository;
+import com.thomasmylonas.petstore_api_web_app.entities.Pet;
+import com.thomasmylonas.petstore_api_web_app.repositories.PetRepository;
 import com.thomasmylonas.petstore_api_web_app.service_layer.exceptions.ResourceNotFoundException;
 import com.thomasmylonas.petstore_api_web_app.service_layer.models.PetPage;
 import com.thomasmylonas.petstore_api_web_app.service_layer.models.enums.PetStatusEnum;

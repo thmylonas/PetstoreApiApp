@@ -1,6 +1,6 @@
-package com.thomasmylonas.petstore_api_web_app.data_access_layer.repositories;
+package com.thomasmylonas.petstore_api_web_app.repositories;
 
-import com.thomasmylonas.petstore_api_web_app.data_access_layer.entities.Pet;
+import com.thomasmylonas.petstore_api_web_app.entities.Pet;
 import com.thomasmylonas.petstore_api_web_app.service_layer.models.enums.PetStatusEnum;
 import org.springframework.data.jpa.repository.JpaRepository;
 

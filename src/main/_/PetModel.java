@@ -1,7 +1,7 @@
 package com.thomasmylonas.petstore_api_web_app.service_layer.models;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.thomasmylonas.petstore_api_web_app.data_access_layer.entities.*;
+import com.thomasmylonas.petstore_api_web_app.entities.*;
 
 import java.util.ArrayList;
 import java.util.List;

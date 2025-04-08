@@ -1,7 +1,7 @@
 package com.thomasmylonas.petstore_api_web_app;
 
-import com.thomasmylonas.petstore_api_web_app.data_access_layer.entities.Category;
-import com.thomasmylonas.petstore_api_web_app.data_access_layer.entities.Pet;
+import com.thomasmylonas.petstore_api_web_app.entities.Category;
+import com.thomasmylonas.petstore_api_web_app.entities.Pet;
 import com.thomasmylonas.petstore_api_web_app.service_layer.models.enums.PetStatusEnum;
 import com.thomasmylonas.petstore_api_web_app.service_layer.services.PetService;
 import lombok.RequiredArgsConstructor;

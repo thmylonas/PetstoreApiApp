@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_web_app.data_access_layer.entities;
+package com.thomasmylonas.petstore_api_web_app.entities;
 
 import com.thomasmylonas.petstore_api_web_app.service_layer.models.enums.UserStatusEnum;
 import jakarta.persistence.Column;

@@ -1,6 +1,6 @@
 package com.thomasmylonas.petstore_api_web_app.service_layer.services;
 
-import com.thomasmylonas.petstore_api_web_app.data_access_layer.entities.Pet;
+import com.thomasmylonas.petstore_api_web_app.entities.Pet;
 import com.thomasmylonas.petstore_api_web_app.service_layer.models.PetPage;
 
 import java.util.List;
