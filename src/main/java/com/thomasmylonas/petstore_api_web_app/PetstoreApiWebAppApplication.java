@@ -2,7 +2,7 @@ package com.thomasmylonas.petstore_api_web_app;
 
 import com.thomasmylonas.petstore_api_web_app.entities.Category;
 import com.thomasmylonas.petstore_api_web_app.entities.Pet;
-import com.thomasmylonas.petstore_api_web_app.models.enums.PetStatusEnum;
+import com.thomasmylonas.petstore_api_web_app.models_dtos.enums.PetStatusEnum;
 import com.thomasmylonas.petstore_api_web_app.services.PetService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
