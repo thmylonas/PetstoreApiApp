@@ -1,6 +1,6 @@
 package com.thomasmylonas.petstore_api_web_app.controllers.advice_controllers;
 
-import com.thomasmylonas.petstore_api_web_app.service_layer.exceptions.ResourceNotFoundException;
+import com.thomasmylonas.petstore_api_web_app.exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;

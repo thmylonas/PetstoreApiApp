@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_web_app.service_layer.models.enums;
+package com.thomasmylonas.petstore_api_web_app.models.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

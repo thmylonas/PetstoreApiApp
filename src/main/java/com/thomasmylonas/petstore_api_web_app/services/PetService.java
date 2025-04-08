@@ -1,7 +1,6 @@
-package com.thomasmylonas.petstore_api_web_app.service_layer.services;
+package com.thomasmylonas.petstore_api_web_app.services;
 
 import com.thomasmylonas.petstore_api_web_app.entities.Pet;
-import com.thomasmylonas.petstore_api_web_app.service_layer.models.PetPage;
 
 import java.util.List;
 
@@ -27,8 +26,6 @@ public interface PetService {
      * @return The list of all Pets
      */
     List<Pet> fetchAllPets();
-
-    PetPage fetchPageOfPets();
 
     /**
      * It saves a new Entity and its dependent Entities, and the Exceptions thrown are handled
