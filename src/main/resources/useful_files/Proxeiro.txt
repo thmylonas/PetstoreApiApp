@@ -3,6 +3,17 @@ https://petstore.elastic.io/docs
 https://github.com/swagger-api/swagger-ui/issues/3954
 ========================================================================================================================
 
+JPA Associations
+--------------------
+
+Category [1]    <-->   Pet [n]
+Pet [1]         <-->   Order [n]
+
+Pet [1]         <-->   Tag [n]
+Pet [1]         <-->   PhotoUrl [n]
+
+========================================================================================================================
+
 The best place to put the synchronizing state methods is in the Parent-side.
 
 @Table
