@@ -25,8 +25,8 @@ import lombok.Setter;
 public class Tag {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Tag_Generator")
-    @SequenceGenerator(name = "Tag_Generator", sequenceName = "Tag_Sequence", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Tags_Sequence_Generator")
+    @SequenceGenerator(name = "Tags_Sequence_Generator", sequenceName = "Tags_Sequence", initialValue = 1, allocationSize = 1)
     @Column(name = "Id")
     private Long id;
 

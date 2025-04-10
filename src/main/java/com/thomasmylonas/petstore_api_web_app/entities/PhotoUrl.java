@@ -25,8 +25,8 @@ import lombok.Setter;
 public class PhotoUrl {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Photo_Url_Generator")
-    @SequenceGenerator(name = "Photo_Url_Generator", sequenceName = "Photo_Url_Sequence", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Photo_Urls_Sequence_Generator")
+    @SequenceGenerator(name = "Photo_Urls_Sequence_Generator", sequenceName = "Photo_Urls_Sequence", initialValue = 1, allocationSize = 1)
     @Column(name = "Id")
     private Long id;
 

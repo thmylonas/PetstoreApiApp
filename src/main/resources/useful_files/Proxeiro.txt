@@ -14,6 +14,14 @@ Pet [1]         <-->   PhotoUrl [n]
 
 ========================================================================================================================
 
+General conventions in APIs
+---------------------------
+
+@GeneratedValue(..., generator = "<Table_Name>_Sequence_Generator")
+@SequenceGenerator(name = "<Table_Name>_Sequence_Generator", sequenceName = "<Table_Name>_Sequence", ...)
+
+========================================================================================================================
+
 The best place to put the synchronizing state methods is in the Parent-side.
 
 @Table
