@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 @Getter
 @AllArgsConstructor
-public enum PetStatusEnum {
+public enum PetStatus {
 
     AVAILABLE("available"),
     PENDING("pending"),
@@ -15,17 +15,17 @@ public enum PetStatusEnum {
 
     private final String value;
 
-    public static PetStatusEnum fromValue(String value) {
+    public static PetStatus fromValue(String value) {
         return switch (value) {
-            case "available" -> PetStatusEnum.AVAILABLE;
-            case "pending" -> PetStatusEnum.PENDING;
-            case "sold" -> PetStatusEnum.SOLD;
+            case "available" -> PetStatus.AVAILABLE;
+            case "pending" -> PetStatus.PENDING;
+            case "sold" -> PetStatus.SOLD;
             default -> null;
         };
     }
 
     public static boolean isPetStatus(String status) {
-        return Arrays.stream(PetStatusEnum.values())
+        return Arrays.stream(PetStatus.values())
                 .anyMatch(petStatus -> petStatus.getValue().equals(status.toLowerCase()));
     }
 }

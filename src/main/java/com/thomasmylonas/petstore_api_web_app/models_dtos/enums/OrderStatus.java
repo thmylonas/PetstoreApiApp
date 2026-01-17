@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum OrderStatusEnum {
+public enum OrderStatus {
 
     PLACED("placed"),
     APPROVED("approved"),

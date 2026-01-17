@@ -2,8 +2,8 @@ package com.thomasmylonas.petstore_api_web_app.services;
 
 import com.thomasmylonas.petstore_api_web_app.entities.Pet;
 import com.thomasmylonas.petstore_api_web_app.repositories.PetRepository;
-import com.thomasmylonas.petstore_api_web_app.exceptions.ResourceNotFoundException;
-import com.thomasmylonas.petstore_api_web_app.models_dtos.enums.PetStatusEnum;
+import com.thomasmylonas.petstore_api_web_app.exceptions.RequestedResourceNotFoundException;
+import com.thomasmylonas.petstore_api_web_app.models_dtos.enums.PetStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -17,29 +17,29 @@ public class PetServiceImpl implements PetService {
     private final PetRepository petRepository;
 
     @Override
-    public Pet fetchPetById(Long id) {
+    public Pet findPetById(Long id) {
         /*if (id < 1) { //|| !UsefulUtils.isInteger(String.valueOf(id))
             //LOGGER.info("400 - Invalid ID supplied");
             throw new IllegalArgumentException("400 - Invalid ID supplied");
         }*/
         return petRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(id));
+                .orElseThrow(() -> new RequestedResourceNotFoundException(id));
     }
 
     @Override
-    public List<Pet> fetchPetsByName(String name) {
+    public List<Pet> findPetsByName(String name) {
         return petRepository.findByName(name)
-                .orElseThrow(() -> new ResourceNotFoundException("The pet with name " + name + " is not found!"));
+                .orElseThrow(() -> new RequestedResourceNotFoundException("The pet with name " + name + " is not found!"));
     }
 
     @Override
-    public List<Pet> fetchPetsByStatus(String status) {
-        return petRepository.findByStatus(PetStatusEnum.fromValue(status))
-                .orElseThrow(() -> new ResourceNotFoundException("The pet with status " + status + " is not found!"));
+    public List<Pet> findPetsByStatus(String status) {
+        return petRepository.findByStatus(PetStatus.fromValue(status))
+                .orElseThrow(() -> new RequestedResourceNotFoundException("The pet with status " + status + " is not found!"));
     }
 
     @Override
-    public List<Pet> fetchAllPets() {
+    public List<Pet> findAllPets() {
         return petRepository.findAll();
     }
 
@@ -62,7 +62,7 @@ public class PetServiceImpl implements PetService {
         }*/
 
         petRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(id));
+                .orElseThrow(() -> new RequestedResourceNotFoundException(id));
 
         Pet updatedPet = mapPet(pet);
 
@@ -77,7 +77,7 @@ public class PetServiceImpl implements PetService {
             throw new IllegalArgumentException("400 - Invalid ID supplied");
         }*/
         petRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(id));
+                .orElseThrow(() -> new RequestedResourceNotFoundException(id));
         petRepository.deleteById(id);
     }
 

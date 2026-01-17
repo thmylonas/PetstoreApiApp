@@ -7,25 +7,25 @@ import java.util.List;
 public interface PetService {
 
     /**
-     * The method fetches the Pet, by the given ID
+     * The method finds the Pet, by the given ID
      *
-     * @param id The ID of the Pet to fetch
-     * @return The Pet we need to fetch
+     * @param id The ID of the Pet to find
+     * @return The Pet we need to find
      * //     * @throws InvalidInputSuppliedException If the input is invalid (e.g. negative id)
      * //     * @throws ResourceNotFoundException     If the resource is not found
      */
-    Pet fetchPetById(Long id);
+    Pet findPetById(Long id);
 
-    List<Pet> fetchPetsByName(String name);
+    List<Pet> findPetsByName(String name);
 
-    List<Pet> fetchPetsByStatus(String status);
+    List<Pet> findPetsByStatus(String status);
 
     /**
      * It returns the list of all Pets
      *
      * @return The list of all Pets
      */
-    List<Pet> fetchAllPets();
+    List<Pet> findAllPets();
 
     /**
      * It saves a new Entity and its dependent Entities, and the Exceptions thrown are handled

@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum UserStatusEnum {
+public enum UserStatus {
 
     USER_STATUS_1(0),
     USER_STATUS_2(1);

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
-public class PetStatusEnumTest {
+public class PetStatusTest {
 
     @BeforeEach
     void setUp() {
@@ -20,21 +20,21 @@ public class PetStatusEnumTest {
 
     @Test
     void testIsPetStatus_available() {
-        boolean isPetStatus = PetStatusEnum.isPetStatus("available");
+        boolean isPetStatus = PetStatus.isPetStatus("available");
         log.info(isPetStatus ? "'available' is 'PetStatus'" : "'available' is not 'PetStatus'");
         assertTrue(isPetStatus);
     }
 
     @Test
     void testIsPetStatus_SOLD() {
-        boolean isPetStatus = PetStatusEnum.isPetStatus("SOLD");
+        boolean isPetStatus = PetStatus.isPetStatus("SOLD");
         log.info(isPetStatus ? "'SOLD' is 'PetStatus'" : "'SOLD' is not 'PetStatus'");
         assertTrue(isPetStatus);
     }
 
     @Test
     void testIsPetStatus_hello() {
-        boolean isPetStatus = PetStatusEnum.isPetStatus("hello");
+        boolean isPetStatus = PetStatus.isPetStatus("hello");
         log.info(isPetStatus ? "'hello' is 'PetStatus'" : "'hello' is not 'PetStatus'");
         assertFalse(isPetStatus);
     }

@@ -1,7 +1,7 @@
 package com.thomasmylonas.petstore_api_web_app.controllers;
 
 import com.thomasmylonas.petstore_api_web_app.entities.Pet;
-import com.thomasmylonas.petstore_api_web_app.models_dtos.enums.PetStatusEnum;
+import com.thomasmylonas.petstore_api_web_app.models_dtos.enums.PetStatus;
 import com.thomasmylonas.petstore_api_web_app.services.PetService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/pet")
+@RequestMapping(path = "/api/v1/pets")
 @RequiredArgsConstructor
 public class PetController {
 
@@ -27,16 +27,16 @@ public class PetController {
 
     private final PetService petService;
 
-    // http://localhost:8080/pet/{petId}
+    // http://localhost:8080/api/v1/pets/{petId}
     @GetMapping(path = {"/{petId}"})
-    public ResponseEntity<Pet> fetchPetById(@PathVariable(value = "petId") Long id) {
-        Pet petFetched = petService.fetchPetById(id);
-        LOGGER.info("The pet with ID {}, is the {}", id, petFetched);
-        return new ResponseEntity<>(petFetched, HttpStatus.OK);
+    public ResponseEntity<Pet> findPetById(@PathVariable(value = "petId") Long id) {
+        Pet petFinded = petService.findPetById(id);
+        LOGGER.info("The pet with ID {}, is the {}", id, petFinded);
+        return new ResponseEntity<>(petFinded, HttpStatus.OK);
     }
 
     /**
-     * http://localhost:8080/pet/findByStatus?status=sold
+     * http://localhost:8080/api/v1/pets/findByStatus?status=sold
      * It returns the list of Pets filtered by status
      *
      * @param status status: available, pending, sold, and all the combinations
@@ -44,12 +44,12 @@ public class PetController {
      * @throws IllegalArgumentException If the input is invalid (e.g. status is not as defined)
      */
     @GetMapping(path = {"/findByStatus"})
-    public ResponseEntity<List<Pet>> fetchPetsByStatus(@RequestParam(value = "status", defaultValue = "available") String status) {
+    public ResponseEntity<List<Pet>> findPetsByStatus(@RequestParam(value = "status", defaultValue = "available") String status) {
 
         String[] statuses = status.split(",");
 
         for (String s : statuses) {
-            if (!PetStatusEnum.isPetStatus(s)) {
+            if (!PetStatus.isPetStatus(s)) {
                 LOGGER.info("400 - Invalid status value");
                 throw new IllegalArgumentException("400 - Invalid status value");
             }
@@ -57,21 +57,21 @@ public class PetController {
 
         List<Pet> petsByStatus = new ArrayList<>();
         for (String s : statuses) {
-            petsByStatus.addAll(petService.fetchPetsByStatus(s));
+            petsByStatus.addAll(petService.findPetsByStatus(s));
         }
         LOGGER.info("All pets filtered by status {} are: {}", status, petsByStatus);
         return ResponseEntity.ok(petsByStatus);
     }
 
-    // http://localhost:8080/pet/all-pets
-    @GetMapping(path = {"/all-pets"})
-    public ResponseEntity<List<Pet>> fetchAllPets() {
-        List<Pet> pets = petService.fetchAllPets();
+    // http://localhost:8080/api/v1/pets
+    @GetMapping
+    public ResponseEntity<List<Pet>> findAllPets() {
+        List<Pet> pets = petService.findAllPets();
         LOGGER.info("All pets are: {}", pets);
         return ResponseEntity.ok(pets);
     }
 
-    // http://localhost:8080/pet
+    // http://localhost:8080/api/v1/pets
     @PostMapping
     public ResponseEntity<Pet> savePet(@RequestBody Pet pet, UriComponentsBuilder ucb) {
 
@@ -88,7 +88,7 @@ public class PetController {
         return ResponseEntity.created(locationUri).headers(headers).body(petPersisted);
     }
 
-    // http://localhost:8080/pet/{petId}
+    // http://localhost:8080/api/v1/pets/{petId}
     @PutMapping(path = {"/{petId}"})
     public ResponseEntity<Pet> updatePet(@PathVariable(value = "petId") Long id, @RequestBody Pet pet) {
         Pet updatedPet = petService.updatePet(id, pet);
@@ -96,7 +96,7 @@ public class PetController {
         return ResponseEntity.ok(updatedPet);
     }
 
-    // http://localhost:8080/pet/{petId}
+    // http://localhost:8080/api/v1/pets/{petId}
     @DeleteMapping(path = {"/{petId}"})
     public ResponseEntity<String> delete(@PathVariable(value = "petId") Long id) {
         petService.deletePet(id);

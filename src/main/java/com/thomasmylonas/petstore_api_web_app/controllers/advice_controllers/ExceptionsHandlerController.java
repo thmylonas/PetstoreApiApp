@@ -1,6 +1,6 @@
 package com.thomasmylonas.petstore_api_web_app.controllers.advice_controllers;
 
-import com.thomasmylonas.petstore_api_web_app.exceptions.ResourceNotFoundException;
+import com.thomasmylonas.petstore_api_web_app.exceptions.RequestedResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.*;
 @RestControllerAdvice
 public class ExceptionsHandlerController {
 
-    @ExceptionHandler(value = {ResourceNotFoundException.class})
+    @ExceptionHandler(value = {RequestedResourceNotFoundException.class})
     @ResponseStatus(value = HttpStatus.NOT_FOUND) // NOT_FOUND(404, "Not Found")
-    public ResponseStatus resourceNotFound(ResourceNotFoundException e) {
+    public ResponseStatus resourceNotFound(RequestedResourceNotFoundException e) {
 
 //        long resourceId = e.getResourceId();
 //        String message = String.format(e.getMyMessage(), resourceId);

@@ -2,7 +2,7 @@ package com.thomasmylonas.petstore_api_web_app;
 
 import com.thomasmylonas.petstore_api_web_app.entities.Category;
 import com.thomasmylonas.petstore_api_web_app.entities.Pet;
-import com.thomasmylonas.petstore_api_web_app.models_dtos.enums.PetStatusEnum;
+import com.thomasmylonas.petstore_api_web_app.models_dtos.enums.PetStatus;
 import com.thomasmylonas.petstore_api_web_app.services.PetService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -39,7 +39,7 @@ public class PetstoreApiWebAppApplication {
                                 .category(Category.builder()
                                         .name("Dog")
                                         .build())
-                                .status(PetStatusEnum.AVAILABLE)
+                                .status(PetStatus.AVAILABLE)
                                 .build()
                 ));
     }

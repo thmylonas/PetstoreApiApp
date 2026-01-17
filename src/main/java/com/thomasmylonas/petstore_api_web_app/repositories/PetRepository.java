@@ -1,7 +1,7 @@
 package com.thomasmylonas.petstore_api_web_app.repositories;
 
 import com.thomasmylonas.petstore_api_web_app.entities.Pet;
-import com.thomasmylonas.petstore_api_web_app.models_dtos.enums.PetStatusEnum;
+import com.thomasmylonas.petstore_api_web_app.models_dtos.enums.PetStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -11,5 +11,5 @@ public interface PetRepository extends JpaRepository<Pet, Long> {
 
     Optional<List<Pet>> findByName(String name);
 
-    Optional<List<Pet>> findByStatus(PetStatusEnum status);
+    Optional<List<Pet>> findByStatus(PetStatus status);
 }
