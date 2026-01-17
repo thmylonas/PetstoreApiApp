@@ -16,18 +16,21 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.util.List;
 
 @Entity(name = "Pet")
 @Table(name = "Pet")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class Pet {
 
     @Id
@@ -40,7 +43,7 @@ public class Pet {
     private String name;
 
     @Enumerated(value = EnumType.STRING)
-    private StatusEnum status;
+    private Status status;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "PET_CATEGORY_ID")
@@ -54,19 +57,8 @@ public class Pet {
     @OneToMany(mappedBy = "pet", cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<PhotoUrl> photoUrls;
 
-    /*public Pet(PetModel petModel) {
-        this.id = petModel.getId();
-        this.name = petModel.getName();
-        this.category = petModel.getCategory();
-        this.tags = petModel.getTags();
-        photoUrls = new ArrayList<>();
-        for (int i = 0; i < petModel.getPhotoUrls().size(); i++) {
-            photoUrls.add(new PhotoUrl(null, petModel.getPhotoUrls().get(i)));
-        }
-    }
-
-    public void setTags(List<Tag> tags) {
-        tags.stream().forEach(tag -> {
+    /*public void setTags(List<Tag> tags) {
+        tags.forEach(tag -> {
             tag.setPet(this);
         });
         this.tags = tags;
@@ -74,12 +66,12 @@ public class Pet {
 
     public void setPhotoUrls(List<PhotoUrl> photoUrls) {
 
-        photoUrls.stream().forEach(photoUrl -> {
+        photoUrls.forEach(photoUrl -> {
             photoUrl.setPet(this);
         });
         this.photoUrls = photoUrls;
-//        for (int i = 0; i < photoUrls.size(); i++) {
-//            this.photoUrls.get(i).setName(photoUrls.get(i).getName());
-//        }
+        for (int i = 0; i < photoUrls.size(); i++) {
+            this.photoUrls.get(i).setName(photoUrls.get(i).getName());
+        }
     }*/
 }
