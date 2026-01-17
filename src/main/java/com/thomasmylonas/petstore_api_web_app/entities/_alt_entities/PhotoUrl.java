@@ -1,4 +1,4 @@
-package _a.entities;
+package com.thomasmylonas.petstore_api_web_app.entities._alt_entities;
 
 import com.thomasmylonas.petstore_api_web_app.entities.Pet;
 import jakarta.persistence.Column;
@@ -18,32 +18,31 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity(name = "Tag")
-@Table(name = "Tag") // Pet_Tag
+@Entity(name = "PhotoUrl")
+@Table(name = "Photo_Url")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @ToString
-public class Tag {
+public class PhotoUrl {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator")
-    @SequenceGenerator(name = "generator", sequenceName = "ID_SEQUENCE_TAG", allocationSize = 1)
-    @Column(name = "ID", updatable = false, nullable = false)
+    @SequenceGenerator(name = "generator", sequenceName = "ID_SEQUENCE_PHOTO_URL", allocationSize = 1)
+    @Column(name = "Id", updatable = false, nullable = false)
     private Long id;
 
-    @Column(name = "TAG_NAME", nullable = false, length = 20)
+    @Column(name = "URL_NAME", nullable = false, length = 1999)
     private String name;
 
     // Mappings - ManyToOne
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "PET_ID")
-    @ToString.Exclude
     private Pet pet;
 
-    public Tag(Long id, String name) {
+    public PhotoUrl(Long id, String name) {
         this.id = id;
         this.name = name;
     }

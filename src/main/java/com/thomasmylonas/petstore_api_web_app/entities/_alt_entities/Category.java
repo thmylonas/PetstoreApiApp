@@ -1,14 +1,13 @@
-package _a.entities;
+package com.thomasmylonas.petstore_api_web_app.entities._alt_entities;
 
 import com.thomasmylonas.petstore_api_web_app.entities.Pet;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -18,31 +17,32 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity(name = "PhotoUrl")
-@Table(name = "Photo_Url")
+import java.util.List;
+
+@Entity(name = "Category")
+@Table(name = "Category") // Pet_Category
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @ToString
-public class PhotoUrl {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator")
-    @SequenceGenerator(name = "generator", sequenceName = "ID_SEQUENCE_PHOTO_URL", allocationSize = 1)
+    @SequenceGenerator(name = "generator", sequenceName = "ID_SEQUENCE_CATEGORY", allocationSize = 1)
     @Column(name = "Id", updatable = false, nullable = false)
     private Long id;
 
-    @Column(name = "URL_NAME", nullable = false, length = 1999)
+    @Column(name = "CATEGORY_NAME", nullable = false, length = 25)
     private String name;
 
-    // Mappings - ManyToOne
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "PET_ID")
-    private Pet pet;
+    // Mappings - OneToMany
+    @OneToMany(mappedBy = "category", cascade = CascadeType.REFRESH)
+    private List<Pet> pets;
 
-    public PhotoUrl(Long id, String name) {
+    public Category(Long id, String name) {
         this.id = id;
         this.name = name;
     }

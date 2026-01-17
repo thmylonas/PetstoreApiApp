@@ -1,13 +1,14 @@
-package _a.entities;
+package com.thomasmylonas.petstore_api_web_app.entities._alt_entities;
 
 import com.thomasmylonas.petstore_api_web_app.entities.Pet;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -17,32 +18,32 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.List;
-
-@Entity(name = "Category")
-@Table(name = "Category") // Pet_Category
+@Entity(name = "Tag")
+@Table(name = "Tag") // Pet_Tag
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @ToString
-public class Category {
+public class Tag {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator")
-    @SequenceGenerator(name = "generator", sequenceName = "ID_SEQUENCE_CATEGORY", allocationSize = 1)
-    @Column(name = "Id", updatable = false, nullable = false)
+    @SequenceGenerator(name = "generator", sequenceName = "ID_SEQUENCE_TAG", allocationSize = 1)
+    @Column(name = "ID", updatable = false, nullable = false)
     private Long id;
 
-    @Column(name = "CATEGORY_NAME", nullable = false, length = 25)
+    @Column(name = "TAG_NAME", nullable = false, length = 20)
     private String name;
 
-    // Mappings - OneToMany
-    @OneToMany(mappedBy = "category", cascade = CascadeType.REFRESH)
-    private List<Pet> pets;
+    // Mappings - ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "PET_ID")
+    @ToString.Exclude
+    private Pet pet;
 
-    public Category(Long id, String name) {
+    public Tag(Long id, String name) {
         this.id = id;
         this.name = name;
     }
