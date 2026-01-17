@@ -9,8 +9,4 @@ public class RequestedResourceNotFoundException extends RuntimeException {
     public RequestedResourceNotFoundException(Long resourceId) {
         super("The resource with ID " + resourceId + " is not found!");
     }
-
-    public RequestedResourceNotFoundException(String message) {
-        super(message);
-    }
 }
