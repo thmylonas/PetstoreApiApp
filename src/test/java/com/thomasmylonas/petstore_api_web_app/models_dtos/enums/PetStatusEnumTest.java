@@ -1,30 +1,41 @@
 package com.thomasmylonas.petstore_api_web_app.models_dtos.enums;
 
-import com.thomasmylonas.petstore_api_web_app._base.AbstractTest;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PetStatusEnumTest extends AbstractTest {
+@Slf4j
+public class PetStatusEnumTest {
+
+    @BeforeEach
+    void setUp() {
+    }
+
+    @AfterEach
+    void tearDown() {
+    }
 
     @Test
     void testIsPetStatus_available() {
         boolean isPetStatus = PetStatusEnum.isPetStatus("available");
-        LOGGER.info(isPetStatus ? "'available' is 'PetStatus'" : "'available' is not 'PetStatus'");
+        log.info(isPetStatus ? "'available' is 'PetStatus'" : "'available' is not 'PetStatus'");
         assertTrue(isPetStatus);
     }
 
     @Test
     void testIsPetStatus_SOLD() {
         boolean isPetStatus = PetStatusEnum.isPetStatus("SOLD");
-        LOGGER.info(isPetStatus ? "'SOLD' is 'PetStatus'" : "'SOLD' is not 'PetStatus'");
+        log.info(isPetStatus ? "'SOLD' is 'PetStatus'" : "'SOLD' is not 'PetStatus'");
         assertTrue(isPetStatus);
     }
 
     @Test
     void testIsPetStatus_hello() {
         boolean isPetStatus = PetStatusEnum.isPetStatus("hello");
-        LOGGER.info(isPetStatus ? "'hello' is 'PetStatus'" : "'hello' is not 'PetStatus'");
+        log.info(isPetStatus ? "'hello' is 'PetStatus'" : "'hello' is not 'PetStatus'");
         assertFalse(isPetStatus);
     }
 }
