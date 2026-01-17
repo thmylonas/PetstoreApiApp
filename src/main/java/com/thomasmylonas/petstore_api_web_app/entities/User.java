@@ -1,6 +1,6 @@
 package com.thomasmylonas.petstore_api_web_app.entities;
 
-import com.thomasmylonas.petstore_api_web_app.models_dtos.enums.UserStatusEnum;
+import com.thomasmylonas.petstore_api_web_app.models_dtos.enums.UserStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -51,7 +51,7 @@ public class User {
 
     @Enumerated(value = EnumType.ORDINAL)
     @Column(name = "User_Status")
-    private UserStatusEnum userStatus;
+    private UserStatus userStatus;
 }
 
 /*
