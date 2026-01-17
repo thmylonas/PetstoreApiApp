@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_web_app._;
+package _a;
 
 import com.thomasmylonas.petstore_api_web_app.service_layer.exceptions.ResourceNotFoundException;
 import org.springframework.http.converter.HttpMessageNotReadableException;

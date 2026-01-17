@@ -1,5 +1,6 @@
-package com.thomasmylonas.petstore_api_web_app.entities;
+package _a.entities;
 
+import com.thomasmylonas.petstore_api_web_app.entities.Pet;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

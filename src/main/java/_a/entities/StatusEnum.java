@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_web_app.entities;
+package _a.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

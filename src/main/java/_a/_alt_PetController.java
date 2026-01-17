@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_web_app._;
+package _a;
 
 import com.thomasmylonas.petstore_api_web_app.entities.Pet;
 import com.thomasmylonas.petstore_api_web_app.repositories.PetRepository;
