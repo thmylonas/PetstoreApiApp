@@ -142,22 +142,6 @@ public class Category {
 
 ========================================================================================================================
 
-Others to be done
---------------------
-- Why the META-INF/context.xml, must be in "webapp", and not at the "resources".
-- "workspace.xml", must be excluded from git.
-- Get rid from the project URL the "PetstoreApiWebApp_war_exploded", and become:
-    http://localhost:8080/PetstoreApiWebApp
-- Better check of the: HttpMediaTypeNotSupportedException, HttpMessageNotReadableException...
-- After the transaction finishes, make a good clean up...
-- @Transactional
-- Use in ExceptionsHandlerController: ResponseEntity<ErrorStatus>
-- "Evaluate" window: s.photoUrls: public <S extends Pet> S save(S s) > PetDao
-- Make the log4j2.xml as in "MySpringHibernateJpaApp"
-
-produces = MediaType.APPLICATION_XML_VALUE
-
-----------------------------------------------------
 https://stackoverflow.com/questions/21703565/how-can-i-untrack-a-file-from-a-git-repository-in-intellij
 How can I untrack a file from a git repository in Intellij
 
@@ -169,9 +153,4 @@ git rm --cached .gitignore
 git commit -m'.gitignore removed'
 echo '.gitignore' >> .gitignore
 
-========================================================================================================================
-@PostMapping
-public ResponseEntity<Pet> save(@RequestBody Pet pet, ...) throws HttpMessageNotReadableException, HttpMediaTypeNotSupportedException {}
-========================================================================================================================
-Use this: ServletUriComponentsBuilder
 ========================================================================================================================
