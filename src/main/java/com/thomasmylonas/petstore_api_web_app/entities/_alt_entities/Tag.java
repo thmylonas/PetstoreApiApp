@@ -16,7 +16,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity(name = "Tag")
 @Table(name = "Tag") // Pet_Tag
@@ -25,7 +24,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ToString
 public class Tag {
 
     @Id
@@ -40,7 +38,6 @@ public class Tag {
     // Mappings - ManyToOne
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "PET_ID")
-    @ToString.Exclude
     private Pet pet;
 
     public Tag(Long id, String name) {
