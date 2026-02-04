@@ -4,8 +4,7 @@ import com.thomasmylonas.petstore_api_web_app.entities.Pet;
 import com.thomasmylonas.petstore_api_web_app.models_dtos.enums.PetStatus;
 import com.thomasmylonas.petstore_api_web_app.services.PetService;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,9 +20,8 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/api/v1/pets")
 @RequiredArgsConstructor
+@Slf4j
 public class PetController {
-
-    private final static Logger LOGGER = LoggerFactory.getLogger(Class.class.getSimpleName());
 
     private final PetService petService;
 
@@ -31,7 +29,7 @@ public class PetController {
     @GetMapping(path = {"/{petId}"})
     public ResponseEntity<Pet> findPetById(@PathVariable(value = "petId") Long id) {
         Pet petFinded = petService.findPetById(id);
-        LOGGER.info("The pet with ID {}, is the {}", id, petFinded);
+        log.info("The pet with ID {}, is the {}", id, petFinded);
         return new ResponseEntity<>(petFinded, HttpStatus.OK);
     }
 
@@ -50,7 +48,7 @@ public class PetController {
 
         for (String s : statuses) {
             if (!PetStatus.isPetStatus(s)) {
-                LOGGER.info("400 - Invalid status value");
+                log.info("400 - Invalid status value");
                 throw new IllegalArgumentException("400 - Invalid status value");
             }
         }
@@ -59,7 +57,7 @@ public class PetController {
         for (String s : statuses) {
             petsByStatus.addAll(petService.findPetsByStatus(s));
         }
-        LOGGER.info("All pets filtered by status {} are: {}", status, petsByStatus);
+        log.info("All pets filtered by status {} are: {}", status, petsByStatus);
         return ResponseEntity.ok(petsByStatus);
     }
 
@@ -67,7 +65,7 @@ public class PetController {
     @GetMapping
     public ResponseEntity<List<Pet>> findAllPets() {
         List<Pet> pets = petService.findAllPets();
-        LOGGER.info("All pets are: {}", pets);
+        log.info("All pets are: {}", pets);
         return ResponseEntity.ok(pets);
     }
 
@@ -83,7 +81,7 @@ public class PetController {
                 .build().toUri();
         headers.setLocation(locationUri);
 
-        LOGGER.info("The new pet: {} is persisted, with ID: {}", petPersisted, petPersisted.getId());
+        log.info("The new pet: {} is persisted, with ID: {}", petPersisted, petPersisted.getId());
 
         return ResponseEntity.created(locationUri).headers(headers).body(petPersisted);
     }
@@ -92,7 +90,7 @@ public class PetController {
     @PutMapping(path = {"/{petId}"})
     public ResponseEntity<Pet> updatePet(@PathVariable(value = "petId") Long id, @RequestBody Pet pet) {
         Pet updatedPet = petService.updatePet(id, pet);
-        LOGGER.info("The updated pet is: {}", updatedPet);
+        log.info("The updated pet is: {}", updatedPet);
         return ResponseEntity.ok(updatedPet);
     }
 
@@ -100,7 +98,7 @@ public class PetController {
     @DeleteMapping(path = {"/{petId}"})
     public ResponseEntity<String> delete(@PathVariable(value = "petId") Long id) {
         petService.deletePet(id);
-        LOGGER.info("The pet with ID {}, is deleted", id);
+        log.info("The pet with ID {}, is deleted", id);
         return ResponseEntity.ok("The pet with ID " + id + ", is deleted");
     }
 
@@ -113,7 +111,7 @@ public class PetController {
                                               @RequestParam MultiValueMap<String, String> paramMap) throws Exception {
 
         /*if (id < 1) { //|| !UsefulUtils.isInteger(String.valueOf(id))
-            //LOGGER.info("400 - Invalid ID supplied");
+            //log.info("400 - Invalid ID supplied");
             throw new IllegalArgumentException("400 - Invalid ID supplied");
         }*/
 
@@ -122,7 +120,7 @@ public class PetController {
 //        pet.setTags(pet.getTags());
 //        Pet petPersisted = petRepository.save(pet);
 
-//        LOGGER.info("The new pet:\n" + petPersisted + "\nis added, with the id: " + petPersisted.getId());
+//        log.info("The new pet:\n" + petPersisted + "\nis added, with the id: " + petPersisted.getId());
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 }

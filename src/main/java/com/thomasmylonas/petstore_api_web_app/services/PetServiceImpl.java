@@ -5,6 +5,7 @@ import com.thomasmylonas.petstore_api_web_app.repositories.PetRepository;
 import com.thomasmylonas.petstore_api_web_app.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.petstore_api_web_app.models_dtos.enums.PetStatus;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Service(value = "petService")
 @RequiredArgsConstructor
+@Slf4j
 public class PetServiceImpl implements PetService {
 
     private final PetRepository petRepository;
@@ -19,7 +21,7 @@ public class PetServiceImpl implements PetService {
     @Override
     public Pet findPetById(Long id) {
         /*if (id < 1) { //|| !UsefulUtils.isInteger(String.valueOf(id))
-            //LOGGER.info("400 - Invalid ID supplied");
+            //log.info("400 - Invalid ID supplied");
             throw new IllegalArgumentException("400 - Invalid ID supplied");
         }*/
         return petRepository.findById(id)
@@ -57,7 +59,7 @@ public class PetServiceImpl implements PetService {
     public Pet updatePet(Long id, Pet pet) {
 
         /*if (id < 1) { //|| !UsefulUtils.isInteger(String.valueOf(id))
-            //LOGGER.info("400 - Invalid ID supplied");
+            //log.info("400 - Invalid ID supplied");
             throw new IllegalArgumentException("400 - Invalid ID supplied");
         }*/
 
@@ -73,7 +75,7 @@ public class PetServiceImpl implements PetService {
     public void deletePet(Long id) {
 
         /*if (id < 1) { //|| !UsefulUtils.isInteger(String.valueOf(id))
-            //LOGGER.info("400 - Invalid ID supplied");
+            //log.info("400 - Invalid ID supplied");
             throw new IllegalArgumentException("400 - Invalid ID supplied");
         }*/
         petRepository.findById(id)
