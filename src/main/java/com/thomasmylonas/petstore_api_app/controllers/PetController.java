@@ -25,9 +25,8 @@ public class PetController {
 
     private final PetService petService;
 
-    // http://localhost:8080/api/v1/pets/{petId}
-    @GetMapping(path = {"/{petId}"})
-    public ResponseEntity<Pet> findPetById(@PathVariable(value = "petId") Long id) {
+    @GetMapping(path = {"/{id}"})
+    public ResponseEntity<Pet> findPetById(@PathVariable(value = "id") Long id) { // http://localhost:8080/api/v1/pets/{id}
         Pet petFinded = petService.findPetById(id);
         log.info("The pet with ID {}, is the {}", id, petFinded);
         return new ResponseEntity<>(petFinded, HttpStatus.OK);
@@ -61,17 +60,15 @@ public class PetController {
         return ResponseEntity.ok(petsByStatus);
     }
 
-    // http://localhost:8080/api/v1/pets
     @GetMapping
-    public ResponseEntity<List<Pet>> findAllPets() {
+    public ResponseEntity<List<Pet>> findAllPets() { // http://localhost:8080/api/v1/pets
         List<Pet> pets = petService.findAllPets();
         log.info("All pets are: {}", pets);
         return ResponseEntity.ok(pets);
     }
 
-    // http://localhost:8080/api/v1/pets
     @PostMapping
-    public ResponseEntity<Pet> savePet(@RequestBody Pet pet, UriComponentsBuilder ucb) {
+    public ResponseEntity<Pet> savePet(@RequestBody Pet pet, UriComponentsBuilder ucb) { // http://localhost:8080/api/v1/pets
 
         Pet petPersisted = petService.savePet(pet);
 
@@ -86,17 +83,15 @@ public class PetController {
         return ResponseEntity.created(locationUri).headers(headers).body(petPersisted);
     }
 
-    // http://localhost:8080/api/v1/pets/{petId}
-    @PutMapping(path = {"/{petId}"})
-    public ResponseEntity<Pet> updatePet(@PathVariable(value = "petId") Long id, @RequestBody Pet pet) {
+    @PutMapping(path = {"/{id}"})
+    public ResponseEntity<Pet> updatePet(@PathVariable(value = "id") Long id, @RequestBody Pet pet) { // http://localhost:8080/api/v1/pets/{id}
         Pet updatedPet = petService.updatePet(id, pet);
         log.info("The updated pet is: {}", updatedPet);
         return ResponseEntity.ok(updatedPet);
     }
 
-    // http://localhost:8080/api/v1/pets/{petId}
-    @DeleteMapping(path = {"/{petId}"})
-    public ResponseEntity<String> delete(@PathVariable(value = "petId") Long id) {
+    @DeleteMapping(path = {"/{id}"})
+    public ResponseEntity<String> deletePet(@PathVariable(value = "id") Long id) { // http://localhost:8080/api/v1/pets/{id}
         petService.deletePet(id);
         log.info("The pet with ID {}, is deleted", id);
         return ResponseEntity.ok("The pet with ID " + id + ", is deleted");
