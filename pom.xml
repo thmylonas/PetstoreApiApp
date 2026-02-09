@@ -9,11 +9,11 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.thomasmylonas</groupId>
-    <artifactId>petstore_api_web_app</artifactId>
+    <artifactId>petstore_api_app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>PetstoreApiWebApp</name>
-    <description>Petstore Api WebApp</description>
+    <name>PetstoreApiApp</name>
+    <description>PetstoreApiApp</description>
     <properties>
         <java.version>21</java.version>
     </properties>
