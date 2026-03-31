@@ -1,7 +1,7 @@
 package com.thomasmylonas.petstore_api_app.repositories;
 
 import com.thomasmylonas.petstore_api_app.entities.Pet;
-import com.thomasmylonas.petstore_api_app.models_dtos.enums.PetStatus;
+import com.thomasmylonas.petstore_api_app.enums.PetStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

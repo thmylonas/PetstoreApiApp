@@ -1,6 +1,6 @@
 package com.thomasmylonas.petstore_api_app.entities;
 
-import com.thomasmylonas.petstore_api_app.models_dtos.enums.PetStatus;
+import com.thomasmylonas.petstore_api_app.enums.PetStatus;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

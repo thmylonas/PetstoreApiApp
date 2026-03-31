@@ -3,7 +3,7 @@ package com.thomasmylonas.petstore_api_app.services;
 import com.thomasmylonas.petstore_api_app.entities.Pet;
 import com.thomasmylonas.petstore_api_app.repositories.PetRepository;
 import com.thomasmylonas.petstore_api_app.exceptions.RequestedResourceNotFoundException;
-import com.thomasmylonas.petstore_api_app.models_dtos.enums.PetStatus;
+import com.thomasmylonas.petstore_api_app.enums.PetStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
