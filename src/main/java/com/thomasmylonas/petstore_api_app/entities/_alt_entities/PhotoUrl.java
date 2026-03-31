@@ -2,7 +2,7 @@ package com.thomasmylonas.petstore_api_app.entities._alt_entities;
 
 import com.thomasmylonas.petstore_api_app.entities.Pet;
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+//import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,15 +10,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
+//import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(name = "PhotoUrl")
-@Table(name = "Photo_Url")
+//@Entity(name = "PhotoUrl")
+//@Table(name = "Photo_Url")
 @Getter
 @Setter
 @NoArgsConstructor

@@ -1,14 +1,6 @@
 server:
   port: 8080
 
-#Datasource - Oracle Database
-#spring:
-#  datasource:
-#    url: jdbc:oracle:thin:@localhost:1521:oracledb
-#    username: petstoredb
-#    password: aaaa
-#    driver-class-name: oracle.jdbc.OracleDriver
-
 #Datasource - H2-Database: Basic properties
 spring:
   datasource:
@@ -33,13 +25,6 @@ spring:
       settings:
         trace: false
         web-allow-others: false
-
-  #Datasource - H2-Database: schema/data locations
-#  sql:
-#    init:
-#      #continue-on-error: true
-#      schema-locations: classpath:sql_queries/schema.sql
-#      #data-locations: classpath:sql_queries/data.sql
 
 logging:
   level:
