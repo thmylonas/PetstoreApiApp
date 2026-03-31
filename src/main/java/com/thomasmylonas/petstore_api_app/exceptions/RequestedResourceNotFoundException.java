@@ -3,11 +3,15 @@ package com.thomasmylonas.petstore_api_app.exceptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
 public class RequestedResourceNotFoundException extends RuntimeException {
 
-    public RequestedResourceNotFoundException(Long resourceId) {
-        super("The resource with ID " + resourceId + " is not found!");
+    public RequestedResourceNotFoundException(String clazz, Long resourceId) {
+        super(String.format("%s: The %s with ID %d is not found!",
+                LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MMM-yyyy")), clazz, resourceId));
     }
 
     public RequestedResourceNotFoundException(String message) {
