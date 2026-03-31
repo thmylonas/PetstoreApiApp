@@ -20,10 +20,6 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public Pet findPetById(Long id) {
-        /*if (id < 1) { //|| !UsefulUtils.isInteger(String.valueOf(id))
-            //log.info("400 - Invalid ID supplied");
-            throw new IllegalArgumentException("400 - Invalid ID supplied");
-        }*/
         return petRepository.findById(id)
                 .orElseThrow(() -> new RequestedResourceNotFoundException(id));
     }
