@@ -1,11 +1,12 @@
 package com.thomasmylonas.petstore_api_app.services;
 
+import com.thomasmylonas.petstore_api_app.dtos.PetRequestDto;
+import com.thomasmylonas.petstore_api_app.dtos.PetResponseDto;
 import com.thomasmylonas.petstore_api_app.entities.Pet;
 import com.thomasmylonas.petstore_api_app.repositories.PetRepository;
 import com.thomasmylonas.petstore_api_app.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.petstore_api_app.enums.PetStatus;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -14,91 +15,79 @@ import java.util.Objects;
 
 @Service(value = "petService")
 @RequiredArgsConstructor
-@Slf4j
 public class PetServiceImpl implements PetService {
 
     private final PetRepository petRepository;
+    private final PetMapper petMapper;
 
     @Override
-    public Pet findPetById(Long id) {
-        return petRepository.findById(id)
-                .orElseThrow(() -> new RequestedResourceNotFoundException(id));
+    public PetResponseDto findPetById(Long id) {
+        Pet pet = petRepository.findById(id)
+                .orElseThrow(() -> new RequestedResourceNotFoundException(Pet.class.getSimpleName(), id));
+        return petMapper.fromPet(pet);
     }
 
     @Override
-    public List<Pet> findPetsByName(String name) {
-        return petRepository.findByName(name)
+    public List<PetResponseDto> findPetsByName(String name) {
+        List<Pet> pets = petRepository.findByName(name)
                 .orElseThrow(() -> new RequestedResourceNotFoundException("The pet with name " + name + " is not found!"));
+        return pets.stream().map(petMapper::fromPet).toList();
     }
 
     @Override
-    public List<Pet> findPetsByStatus(String status) {
-        return petRepository.findByStatus(PetStatus.fromValue(status))
+    public List<PetResponseDto> findPetsByStatus(String status) {
+        List<Pet> pets = petRepository.findByStatus(PetStatus.fromValue(status))
                 .orElseThrow(() -> new RequestedResourceNotFoundException("The pet with status " + status + " is not found!"));
+        return pets.stream().map(petMapper::fromPet).toList();
     }
 
     @Override
-    public List<Pet> findAllPets() {
-        return petRepository.findAll();
+    public List<PetResponseDto> findAllPets() {
+        List<Pet> pets = petRepository.findAll();
+        return pets.stream().map(petMapper::fromPet).toList();
     }
 
     @Override
-    public Pet savePet(Pet pet) {
-        return petRepository.save(pet);
+    public PetResponseDto savePet(PetRequestDto petRequestDto) {
+        Pet pet = petMapper.toPet(petRequestDto);
+        Pet savedPet = petRepository.save(pet);
+        return petMapper.fromPet(savedPet);
     }
 
     @Override
-    public List<Pet> savePetsInBatch(List<Pet> pets) {
-        return petRepository.saveAll(pets);
+    public List<PetResponseDto> saveAllPets(List<PetRequestDto> petRequestDtos) {
+        List<Pet> pets = petRequestDtos.stream().map(petMapper::toPet).toList();
+        List<Pet> savedPets = petRepository.saveAll(pets);
+        return savedPets.stream().map(petMapper::fromPet).toList();
     }
 
     @Override
-    public Pet updatePet(Long id, Pet pet) {
+    public PetResponseDto updatePet(Long id, PetRequestDto petRequestDto) {
 
-        /*if (id < 1) { //|| !UsefulUtils.isInteger(String.valueOf(id))
-            //log.info("400 - Invalid ID supplied");
-            throw new IllegalArgumentException("400 - Invalid ID supplied");
-        }*/
+        Pet petToUpdate = petRepository.findById(id)
+                .orElseThrow(() -> new RequestedResourceNotFoundException(Pet.class.getSimpleName(), id));
 
-        petRepository.findById(id)
-                .orElseThrow(() -> new RequestedResourceNotFoundException(id));
-
-        Pet updatedPet = mapPet(pet);
-
-        return petRepository.save(updatedPet);
+        if (StringUtils.hasLength(petRequestDto.name())) {
+            petToUpdate.setName(petRequestDto.name());
+        }
+        if (Objects.nonNull(petRequestDto.status())) {
+            petToUpdate.setStatus(petRequestDto.status());
+        }
+        if (Objects.nonNull(petRequestDto.category())) {
+            petToUpdate.setCategory(petRequestDto.category());
+        }
+        if (Objects.nonNull(petRequestDto.tags())) {
+            petToUpdate.setTags(petRequestDto.tags());
+        }
+        if (Objects.nonNull(petRequestDto.photoUrls())) {
+            petToUpdate.setPhotoUrls(petRequestDto.photoUrls());
+        }
+        Pet updatedPet = petRepository.save(petToUpdate);
+        return petMapper.fromPet(updatedPet);
     }
 
     @Override
-    public void deletePet(Long id) {
-
-        /*if (id < 1) { //|| !UsefulUtils.isInteger(String.valueOf(id))
-            //log.info("400 - Invalid ID supplied");
-            throw new IllegalArgumentException("400 - Invalid ID supplied");
-        }*/
-        petRepository.findById(id)
-                .orElseThrow(() -> new RequestedResourceNotFoundException(id));
+    public void deletePetById(Long id) {
         petRepository.deleteById(id);
-    }
-
-    private Pet mapPet(Pet pet) {
-
-        Pet updatedPet = new Pet();
-
-        if (StringUtils.hasLength(pet.getName())) {
-            updatedPet.setName(pet.getName());
-        }
-        if (pet.getStatus() != null) {
-            updatedPet.setStatus(pet.getStatus());
-        }
-        if (pet.getCategory() != null) {
-            updatedPet.setCategory(pet.getCategory());
-        }
-        if (pet.getTags() != null) {
-            updatedPet.setTags(pet.getTags());
-        }
-        if (pet.getPhotoUrls() != null) {
-            updatedPet.setPhotoUrls(pet.getPhotoUrls());
-        }
-        return updatedPet;
     }
 }
