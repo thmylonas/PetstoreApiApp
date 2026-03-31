@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_app.models_dtos;
+package com.thomasmylonas.petstore_api_app.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

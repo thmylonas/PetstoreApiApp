@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_app.models_dtos.enums;
+package com.thomasmylonas.petstore_api_app.enums;
 
 import com.thomasmylonas.petstore_api_app.enums.PetStatus;
 import lombok.extern.slf4j.Slf4j;
