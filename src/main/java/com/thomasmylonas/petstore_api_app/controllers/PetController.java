@@ -37,7 +37,7 @@ public class PetController {
         return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("pet_response", petResponseDto));
     }
 
-//    /**
+    //    /**
 //     * "http://localhost:8080/api/v1/pets/findByStatus?status=sold"
 //     * It returns the list of Pets filtered by status
 //     *
@@ -101,14 +101,15 @@ public class PetController {
 //        log.info("The updated pet is: {}", updatedPet);
 //        return ResponseEntity.ok(updatedPet);
 //    }
-//
-//    @DeleteMapping(path = {"/{id}"})
-//    public ResponseEntity<ResponseSuccess> deletePet(@PathVariable(value = "id") Long id) { // "http://localhost:8080/api/v1/pets/{id}"
-//        petService.deletePet(id);
-//        log.info("The pet with ID {}, is deleted", id);
-//        return ResponseEntity.ok("The pet with ID " + id + ", is deleted");
-//    }
-//
+
+    @DeleteMapping(path = {"/{id}"})
+    @ResponseStatus(value = HttpStatus.OK)
+    public ResponseEntity<ResponseSuccess> deletePetById(@PathVariable(value = "id") Long id) { // "http://localhost:8080/api/v1/pets/{id}"
+        final String message = "Success: The Pet with ID " + id + " has been deleted successfully!";
+        petService.deletePetById(id);
+        return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("message", message));
+    }
+
 //    /**
 //     * TODO: Implement this method
 //     */
