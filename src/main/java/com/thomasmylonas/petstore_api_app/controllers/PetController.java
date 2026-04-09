@@ -95,12 +95,13 @@ public class PetController {
         return responseBuilder.buildResponse(HttpStatus.CREATED, message, Map.of("saved_pets_response", savedPetResponseDtos));
     }
 
-//    @PutMapping(path = {"/{id}"})
-//    public ResponseEntity<ResponseSuccess> updatePet(@PathVariable(value = "id") Long id, @RequestBody Pet pet) { // "http://localhost:8080/api/v1/pets/{id}"
-//        Pet updatedPet = petService.updatePet(id, pet);
-//        log.info("The updated pet is: {}", updatedPet);
-//        return ResponseEntity.ok(updatedPet);
-//    }
+    @PutMapping(path = {"/{id}"})
+    @ResponseStatus(value = HttpStatus.OK)
+    public ResponseEntity<ResponseSuccess> updatePet(@PathVariable(value = "id") Long id, @RequestBody PetRequestDto petRequestDto) { // "http://localhost:8080/api/v1/pets/{id}"
+        final String message = "Success: The Pet with ID " + id + " has been updated successfully!";
+        PetResponseDto updatedPetResponseDto = petService.updatePet(id, petRequestDto);
+        return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("updated_pet_response", updatedPetResponseDto));
+    }
 
     @DeleteMapping(path = {"/{id}"})
     @ResponseStatus(value = HttpStatus.OK)
