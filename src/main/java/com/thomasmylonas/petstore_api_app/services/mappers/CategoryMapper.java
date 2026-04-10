@@ -5,6 +5,8 @@ import com.thomasmylonas.petstore_api_app.dtos.category_dtos.CategoryResponseDto
 import com.thomasmylonas.petstore_api_app.entities.Category;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @Service
 public class CategoryMapper {
 
@@ -18,6 +20,7 @@ public class CategoryMapper {
     public Category toCategory(CategoryRequestDto categoryRequestDto) {
         return Category.builder()
                 .name(categoryRequestDto.name())
+                .pets(new ArrayList<>())
                 .build();
     }
 }
