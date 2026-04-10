@@ -70,15 +70,15 @@ public class Pet {
 {
   "name": "tom",
   "status": "available",
-  "categoryRequestDto": {
+  "category": {
     "name": "cat"
   },
-  "tagRequestDtos": [
+  "tags": [
     {
       "name": "tom123"
     }
   ],
-  "photoUrlRequestDtos": [
+  "photo_urls": [
     {
       "name": "htttp://www.cats.tom.com"
     }

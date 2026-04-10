@@ -33,7 +33,7 @@ public class PetMapper {
         return PetResponseDto.builder()
                 .id(pet.getId())
                 .name(pet.getName())
-                .status(pet.getStatus())
+                .status(pet.getStatus().getValue())
                 .categoryResponseDto(categoryMapper.fromCategory(pet.getCategory()))
                 .tagResponseDtos(tagResponseDtos)
                 .photoUrlResponseDtos(photoUrlResponseDtos)
