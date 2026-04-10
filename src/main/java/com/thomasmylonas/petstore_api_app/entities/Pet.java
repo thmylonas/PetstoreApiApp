@@ -20,6 +20,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "Pet")
@@ -48,14 +49,42 @@ public class Pet {
     @JoinColumn(name = "Category_Id")
     private Category category;
 
-    @OneToMany(mappedBy = "pet")
-    private List<Tag> tags;
+    @OneToMany(mappedBy = "pet", cascade = CascadeType.PERSIST)
+    private List<Tag> tags = new ArrayList<>();
 
-    @OneToMany(mappedBy = "pet")
-    private List<PhotoUrl> photoUrls;
+    @OneToMany(mappedBy = "pet", cascade = CascadeType.PERSIST)
+    private List<PhotoUrl> photoUrls = new ArrayList<>();
+
+    public void addTag(Tag tag) {
+        tag.setPet(this);
+        tags.add(tag);
+    }
+
+    public void addPhotoUrl(PhotoUrl photoUrl) {
+        photoUrl.setPet(this);
+        photoUrls.add(photoUrl);
+    }
 }
 
 /*
+{
+  "name": "tom",
+  "status": "available",
+  "categoryRequestDto": {
+    "name": "cat"
+  },
+  "tagRequestDtos": [
+    {
+      "name": "tom123"
+    }
+  ],
+  "photoUrlRequestDtos": [
+    {
+      "name": "htttp://www.cats.tom.com"
+    }
+  ]
+}
+-----------------------------------------------------------------
 Pet{
     id	        integer($int64)
     category	Category{

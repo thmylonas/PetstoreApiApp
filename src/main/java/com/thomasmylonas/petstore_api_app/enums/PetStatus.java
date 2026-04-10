@@ -28,4 +28,11 @@ public enum PetStatus {
         return Arrays.stream(PetStatus.values())
                 .anyMatch(petStatus -> petStatus.getValue().equals(status.toLowerCase()));
     }
+
+    public static PetStatus valueOfPetStatus(String status) {
+        return Arrays.stream(values())
+                .filter(petStatus -> petStatus.getValue().equalsIgnoreCase(status))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("The status argument in not valid!"));
+    }
 }

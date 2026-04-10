@@ -7,9 +7,11 @@ import com.thomasmylonas.petstore_api_app.dtos.tag_dtos.TagResponseDto;
 import com.thomasmylonas.petstore_api_app.entities.Pet;
 import com.thomasmylonas.petstore_api_app.entities.PhotoUrl;
 import com.thomasmylonas.petstore_api_app.entities.Tag;
+import com.thomasmylonas.petstore_api_app.enums.PetStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -46,12 +48,17 @@ public class PetMapper {
         List<PhotoUrl> photoUrls = petRequestDto.photoUrlRequestDtos().stream()
                 .map(photoUrlMapper::toPhotoUrl)
                 .toList();
-        return Pet.builder()
+
+        Pet pet = Pet.builder()
                 .name(petRequestDto.name())
-                .status(petRequestDto.status())
+                .status(PetStatus.valueOfPetStatus(petRequestDto.status().toUpperCase()))
                 .category(categoryMapper.toCategory(petRequestDto.categoryRequestDto()))
-                .tags(tags)
-                .photoUrls(photoUrls)
+                .tags(new ArrayList<>(tags))
+                .photoUrls(new ArrayList<>(photoUrls))
                 .build();
+
+        tags.forEach(pet::addTag);
+        photoUrls.forEach(pet::addPhotoUrl);
+        return pet;
     }
 }

@@ -14,6 +14,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "Category")
@@ -35,7 +36,7 @@ public class Category {
     private String name;
 
     @OneToMany(mappedBy = "category")
-    private List<Pet> pets;
+    private List<Pet> pets = new ArrayList<>();
 }
 
 /*
