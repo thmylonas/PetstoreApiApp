@@ -16,6 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PetMapper {
 
+    private final CategoryMapper categoryMapper;
     private final TagMapper tagMapper;
     private final PhotoUrlMapper photoUrlMapper;
 
@@ -31,6 +32,7 @@ public class PetMapper {
                 .id(pet.getId())
                 .name(pet.getName())
                 .status(pet.getStatus())
+                .categoryResponseDto(categoryMapper.fromCategory(pet.getCategory()))
                 .tagResponseDtos(tagResponseDtos)
                 .photoUrlResponseDtos(photoUrlResponseDtos)
                 .build();
@@ -47,6 +49,7 @@ public class PetMapper {
         return Pet.builder()
                 .name(petRequestDto.name())
                 .status(petRequestDto.status())
+                .category(categoryMapper.toCategory(petRequestDto.categoryRequestDto()))
                 .tags(tags)
                 .photoUrls(photoUrls)
                 .build();
