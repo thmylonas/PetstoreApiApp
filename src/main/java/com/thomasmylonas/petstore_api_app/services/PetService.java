@@ -1,7 +1,7 @@
 package com.thomasmylonas.petstore_api_app.services;
 
-import com.thomasmylonas.petstore_api_app.dtos.PetRequestDto;
-import com.thomasmylonas.petstore_api_app.dtos.PetResponseDto;
+import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetRequestDto;
+import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetResponseDto;
 import com.thomasmylonas.petstore_api_app.exceptions.RequestedResourceNotFoundException;
 
 import java.util.List;
@@ -15,6 +15,8 @@ public interface PetService {
     List<PetResponseDto> findPetsByStatus(String status);
 
     List<PetResponseDto> findAllPets();
+
+    List<PetResponseDto> findAllPetsSorted(String sortBy, String sortDirection);
 
     PetResponseDto savePet(PetRequestDto petRequestDto);
 

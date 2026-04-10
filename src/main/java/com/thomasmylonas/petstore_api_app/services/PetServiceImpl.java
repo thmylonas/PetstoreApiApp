@@ -1,12 +1,13 @@
 package com.thomasmylonas.petstore_api_app.services;
 
-import com.thomasmylonas.petstore_api_app.dtos.PetRequestDto;
-import com.thomasmylonas.petstore_api_app.dtos.PetResponseDto;
+import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetRequestDto;
+import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetResponseDto;
 import com.thomasmylonas.petstore_api_app.entities.Pet;
 import com.thomasmylonas.petstore_api_app.repositories.PetRepository;
 import com.thomasmylonas.petstore_api_app.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.petstore_api_app.enums.PetStatus;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -48,6 +49,12 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
+    public List<PetResponseDto> findAllPetsSorted(String sortBy, String sortDirection) {
+        List<Pet> pets = petRepository.findAll(sort(sortBy, sortDirection));
+        return pets.stream().map(petMapper::fromPet).toList();
+    }
+
+    @Override
     public PetResponseDto savePet(PetRequestDto petRequestDto) {
         Pet pet = petMapper.toPet(petRequestDto);
         Pet savedPet = petRepository.save(pet);
@@ -66,21 +73,22 @@ public class PetServiceImpl implements PetService {
 
         Pet petToUpdate = petRepository.findById(id)
                 .orElseThrow(() -> new RequestedResourceNotFoundException(Pet.class.getSimpleName(), id));
+        Pet pet = petMapper.toPet(petRequestDto);
 
-        if (StringUtils.hasLength(petRequestDto.name())) {
-            petToUpdate.setName(petRequestDto.name());
+        if (StringUtils.hasLength(pet.getName())) {
+            petToUpdate.setName(pet.getName());
         }
-        if (Objects.nonNull(petRequestDto.status())) {
-            petToUpdate.setStatus(petRequestDto.status());
+        if (Objects.nonNull(pet.getStatus())) {
+            petToUpdate.setStatus(pet.getStatus());
         }
-        if (Objects.nonNull(petRequestDto.category())) {
-            petToUpdate.setCategory(petRequestDto.category());
+        if (Objects.nonNull(pet.getCategory())) {
+            petToUpdate.setCategory(pet.getCategory());
         }
-        if (Objects.nonNull(petRequestDto.tags())) {
-            petToUpdate.setTags(petRequestDto.tags());
+        if (Objects.nonNull(pet.getTags())) {
+            petToUpdate.setTags(pet.getTags());
         }
-        if (Objects.nonNull(petRequestDto.photoUrls())) {
-            petToUpdate.setPhotoUrls(petRequestDto.photoUrls());
+        if (Objects.nonNull(pet.getPhotoUrls())) {
+            petToUpdate.setPhotoUrls(pet.getPhotoUrls());
         }
         Pet updatedPet = petRepository.save(petToUpdate);
         return petMapper.fromPet(updatedPet);
@@ -89,5 +97,9 @@ public class PetServiceImpl implements PetService {
     @Override
     public void deletePetById(Long id) {
         petRepository.deleteById(id);
+    }
+
+    private static Sort sort(String sortBy, String sortDirection) {
+        return "desc".equalsIgnoreCase(sortDirection) ? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
     }
 }

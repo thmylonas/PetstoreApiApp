@@ -1,7 +1,7 @@
 package com.thomasmylonas.petstore_api_app.controllers;
 
-import com.thomasmylonas.petstore_api_app.dtos.PetRequestDto;
-import com.thomasmylonas.petstore_api_app.dtos.PetResponseDto;
+import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetRequestDto;
+import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetResponseDto;
 //import com.thomasmylonas.petstore_api_app.enums.PetStatus;
 import com.thomasmylonas.petstore_api_app.models.ResponseBuilder;
 import com.thomasmylonas.petstore_api_app.models.ResponseSuccess;
@@ -70,6 +70,15 @@ public class PetController {
     public ResponseEntity<ResponseSuccess> findAllPets() { // "http://localhost:8080/api/v1/pets"
         final String message = "Success: The Pets are found!";
         List<PetResponseDto> petResponseDtos = petService.findAllPets();
+        return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("pets_response", petResponseDtos));
+    }
+
+    @GetMapping(params = {"sort", "dir"})
+    @ResponseStatus(value = HttpStatus.OK)
+    public ResponseEntity<ResponseSuccess> findAllPetsSorted(@RequestParam(value = "sort", defaultValue = "id", required = false) String sortBy,
+                                                             @RequestParam(value = "dir", defaultValue = "asc", required = false) String sortDirection) { // "http://localhost:8080/api/v1/pets?sort=field&dir=direction"
+        final String message = "Success: The Pets are found!";
+        List<PetResponseDto> petResponseDtos = petService.findAllPetsSorted(sortBy, sortDirection);
         return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("pets_response", petResponseDtos));
     }
 
