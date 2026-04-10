@@ -55,6 +55,11 @@ public class Pet {
     @OneToMany(mappedBy = "pet", cascade = CascadeType.PERSIST)
     private List<PhotoUrl> photoUrls = new ArrayList<>();
 
+    public void addCategory(Category category) {
+        category.getPets().add(this);
+        setCategory(category);
+    }
+
     public void addTag(Tag tag) {
         tag.setPet(this);
         tags.add(tag);
