@@ -1,0 +1,10 @@
+package com.thomasmylonas.petstore_api_app.dtos.tag_dtos;
+
+import lombok.Builder;
+
+@Builder
+public record TagRequestDto(
+        String name
+        //,Pet pet
+) {
+}
