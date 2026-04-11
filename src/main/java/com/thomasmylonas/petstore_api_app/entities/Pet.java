@@ -45,7 +45,7 @@ public class Pet {
     @Column(name = "Status")
     private PetStatus status;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne//(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "Category_Id")
     private Category category;
 
