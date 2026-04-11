@@ -4,7 +4,7 @@ import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetRequestDto;
 import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetResponseDto;
 import com.thomasmylonas.petstore_api_app.dtos.photo_url_dtos.PhotoUrlResponseDto;
 import com.thomasmylonas.petstore_api_app.dtos.tag_dtos.TagResponseDto;
-import com.thomasmylonas.petstore_api_app.entities.Category;
+//import com.thomasmylonas.petstore_api_app.entities.Category;
 import com.thomasmylonas.petstore_api_app.entities.Pet;
 import com.thomasmylonas.petstore_api_app.entities.PhotoUrl;
 import com.thomasmylonas.petstore_api_app.entities.Tag;
@@ -49,12 +49,12 @@ public class PetMapper {
         List<PhotoUrl> photoUrls = petRequestDto.photoUrlRequestDtos().stream()
                 .map(photoUrlMapper::toPhotoUrl)
                 .toList();
-        Category category = categoryMapper.toCategory(petRequestDto.categoryRequestDto());
+        //Category category = categoryMapper.toCategory(petRequestDto.categoryRequestDto());
 
         Pet pet = Pet.builder()
                 .name(petRequestDto.name())
                 .status(PetStatus.valueOfPetStatus(petRequestDto.status().toUpperCase()))
-                .category(category)
+                //.category(category)
                 .tags(new ArrayList<>())
                 .photoUrls(new ArrayList<>())
                 .build();
