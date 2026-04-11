@@ -155,20 +155,26 @@ echo '.gitignore' >> .gitignore
 
 ========================================================================================================================
 
-public interface CategoryRepository extends JpaRepository<Category, Integer> {
+Useful queries
+------------------
 
-    @NativeQuery(value = """
-            select c.name from Categories c inner join Pets p on p.Category_Id = c.Id
-                                 where p.name = :petName
-            """)
-    // The SQL-Query works in H2-Console - The "@NativeQuery" is NOT correct
-    Optional<Category> findByPetName1(@Param("petName") String petName);
+@NativeQuery(value = """
+        select c.name from Categories c inner join Pets p on p.Category_Id = c.Id
+                             where p.name = :petName
+        """)
+// The SQL-Query works in H2-Console - The "@NativeQuery" is NOT correct
+Optional<Category> findByPetName1(@Param("petName") String petName);
 
-    @Query(value = """
-            select c.name from Category c inner join c.pets p where p.name = :petName
-            """)
-    // This Query is correct
-    Optional<Category> findByPetName2(@Param("petName") String petName);
-}
+@Query(value = """
+        select c.name from Category c inner join c.pets p where p.name = :petName
+        """)
+// This Query is correct
+Optional<Category> findByPetName2(@Param("petName") String petName);
+
+@Query(value = """
+        select p.category from Pet p inner join p.category c where c.name = :categoryName
+        """)
+// This Query is correct
+Optional<List<Pet>> findByCategoryName(@Param("categoryName") String categoryName);
 
 ========================================================================================================================
