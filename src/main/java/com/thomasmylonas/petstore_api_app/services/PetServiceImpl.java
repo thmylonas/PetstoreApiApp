@@ -88,9 +88,7 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public List<PetResponseDto> saveAllPets(List<PetRequestDto> petRequestDtos) {
-        List<Pet> pets = petRequestDtos.stream().map(petMapper::toPet).toList();
-        List<Pet> savedPets = petRepository.saveAll(pets);
-        return savedPets.stream().map(petMapper::fromPet).toList();
+        return petRequestDtos.stream().map(this::savePet).toList();
     }
 
     @Override
