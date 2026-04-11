@@ -63,24 +63,26 @@ public class PetServiceImpl implements PetService {
     @Override
     public PetResponseDto savePet(PetRequestDto petRequestDto) {
 
+        // "Stage_1": Retrieve data from input parameters
+        Pet pet = petMapper.toPet(petRequestDto);
         Category category = categoryMapper.toCategory(petRequestDto.categoryRequestDto());
         String categoryName = category.getName();
 
+        // "Stage_2": Persist Category (Parent) only in case that is not present in DB
         List<Category> categoriesByName = categoryRepository.findByName(categoryName);
-
         if (categoriesByName.isEmpty()) {
-            Category savedCategory = categoryRepository.save(category);
+            categoryRepository.save(category);
         }
 
-        Pet pet = petMapper.toPet(petRequestDto);
-        categoriesByName = categoryRepository.findByName(categoryName);
-        if (!categoriesByName.isEmpty()) {
-            List<Category> savedCategories = categoryRepository.findByName(category.getName());
-            category.setId(savedCategories.getFirst().getId());
-        }
+        // "Stage_3": Setting the Pet (Child) to persist
+        List<Category> savedCategories = categoryRepository.findByName(categoryName); // From "Stage_2", the categoriesByName is NOT empty
+        category.setId(savedCategories.getFirst().getId());
         pet.setCategory(category);
+
+        // "Stage_4": Persist Pet (Child)
         Pet savedPet = petRepository.save(pet);
 
+        // "Stage_5": Return the response
         return petMapper.fromPet(savedPet);
     }
 
