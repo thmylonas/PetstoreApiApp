@@ -2,10 +2,13 @@ package com.thomasmylonas.petstore_api_app.services;
 
 import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetRequestDto;
 import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetResponseDto;
+import com.thomasmylonas.petstore_api_app.entities.Category;
 import com.thomasmylonas.petstore_api_app.entities.Pet;
+import com.thomasmylonas.petstore_api_app.repositories.CategoryRepository;
 import com.thomasmylonas.petstore_api_app.repositories.PetRepository;
 import com.thomasmylonas.petstore_api_app.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.petstore_api_app.enums.PetStatus;
+import com.thomasmylonas.petstore_api_app.services.mappers.CategoryMapper;
 import com.thomasmylonas.petstore_api_app.services.mappers.PetMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
@@ -20,7 +23,9 @@ import java.util.Objects;
 public class PetServiceImpl implements PetService {
 
     private final PetRepository petRepository;
+    private final CategoryRepository categoryRepository;
     private final PetMapper petMapper;
+    private final CategoryMapper categoryMapper;
 
     @Override
     public PetResponseDto findPetById(Long id) {
@@ -57,8 +62,25 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public PetResponseDto savePet(PetRequestDto petRequestDto) {
+
+        Category category = categoryMapper.toCategory(petRequestDto.categoryRequestDto());
+        String categoryName = category.getName();
+
+        List<Category> categoriesByName = categoryRepository.findByName(categoryName);
+
+        if (categoriesByName.isEmpty()) {
+            Category savedCategory = categoryRepository.save(category);
+        }
+
         Pet pet = petMapper.toPet(petRequestDto);
+        categoriesByName = categoryRepository.findByName(categoryName);
+        if (!categoriesByName.isEmpty()) {
+            List<Category> savedCategories = categoryRepository.findByName(category.getName());
+            category.setId(savedCategories.getFirst().getId());
+        }
+        pet.setCategory(category);
         Pet savedPet = petRepository.save(pet);
+
         return petMapper.fromPet(savedPet);
     }
 
