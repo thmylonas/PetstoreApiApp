@@ -2,6 +2,7 @@ package com.thomasmylonas.petstore_api_app.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -35,8 +36,14 @@ public class Category {
     @Column(name = "Name")
     private String name;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
     private List<Pet> pets = new ArrayList<>();
+
+    // This method is not needed (I do not know why)
+    public void addPet(Pet pet) {
+        getPets().add(pet);
+        pet.setCategory(this);
+    }
 }
 
 /*

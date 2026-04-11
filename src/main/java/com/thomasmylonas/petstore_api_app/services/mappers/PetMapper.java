@@ -54,11 +54,12 @@ public class PetMapper {
         Pet pet = Pet.builder()
                 .name(petRequestDto.name())
                 .status(PetStatus.valueOfPetStatus(petRequestDto.status().toUpperCase()))
+                .category(category)
                 .tags(new ArrayList<>())
                 .photoUrls(new ArrayList<>())
                 .build();
 
-        pet.addCategory(category);
+        //category.addPet(pet); // It seems this method is not needed (I do not know why)
 
         tags.forEach(pet::addTag);
         photoUrls.forEach(pet::addPhotoUrl);

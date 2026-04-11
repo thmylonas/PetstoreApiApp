@@ -45,20 +45,20 @@ public class Pet {
     @Column(name = "Status")
     private PetStatus status;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "Category_Id")
     private Category category;
 
-    @OneToMany(mappedBy = "pet", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "pet", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Tag> tags = new ArrayList<>();
 
-    @OneToMany(mappedBy = "pet", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "pet", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<PhotoUrl> photoUrls = new ArrayList<>();
 
-    public void addCategory(Category category) {
+    /*public void addCategory(Category category) {
         category.getPets().add(this);
         setCategory(category);
-    }
+    }*/
 
     public void addTag(Tag tag) {
         tag.setPet(this);
