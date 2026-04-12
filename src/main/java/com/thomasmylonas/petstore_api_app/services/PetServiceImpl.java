@@ -15,6 +15,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -37,15 +39,27 @@ public class PetServiceImpl implements PetService {
     @Override
     public List<PetResponseDto> findPetsByName(String name) {
         List<Pet> pets = petRepository.findByName(name)
-                .orElseThrow(() -> new RequestedResourceNotFoundException("The pet with name " + name + " is not found!"));
+                .orElseThrow(() -> new RequestedResourceNotFoundException("The pets with name " + name + " are not found!"));
         return pets.stream().map(petMapper::fromPet).toList();
     }
 
     @Override
     public List<PetResponseDto> findPetsByStatus(String status) {
-        List<Pet> pets = petRepository.findByStatus(PetStatus.fromValue(status))
-                .orElseThrow(() -> new RequestedResourceNotFoundException("The pet with status " + status + " is not found!"));
-        return pets.stream().map(petMapper::fromPet).toList();
+
+        String[] statuses = status.split(",");
+
+        boolean notAllStatuses = Arrays.stream(statuses).anyMatch(s -> !PetStatus.isPetStatus(s));
+        if (notAllStatuses) {
+            throw new IllegalArgumentException("400 - Invalid status value");
+        }
+
+        List<Pet> petsByStatus = new ArrayList<>();
+        for (String s : statuses) {
+            List<Pet> pets = petRepository.findByStatus(PetStatus.valueOfPetStatus(s))
+                    .orElseThrow(() -> new RequestedResourceNotFoundException("The pets with status " + status + " are not found!"));
+            petsByStatus.addAll(pets);
+        }
+        return petsByStatus.stream().map(petMapper::fromPet).toList();
     }
 
     @Override
