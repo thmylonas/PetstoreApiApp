@@ -72,7 +72,7 @@ public class PetServiceImpl implements PetService {
         List<Category> existingCategoriesByName = categoryRepository.findByName(categoryName)
                 .orElseThrow(() -> new RequestedResourceNotFoundException("The Category with name " + categoryName + " is not found!"));
         if (existingCategoriesByName.isEmpty()) {
-            // Persist Category (Parent) only if it exists in DB, and set Pet (Child) to persist
+            // Persist Category (Parent) only if it does not exist in DB, and set Pet (Child) to persist
             Category savedCategory = categoryRepository.save(category);
             pet.setCategory(savedCategory);
         } else {
