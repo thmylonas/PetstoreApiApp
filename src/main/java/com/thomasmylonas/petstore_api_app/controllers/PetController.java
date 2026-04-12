@@ -37,34 +37,29 @@ public class PetController {
         return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("pet_response", petResponseDto));
     }
 
-    //    /**
-//     * "http://localhost:8080/api/v1/pets/findByStatus?status=sold"
-//     * It returns the list of Pets filtered by status
-//     *
-//     * @param status status: available, pending, sold, and all the combinations
-//     * @return The petList filtered by status
-//     * @throws IllegalArgumentException If the input is invalid (e.g. status is not as defined)
-//     */
-//    @GetMapping(path = {"/findByStatus"})
-//    @ResponseStatus(value = HttpStatus.OK)
-//    public ResponseEntity<ResponseSuccess> findPetsByStatus(@RequestParam(value = "status", defaultValue = "available") String status) {
-//
-//        String[] statuses = status.split(",");
-//
-//        for (String s : statuses) {
-//            if (!PetStatus.isPetStatus(s)) {
-//                log.info("400 - Invalid status value");
-//                throw new IllegalArgumentException("400 - Invalid status value");
-//            }
-//        }
-//
-//        List<Pet> petsByStatus = new ArrayList<>();
-//        for (String s : statuses) {
-//            petsByStatus.addAll(petService.findPetsByStatus(s));
-//        }
-//        log.info("All pets filtered by status {} are: {}", status, petsByStatus);
-//        return ResponseEntity.ok(petsByStatus);
-//    }
+    @GetMapping
+    @ResponseStatus(value = HttpStatus.OK)
+    public ResponseEntity<ResponseSuccess> findPetsByName(@PathVariable(value = "name") String name) {
+        final String message = "Success: The Pets with name " + name + " are found!";
+        List<PetResponseDto> petResponseDtos = petService.findPetsByName(name);
+        return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("pets_by_name_response", petResponseDtos));
+    }
+
+    /**
+     * "http://localhost:8080/api/v1/pets?status=sold"
+     * It returns the list of Pets filtered by status
+     *
+     * @param status status: available, pending, sold, and all the combinations
+     * @return The pets filtered by status
+     */
+    @GetMapping
+    @ResponseStatus(value = HttpStatus.OK)
+    public ResponseEntity<ResponseSuccess> findPetsByStatus(@RequestParam(value = "status", defaultValue = "available") String status) {
+        final String message = "Success: The Pets with status are found!";
+        List<PetResponseDto> petByStatusResponseDtos = petService.findPetsByStatus(status);
+        return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("pets_by_status_response", petByStatusResponseDtos));
+    }
+
     @GetMapping
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<ResponseSuccess> findAllPets() { // "http://localhost:8080/api/v1/pets"
