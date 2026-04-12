@@ -2,16 +2,15 @@ package com.thomasmylonas.petstore_api_app.controllers;
 
 import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetRequestDto;
 import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetResponseDto;
-//import com.thomasmylonas.petstore_api_app.enums.PetStatus;
 import com.thomasmylonas.petstore_api_app.models.ResponseBuilder;
 import com.thomasmylonas.petstore_api_app.models.ResponseSuccess;
 import com.thomasmylonas.petstore_api_app.services.PetService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-//import org.springframework.http.MediaType;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-//import org.springframework.util.MultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -115,25 +114,23 @@ public class PetController {
         return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("message", message));
     }
 
-//    /**
-//     * TODO: Implement this method
-//     */
-//    @PostMapping(path = {"/{id}"},
-//            consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-//    public ResponseEntity<Pet> updateWithForm(@PathVariable int id,
-//                                              @RequestParam MultiValueMap<String, String> paramMap) throws Exception {
-//
-//        /*if (id < 1) { //|| !UsefulUtils.isInteger(String.valueOf(id))
-//            //log.info("400 - Invalid ID supplied");
-//            throw new IllegalArgumentException("400 - Invalid ID supplied");
-//        }*/
-//
-////        Pet pet = new Pet(petModel);
-////        pet.setPhotoUrls(pet.getPhotoUrls());
-////        pet.setTags(pet.getTags());
-////        Pet petPersisted = petRepository.save(pet);
-//
-////        log.info("The new pet:\n" + petPersisted + "\nis added, with the id: " + petPersisted.getId());
-//        return new ResponseEntity<>(null, HttpStatus.OK);
-//    }
+    @PostMapping(path = {"/{id}"},
+            consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE}
+    )
+    public ResponseEntity<ResponseSuccess> updatePetWithForm(@PathVariable Long id,
+                                                             @RequestParam MultiValueMap<String, String> paramMap) {
+
+        /*if (id < 1) { //|| !UsefulUtils.isInteger(String.valueOf(id))
+            //log.info("400 - Invalid ID supplied");
+            throw new IllegalArgumentException("400 - Invalid ID supplied");
+        }*/
+
+        //Pet pet = new Pet(petModel);
+        //pet.setPhotoUrls(pet.getPhotoUrls());
+        //pet.setTags(pet.getTags());
+        //Pet petPersisted = petRepository.save(pet);
+
+        //log.info("The new pet: " + petPersisted + " is added, with the id: " + petPersisted.getId());
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
 }
