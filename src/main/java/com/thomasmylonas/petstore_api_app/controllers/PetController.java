@@ -36,7 +36,7 @@ public class PetController {
         return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("pet_response", petResponseDto));
     }
 
-    @GetMapping
+    @GetMapping(path = {"/{name}"})
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<ResponseSuccess> findPetsByName(@PathVariable(value = "name") String name) {
         final String message = "Success: The Pets with name " + name + " are found!";
@@ -51,7 +51,7 @@ public class PetController {
      * @param status status: available, pending, sold, and all the combinations
      * @return The pets filtered by status
      */
-    @GetMapping
+    @GetMapping(params = {"status"})
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<ResponseSuccess> findPetsByStatus(@RequestParam(value = "status", defaultValue = "available") String status) {
         final String message = "Success: The Pets with status are found!";
@@ -114,7 +114,8 @@ public class PetController {
         return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("message", message));
     }
 
-    @PostMapping(path = {"/{id}"},
+    @PostMapping(
+            path = {"/{id}"},
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE}
     )
     public ResponseEntity<ResponseSuccess> updatePetWithForm(@PathVariable Long id,
