@@ -34,13 +34,20 @@ public class Tag {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "Pet_Id")
+    @JoinColumn(name = "Pet_Id", referencedColumnName = "Id")
     private Pet pet;
 }
 
 /*
+Swagger model:
+------------------
 Tag{
-    id	integer($int64)
+    id	    integer($int64)
     name	string
+}
+
+"tag": {
+      "id": 0,
+      "name": "string"
 }
 */

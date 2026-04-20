@@ -55,14 +55,16 @@ public class User {
 }
 
 /*
+Swagger model:
+------------------
 User{
-    id	integer($int64)
+    id	        integer($int64)
     username	string
     firstName	string
     lastName	string
-    email	string
+    email	    string
     password	string
-    phone	string
+    phone	    string
     userStatus	integer($int32) // User Status
 }
 */

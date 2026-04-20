@@ -45,8 +45,8 @@ public class Pet {
     @Column(name = "Status")
     private PetStatus status;
 
-    @ManyToOne//(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "Category_Id")
+    @ManyToOne//(cascade = {CascadeType.PERSIST, CascadeType.MERGE}) // DO NOT use "cascade"
+    @JoinColumn(name = "Category_Id", referencedColumnName = "Id")
     private Category category;
 
     @OneToMany(mappedBy = "pet", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -54,6 +54,9 @@ public class Pet {
 
     @OneToMany(mappedBy = "pet", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<PhotoUrl> photoUrls = new ArrayList<>();
+
+    @OneToMany(mappedBy = "pet")
+    private List<Order> orders = new ArrayList<>();
 
     /*public void addCategory(Category category) {
         category.getPets().add(this);
@@ -90,30 +93,31 @@ public class Pet {
   ]
 }
 -----------------------------------------------------------------
+Swagger model:
+------------------
 Pet{
     id	        integer($int64)
     category	Category{
-                    id	integer($int64)
+                    id	    integer($int64)
                     name	string // Dogs, Cats, Fish, Birds
                 }
     name*	    string // example: doggie
     photoUrls*	[
-        xml: OrderedMap { "wrapped": true }
-        string
-        xml: OrderedMap { "name": "photoUrl" }
-        xml: name: photoUrl
-       ]
-       	// [xml: OrderedMap { "name": "photoUrl", "wrapped": true }string]
-    tags	[
-        xml: OrderedMap { "wrapped": true }
-        Tag{
-            id	integer($int64)
-            name	string
-        }
-    ]
+                    xml: OrderedMap { "wrapped": true }
+                    string
+                    xml: OrderedMap { "name": "photoUrl" }
+                    xml: name: photoUrl
+                ]
+    // [xml: OrderedMap { "name": "photoUrl", "wrapped": true }string]
+    tags	    [
+                    xml: OrderedMap { "wrapped": true }
+                    Tag{
+                        id	integer($int64)
+                        name	string
+                    }
+                ]
     status	    string Enum: [ available, pending, sold ] // pet status in the store
 }
-
 * Required - Needs custom validation
 
 {

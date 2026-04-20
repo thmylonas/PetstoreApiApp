@@ -8,6 +8,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -33,8 +35,9 @@ public class Order {
     @Column(name = "Id")
     private Long id;
 
-    @Column(name = "Pet_Id")
-    private long petId;
+    @ManyToOne
+    @JoinColumn(name = "Pet_Id", referencedColumnName = "Id")
+    private Pet pet;
 
     @Column(name = "Quantity")
     private int quantity;
@@ -48,9 +51,24 @@ public class Order {
 
     @Column(name = "Complete")
     private boolean complete;
+
+    // This method is not needed
+    public void addPet(Pet pet) {
+        pet.getOrders().add(this);
+        setPet(pet);
+    }
 }
 
 /*
+{
+    "pet_id": 3,
+    "quantity": 3,
+    "status": "placed",
+    "complete":	true
+}
+-----------------------------------------------------------------
+Swagger model:
+------------------
 Order{
     id	        integer($int64)
     petId	    integer($int64)

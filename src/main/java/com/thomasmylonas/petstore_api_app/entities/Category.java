@@ -46,6 +46,8 @@ public class Category {
 }
 
 /*
+Swagger model:
+------------------
 Category{
     id	    integer($int64)
     name	string

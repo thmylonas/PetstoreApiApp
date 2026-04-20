@@ -34,6 +34,6 @@ public class PhotoUrl {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "Pet_Id")
+    @JoinColumn(name = "Pet_Id", referencedColumnName = "Id")
     private Pet pet;
 }
