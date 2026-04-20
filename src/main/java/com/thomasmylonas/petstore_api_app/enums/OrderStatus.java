@@ -3,6 +3,8 @@ package com.thomasmylonas.petstore_api_app.enums;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.Arrays;
+
 @Getter
 @AllArgsConstructor
 public enum OrderStatus {
@@ -12,4 +14,11 @@ public enum OrderStatus {
     DELIVERED("delivered");
 
     private final String value;
+
+    public static OrderStatus valueOfOrderStatus(String status) {
+        return Arrays.stream(values())
+                .filter(orderStatus -> orderStatus.getValue().equalsIgnoreCase(status))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("The status argument in not valid!"));
+    }
 }
