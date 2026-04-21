@@ -49,6 +49,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<OrderResponseDto> saveAllOrders(List<OrderRequestDto> orderRequestDtos) {
+        return orderRequestDtos.stream().map(this::saveOrder).toList();
+    }
+
+    @Override
     public void deleteOrderById(Long id) {
         orderRepository.deleteById(id);
     }

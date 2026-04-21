@@ -14,5 +14,7 @@ public interface OrderService {
 
     OrderResponseDto saveOrder(OrderRequestDto orderRequestDto);
 
+    List<OrderResponseDto> saveAllOrders(List<OrderRequestDto> orderRequestDtos);
+
     void deleteOrderById(Long id) throws RequestedResourceNotFoundException;
 }

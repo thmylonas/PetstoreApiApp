@@ -1,6 +1,7 @@
 package com.thomasmylonas.petstore_api_app.helpers;
 
 import com.thomasmylonas.petstore_api_app.dtos.category_dtos.CategoryRequestDto;
+import com.thomasmylonas.petstore_api_app.dtos.order_dtos.OrderRequestDto;
 import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetRequestDto;
 import com.thomasmylonas.petstore_api_app.dtos.photo_url_dtos.PhotoUrlRequestDto;
 import com.thomasmylonas.petstore_api_app.dtos.tag_dtos.TagRequestDto;
@@ -150,6 +151,39 @@ public class TestDataProvider {
                                     PhotoUrlRequestDto.builder().name("htttp://www.snakes.shssss.com").build()
                             )
                     )
+                    .build()
+    );
+
+    public static List<OrderRequestDto> ORDER_REQUEST_DTOS = List.of(
+            OrderRequestDto.builder()
+                    .petId(2)
+                    .quantity(4)
+                    .status("placed")
+                    .complete(true)
+                    .build(),
+            OrderRequestDto.builder()
+                    .petId(3)
+                    .quantity(2)
+                    .status("approved")
+                    .complete(false)
+                    .build(),
+            OrderRequestDto.builder()
+                    .petId(3)
+                    .quantity(4)
+                    .status("placed")
+                    .complete(true)
+                    .build(),
+            OrderRequestDto.builder()
+                    .petId(1)
+                    .quantity(4)
+                    .status("approved")
+                    .complete(false)
+                    .build(),
+            OrderRequestDto.builder()
+                    .petId(4)
+                    .quantity(4)
+                    .status("delivered")
+                    .complete(true)
                     .build()
     );
 }

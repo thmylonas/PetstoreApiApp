@@ -63,6 +63,14 @@ public class StoreController {
         return responseBuilder.buildResponse(HttpStatus.CREATED, message, savedOrderUri, Map.of("saved_order_response", orderResponseDto));
     }
 
+    @PostMapping(path = {"/order/all"})
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public ResponseEntity<ResponseSuccess> saveAllOrders(@RequestBody List<OrderRequestDto> orderRequestDtos) { // "http://localhost:8080/api/v1/store/order/all"
+        final String message = "Created: The Orders have been created successfully!";
+        List<OrderResponseDto> savedOrderResponseDtos = orderService.saveAllOrders(orderRequestDtos);
+        return responseBuilder.buildResponse(HttpStatus.CREATED, message, Map.of("saved_orders_response", savedOrderResponseDtos));
+    }
+
     @DeleteMapping(path = {"/order/{id}"})
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<ResponseSuccess> deleteOrderById(@PathVariable(value = "id") Long id) { // "http://localhost:8080/api/v1/store/order/{id}"
