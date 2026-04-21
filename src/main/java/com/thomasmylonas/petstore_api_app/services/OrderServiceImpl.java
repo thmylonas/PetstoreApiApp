@@ -2,6 +2,7 @@ package com.thomasmylonas.petstore_api_app.services;
 
 import com.thomasmylonas.petstore_api_app.dtos.order_dtos.OrderRequestDto;
 import com.thomasmylonas.petstore_api_app.dtos.order_dtos.OrderResponseDto;
+import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.InventoryResponseDto;
 import com.thomasmylonas.petstore_api_app.entities.Order;
 import com.thomasmylonas.petstore_api_app.entities.Pet;
 import com.thomasmylonas.petstore_api_app.exceptions.RequestedResourceNotFoundException;
@@ -21,6 +22,12 @@ public class OrderServiceImpl implements OrderService {
     private final PetRepository petRepository;
     private final OrderRepository orderRepository;
     private final OrderMapper orderMapper;
+
+    @Override
+    public List<InventoryResponseDto> findInventoriesByPetStatus() {
+        return orderRepository.findInventoriesByPetStatus()
+                .orElseThrow(() -> new RequestedResourceNotFoundException("The Inventories by PetStatus are not found!"));
+    }
 
     @Override
     public OrderResponseDto findOrderById(Long id) {

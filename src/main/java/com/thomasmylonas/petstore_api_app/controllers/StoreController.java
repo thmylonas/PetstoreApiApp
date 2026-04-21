@@ -2,6 +2,7 @@ package com.thomasmylonas.petstore_api_app.controllers;
 
 import com.thomasmylonas.petstore_api_app.dtos.order_dtos.OrderRequestDto;
 import com.thomasmylonas.petstore_api_app.dtos.order_dtos.OrderResponseDto;
+import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.InventoryResponseDto;
 import com.thomasmylonas.petstore_api_app.services.OrderService;
 import com.thomasmylonas.petstore_api_app.models.ResponseBuilder;
 import com.thomasmylonas.petstore_api_app.models.ResponseSuccess;
@@ -32,6 +33,14 @@ public class StoreController {
 
     private final OrderService orderService;
     private final ResponseBuilder responseBuilder;
+
+    @GetMapping(path = {"/inventory"})
+    @ResponseStatus(value = HttpStatus.OK)
+    public ResponseEntity<ResponseSuccess> findInventoriesByPetStatus() { // "http://localhost:8080/api/v1/store/inventory"
+        final String message = "Success: The Inventories by PetStatus are found!";
+        List<InventoryResponseDto> inventoryResponseDtos = orderService.findInventoriesByPetStatus();
+        return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("inventories_by_status", inventoryResponseDtos));
+    }
 
     @GetMapping(path = {"/order/{id}"})
     @ResponseStatus(value = HttpStatus.OK)
