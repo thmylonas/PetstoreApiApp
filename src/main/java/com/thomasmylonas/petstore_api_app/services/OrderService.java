@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface OrderService {
 
-    List<InventoryResponseDto> findInventoriesByPetStatus();
+    List<InventoryResponseDto> findInventoriesByPetStatus() throws RequestedResourceNotFoundException;
 
     OrderResponseDto findOrderById(Long id) throws RequestedResourceNotFoundException;
 
