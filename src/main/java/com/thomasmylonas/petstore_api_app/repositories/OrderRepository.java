@@ -11,7 +11,11 @@ import java.util.Optional;
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
     /**
-     * SELECT p.STATUS PET_STATUS, SUM(o.QUANTITY) QUANTITIES FROM ORDERS o inner join PETS p ON o.PET_ID = p.ID group by  p.STATUS;
+     * Initial SQL-Query:
+     * - SELECT p.STATUS PET_STATUS, SUM(o.QUANTITY) QUANTITIES FROM ORDERS o inner join PETS p ON o.PET_ID = p.ID group by p.STATUS;
+     * <p>
+     * Real SQL-Query executed by Hibernate:
+     * - Hibernate: select p1_0.status,sum(o1_0.quantity) from orders o1_0 join pets p1_0 on p1_0.id=o1_0.pet_id group by p1_0.status
      *
      * @return An Optional of "List<InventoryResponseDto>"
      */

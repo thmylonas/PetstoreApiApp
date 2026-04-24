@@ -179,7 +179,6 @@ Optional<List<Pet>> findByCategoryName(@Param("categoryName") String categoryNam
 
 ========================================================================================================================
 
-
 Spring_DataJPA Projections - Returning fields, not entities
 ---------------------------------------------------------------
 
@@ -192,13 +191,13 @@ Spring_DataJPA Projections - Returning fields, not entities
 - https://stackoverflow.com/questions/22653858/how-to-get-multiple-columns-from-table-using-jpa
 - https://stackoverflow.com/questions/23866709/org-hibernate-nonuniqueresultexception-query-did-not-return-a-unique-result-2
 
+Error_1:
 If the fields DTO has wrong fields and types, it leads to the:
 - org.hibernate.query.SemanticException: Missing constructor for type 'InventoryResponseDto'
   [select new InventoryResponseDto(p.status, sum(o.quantity)) from Order o inner join o.pet p group by p.status]
 
-
-// select p1_0.status,sum(o1_0.quantity) from orders o1_0 join pets p1_0 on p1_0.id=o1_0.pet_id group by p1_0.status
-
-org.hibernate.NonUniqueResultException: Query did not return a unique result: 2 results were returned
-jpa Method threw 'org.springframework.dao.IncorrectResultSizeDataAccessException' exception.
-NonUniqueResultException
+Error_2:
+If the JPQL-Query returns a single object and not a collection, it leads to the:
+- org.hibernate.NonUniqueResultException: Query did not return a unique result: 2 results were returned
+  jpa Method threw 'org.springframework.dao.IncorrectResultSizeDataAccessException' exception
+- org.springframework.dao.IncorrectResultSizeDataAccessException: Query did not return a unique result: 2 results were returned
