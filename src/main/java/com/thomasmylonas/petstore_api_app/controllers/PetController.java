@@ -6,9 +6,7 @@ import com.thomasmylonas.petstore_api_app.models.ResponseBuilder;
 import com.thomasmylonas.petstore_api_app.models.ResponseSuccess;
 import com.thomasmylonas.petstore_api_app.services.PetService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -19,7 +17,6 @@ import java.util.Map;
 @RestController
 @RequestMapping(path = "/api/v1/pets")
 @RequiredArgsConstructor
-@Slf4j
 public class PetController {
 
     private static final String REQUEST_MAPPING = "/api/v1/pets";
@@ -114,21 +111,15 @@ public class PetController {
     }
 
     @PostMapping(
-            path = {"/update-pet"},
-//            path = {"/{id}"},
-            consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE}
+            path = {"/update-pet/{id}"}
+//            consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE}
     )
     public ResponseEntity<ResponseSuccess> updatePetWithForm(@ModelAttribute(value = "name") String name,
-                                                             @ModelAttribute(value = "category") String category) { //(@PathVariable Long id,
-        //@RequestParam MultiValueMap<String, String> paramMap) {
-
-//        Pet pet = new Pet(petModel);
-//        pet.setPhotoUrls(pet.getPhotoUrls());
-//        pet.setTags(pet.getTags());
-//        Pet petPersisted = petRepository.save(pet);
-
-        //log.info("The new pet: " + petPersisted + " is added, with the id: " + petPersisted.getId());
-        final String message = String.format("name: '%s', category: '%s'", name, category);
-        return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("message", message));
+                                                             @ModelAttribute(value = "status") String status,
+                                                             @ModelAttribute(value = "category") String category,
+                                                             @PathVariable(value = "id") Long id) {
+        final String message = String.format("name: '%s', status: '%s', category: '%s'", name, status, category);
+        PetResponseDto updatedPetResponseDto = petService.updatePetWithForm(id, name, status, category);
+        return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("updated_pet_response", updatedPetResponseDto));
     }
 }

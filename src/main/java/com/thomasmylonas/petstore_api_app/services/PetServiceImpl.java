@@ -120,7 +120,7 @@ public class PetServiceImpl implements PetService {
             petToUpdate.setStatus(pet.getStatus());
         }
         if (Objects.nonNull(pet.getCategory())) {
-            petToUpdate.setCategory(pet.getCategory());
+            petToUpdate.setCategory(pet.getCategory()); // TODO: What id the category does not exit?
         }
         if (Objects.nonNull(pet.getTags())) {
             petToUpdate.setTags(pet.getTags());
@@ -135,6 +135,25 @@ public class PetServiceImpl implements PetService {
     @Override
     public void deletePetById(Long id) {
         petRepository.deleteById(id);
+    }
+
+    @Override
+    public PetResponseDto updatePetWithForm(Long id, String name, String status, String category) {
+
+        Pet petToUpdate = petRepository.findById(id)
+                .orElseThrow(() -> new RequestedResourceNotFoundException(Pet.class.getSimpleName(), id));
+
+        if (StringUtils.hasLength(name)) {
+            petToUpdate.setName(name);
+        }
+        if (StringUtils.hasLength(status)) {
+            petToUpdate.setStatus(PetStatus.valueOfPetStatus(status));
+        }
+        /*if (StringUtils.hasLength(category)) { // TODO: What id the category does not exit?
+            petToUpdate.setCategory(category);
+        }*/
+        Pet updatedPet = petRepository.save(petToUpdate);
+        return petMapper.fromPet(updatedPet);
     }
 
     private static Sort sort(String sortBy, String sortDirection) {
