@@ -8,7 +8,6 @@ import com.thomasmylonas.petstore_api_app.services.PetService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -111,19 +110,13 @@ public class PetController {
         return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("message", message));
     }
 
-    @PostMapping(
-            path = {"/update-pet-with-form/{id}"}
-//            consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE}
-    )
+    @PostMapping(path = {"/update-pet-with-form/{id}"}) //consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE}
     public ResponseEntity<ResponseSuccess> updatePetWithForm(@ModelAttribute(value = "name") String name,
                                                              @ModelAttribute(value = "status") String status,
                                                              @ModelAttribute(value = "category") String category,
-                                                             @PathVariable(value = "id") Long id,
-                                                             Model model) {
-        //model.addAttribute("id", id);
-
+                                                             @PathVariable(value = "id") String id) {
         final String message = String.format("name: '%s', status: '%s', category: '%s'", name, status, category);
-        PetResponseDto updatedPetResponseDto = petService.updatePetWithForm(id, name, status, category);
+        PetResponseDto updatedPetResponseDto = petService.updatePetWithForm(Long.valueOf(id), name, status, category);
         return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("updated_pet_response", updatedPetResponseDto));
     }
 }
