@@ -114,9 +114,9 @@ public class PetController {
     public ResponseEntity<ResponseSuccess> updatePetWithForm(@ModelAttribute(value = "name") String name,
                                                              @ModelAttribute(value = "status") String status,
                                                              @ModelAttribute(value = "category") String category,
-                                                             @PathVariable(value = "id") String id) {
+                                                             @PathVariable(value = "id") Long id) {
         final String message = String.format("name: '%s', status: '%s', category: '%s'", name, status, category);
-        PetResponseDto updatedPetResponseDto = petService.updatePetWithForm(Long.valueOf(id), name, status, category);
+        PetResponseDto updatedPetResponseDto = petService.updatePetWithForm(id, name, status, category);
         return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("updated_pet_response", updatedPetResponseDto));
     }
 }
