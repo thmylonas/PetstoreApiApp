@@ -138,7 +138,7 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    public PetResponseDto updatePetWithForm(Long id, String name, String status, String category) {
+    public PetResponseDto updatePetWithForm(Long id, String name, String status) {
 
         Pet petToUpdate = petRepository.findById(id)
                 .orElseThrow(() -> new RequestedResourceNotFoundException(Pet.class.getSimpleName(), id));
@@ -149,9 +149,6 @@ public class PetServiceImpl implements PetService {
         if (StringUtils.hasLength(status)) {
             petToUpdate.setStatus(PetStatus.valueOfPetStatus(status));
         }
-        /*if (StringUtils.hasLength(category)) { // TODO: What id the category does not exit?
-            petToUpdate.setCategory(category);
-        }*/
         Pet updatedPet = petRepository.save(petToUpdate);
         return petMapper.fromPet(updatedPet);
     }

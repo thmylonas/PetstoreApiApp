@@ -110,13 +110,14 @@ public class PetController {
         return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("message", message));
     }
 
-    @PostMapping(path = {"/update-pet-with-form/{id}"}) //consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE}
-    public ResponseEntity<ResponseSuccess> updatePetWithForm(@ModelAttribute(value = "name") String name,
-                                                             @ModelAttribute(value = "status") String status,
-                                                             @ModelAttribute(value = "category") String category,
-                                                             @PathVariable(value = "id") Long id) {
-        final String message = String.format("name: '%s', status: '%s', category: '%s'", name, status, category);
-        PetResponseDto updatedPetResponseDto = petService.updatePetWithForm(id, name, status, category);
+    @PostMapping(path = {"/update-pet-with-form"}) //consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE}
+    public ResponseEntity<ResponseSuccess> updatePetWithForm(@ModelAttribute(value = "petId") Long id,
+                                                             @ModelAttribute(value = "name") String name,
+                                                             @ModelAttribute(value = "status") String status
+                                                             //, @PathVariable(value = "id") Long id
+    ) {
+        final String message = String.format("petId: '%d', name: '%s', status: '%s'", id, name, status);
+        PetResponseDto updatedPetResponseDto = petService.updatePetWithForm(id, name, status);
         return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("updated_pet_response", updatedPetResponseDto));
     }
 }

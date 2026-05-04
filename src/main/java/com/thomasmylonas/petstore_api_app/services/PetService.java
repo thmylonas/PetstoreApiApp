@@ -26,5 +26,5 @@ public interface PetService {
 
     void deletePetById(Long id) throws RequestedResourceNotFoundException;
 
-    PetResponseDto updatePetWithForm(Long id, String name, String status, String category);
+    PetResponseDto updatePetWithForm(Long id, String name, String status);
 }
