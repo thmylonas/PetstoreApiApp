@@ -9,24 +9,45 @@
 }
 
 .page_title {
-    height: 100% !important; /*150vh*/
-    background-color: rgba(102, 255, 255, 0.7) !important; /*#66FFFFB2*/
-    border: 1px solid rgba(255, 0, 128, 1) !important; /*#FF0080FF*/
-    border-radius: 5px !important;
-    box-shadow: 8px 5px 5px rgba(51, 77, 77, 1) !important; /*#334D4DFF*/
-    font-family: Linotype Didot, Courgette, serif !important;
-    font-size: 30px !important;
-    color: rgba(179, 0, 0, 1) !important; /*#B30000FF*/
-    text-align: center !important;
-    text-decoration: none !important;
-    text-shadow: 4px 4px 4px rgba(51, 77, 77, 1) !important; /*#334D4DFF*/
-    padding-top: 5px !important;
-    line-height: 40px !important;
-    margin: 0 10px 0 10px !important;
+    height: 100%; /*150vh*/
+    background-color: rgba(102, 255, 255, 0.7); /*#66FFFFB2*/
+    border: 1px solid rgba(255, 0, 128, 1); /*#FF0080FF*/
+    border-radius: 5px;
+    box-shadow: 8px 5px 5px rgba(51, 77, 77, 1); /*#334D4DFF*/
+    font-family: Linotype Didot, Courgette, serif;
+    font-size: 30px;
+    color: rgba(179, 0, 0, 1); /*#B30000FF*/
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 4px 4px 4px rgba(51, 77, 77, 1); /*#334D4DFF*/
+    padding-top: 5px;
+    line-height: 40px;
+    margin: 0 10px 0 10px;
+}
+
+.pets_endpoints {
+    font-family: Linotype Didot, Courgette, serif;
+    font-size: 30px;
+    color: rgba(179, 0, 0, 1); /*#B30000FF*/
+    text-shadow: 4px 4px 4px rgba(51, 77, 77, 1); /*#334D4DFF*/
+}
+
+.pet_forms {
+    height: 100%; /*150vh*/
+    background-color: rgba(102, 255, 255, 0.7); /*#66FFFFB2*/
+    border: 1px solid rgba(255, 0, 128, 1); /*#FF0080FF*/
+    border-radius: 5px;
+    box-shadow: 8px 5px 5px rgba(51, 77, 77, 1); /*#334D4DFF*/
+    font-family: Linotype Didot, Courgette, serif;
+    font-size: 18px;
+    color: rgba(179, 0, 0, 1); /*#B30000FF*/
+    padding: 5px 10px 10px 10px;
+    line-height: 40px;
+    margin: 0 10px 0 10px;
 }
 
 .page_title_link {
-    color: rgba(179, 0, 0, 1); /*#B30000FF*/
+    color: rgba(0, 123, 255, 1); /*#007BFF*/
     text-decoration: none;
 }
 

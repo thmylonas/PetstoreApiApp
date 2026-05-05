@@ -12,16 +12,17 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/boostrap_css_libs/bootstrap_v4.6.1/bootstrap.min.css}"/>
 
-    <title>Update the Pet</title>
+    <title>Update a Pet</title>
 </head>
 <body class="body">
 
-<h1 class="page_title">Update the Pet</h1>
+<h1 class="page_title">Update a Pet</h1>
 
-<p>Update the Pet</p>
+<br/>
+<p>Update a Pet</p>
 
 <!--<form method="post" th:action="@{/api/v1/pets/update-pet-with-form/{id} (id=${updatePetWithFormViewBean.id})}" th:object="${updatePetWithFormViewBean}">-->
-<form method="post" th:action="@{/api/v1/pets/update-pet-with-form}">
+<form class="pet_forms" method="post" th:action="@{/api/v1/pets/update-pet-with-form}">
     <div class="form-group">
         <label for="petId">Pet ID:</label>
         <input id="petId" class="form-control" type="text" name="petId"/>
