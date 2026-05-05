@@ -32,7 +32,7 @@ public class PetController {
         return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("pet_response", petResponseDto));
     }
 
-    @GetMapping(path = {"/{name}"})
+    @GetMapping(path = {"/by-name/{name}"})
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<ResponseSuccess> findPetsByName(@PathVariable(value = "name") String name) {
         final String message = "Success: The Pets with name " + name + " are found!";
