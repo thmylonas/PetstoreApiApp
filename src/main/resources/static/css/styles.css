@@ -1,0 +1,36 @@
+/* General Styles */
+
+.body {
+    background-image: url("../images/PetsWallpaper.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 20px;
+}
+
+.page_title {
+    height: 100% !important; /*150vh*/
+    background-color: rgba(102, 255, 255, 0.7) !important; /*#66FFFFB2*/
+    border: 1px solid rgba(255, 0, 128, 1) !important; /*#FF0080FF*/
+    border-radius: 5px !important;
+    box-shadow: 8px 5px 5px rgba(51, 77, 77, 1) !important; /*#334D4DFF*/
+    font-family: Linotype Didot, Courgette, serif !important;
+    font-size: 30px !important;
+    color: rgba(179, 0, 0, 1) !important; /*#B30000FF*/
+    text-align: center !important;
+    text-decoration: none !important;
+    text-shadow: 4px 4px 4px rgba(51, 77, 77, 1) !important; /*#334D4DFF*/
+    padding-top: 5px !important;
+    line-height: 40px !important;
+    margin: 0 10px 0 10px !important;
+}
+
+.page_title_link {
+    color: rgba(179, 0, 0, 1); /*#B30000FF*/
+    text-decoration: none;
+}
+
+.page_title_link:hover {
+    color: fuchsia;
+    text-decoration: none;
+}

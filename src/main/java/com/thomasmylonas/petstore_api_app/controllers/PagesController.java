@@ -9,23 +9,23 @@ public class PagesController {
 
     @GetMapping(path = {"/", ""})
     public String home() { // "http://localhost:8080"
-        return "views/home";
+        return "home";
     }
 
     @GetMapping(path = {"/pets-home"})
     public String petsHome() { // "http://localhost:8080/pets-home"
-        return "views/pets_home";
+        return "pets_home";
     }
 
     @GetMapping(path = {"/update-pet-with-form"})
     public String updatePetWithForm(Model model) { // "http://localhost:8080/update-pet-with-form"
-        return "views/update_pet_with_form";
+        return "update_pet_with_form";
     }
 
     /*@GetMapping(path = {"/update-pet-with-form/{id}"})
     public String updatePetWithForm(@PathVariable(value = "id") Long id, Model model) { // "http://localhost:8080/update-pet-with-form/{id}"
         updatePetWithFormViewBean.setId(id);
         model.addAttribute("updatePetWithFormViewBean", updatePetWithFormViewBean);
-        return "views/update_pet_with_form";
+        return "update_pet_with_form";
     }*/
 }
