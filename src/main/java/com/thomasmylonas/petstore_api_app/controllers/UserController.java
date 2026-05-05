@@ -73,7 +73,7 @@ public class UserController {
         String savedUserUri = ServletUriComponentsBuilder
                 .fromCurrentContextPath() // "http://localhost:8080"
                 .path(REQUEST_MAPPING + "/{username}")
-//                .buildAndExpand(savedUserResponseDto.id())
+                .buildAndExpand(savedUserResponseDto.username())
                 .toUriString();
         return responseBuilder.buildResponse(HttpStatus.CREATED, message, savedUserUri, Map.of("saved_user_response", savedUserResponseDto));
     }
