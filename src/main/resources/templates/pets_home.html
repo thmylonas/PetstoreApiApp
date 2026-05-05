@@ -21,9 +21,9 @@
 <p>Welcome to the Pets Home</p>
 
 <h2 class="pets_endpoints">Display all Pets</h2>
-<div>
-    <a href="/api/v1/pets" target="_blank">Display all Pets</a>
-</div>
+<ul>
+    <li><a href="/api/v1/pets" target="_blank">Display all Pets</a></li>
+</ul>
 
 <h2 class="pets_endpoints">Find Pets by ID</h2>
 <ul>
@@ -97,39 +97,6 @@
 <ul>
     <li><a href="/update-pet-with-form" class="page_title_link" target="_blank">Update a Pet</a></li>
 </ul>
-
-<!--<form th:action="@{/java/java-java-se-ge8/java-java-se-8-streams/java-java-se-8-streams-filter-examples}"
-      method="post" th:object="${bean}">
-
-    <div class="form-check">
-        <label for="petId" class="form-check-label case_sensitive">Insert the ID of the pet:</label>
-        <input id="petId" class="form-check-input" type="checkbox" checked
-               th:field="*{beanField}"> &lt;!&ndash;<ajax/>&ndash;&gt;
-        &lt;!&ndash;<label class="nearInputInfo">(ID of pet that needs to be updated)</label>&ndash;&gt;
-    </div>
-
-    <div class="form-check">
-        <label for="petName" class="form-check-label case_sensitive">Insert the name of the pet:</label>
-        <input id="petName" class="form-check-input" type="checkbox" checked
-               th:field="*{beanField}"> &lt;!&ndash;<ajax/>&ndash;&gt;
-        &lt;!&ndash;<label class="nearInputInfo">(Updated name of the pet)</label>&ndash;&gt;
-    </div>
-
-    <div class="form-check">
-        <label for="petStatus" class="form-check-label case_sensitive">Insert the status of the pet:</label>
-        <input id="petStatus" class="form-check-input" type="checkbox" checked
-               th:field="*{beanField}"> &lt;!&ndash;<ajax/>&ndash;&gt;
-        &lt;!&ndash;<label class="nearInputInfo">(Updated status of the pet)</label>&ndash;&gt;
-    </div>
-
-    <br/>
-
-    <button type="submit" name="asd" class="btn btn-primary">Asd</button>
-    &lt;!&ndash;<ajax execute="filterExpId" render="id1 id2"/>&ndash;&gt;
-    <button type="submit" name="resetAsd" class="btn btn-primary">Reset</button>
-    &lt;!&ndash;<ajax render="id1 id2"/> action="#{bean.reset}"&ndash;&gt;
-
-</form>-->
 
 <script th:src="@{/js/bootstrap_js_libs/jquery-3.6.0.min.js}"></script>
 <script th:src="@{/js/bootstrap_js_libs/bootstrap_v4.6.1/bootstrap.bundle.min.js}"></script>
