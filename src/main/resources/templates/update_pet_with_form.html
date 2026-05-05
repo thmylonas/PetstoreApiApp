@@ -4,34 +4,45 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" th:href="@{/images/Favicon.png}"/>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/boostrap_css_libs/bootstrap_v4.6.1/bootstrap.min.css}"/>
+
     <title>Update the Pet</title>
 </head>
-<body>
+<body class="body">
 
-<h1>Update the Pet</h1>
+<h1 class="page_title">Update the Pet</h1>
 
 <p>Update the Pet</p>
 
 <!--<form method="post" th:action="@{/api/v1/pets/update-pet-with-form/{id} (id=${updatePetWithFormViewBean.id})}" th:object="${updatePetWithFormViewBean}">-->
 <form method="post" th:action="@{/api/v1/pets/update-pet-with-form}">
-    <div>
+    <div class="form-group">
         <label for="petId">Pet ID:</label>
-        <input id="petId" type="text" name="petId"/>
+        <input id="petId" class="form-control" type="text" name="petId"/>
     </div>
-    <div>
+    <div class="form-group">
         <label for="nameId">Pet name:</label>
-        <input id="nameId" type="text" name="name"/>
+        <input id="nameId" class="form-control" type="text" name="name"/>
     </div>
-    <div>
+    <div class="form-group">
         <label for="statusId">Pet status:</label>
-        <input id="statusId" type="text" name="status"/>
+        <input id="statusId" class="form-control" type="text" name="status"/>
     </div>
-    <!--<div>
+    <!--<div class="form-group">
         <label for="categoryId">Category:</label>
-        <input id="categoryId" type="text" name="category"/>
+        <input id="categoryId" class="form-control" type="text" name="category"/>
     </div>-->
-    <input type="submit" value="Update Pet">
+    <input class="btn btn-primary" type="submit" value="Update Pet">
 </form>
+
+<script th:src="@{/js/bootstrap_js_libs/jquery-3.6.0.min.js}"></script>
+<script th:src="@{/js/bootstrap_js_libs/bootstrap_v4.6.1/bootstrap.bundle.min.js}"></script>
 
 </body>
 </html>

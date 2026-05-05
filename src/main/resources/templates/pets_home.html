@@ -3,13 +3,19 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link th:href="@{/resources/css/styles.css}" rel="stylesheet"/>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" th:href="@{/images/Favicon.png}"/>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/boostrap_css_libs/bootstrap_v4.6.1/bootstrap.min.css}"/>
 
     <title>Pets Home</title>
 </head>
-<body>
+<body class="body">
 
-<h1>Pets Home</h1>
+<h1 class="page_title">Pets Home</h1>
 
 <p>Welcome to the Pets Home</p>
 
@@ -123,6 +129,9 @@
     &lt;!&ndash;<ajax render="id1 id2"/> action="#{bean.reset}"&ndash;&gt;
 
 </form>-->
+
+<script th:src="@{/js/bootstrap_js_libs/jquery-3.6.0.min.js}"></script>
+<script th:src="@{/js/bootstrap_js_libs/bootstrap_v4.6.1/bootstrap.bundle.min.js}"></script>
 
 </body>
 </html>
