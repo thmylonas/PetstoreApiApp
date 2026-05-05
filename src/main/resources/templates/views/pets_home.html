@@ -1,85 +1,87 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link th:href="@{/resources/css/styles.css}" rel="stylesheet"/>
 
-    <title>Pet Page</title>
+    <title>Pets Home</title>
 </head>
 <body>
 
-<h1>Pet Page</h1>
+<h1>Pets Home</h1>
 
-<p>Welcome to the Pet Home Page</p>
+<p>Welcome to the Pets Home</p>
 
-<br/>
+<h2>Display all Pets</h2>
+<div>
+    <a href="http://localhost:8080/api/v1/pets" target="_blank">Display all Pets</a>
+</div>
 
-<h2>/pet/{id}</h2>
+<h2>Find Pets by ID</h2>
 <ul>
     <li>
-        <a href="http://localhost:8080/pet/1">
-            http://localhost:8080/pet/1
+        <a href="http://localhost:8080/api/v1/pets/1">
+            http://localhost:8080/api/v1/pets/1
         </a>
     </li>
     <li>
-        <a href="http://localhost:8080/pet/2">
-            http://localhost:8080/pet/2
+        <a href="http://localhost:8080/api/v1/pets/2">
+            http://localhost:8080/api/v1/pets/2
         </a>
     </li>
     <li>
-        <a href="http://localhost:8080/pet/3">
-            http://localhost:8080/pet/3
+        <a href="http://localhost:8080/api/v1/pets/3">
+            http://localhost:8080/api/v1/pets/3
         </a>
     </li>
     <li>
-        <a href="http://localhost:8080/pet/4">
-            http://localhost:8080/pet/4
+        <a href="http://localhost:8080/api/v1/pets/4">
+            http://localhost:8080/api/v1/pets/4
         </a>
     </li>
     <li>
-        <a href="http://localhost:8080/pet/2020">
-            http://localhost:8080/pet/2020
+        <a href="http://localhost:8080/api/v1/pets/2020">
+            http://localhost:8080/api/v1/pets/2020
         </a>
     </li>
 </ul>
 
-<h2>/pet/findByStatus</h2>
+<h2>Find Pets by Status</h2>
 <ul>
     <li>
-        <a href="http://localhost:8080/pet/findByStatus?status=available">
-            http://localhost:8080/pet/findByStatus?status=available
+        <a href="http://localhost:8080/api/v1/pets?status=available">
+            http://localhost:8080/api/v1/pets?status=available
         </a>
     </li>
     <li>
-        <a href="http://localhost:8080/pet/findByStatus?status=pending">
-            http://localhost:8080/pet/findByStatus?status=pending
+        <a href="http://localhost:8080/api/v1/pets?status=pending">
+            http://localhost:8080/api/v1/pets?status=pending
         </a>
     </li>
     <li>
-        <a href="http://localhost:8080/pet/findByStatus?status=sold">
-            http://localhost:8080/pet/findByStatus?status=sold
+        <a href="http://localhost:8080/api/v1/pets?status=sold">
+            http://localhost:8080/api/v1/pets?status=sold
         </a>
     </li>
     <li>
-        <a href="http://localhost:8080/pet/findByStatus?status=available,pending">
-            http://localhost:8080/pet/findByStatus?status=available,pending
+        <a href="http://localhost:8080/api/v1/pets?status=available,pending">
+            http://localhost:8080/api/v1/pets?status=available,pending
         </a>
     </li>
     <li>
-        <a href="http://localhost:8080/pet/findByStatus?status=available,sold">
-            http://localhost:8080/pet/findByStatus?status=available,sold
+        <a href="http://localhost:8080/api/v1/pets?status=available,sold">
+            http://localhost:8080/api/v1/pets?status=available,sold
         </a>
     </li>
     <li>
-        <a href="http://localhost:8080/pet/findByStatus?status=pending,sold">
-            http://localhost:8080/pet/findByStatus?status=pending,sold
+        <a href="http://localhost:8080/api/v1/pets?status=pending,sold">
+            http://localhost:8080/api/v1/pets?status=pending,sold
         </a>
     </li>
     <li>
-        <a href="http://localhost:8080/pet/findByStatus?status=available,pending,sold">
-            http://localhost:8080/pet/findByStatus?status=available,pending,sold
+        <a href="http://localhost:8080/api/v1/pets?status=available,pending,sold">
+            http://localhost:8080/api/v1/pets?status=available,pending,sold
         </a>
     </li>
 </ul>

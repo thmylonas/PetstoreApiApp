@@ -8,8 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class PagesController {
 
     @GetMapping(path = {"/", ""})
-    public String homePage() { // "http://localhost:8080"
+    public String home() { // "http://localhost:8080"
         return "views/home";
+    }
+
+    @GetMapping(path = {"/pets-home"})
+    public String petsHome() { // "http://localhost:8080/pets-home"
+        return "views/pets_home";
     }
 
     @GetMapping(path = {"/update-pet-with-form"})
