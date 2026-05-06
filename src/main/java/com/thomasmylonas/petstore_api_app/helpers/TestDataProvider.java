@@ -5,6 +5,7 @@ import com.thomasmylonas.petstore_api_app.dtos.order_dtos.OrderRequestDto;
 import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetRequestDto;
 import com.thomasmylonas.petstore_api_app.dtos.photo_url_dtos.PhotoUrlRequestDto;
 import com.thomasmylonas.petstore_api_app.dtos.tag_dtos.TagRequestDto;
+import com.thomasmylonas.petstore_api_app.dtos.user_dtos.UserRequestDto;
 import com.thomasmylonas.petstore_api_app.enums.PetStatus;
 
 import java.util.List;
@@ -184,6 +185,54 @@ public class TestDataProvider {
                     .quantity(4)
                     .status("delivered")
                     .complete(true)
+                    .build()
+    );
+
+    public static final List<UserRequestDto> USER_REQUEST_DTOS = List.of(
+            UserRequestDto.builder()
+                    .username("tom")
+                    .firstName("Thomas")
+                    .lastName("Mylonas")
+                    .email("tom@mail.com")
+                    .password("tom")
+                    .phone("000000000")
+                    .userStatus(0)
+                    .build(),
+            UserRequestDto.builder()
+                    .username("laur")
+                    .firstName("Laurentiu")
+                    .lastName("Spilca")
+                    .email("laur@mail.com")
+                    .password("laur")
+                    .phone("111111111")
+                    .userStatus(1)
+                    .build(),
+            UserRequestDto.builder()
+                    .username("jose")
+                    .firstName("Jose")
+                    .lastName("Paumard")
+                    .email("jose@mail.com")
+                    .password("jose")
+                    .phone("222222222")
+                    .userStatus(0)
+                    .build(),
+            UserRequestDto.builder()
+                    .username("venkat")
+                    .firstName("Venkat")
+                    .lastName("Subramaniam")
+                    .email("venkat@mail.com")
+                    .password("venkat")
+                    .phone("333333333")
+                    .userStatus(1)
+                    .build(),
+            UserRequestDto.builder()
+                    .username("vlad")
+                    .firstName("Vlad")
+                    .lastName("Mihalcea")
+                    .email("vlad@mail.com")
+                    .password("vlad")
+                    .phone("444444444")
+                    .userStatus(0)
                     .build()
     );
 }

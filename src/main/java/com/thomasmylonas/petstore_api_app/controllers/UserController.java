@@ -32,17 +32,17 @@ public class UserController {
     private final UserService userService;
     private final ResponseBuilder responseBuilder;
 
-    @GetMapping(path = {"/{username}"})
+    @GetMapping(path = {"/{username}/login"})
     @ResponseStatus(value = HttpStatus.OK)
-    public ResponseEntity<ResponseSuccess> userLogin(@PathVariable(value = "username") String username) { // "http://localhost:8080/api/v1/users/{id}"
+    public ResponseEntity<ResponseSuccess> userLogin(@PathVariable(value = "username") String username) { // "http://localhost:8080/api/v1/users/{username}/login"
         final String message = "Success: The User with username " + username + " is logged-in!";
         UserResponseDto userResponseDto = userService.userLogin(username);
         return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("user_response", userResponseDto));
     }
 
-    @GetMapping(path = {"/{username}"})
+    @GetMapping(path = {"/{username}/logout"})
     @ResponseStatus(value = HttpStatus.OK)
-    public ResponseEntity<ResponseSuccess> userLogout(@PathVariable(value = "username") String username) { // "http://localhost:8080/api/v1/users/{id}"
+    public ResponseEntity<ResponseSuccess> userLogout(@PathVariable(value = "username") String username) { // "http://localhost:8080/api/v1/users/{username}/logout"
         final String message = "Success: The User with username " + username + " is logged-out!";
         UserResponseDto userResponseDto = userService.userLogout(username);
         return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("user_response", userResponseDto));

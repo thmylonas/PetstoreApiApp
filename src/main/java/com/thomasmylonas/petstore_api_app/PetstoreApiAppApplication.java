@@ -3,6 +3,7 @@ package com.thomasmylonas.petstore_api_app;
 import com.thomasmylonas.petstore_api_app.helpers.TestDataProvider;
 import com.thomasmylonas.petstore_api_app.services.OrderService;
 import com.thomasmylonas.petstore_api_app.services.PetService;
+import com.thomasmylonas.petstore_api_app.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -23,6 +24,7 @@ public class PetstoreApiAppApplication {
 
     private final PetService petService;
     private final OrderService orderService;
+    private final UserService userService;
 
     public static void main(String[] args) {
         SpringApplication.run(PetstoreApiAppApplication.class, args);
@@ -33,6 +35,7 @@ public class PetstoreApiAppApplication {
         return args -> {
             petService.saveAllPets(TestDataProvider.PET_REQUEST_DTOS);
             orderService.saveAllOrders(TestDataProvider.ORDER_REQUEST_DTOS);
+            userService.saveAllUsers(TestDataProvider.USER_REQUEST_DTOS);
         };
     }
 }
