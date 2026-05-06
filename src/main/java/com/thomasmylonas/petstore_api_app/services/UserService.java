@@ -12,7 +12,7 @@ public interface UserService {
 
     UserResponseDto userLogout(String username);
 
-    UserResponseDto findUserByUsername(String username);
+    UserResponseDto findUserByUsername(String username) throws RequestedResourceNotFoundException;
 
     List<UserResponseDto> findAllUsers();
 

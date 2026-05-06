@@ -16,6 +16,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Objects;
+
 @Entity(name = "User")
 @Table(name = "Users")
 @Getter
@@ -52,6 +54,18 @@ public class User {
     @Enumerated(value = EnumType.ORDINAL)
     @Column(name = "User_Status")
     private UserStatus userStatus;
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(username, user.username) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(phone, user.phone) && userStatus == user.userStatus;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(username, firstName, lastName, email, password, phone, userStatus);
+    }
 }
 
 /*

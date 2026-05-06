@@ -27,6 +27,6 @@ public record UserResponseDto(
         String phone,
 
         @JsonProperty(value = "user_status")
-        int userStatus
+        Integer userStatus
 ) {
 }
