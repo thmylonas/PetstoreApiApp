@@ -39,7 +39,7 @@ public class StoreController {
     public ResponseEntity<ResponseSuccess> findInventoriesByPetStatus() { // "http://localhost:8080/api/v1/store/inventory"
         final String message = "Success: The Inventories by PetStatus are found!";
         List<InventoryResponseDto> inventoryResponseDtos = orderService.findInventoriesByPetStatus();
-        return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("inventories_by_status", inventoryResponseDtos));
+        return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("inventories_by_status", inventoryResponseDtos));
     }
 
     @GetMapping(path = {"/order/{id}"})
@@ -47,7 +47,7 @@ public class StoreController {
     public ResponseEntity<ResponseSuccess> findOrderById(@PathVariable(value = "id") Long id) { // "http://localhost:8080/api/v1/store/order/{id}"
         final String message = "Success: The Order with ID " + id + " is found!";
         OrderResponseDto orderResponseDto = orderService.findOrderById(id);
-        return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("order_response", orderResponseDto));
+        return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("order_response", orderResponseDto));
     }
 
     @GetMapping(path = {"/orders"})
@@ -55,7 +55,7 @@ public class StoreController {
     public ResponseEntity<ResponseSuccess> findAllOrders() { // "http://localhost:8080/api/v1/store/orders"
         final String message = "Success: The Orders are found!";
         List<OrderResponseDto> orderResponseDtos = orderService.findAllOrders();
-        return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("orders_response", orderResponseDtos));
+        return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("orders_response", orderResponseDtos));
     }
 
     @PostMapping(path = {"/order"})
@@ -69,7 +69,7 @@ public class StoreController {
                 .path(REQUEST_MAPPING + "/{id}")
                 .buildAndExpand(orderResponseDto.id())
                 .toUriString();
-        return responseBuilder.buildResponse(HttpStatus.CREATED, message, savedOrderUri, Map.of("saved_order_response", orderResponseDto));
+        return responseBuilder.buildResponseSuccess(HttpStatus.CREATED, message, savedOrderUri, Map.of("saved_order_response", orderResponseDto));
     }
 
     @PostMapping(path = {"/order/all"})
@@ -77,7 +77,7 @@ public class StoreController {
     public ResponseEntity<ResponseSuccess> saveAllOrders(@RequestBody List<OrderRequestDto> orderRequestDtos) { // "http://localhost:8080/api/v1/store/order/all"
         final String message = "Created: The Orders have been created successfully!";
         List<OrderResponseDto> savedOrderResponseDtos = orderService.saveAllOrders(orderRequestDtos);
-        return responseBuilder.buildResponse(HttpStatus.CREATED, message, Map.of("saved_orders_response", savedOrderResponseDtos));
+        return responseBuilder.buildResponseSuccess(HttpStatus.CREATED, message, Map.of("saved_orders_response", savedOrderResponseDtos));
     }
 
     @DeleteMapping(path = {"/order/{id}"})
@@ -85,6 +85,6 @@ public class StoreController {
     public ResponseEntity<ResponseSuccess> deleteOrderById(@PathVariable(value = "id") Long id) { // "http://localhost:8080/api/v1/store/order/{id}"
         final String message = "Success: The Order with ID " + id + " has been deleted successfully!";
         orderService.deleteOrderById(id);
-        return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("message", message));
+        return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("message", message));
     }
 }

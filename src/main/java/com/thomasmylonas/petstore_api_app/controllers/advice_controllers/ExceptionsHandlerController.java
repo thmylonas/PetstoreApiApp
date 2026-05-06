@@ -1,27 +1,47 @@
 package com.thomasmylonas.petstore_api_app.controllers.advice_controllers;
 
-//import com.thomasmylonas.petstore_api_web_app.exceptions.RequestedResourceNotFoundException;
-//import org.springframework.http.HttpStatus;
 //import org.springframework.http.converter.HttpMessageNotReadableException;
 //import org.springframework.web.HttpMediaTypeNotSupportedException;
 
+import com.thomasmylonas.petstore_api_app.exceptions.RequestedResourceNotFoundException;
+import com.thomasmylonas.petstore_api_app.models.ResponseBuilder;
+import com.thomasmylonas.petstore_api_app.models.ResponseError;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestControllerAdvice
+@RequiredArgsConstructor
 public class ExceptionsHandlerController {
 
-    /*@ExceptionHandler(value = {RequestedResourceNotFoundException.class})
-    @ResponseStatus(value = HttpStatus.NOT_FOUND) // NOT_FOUND(404, "Not Found")
-    public ResponseSuccess resourceNotFound(RequestedResourceNotFoundException e) {
+    private final ResponseBuilder responseBuilder;
 
-//        long resourceId = e.getResourceId();
-//        String message = String.format(e.getMyMessage(), resourceId);
-//        e.setMyMessage(message);
-//        setResponseStatus(errorStatus, e, HttpStatus.NOT_FOUND, e.getMyMessage());
-        return null;
+    @ExceptionHandler(value = {MethodArgumentNotValidException.class})
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST) // 400: "Bad Request"
+    public ResponseEntity<Map<String, String>> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
+        Map<String, String> fieldErrorsMap = new HashMap<>();
+        e.getBindingResult().getAllErrors().forEach(error -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            fieldErrorsMap.put(fieldName, errorMessage);
+        });
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(fieldErrorsMap);
     }
 
-    @ExceptionHandler(value = {IllegalArgumentException.class})
+    @ExceptionHandler(value = {RequestedResourceNotFoundException.class})
+    @ResponseStatus(value = HttpStatus.NOT_FOUND) // NOT_FOUND(404, "Not Found")
+    public ResponseEntity<ResponseError> handleRequestedResourceNotFoundException(RequestedResourceNotFoundException e, WebRequest webRequest) {
+        return responseBuilder.buildResponseError(e, HttpStatus.NOT_FOUND, "", webRequest);
+    }
+
+    /*@ExceptionHandler(value = {IllegalArgumentException.class})
     @ResponseStatus(value = HttpStatus.BAD_REQUEST) // BAD_REQUEST(400, "Bad Request")
     public ResponseSuccess invalidInputSupplied(IllegalArgumentException e) {
 //        e.setMyMessage(e.getMyMessage());

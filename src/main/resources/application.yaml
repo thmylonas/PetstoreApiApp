@@ -32,6 +32,9 @@ logging:
       hibernate:
         sql: debug
 
+stacktrace:
+  print: false
+
 #Not-existing properties
 #security.basic.enable=false
 #security.ignored=/**

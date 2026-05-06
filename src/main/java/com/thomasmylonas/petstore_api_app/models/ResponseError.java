@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 
 import java.time.LocalDateTime;
-import java.util.Map;
 
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -13,7 +12,6 @@ public record ResponseError(
         String statusCode,
         String message,
         String path,
-        Map<String, ?> data
-        //,String stacktrace // Optional
+        String stacktrace // Optional
 ) {
 }

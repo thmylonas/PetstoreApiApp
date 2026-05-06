@@ -29,7 +29,7 @@ public class PetController {
     public ResponseEntity<ResponseSuccess> findPetById(@PathVariable(value = "id") Long id) { // "http://localhost:8080/api/v1/pets/{id}"
         final String message = "Success: The Pet with ID " + id + " is found!";
         PetResponseDto petResponseDto = petService.findPetById(id);
-        return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("pet_response", petResponseDto));
+        return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("pet_response", petResponseDto));
     }
 
     @GetMapping(path = {"/by-name/{name}"})
@@ -37,7 +37,7 @@ public class PetController {
     public ResponseEntity<ResponseSuccess> findPetsByName(@PathVariable(value = "name") String name) {
         final String message = "Success: The Pets with name " + name + " are found!";
         List<PetResponseDto> petResponseDtos = petService.findPetsByName(name);
-        return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("pets_by_name_response", petResponseDtos));
+        return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("pets_by_name_response", petResponseDtos));
     }
 
     /**
@@ -52,7 +52,7 @@ public class PetController {
     public ResponseEntity<ResponseSuccess> findPetsByStatus(@RequestParam(value = "status", defaultValue = "available") String status) {
         final String message = "Success: The Pets with status are found!";
         List<PetResponseDto> petByStatusResponseDtos = petService.findPetsByStatus(status);
-        return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("pets_by_status_response", petByStatusResponseDtos));
+        return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("pets_by_status_response", petByStatusResponseDtos));
     }
 
     @GetMapping
@@ -60,7 +60,7 @@ public class PetController {
     public ResponseEntity<ResponseSuccess> findAllPets() { // "http://localhost:8080/api/v1/pets"
         final String message = "Success: The Pets are found!";
         List<PetResponseDto> petResponseDtos = petService.findAllPets();
-        return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("pets_response", petResponseDtos));
+        return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("pets_response", petResponseDtos));
     }
 
     @GetMapping(params = {"sort", "dir"})
@@ -69,7 +69,7 @@ public class PetController {
                                                              @RequestParam(value = "dir", defaultValue = "asc", required = false) String sortDirection) { // "http://localhost:8080/api/v1/pets?sort=field&dir=direction"
         final String message = "Success: The Pets are found!";
         List<PetResponseDto> petResponseDtos = petService.findAllPetsSorted(sortBy, sortDirection);
-        return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("pets_response", petResponseDtos));
+        return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("pets_response", petResponseDtos));
     }
 
     @PostMapping
@@ -83,7 +83,7 @@ public class PetController {
                 .path(REQUEST_MAPPING + "/{id}")
                 .buildAndExpand(savedPetResponseDto.id())
                 .toUriString();
-        return responseBuilder.buildResponse(HttpStatus.CREATED, message, savedPetUri, Map.of("saved_pet_response", savedPetResponseDto));
+        return responseBuilder.buildResponseSuccess(HttpStatus.CREATED, message, savedPetUri, Map.of("saved_pet_response", savedPetResponseDto));
     }
 
     @PostMapping("/all")
@@ -91,7 +91,7 @@ public class PetController {
     public ResponseEntity<ResponseSuccess> saveAllPets(@RequestBody List<PetRequestDto> petRequestDtos) { // "http://localhost:8080/api/v1/pets/all"
         final String message = "Created: The Pets have been created successfully!";
         List<PetResponseDto> savedPetResponseDtos = petService.saveAllPets(petRequestDtos);
-        return responseBuilder.buildResponse(HttpStatus.CREATED, message, Map.of("saved_pets_response", savedPetResponseDtos));
+        return responseBuilder.buildResponseSuccess(HttpStatus.CREATED, message, Map.of("saved_pets_response", savedPetResponseDtos));
     }
 
     @PutMapping(path = {"/{id}"})
@@ -99,7 +99,7 @@ public class PetController {
     public ResponseEntity<ResponseSuccess> updatePet(@PathVariable(value = "id") Long id, @RequestBody PetRequestDto petRequestDto) { // "http://localhost:8080/api/v1/pets/{id}"
         final String message = "Success: The Pet with ID " + id + " has been updated successfully!";
         PetResponseDto updatedPetResponseDto = petService.updatePet(id, petRequestDto);
-        return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("updated_pet_response", updatedPetResponseDto));
+        return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("updated_pet_response", updatedPetResponseDto));
     }
 
     @DeleteMapping(path = {"/{id}"})
@@ -107,7 +107,7 @@ public class PetController {
     public ResponseEntity<ResponseSuccess> deletePetById(@PathVariable(value = "id") Long id) { // "http://localhost:8080/api/v1/pets/{id}"
         final String message = "Success: The Pet with ID " + id + " has been deleted successfully!";
         petService.deletePetById(id);
-        return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("message", message));
+        return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("message", message));
     }
 
     @PostMapping(path = {"/update-pet-with-form"}) //consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE}
@@ -118,6 +118,6 @@ public class PetController {
     ) {
         final String message = String.format("petId: '%d', name: '%s', status: '%s'", id, name, status);
         PetResponseDto updatedPetResponseDto = petService.updatePetWithForm(id, name, status);
-        return responseBuilder.buildResponse(HttpStatus.OK, message, Map.of("updated_pet_response", updatedPetResponseDto));
+        return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("updated_pet_response", updatedPetResponseDto));
     }
 }
