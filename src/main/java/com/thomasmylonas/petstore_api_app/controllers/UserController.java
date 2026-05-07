@@ -6,9 +6,12 @@ import com.thomasmylonas.petstore_api_app.models.ResponseBuilder;
 import com.thomasmylonas.petstore_api_app.models.ResponseSuccess;
 import com.thomasmylonas.petstore_api_app.services.UserService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +29,7 @@ import java.util.Map;
 @RestController
 @RequestMapping(path = "/api/v1/users")
 @RequiredArgsConstructor
+@Validated
 public class UserController {
 
     private static final String REQUEST_MAPPING = "/api/v1/users";
@@ -35,7 +39,10 @@ public class UserController {
 
     @GetMapping(path = {"/{username}/login"})
     @ResponseStatus(value = HttpStatus.OK)
-    public ResponseEntity<ResponseSuccess> userLogin(@PathVariable(value = "username") String username) { // "http://localhost:8080/api/v1/users/{username}/login"
+    public ResponseEntity<ResponseSuccess> userLogin(@PathVariable(value = "username")
+                                                     @NotBlank(message = "The 'username' must not be null and must contain at least one non-whitespace character")
+                                                     @Size(min = 3, max = 15, message = "The 'username' size must be between 3 and 15 characters (included)")
+                                                     String username) { // "http://localhost:8080/api/v1/users/{username}/login"
         final String message = "Success: The User with username " + username + " is logged-in!";
         UserResponseDto userResponseDto = userService.userLogin(username);
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("user_response", userResponseDto));
@@ -43,7 +50,10 @@ public class UserController {
 
     @GetMapping(path = {"/{username}/logout"})
     @ResponseStatus(value = HttpStatus.OK)
-    public ResponseEntity<ResponseSuccess> userLogout(@PathVariable(value = "username") String username) { // "http://localhost:8080/api/v1/users/{username}/logout"
+    public ResponseEntity<ResponseSuccess> userLogout(@PathVariable(value = "username")
+                                                      @NotBlank(message = "The 'username' must not be null and must contain at least one non-whitespace character")
+                                                      @Size(min = 3, max = 15, message = "The 'username' size must be between 3 and 15 characters (included)")
+                                                      String username) { // "http://localhost:8080/api/v1/users/{username}/logout"
         final String message = "Success: The User with username " + username + " is logged-out!";
         UserResponseDto userResponseDto = userService.userLogout(username);
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("user_response", userResponseDto));
@@ -51,7 +61,10 @@ public class UserController {
 
     @GetMapping(path = {"/{username}"})
     @ResponseStatus(value = HttpStatus.OK)
-    public ResponseEntity<ResponseSuccess> findUserByUsername(@PathVariable(value = "username") String username) {
+    public ResponseEntity<ResponseSuccess> findUserByUsername(@PathVariable(value = "username")
+                                                              @NotBlank(message = "The 'username' must not be null and must contain at least one non-whitespace character")
+                                                              @Size(min = 3, max = 15, message = "The 'username' size must be between 3 and 15 characters (included)")
+                                                              String username) {
         final String message = "Success: The Users with name " + username + " are found!";
         UserResponseDto userResponseDto = userService.findUserByUsername(username);
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("user_by_username_response", userResponseDto));
@@ -81,7 +94,7 @@ public class UserController {
 
     @PostMapping("/all")
     @ResponseStatus(value = HttpStatus.CREATED)
-    public ResponseEntity<ResponseSuccess> saveAllUsers(@RequestBody List<UserRequestDto> userRequestDtos) { // "http://localhost:8080/api/v1/users/all"
+    public ResponseEntity<ResponseSuccess> saveAllUsers(@RequestBody @Valid List<UserRequestDto> userRequestDtos) { // "http://localhost:8080/api/v1/users/all"
         final String message = "Created: The Users have been created successfully!";
         List<UserResponseDto> savedUserResponseDtos = userService.saveAllUsers(userRequestDtos);
         return responseBuilder.buildResponseSuccess(HttpStatus.CREATED, message, Map.of("saved_users_response", savedUserResponseDtos));
@@ -89,7 +102,11 @@ public class UserController {
 
     @PutMapping(path = {"/{username}"})
     @ResponseStatus(value = HttpStatus.OK)
-    public ResponseEntity<ResponseSuccess> updateUser(@PathVariable(value = "username") String username, @RequestBody UserRequestDto userRequestDto) { // "http://localhost:8080/api/v1/users/{id}"
+    public ResponseEntity<ResponseSuccess> updateUser(@PathVariable(value = "username")
+                                                      @NotBlank(message = "The 'username' must not be null and must contain at least one non-whitespace character")
+                                                      @Size(min = 3, max = 15, message = "The 'username' size must be between 3 and 15 characters (included)")
+                                                      String username,
+                                                      @RequestBody @Valid UserRequestDto userRequestDto) { // "http://localhost:8080/api/v1/users/{id}"
         final String message = "Success: The User with username " + username + " has been updated successfully!";
         UserResponseDto updatedUserResponseDto = userService.updateUser(username, userRequestDto);
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("updated_user_response", updatedUserResponseDto));
@@ -97,7 +114,10 @@ public class UserController {
 
     @DeleteMapping(path = {"/{username}"})
     @ResponseStatus(value = HttpStatus.OK)
-    public ResponseEntity<ResponseSuccess> deleteUserByUsername(@PathVariable(value = "username") String username) { // "http://localhost:8080/api/v1/users/{id}"
+    public ResponseEntity<ResponseSuccess> deleteUserByUsername(@PathVariable(value = "username")
+                                                                @NotBlank(message = "The 'username' must not be null and must contain at least one non-whitespace character")
+                                                                @Size(min = 3, max = 15, message = "The 'username' size must be between 3 and 15 characters (included)")
+                                                                String username) { // "http://localhost:8080/api/v1/users/{id}"
         final String message = "Success: The User with username " + username + " has been deleted successfully!";
         userService.deleteUserByUsername(username);
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("message", message));

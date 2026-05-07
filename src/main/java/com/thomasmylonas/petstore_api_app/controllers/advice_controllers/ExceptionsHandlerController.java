@@ -6,6 +6,7 @@ package com.thomasmylonas.petstore_api_app.controllers.advice_controllers;
 import com.thomasmylonas.petstore_api_app.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.petstore_api_app.models.ResponseBuilder;
 import com.thomasmylonas.petstore_api_app.models.ResponseError;
+import jakarta.validation.ConstraintViolationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,9 +24,16 @@ public class ExceptionsHandlerController {
 
     private final ResponseBuilder responseBuilder;
 
+    @ExceptionHandler(value = {RequestedResourceNotFoundException.class})
+    @ResponseStatus(value = HttpStatus.NOT_FOUND) // NOT_FOUND(404, "Not Found")
+    public ResponseEntity<ResponseError> handleRequestedResourceNotFoundException(RequestedResourceNotFoundException e, WebRequest webRequest) {
+        return responseBuilder.buildResponseError(e, HttpStatus.NOT_FOUND, "", webRequest);
+    }
+
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
     @ResponseStatus(value = HttpStatus.BAD_REQUEST) // 400: "Bad Request"
     public ResponseEntity<Map<String, String>> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
+
         Map<String, String> fieldErrorsMap = new HashMap<>();
         e.getBindingResult().getAllErrors().forEach(error -> {
             String fieldName = ((FieldError) error).getField();
@@ -35,10 +43,17 @@ public class ExceptionsHandlerController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(fieldErrorsMap);
     }
 
-    @ExceptionHandler(value = {RequestedResourceNotFoundException.class})
-    @ResponseStatus(value = HttpStatus.NOT_FOUND) // NOT_FOUND(404, "Not Found")
-    public ResponseEntity<ResponseError> handleRequestedResourceNotFoundException(RequestedResourceNotFoundException e, WebRequest webRequest) {
-        return responseBuilder.buildResponseError(e, HttpStatus.NOT_FOUND, "", webRequest);
+    @ExceptionHandler(value = {ConstraintViolationException.class})
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST) // 400: "Bad Request"
+    public ResponseEntity<Map<String, String>> handleConstraintViolationException(ConstraintViolationException e) {
+
+        Map<String, String> constraintViolationsMap = new HashMap<>();
+        e.getConstraintViolations().forEach(constraintViolation -> {
+            String propertyPath = constraintViolation.getPropertyPath().toString();
+            String violationMessage = constraintViolation.getMessage();
+            constraintViolationsMap.put(propertyPath, violationMessage);
+        });
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(constraintViolationsMap);
     }
 
     /*@ExceptionHandler(value = {IllegalArgumentException.class})
