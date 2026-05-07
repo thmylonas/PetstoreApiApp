@@ -2,6 +2,8 @@ package com.thomasmylonas.petstore_api_app.dtos.user_dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
@@ -33,7 +35,8 @@ public record UserRequestDto(
         @JsonProperty(value = "phone")
         String phone,
 
-        @NotBlank(message = "The 'userStatus' must not be null and must contain at least one non-whitespace character")
+        @Min(value = 0, message = "The 'user_status' must be higher or equal to 0")
+        @Max(value = 1, message = "The 'number_field' must be lower or equal to 1")
         @JsonProperty(value = "user_status")
         Integer userStatus
 ) {

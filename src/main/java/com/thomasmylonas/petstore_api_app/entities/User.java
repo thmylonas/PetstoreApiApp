@@ -69,6 +69,16 @@ public class User {
 }
 
 /*
+{
+    "username": "lorak",
+    "first_name": "Karolina Miroslavina",
+    "last_name": "Kuek",
+    "email": "lorak@mail.com",
+    "password": "lorak",
+    "phone": "696969699",
+    "user_status": 1
+}
+-----------------------------------------------------------------
 Swagger model:
 ------------------
 User{
