@@ -9,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
 
 /**
  * SELECT * FROM CATEGORIES;
@@ -20,6 +21,7 @@ import org.springframework.context.annotation.Bean;
  */
 @SpringBootApplication
 @RequiredArgsConstructor
+@PropertySource("classpath:properties/properties.properties")
 public class PetstoreApiAppApplication {
 
     private final PetService petService;
