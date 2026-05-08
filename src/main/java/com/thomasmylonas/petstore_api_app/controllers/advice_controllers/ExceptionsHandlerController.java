@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
@@ -25,7 +26,7 @@ public class ExceptionsHandlerController {
     private final ResponseBuilder responseBuilder;
 
     @ExceptionHandler(value = {RequestedResourceNotFoundException.class})
-    @ResponseStatus(value = HttpStatus.NOT_FOUND) // NOT_FOUND(404, "Not Found")
+    @ResponseStatus(value = HttpStatus.NOT_FOUND) // 404, "Not Found"
     public ResponseEntity<ResponseError> handleRequestedResourceNotFoundException(RequestedResourceNotFoundException e, WebRequest webRequest) {
         return responseBuilder.buildResponseError(e, HttpStatus.NOT_FOUND, Map.of("error_message", e.getMessage()), webRequest);
     }
@@ -63,18 +64,18 @@ public class ExceptionsHandlerController {
         return responseBuilder.buildResponseError(e, HttpStatus.BAD_REQUEST, Map.of("error_message", message), webRequest);
     }
 
+    @ExceptionHandler(value = {HttpRequestMethodNotSupportedException.class})
+    @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED) // 405, "Method Not Allowed"
+    public ResponseEntity<ResponseError> invalidBodyInput(HttpRequestMethodNotSupportedException e, WebRequest webRequest) {
+        final String message = String.format("Request method '%s' is not supported! - %s", e.getMethod(), e.getMessage());
+        return responseBuilder.buildResponseError(e, HttpStatus.METHOD_NOT_ALLOWED, Map.of("error_message", message), webRequest);
+    }
+
     /*@ExceptionHandler(value = {IllegalArgumentException.class})
     @ResponseStatus(value = HttpStatus.BAD_REQUEST) // BAD_REQUEST(400, "Bad Request")
     public ResponseSuccess invalidInputSupplied(IllegalArgumentException e) {
 //        e.setMyMessage(e.getMyMessage());
 //        setResponseStatus(errorStatus, e, HttpStatus.BAD_REQUEST, e.getMyMessage());
-        return null;
-    }
-
-    @ExceptionHandler(value = {HttpMessageNotReadableException.class})
-    @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED) // METHOD_NOT_ALLOWED(405, "Method Not Allowed")
-    public ResponseSuccess invalidBodyInput(HttpMessageNotReadableException e) {
-//        setResponseStatus(errorStatus, e, HttpStatus.METHOD_NOT_ALLOWED, "Invalid input");
         return null;
     }
 
