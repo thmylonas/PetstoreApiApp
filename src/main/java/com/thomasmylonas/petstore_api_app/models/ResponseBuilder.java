@@ -39,12 +39,12 @@ public class ResponseBuilder {
         return ResponseEntity.status(httpStatus).header("Location", path).body(responseSuccess);
     }
 
-    public ResponseEntity<ResponseError> buildResponseError(Exception e, HttpStatus httpStatus, String message, WebRequest request) {
+    public ResponseEntity<ResponseError> buildResponseError(Exception e, HttpStatus httpStatus, Map<String, ?> errorMessages, WebRequest request) {
 
         ResponseError.ResponseErrorBuilder responseErrorBuilder = ResponseError.builder()
                 .timestamp(LocalDateTime.now())
                 .statusCode(httpStatus.toString())
-                .message(message)
+                .errorMessages(errorMessages)
                 .path(ServletUriComponentsBuilder.fromCurrentRequest().toUriString());
         if (printStacktrace && isTraceParameterEnabled(request)) {
             responseErrorBuilder.stacktrace(HelperClass.stacktrace(e));

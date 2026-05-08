@@ -1,6 +1,5 @@
 package com.thomasmylonas.petstore_api_app.controllers.advice_controllers;
 
-//import org.springframework.http.converter.HttpMessageNotReadableException;
 //import org.springframework.web.HttpMediaTypeNotSupportedException;
 
 import com.thomasmylonas.petstore_api_app.exceptions.RequestedResourceNotFoundException;
@@ -10,6 +9,7 @@ import jakarta.validation.ConstraintViolationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -27,12 +27,12 @@ public class ExceptionsHandlerController {
     @ExceptionHandler(value = {RequestedResourceNotFoundException.class})
     @ResponseStatus(value = HttpStatus.NOT_FOUND) // NOT_FOUND(404, "Not Found")
     public ResponseEntity<ResponseError> handleRequestedResourceNotFoundException(RequestedResourceNotFoundException e, WebRequest webRequest) {
-        return responseBuilder.buildResponseError(e, HttpStatus.NOT_FOUND, e.getMessage(), webRequest);
+        return responseBuilder.buildResponseError(e, HttpStatus.NOT_FOUND, Map.of("error_message", e.getMessage()), webRequest);
     }
 
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
     @ResponseStatus(value = HttpStatus.BAD_REQUEST) // 400: "Bad Request"
-    public ResponseEntity<Map<String, String>> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
+    public ResponseEntity<ResponseError> handleMethodArgumentNotValidException(MethodArgumentNotValidException e, WebRequest webRequest) {
 
         Map<String, String> fieldErrorsMap = new HashMap<>();
         e.getBindingResult().getAllErrors().forEach(error -> {
@@ -40,12 +40,12 @@ public class ExceptionsHandlerController {
             String errorMessage = error.getDefaultMessage();
             fieldErrorsMap.put(fieldName, errorMessage);
         });
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(fieldErrorsMap);
+        return responseBuilder.buildResponseError(e, HttpStatus.BAD_REQUEST, Map.of("field_errors", fieldErrorsMap), webRequest);
     }
 
     @ExceptionHandler(value = {ConstraintViolationException.class})
     @ResponseStatus(value = HttpStatus.BAD_REQUEST) // 400: "Bad Request"
-    public ResponseEntity<Map<String, String>> handleConstraintViolationException(ConstraintViolationException e) {
+    public ResponseEntity<ResponseError> handleConstraintViolationException(ConstraintViolationException e, WebRequest webRequest) {
 
         Map<String, String> constraintViolationsMap = new HashMap<>();
         e.getConstraintViolations().forEach(constraintViolation -> {
@@ -53,7 +53,14 @@ public class ExceptionsHandlerController {
             String violationMessage = constraintViolation.getMessage();
             constraintViolationsMap.put(propertyPath, violationMessage);
         });
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(constraintViolationsMap);
+        return responseBuilder.buildResponseError(e, HttpStatus.BAD_REQUEST, Map.of("constraint_violations", constraintViolationsMap), webRequest);
+    }
+
+    @ExceptionHandler(value = {HttpMessageNotReadableException.class})
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST) // 400: "Bad Request"
+    public ResponseEntity<ResponseError> handleHttpMessageNotReadableException(HttpMessageNotReadableException e, WebRequest webRequest) {
+        final String message = "Required request body is missing! - " + e.getMessage();
+        return responseBuilder.buildResponseError(e, HttpStatus.BAD_REQUEST, Map.of("error_message", message), webRequest);
     }
 
     /*@ExceptionHandler(value = {IllegalArgumentException.class})
