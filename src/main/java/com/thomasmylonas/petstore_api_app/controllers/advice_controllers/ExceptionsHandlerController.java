@@ -9,8 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
-import org.springframework.web.HttpMediaTypeNotSupportedException;
-import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
@@ -62,26 +60,4 @@ public class ExceptionsHandlerController {
         final String message = "Required request body is missing! - " + e.getMessage();
         return responseBuilder.buildResponseError(e, HttpStatus.BAD_REQUEST, Map.of("error_message", message), webRequest);
     }
-
-    @ExceptionHandler(value = {HttpRequestMethodNotSupportedException.class})
-    @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED) // 405, "Method Not Allowed"
-    public ResponseEntity<ResponseError> handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException e, WebRequest webRequest) {
-        final String message = String.format("Request method '%s' is not supported! - %s", e.getMethod(), e.getMessage());
-        return responseBuilder.buildResponseError(e, HttpStatus.METHOD_NOT_ALLOWED, Map.of("error_message", message), webRequest);
-    }
-
-    @ExceptionHandler(value = {HttpMediaTypeNotSupportedException.class})
-    @ResponseStatus(HttpStatus.UNSUPPORTED_MEDIA_TYPE) // 415, "Unsupported Media Type"
-    public ResponseEntity<ResponseError> handleHttpMediaTypeNotSupportedException(HttpMediaTypeNotSupportedException e, WebRequest webRequest) {
-        final String message = String.format("Content-Type '%s' is not supported! - %s", e.getContentType(), e.getMessage()); // Content-Type 'application/xml;charset=UTF-8' is not supported
-        return responseBuilder.buildResponseError(e, HttpStatus.UNSUPPORTED_MEDIA_TYPE, Map.of("error_message", message), webRequest);
-    }
-
-    /*@ExceptionHandler(value = {IllegalArgumentException.class})
-    @ResponseStatus(value = HttpStatus.BAD_REQUEST) // BAD_REQUEST(400, "Bad Request")
-    public ResponseSuccess invalidInputSupplied(IllegalArgumentException e) {
-//        e.setMyMessage(e.getMyMessage());
-//        setResponseStatus(errorStatus, e, HttpStatus.BAD_REQUEST, e.getMyMessage());
-        return null;
-    }*/
 }
