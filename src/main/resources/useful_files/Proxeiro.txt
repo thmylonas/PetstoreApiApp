@@ -178,3 +178,11 @@ Optional<Category> findByPetName2(@Param("petName") String petName);
 Optional<List<Pet>> findByCategoryName(@Param("categoryName") String categoryName);
 
 ========================================================================================================================
+
+TO-DOS:
+Testing
+profiles
+Postgres/H2
+Swagger
+
+========================================================================================================================
