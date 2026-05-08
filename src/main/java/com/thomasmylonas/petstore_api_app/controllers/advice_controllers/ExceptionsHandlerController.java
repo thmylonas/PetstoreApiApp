@@ -1,7 +1,5 @@
 package com.thomasmylonas.petstore_api_app.controllers.advice_controllers;
 
-//import org.springframework.web.HttpMediaTypeNotSupportedException;
-
 import com.thomasmylonas.petstore_api_app.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.petstore_api_app.models.ResponseBuilder;
 import com.thomasmylonas.petstore_api_app.models.ResponseError;
@@ -11,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -66,9 +65,16 @@ public class ExceptionsHandlerController {
 
     @ExceptionHandler(value = {HttpRequestMethodNotSupportedException.class})
     @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED) // 405, "Method Not Allowed"
-    public ResponseEntity<ResponseError> invalidBodyInput(HttpRequestMethodNotSupportedException e, WebRequest webRequest) {
+    public ResponseEntity<ResponseError> handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException e, WebRequest webRequest) {
         final String message = String.format("Request method '%s' is not supported! - %s", e.getMethod(), e.getMessage());
         return responseBuilder.buildResponseError(e, HttpStatus.METHOD_NOT_ALLOWED, Map.of("error_message", message), webRequest);
+    }
+
+    @ExceptionHandler(value = {HttpMediaTypeNotSupportedException.class})
+    @ResponseStatus(HttpStatus.UNSUPPORTED_MEDIA_TYPE) // 415, "Unsupported Media Type"
+    public ResponseEntity<ResponseError> handleHttpMediaTypeNotSupportedException(HttpMediaTypeNotSupportedException e, WebRequest webRequest) {
+        final String message = String.format("Content-Type '%s' is not supported! - %s", e.getContentType(), e.getMessage()); // Content-Type 'application/xml;charset=UTF-8' is not supported
+        return responseBuilder.buildResponseError(e, HttpStatus.UNSUPPORTED_MEDIA_TYPE, Map.of("error_message", message), webRequest);
     }
 
     /*@ExceptionHandler(value = {IllegalArgumentException.class})
@@ -76,13 +82,6 @@ public class ExceptionsHandlerController {
     public ResponseSuccess invalidInputSupplied(IllegalArgumentException e) {
 //        e.setMyMessage(e.getMyMessage());
 //        setResponseStatus(errorStatus, e, HttpStatus.BAD_REQUEST, e.getMyMessage());
-        return null;
-    }
-
-    @ExceptionHandler(value = {HttpMediaTypeNotSupportedException.class})
-    @ResponseStatus(HttpStatus.UNSUPPORTED_MEDIA_TYPE) // UNSUPPORTED_MEDIA_TYPE(415, "Unsupported Media Type")
-    public ResponseSuccess mediaTypeNotSupported(HttpMediaTypeNotSupportedException e) {
-//        setResponseStatus(errorStatus, e, HttpStatus.UNSUPPORTED_MEDIA_TYPE, "Media type not supported");
         return null;
     }*/
 }
