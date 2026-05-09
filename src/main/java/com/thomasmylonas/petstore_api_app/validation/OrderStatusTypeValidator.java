@@ -8,8 +8,8 @@ import java.util.List;
 public class OrderStatusTypeValidator implements ConstraintValidator<ValidateOrderStatusType, String> {
 
     @Override
-    public boolean isValid(String petStatusType, ConstraintValidatorContext constraintValidatorContext) {
-        final List<String> petStatusTypes = List.of("placed", "approved", "delivered");
-        return petStatusTypes.contains(petStatusType.toLowerCase());
+    public boolean isValid(String orderStatusType, ConstraintValidatorContext constraintValidatorContext) {
+        final List<String> orderStatusTypes = List.of("placed", "approved", "delivered");
+        return orderStatusTypes.contains(orderStatusType.toLowerCase());
     }
 }

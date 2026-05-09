@@ -1,6 +1,7 @@
 package com.thomasmylonas.petstore_api_app.dtos.order_dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.thomasmylonas.petstore_api_app.validation.ValidateBooleanType;
 import com.thomasmylonas.petstore_api_app.validation.ValidateOrderStatusType;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Builder;
@@ -19,6 +20,7 @@ public record OrderRequestDto(
         @JsonProperty(value = "status")
         String status,
 
+        @ValidateBooleanType
         @JsonProperty(value = "complete")
         boolean complete
 ) {
