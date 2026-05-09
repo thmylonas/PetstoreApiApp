@@ -14,11 +14,11 @@ import java.lang.annotation.Target;
  */
 @Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = PetStatusTypeValidator.class)
+@Constraint(validatedBy = OrderStatusTypeValidator.class)
 @Documented
-public @interface ValidatePetStatusType {
+public @interface ValidateOrderStatusType {
 
-    String message() default "Invalid 'PetStatusType': It should be either 'available' or 'pending' or 'sold' (case insensitive)";
+    String message() default "Invalid 'OrderStatusType': It should be either 'placed' or 'approved' or 'delivered' (case insensitive)";
 
     Class<?>[] groups() default {};
 

@@ -5,11 +5,11 @@ import jakarta.validation.ConstraintValidatorContext;
 
 import java.util.List;
 
-public class PetStatusTypeValidator implements ConstraintValidator<ValidatePetStatusType, String> {
+public class OrderStatusTypeValidator implements ConstraintValidator<ValidateOrderStatusType, String> {
 
     @Override
     public boolean isValid(String petStatusType, ConstraintValidatorContext constraintValidatorContext) {
-        final List<String> petStatusTypes = List.of("available", "pending", "sold");
+        final List<String> petStatusTypes = List.of("placed", "approved", "delivered");
         return petStatusTypes.contains(petStatusType.toLowerCase());
     }
 }
