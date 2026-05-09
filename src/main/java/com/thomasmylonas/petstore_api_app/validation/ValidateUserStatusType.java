@@ -18,7 +18,7 @@ import java.lang.annotation.Target;
 @Documented
 public @interface ValidateUserStatusType {
 
-    String message() default "Invalid 'UserStatusType': It should be either '0' or '1'";
+    String message() default "Invalid 'UserStatusType': It should be either 0 or 1";
 
     Class<?>[] groups() default {};
 
