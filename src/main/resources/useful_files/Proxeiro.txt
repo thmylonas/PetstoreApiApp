@@ -179,7 +179,24 @@ Optional<List<Pet>> findByCategoryName(@Param("categoryName") String categoryNam
 
 ========================================================================================================================
 
-TO-DOS:
+???????? Info in Validations: ????????
+
+1.
+In the request,
+[R1] POST, http://localhost:8080/api/v1/users
+If I use as body, the body of:
+[R2] POST, http://localhost:8080/api/v1/users/all
+It throws: "Empty_Body"
+
+2. In the request,
+[R3] GET, http://localhost:8080/api/v1/pets/1
+if instead of 1, I enter "hello" e.g.
+[R4] GET, http://localhost:8080/api/v1/pets/hello
+It cannot match the request with anything, as long as it does not match it with the [R3]. In this case it throws: "NOT_FOUND".
+
+========================================================================================================================
+
+???????? TO-DOS: ????????
 Testing
 profiles
 Postgres/H2
