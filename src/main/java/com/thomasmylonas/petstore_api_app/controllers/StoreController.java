@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +31,7 @@ import java.util.Map;
 @RequestMapping(path = "/api/v1/store")
 @RequiredArgsConstructor
 @Slf4j
+@Validated
 public class StoreController {
 
     private static final String REQUEST_MAPPING = "/api/v1/store";
