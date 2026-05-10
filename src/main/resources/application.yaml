@@ -3,28 +3,10 @@ server:
 
 #Datasource - H2-Database: Basic properties
 spring:
-  datasource:
-    url: jdbc:h2:mem:mydb
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
-  jpa:
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.H2Dialect
-        show_sql: true
-        format_sql: false
-
-  #Datasource - H2-Database: Other properties
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-      settings:
-        trace: false
-        web-allow-others: true
+  application:
+    name: PetstoreApiApp
+  profiles:
+    active: prod
 
 logging:
   level:

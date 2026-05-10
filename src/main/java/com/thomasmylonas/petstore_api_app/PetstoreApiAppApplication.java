@@ -9,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 
 /**
@@ -33,6 +34,7 @@ public class PetstoreApiAppApplication {
     }
 
     @Bean
+    @Profile(value = {"dev", "test"})
     public CommandLineRunner commandLineRunner() {
         return args -> {
             petService.saveAllPets(TestDataProvider.PET_REQUEST_DTOS);
