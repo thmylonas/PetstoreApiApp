@@ -19,7 +19,7 @@ services:
       POSTGRES_USERNAME: postgres
       POSTGRES_PASSWORD: ${ENV_POSTGRES_PASSWORD}
     volumes:
-      - postgres_data:/var/lib/postgresql
+      - C:\Users\Thomas_Mylonas\Documents\_Projects_Data\postgres_data:/var/lib/postgresql
     networks:
       - petstore_postgres_network
     restart: unless-stopped
