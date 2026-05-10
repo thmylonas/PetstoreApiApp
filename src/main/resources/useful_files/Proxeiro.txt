@@ -194,6 +194,12 @@ if instead of 1, I enter "hello" e.g.
 [R4] GET, http://localhost:8080/api/v1/pets/hello
 It cannot match the request with anything, as long as it does not match it with the [R3]. In this case it throws: "NOT_FOUND".
 
+3. In the request,
+[R5] POST, http://localhost:8080/api/v1/store/order
+If we use as RequestBody
+{"pet_id": 3, "quantity": 3, "status": "placed",}
+It throws: "Empty_Body"
+
 ========================================================================================================================
 
 ???????? TO-DOS: ????????

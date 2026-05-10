@@ -22,6 +22,6 @@ public record OrderRequestDto(
 
         @ValidateBooleanType
         @JsonProperty(value = "complete")
-        boolean complete
+        Boolean complete
 ) {
 }
