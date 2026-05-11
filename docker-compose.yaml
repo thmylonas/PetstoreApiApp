@@ -1,7 +1,12 @@
 version: "5.1.2"
+
+# Build phase
+
+# Run phase
 services:
   petstore_api_app:
-    image: thmylonas1972/petstore_api_app-jib
+    image: thmylonas1972/petstore_api_app
+    #build: .
     container_name: petstore_api_app
     ports:
       - 8080:8080
@@ -9,21 +14,26 @@ services:
       - petstore_postgres_network
     depends_on:
       - postgres
+
   postgres:
     image: postgres
-    container_name: postgres2
-    env_file: ./.env
+    container_name: postgres_petsdb
+    #    env_file: ./.env
     ports:
-      - 5432:5432
+      - ${ENV_POSTGRES_PORT}:5432
     environment:
-      POSTGRES_USERNAME: postgres
+      POSTGRES_USERNAME: ${ENV_POSTGRES_USERNAME}
       POSTGRES_PASSWORD: ${ENV_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${ENV_POSTGRES_DB_NAME}
     volumes:
       - C:\Users\Thomas_Mylonas\Documents\_Projects_Data\postgres_data:/var/lib/postgresql
     networks:
       - petstore_postgres_network
     restart: unless-stopped
+
 volumes:
   postgres_data:
+
 networks:
   petstore_postgres_network:
+    driver: bridge
