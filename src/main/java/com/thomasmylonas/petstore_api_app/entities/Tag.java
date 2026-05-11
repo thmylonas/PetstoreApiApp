@@ -26,7 +26,7 @@ public class Tag {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Tags_Sequence_Generator")
-    @SequenceGenerator(name = "Tags_Sequence_Generator", sequenceName = "Tags_Sequence", initialValue = 1, allocationSize = 1)
+    @SequenceGenerator(name = "Tags_Sequence_Generator", sequenceName = "Tags_Id_Seq", initialValue = 1, allocationSize = 1)
     @Column(name = "Id")
     private Long id;
 

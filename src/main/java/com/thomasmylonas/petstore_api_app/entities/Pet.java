@@ -34,7 +34,7 @@ public class Pet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Pets_Sequence_Generator")
-    @SequenceGenerator(name = "Pets_Sequence_Generator", sequenceName = "Pets_Sequence", initialValue = 1, allocationSize = 1)
+    @SequenceGenerator(name = "Pets_Sequence_Generator", sequenceName = "Pets_Id_Seq", initialValue = 1, allocationSize = 1)
     @Column(name = "Id")
     private Long id;
 
