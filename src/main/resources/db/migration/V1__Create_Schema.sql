@@ -1,3 +1,5 @@
+-- Create Tables
+
 create table Categories
 (
     Id   serial primary key not null,
@@ -59,3 +61,12 @@ create table Users
     constraint check_users_user_status
         check ((User_Status >= 0) AND (User_Status <= 1))
 );
+
+-- Rename Sequences
+
+-- alter sequence categories_id_seq rename to Categories_Sequence;
+-- alter sequence orders_id_seq rename to Orders_Sequence;
+-- alter sequence pets_id_seq rename to Pets_Sequence;
+-- alter sequence photo_urls_id_seq rename to Photo_Urls_Sequence;
+-- alter sequence tags_id_seq rename to Tags_Sequence;
+-- alter sequence users_id_seq rename to Users_Sequence;

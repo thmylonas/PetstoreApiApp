@@ -211,6 +211,15 @@ Swagger
 ========================================================================================================================
 java -jar target\petstore_api_app-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev
 ========================================================================================================================
+In case that flyway does not run the "V#__*.sql" files we need to delete the old/existing "flyway_schema_history" table
+
+WARN o.f.c.internal.database.base.Database: Flyway upgrade recommended: PostgreSQL 18.2 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 17.
+Solution:
+Use the following versions of dependencies:
+- org.flywaydb/flyway-core/11.20.3
+- org.flywaydb/flyway-database-postgresql/11.20.3
+
+========================================================================================================================
 Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' Unsupported Database: PostgreSQL 18.2
 
 
