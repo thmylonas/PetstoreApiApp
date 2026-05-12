@@ -3,10 +3,13 @@ FROM  maven:3.9.15-amazoncorretto-21-alpine AS build
 
 WORKDIR /build
 
+COPY .mvn .mvn/
+COPY mvnw .
 COPY pom.xml .
 COPY src ./src
-RUN mvn dependency:go-offline -B
-RUN mvn -DskipTests clean package
+RUN chmod +x ./mvnw dependency:go-offline -B
+#RUN /bin/sh -c "chmod +x ./mvnw && ./mvnw -DskipTests clean package"
+RUN chmod +x ./mvnw && ./mvnw -DskipTests clean package
 
 # Runtime stage
 FROM eclipse-temurin:21-jre-alpine

@@ -426,3 +426,91 @@ Rename Flyway migration scripts
 - https://stackoverflow.com/questions/35573120/can-i-rename-flyway-migration-scripts
 - https://stackoverflow.com/questions/78816071/intellij-flyway-migration-rename-column
 ========================================================================================================================
+The issue is clear: your Dockerfile is trying to copy .mvn/wrapper/maven-wrapper.jar and
+.mvn/wrapper/maven-wrapper.properties separately, but they're not in the build context. The files
+exist in your project but the COPY commands are failing because the paths are incorrect—you need to
+preserve the directory structure.
+
+=======================
+PS C:\Users\Thomas_Mylonas\Documents\_GitHub_Projects\JavaEE_Projects\PetstoreApiApp> docker build -t petstore_api_app_stages .
+[+] Building 2.1s (7/7) FINISHED                                                                                               docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                                           0.0s
+ => => transferring dockerfile: 645B                                                                                                           0.0s
+ => [internal] load metadata for docker.io/library/eclipse-temurin:21-jre-alpine                                                               1.0s
+ => [auth] library/eclipse-temurin:pull token for registry-1.docker.io                                                                         0.0s
+ => [internal] load .dockerignore                                                                                                              0.1s
+ => => transferring context: 2B                                                                                                                0.0s
+ => [stage-1 1/2] FROM docker.io/library/eclipse-temurin:21-jre-alpine@sha256:704db3c40204a44f471191446ddd9cda5d60dab40f0e15c6507b815ed897238  0.1s
+ => => resolve docker.io/library/eclipse-temurin:21-jre-alpine@sha256:704db3c40204a44f471191446ddd9cda5d60dab40f0e15c6507b815ed897238b         0.1s
+ => CACHED [stage-1 2/2] WORKDIR /app                                                                                                          0.0s
+ => exporting to image                                                                                                                         0.6s
+ => => exporting layers                                                                                                                        0.2s
+ => => exporting manifest sha256:5d0dba1707f3682556b326b8fe0405da692162c85cda6d744aaff3d71de208a3                                              0.0s
+ => => exporting config sha256:a81535190a0f27dc1b0de6fa45796062451c9cff64034d82ff425725ca59de3b                                                0.0s
+ => => exporting attestation manifest sha256:3c7d02f2274992b3679af5b361cecc4cd8162c39d00fc30ade26be611ce6b442                                  0.1s
+ => => exporting manifest list sha256:ffb1ae3de20e33d1e4c8e70c62673a2a7a49119ee32fe9313eee91feb03204ef                                         0.0s
+ => => naming to docker.io/library/petstore_api_app_stages:latest                                                                              0.0s
+ => => unpacking to docker.io/library/petstore_api_app_stages:latest                                                                           0.1s
+
+ 9 warnings found (use docker --debug to expand):
+ - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "ENV_POSTGRES_PASSWORD") (line 22)
+ - UndefinedVar: Usage of undefined variable '$ENV_POSTGRES_HOST' (line 18)
+ - LegacyKeyValueFormat: "ENV key=value" should be used instead of legacy "ENV key value" format (line 20)
+ - UndefinedVar: Usage of undefined variable '$ENV_POSTGRES_PORT' (did you mean $ENV_POSTGRES_HOST?) (line 19)
+ - LegacyKeyValueFormat: "ENV key=value" should be used instead of legacy "ENV key value" format (line 19)
+ - UndefinedVar: Usage of undefined variable '$ENV_POSTGRES_DB_NAME' (line 20)
+ - UndefinedVar: Usage of undefined variable '$ENV_POSTGRES_USERNAME' (line 21)
+ - UndefinedVar: Usage of undefined variable '$ENV_POSTGRES_PASSWORD' (line 22)
+ - LegacyKeyValueFormat: "ENV key=value" should be used instead of legacy "ENV key value" format (line 22)
+
+============================
+PS C:\Users\Thomas_Mylonas\Documents\_GitHub_Projects\JavaEE_Projects\PetstoreApiApp> docker build -t petstore_api_app_stages .
+[+] Building 1.7s (7/7) FINISHED                                                                                               docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                                           0.0s
+ => => transferring dockerfile: 640B                                                                                                           0.0s
+ => [internal] load metadata for docker.io/library/eclipse-temurin:21-jre-alpine                                                               1.2s
+ => [auth] library/eclipse-temurin:pull token for registry-1.docker.io                                                                         0.0s
+ => [internal] load .dockerignore                                                                                                              0.0s
+ => => transferring context: 2B                                                                                                                0.0s
+ => [stage-1 1/2] FROM docker.io/library/eclipse-temurin:21-jre-alpine@sha256:704db3c40204a44f471191446ddd9cda5d60dab40f0e15c6507b815ed897238  0.0s
+ => => resolve docker.io/library/eclipse-temurin:21-jre-alpine@sha256:704db3c40204a44f471191446ddd9cda5d60dab40f0e15c6507b815ed897238b         0.0s
+ => CACHED [stage-1 2/2] WORKDIR /app                                                                                                          0.0s
+ => exporting to image                                                                                                                         0.2s
+ => => exporting layers                                                                                                                        0.0s
+ => => exporting manifest sha256:16d2403e73257909ff543a79058b5a3f7e5d0991c759bd3a88d08e26f5ea64b0                                              0.0s
+ => => exporting config sha256:19fd70801f0c22dcb2fbfcd80fe031decefb3c5912c7f55c6c267b04835b300c                                                0.0s
+ => => exporting attestation manifest sha256:f60f0fd0a1638253b825cceb580ffb32c4252677d32ac5053ae887a65b3209d0                                  0.0s
+ => => exporting manifest list sha256:43dc0e9e523308200526a07a3e315faea802da1221289285f9a71f9d76eb3e1f                                         0.0s
+ => => naming to docker.io/library/petstore_api_app_stages:latest                                                                              0.0s
+ => => unpacking to docker.io/library/petstore_api_app_stages:latest                                                                           0.0s
+
+ 6 warnings found (use docker --debug to expand):
+ - UndefinedVar: Usage of undefined variable '$ENV_POSTGRES_HOST' (line 18)
+ - UndefinedVar: Usage of undefined variable '$ENV_POSTGRES_PORT' (did you mean $ENV_POSTGRES_HOST?) (line 19)
+ - UndefinedVar: Usage of undefined variable '$ENV_POSTGRES_DB_NAME' (line 20)
+ - UndefinedVar: Usage of undefined variable '$ENV_POSTGRES_USERNAME' (line 21)
+ - UndefinedVar: Usage of undefined variable '$ENV_POSTGRES_PASSWORD' (line 22)
+ - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "ENV_POSTGRES_PASSWORD") (line 22)
+
+========================================================================================================================
+
+https://hub.docker.com/_/maven/tags
+https://hub.docker.com/layers/library/maven/3.8.7-openjdk-18/images/sha256-0c36e0865e7165556d0b23a05fa2b89dce576c7b50a846988e253d3d111dbec2
+
+maven:3.8.7-openjdk-18
+is an official Docker image that packages Apache Maven 3.8.7 built on top of OpenJDK 18.
+It is used to build, manage, and containerize Java applications, typically running on a Linux-based environment (often Debian/Slim).
+
+Key Details:
+---------------
+Purpose: Provides a pre-configured, portable environment for compiling and packaging Java code, making it ideal for CI/CD pipelines.
+Version: Maven 3.8.7 is the build tool version.
+Java: OpenJDK 18 is the underlying Java Development Kit.
+Variant: It is commonly available in a -slim version, which is smaller in size for faster image pulls.
+Usage: It is designed to be used in Dockerfile (e.g., FROM maven:3.8.7-openjdk-18) or in ephemeral build containers like docker run --rm -v $(pwd):/app -w /app maven:3.8.7-openjdk-18 mvn clean install.
+
+Note: OpenJDK 18 was a short-term Java release, and this image may be outdated. For newer projects, consider using more recent versions like maven:3.9.x-eclipse-temurin-17 or -21
+
+========================================================================================================================
+240s
+========================================================================================================================

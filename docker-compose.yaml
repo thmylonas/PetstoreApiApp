@@ -1,11 +1,8 @@
 version: "5.1.2"
 
-# Build phase
-
-# Run phase
 services:
   petstore_api_app:
-    image: petstore_api_app
+    image: petstore_api_app_stages
     #build: .
     container_name: petstore_api_app
     ports:
