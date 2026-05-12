@@ -1,12 +1,12 @@
 -- Create Tables
 
-create table Categories
+create table if not exists Categories
 (
     Id   serial primary key not null,
     Name varchar(255)
 );
 
-create table Pets
+create table if not exists Pets
 (
     Id          bigserial primary key not null,
     Name        varchar(255),
@@ -18,7 +18,7 @@ create table Pets
     constraint fk_pets foreign key (Category_Id) references categories (Id)
 );
 
-create table Orders
+create table if not exists Orders
 (
     Id        bigserial primary key not null,
     Quantity  integer,
@@ -32,7 +32,7 @@ create table Orders
     constraint fk_tags foreign key (Pet_Id) references pets (Id)
 );
 
-create table Tags
+create table if not exists Tags
 (
     Id     bigserial primary key not null,
     Name   varchar(255),
@@ -40,7 +40,7 @@ create table Tags
     constraint fk_tags foreign key (Pet_Id) references pets (Id)
 );
 
-create table Photo_Urls
+create table if not exists Photo_Urls
 (
     Id     bigserial primary key not null,
     Name   varchar(255),
@@ -48,7 +48,7 @@ create table Photo_Urls
     constraint fk_photo_urls foreign key (Pet_Id) references pets (Id)
 );
 
-create table Users
+create table if not exists Users
 (
     Id          bigserial primary key not null,
     Username    varchar(15),

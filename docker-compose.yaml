@@ -5,11 +5,17 @@ version: "5.1.2"
 # Run phase
 services:
   petstore_api_app:
-    image: thmylonas1972/petstore_api_app
+    image: petstore_api_app
     #build: .
     container_name: petstore_api_app
     ports:
       - 8080:8080
+    environment:
+      ENV_POSTGRES_HOST: ${ENV_POSTGRES_HOST}
+      ENV_POSTGRES_PORT: ${ENV_POSTGRES_PORT}
+      ENV_POSTGRES_DB_NAME: ${ENV_POSTGRES_DB_NAME}
+      ENV_POSTGRES_USERNAME: ${ENV_POSTGRES_USERNAME}
+      ENV_POSTGRES_PASSWORD: ${ENV_POSTGRES_PASSWORD}
     networks:
       - petstore_postgres_network
     depends_on:
@@ -24,15 +30,15 @@ services:
     environment:
       POSTGRES_USERNAME: ${ENV_POSTGRES_USERNAME}
       POSTGRES_PASSWORD: ${ENV_POSTGRES_PASSWORD}
-      POSTGRES_DB: ${ENV_POSTGRES_DB_NAME}
+    #      POSTGRES_DB: ${ENV_POSTGRES_DB_NAME}
     volumes:
       - C:\Users\Thomas_Mylonas\Documents\_Projects_Data\postgres_data:/var/lib/postgresql
     networks:
       - petstore_postgres_network
     restart: unless-stopped
 
-volumes:
-  postgres_data:
+#volumes:
+#  pg_data:
 
 networks:
   petstore_postgres_network:
