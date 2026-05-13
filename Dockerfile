@@ -18,4 +18,4 @@ COPY --from=build /build/target/*.jar /app
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "petstore_api_app-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "-Dspring.profiles.active=${ENV_ACTIVE_PROFILE}", "petstore_api_app-0.0.1-SNAPSHOT.jar"]

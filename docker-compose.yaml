@@ -13,6 +13,7 @@ services:
       ENV_POSTGRES_DB_NAME: ${ENV_POSTGRES_DB_NAME}
       ENV_POSTGRES_USERNAME: ${ENV_POSTGRES_USERNAME}
       ENV_POSTGRES_PASSWORD: ${ENV_POSTGRES_PASSWORD}
+      ENV_ACTIVE_PROFILE: ${ENV_ACTIVE_PROFILE}
     networks:
       - petstore_postgres_network
     depends_on:

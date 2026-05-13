@@ -209,7 +209,16 @@ Postgres/H2
 Swagger
 
 ========================================================================================================================
+
+In any Terminal:
 java -jar target\petstore_api_app-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev
+
+In IntelliJ Terminal:
+java -jar -D"spring.profiles.active"=dev target\petstore_api_app-0.0.1-SNAPSHOT.jar
+
+In Windows Terminal:
+java -jar -Dspring.profiles.active=dev target\petstore_api_app-0.0.1-SNAPSHOT.jar
+
 ========================================================================================================================
 In case that flyway does not run the "V#__*.sql" files we need to delete the old/existing "flyway_schema_history" table
 

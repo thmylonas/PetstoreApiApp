@@ -22,3 +22,6 @@ spring:
       settings:
         trace: false
         web-allow-others: true
+
+  flyway:
+    enabled: false
