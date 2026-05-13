@@ -2,8 +2,8 @@ version: "5.1.2"
 
 services:
   petstore_api_app:
-    image: petstore_api_app_stages
-    #build: .
+    #    image: petstore_api_app
+    build: .
     container_name: petstore_api_app
     ports:
       - 8080:8080
@@ -20,22 +20,22 @@ services:
 
   postgres:
     image: postgres
-    container_name: postgres_petsdb
+    container_name: postgres_petstore_db
     #    env_file: ./.env
     ports:
       - ${ENV_POSTGRES_PORT}:5432
     environment:
       POSTGRES_USERNAME: ${ENV_POSTGRES_USERNAME}
       POSTGRES_PASSWORD: ${ENV_POSTGRES_PASSWORD}
-    #      POSTGRES_DB: ${ENV_POSTGRES_DB_NAME}
+      POSTGRES_DB: ${ENV_POSTGRES_DB_NAME}
     volumes:
-      - C:\Users\Thomas_Mylonas\Documents\_Projects_Data\postgres_data:/var/lib/postgresql
+      - pg_data:/var/lib/postgresql
     networks:
       - petstore_postgres_network
     restart: unless-stopped
 
-#volumes:
-#  pg_data:
+volumes:
+  pg_data:
 
 networks:
   petstore_postgres_network:

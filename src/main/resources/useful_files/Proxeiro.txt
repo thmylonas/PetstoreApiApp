@@ -514,3 +514,12 @@ Note: OpenJDK 18 was a short-term Java release, and this image may be outdated. 
 ========================================================================================================================
 240s
 ========================================================================================================================
+Run only postgres (without app):
+--------------------------------
+docker-compose.yaml: only postgres service
+- with the env: POSTGRES_DB: ${ENV_POSTGRES_DB_NAME}: creates the db by itself without any app and flyway
+- withOUT the env: POSTGRES_DB: ${ENV_POSTGRES_DB_NAME}: DOES NOT create any db
+
+PetsroreApiApp: Does NOT create any DB using flyway script
+
+========================================================================================================================
