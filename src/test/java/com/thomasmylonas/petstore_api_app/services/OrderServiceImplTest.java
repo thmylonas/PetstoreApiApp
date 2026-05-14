@@ -191,16 +191,28 @@ public class OrderServiceImplTest {
 
         when(mockPetRepository.findById(PET_ID)).thenReturn(Optional.of(PET_BY_ID));
         when(mockOrderMapper.toOrder(ORDER_REQUEST_DTO)).thenReturn(ORDER);
-
-        orderService.saveOrder(ORDER_REQUEST_DTO);
+        verify(mockOrderRepository, times(1)).save(ORDER);
 
         // Then / Assert
 
-        verify(mockOrderRepository, times(1)).save(ORDER);
+        verify(orderService, times(1)).saveOrder(ORDER_REQUEST_DTO);
     }
 
     @Test
-    void testSaveAllOrders() {
+    @DisplayName(value = "Given: Orders, When: saveAllOrders is called, Then: Verify that saveAllOrders is called once")
+    void test_Given_Orders_When_SaveAllOrdersIsCalled_Then_VerifyIsCalledOnce() {
+
+        // Given / Arrange
+        final List<OrderRequestDto> ORDER_REQUEST_DTOS = TestDataProvider.ORDER_REQUEST_DTOS;
+
+        // When / Act
+        for (OrderRequestDto orderRequestDto : ORDER_REQUEST_DTOS) {
+            verify(orderService, times(1)).saveOrder(orderRequestDto);
+        }
+
+        // Then / Assert
+
+        verify(orderService, times(1)).saveAllOrders(ORDER_REQUEST_DTOS);
     }
 
     @Test
