@@ -48,6 +48,8 @@ public class OrderServiceImpl implements OrderService {
         Pet pet = petRepository.findById(orderRequestDto.petId())
                 .orElseThrow(() -> new RequestedResourceNotFoundException(Pet.class.getSimpleName(), orderRequestDto.petId()));
 
+        // TODO: Check if the Pet is in stock inside the inventory
+
         Order order = orderMapper.toOrder(orderRequestDto);
         order.setPet(pet);
         order.setShipDate(LocalDateTime.now());
