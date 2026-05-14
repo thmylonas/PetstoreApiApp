@@ -6,6 +6,7 @@ import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetRequestDto;
 import com.thomasmylonas.petstore_api_app.dtos.photo_url_dtos.PhotoUrlRequestDto;
 import com.thomasmylonas.petstore_api_app.dtos.tag_dtos.TagRequestDto;
 import com.thomasmylonas.petstore_api_app.dtos.user_dtos.UserRequestDto;
+import com.thomasmylonas.petstore_api_app.enums.OrderStatus;
 import com.thomasmylonas.petstore_api_app.enums.PetStatus;
 
 import java.util.List;
@@ -159,31 +160,31 @@ public class TestDataProvider {
             OrderRequestDto.builder()
                     .petId(2)
                     .quantity(4)
-                    .status("placed")
+                    .status(OrderStatus.PLACED.getValue())
                     .complete(true)
                     .build(),
             OrderRequestDto.builder()
                     .petId(3)
                     .quantity(2)
-                    .status("approved")
+                    .status(OrderStatus.APPROVED.getValue())
                     .complete(false)
                     .build(),
             OrderRequestDto.builder()
                     .petId(3)
                     .quantity(4)
-                    .status("placed")
+                    .status(OrderStatus.PLACED.getValue())
                     .complete(true)
                     .build(),
             OrderRequestDto.builder()
                     .petId(1)
                     .quantity(4)
-                    .status("approved")
+                    .status(OrderStatus.APPROVED.getValue())
                     .complete(false)
                     .build(),
             OrderRequestDto.builder()
                     .petId(4)
                     .quantity(4)
-                    .status("delivered")
+                    .status(OrderStatus.DELIVERED.getValue())
                     .complete(true)
                     .build()
     );

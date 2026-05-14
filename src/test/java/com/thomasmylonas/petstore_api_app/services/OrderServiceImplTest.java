@@ -1,13 +1,16 @@
 package com.thomasmylonas.petstore_api_app.services;
 
+import com.thomasmylonas.petstore_api_app.dtos.order_dtos.OrderRequestDto;
 import com.thomasmylonas.petstore_api_app.dtos.order_dtos.OrderResponseDto;
 import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.InventoryResponseDto;
 import com.thomasmylonas.petstore_api_app.entities.Order;
+import com.thomasmylonas.petstore_api_app.entities.Pet;
 import com.thomasmylonas.petstore_api_app.enums.OrderStatus;
 import com.thomasmylonas.petstore_api_app.enums.PetStatus;
 import com.thomasmylonas.petstore_api_app.helpers.HelperClass;
 import com.thomasmylonas.petstore_api_app.helpers.TestDataProvider;
 import com.thomasmylonas.petstore_api_app.repositories.OrderRepository;
+import com.thomasmylonas.petstore_api_app.repositories.PetRepository;
 import com.thomasmylonas.petstore_api_app.services.mappers.OrderMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
@@ -34,6 +37,11 @@ public class OrderServiceImplTest {
     private OrderRepository mockOrderRepository;
 
     @Mock
+    private PetRepository mockPetRepository;
+
+    @Mock
+    private OrderMapper mockOrderMapper;
+
     private OrderMapper orderMapper;
 
     @InjectMocks
@@ -41,6 +49,7 @@ public class OrderServiceImplTest {
 
     @BeforeEach
     void setUp() {
+        orderMapper = new OrderMapper();
     }
 
     @AfterEach
@@ -97,7 +106,7 @@ public class OrderServiceImplTest {
 
         // When / Act
         when(mockOrderRepository.findById(ORDER_ID)).thenReturn(Optional.of(ORDER_BY_ID));
-        when(orderMapper.fromOrder(ORDER_BY_ID)).thenReturn(ORDER_RESPONSE_DTO);
+        when(mockOrderMapper.fromOrder(ORDER_BY_ID)).thenReturn(ORDER_RESPONSE_DTO);
 
         // Then / Assert
         OrderResponseDto orderById = orderService.findOrderById(1L);
@@ -133,7 +142,7 @@ public class OrderServiceImplTest {
         // When / Act
         when(mockOrderRepository.findAll()).thenReturn(ORDERS);
         for (int i = 0; i < ORDERS.size(); i++) {
-            when(orderMapper.fromOrder(ORDERS.get(i))).thenReturn(ORDER_RESPONSE_DTOS.get(i));
+            when(mockOrderMapper.fromOrder(ORDERS.get(i))).thenReturn(ORDER_RESPONSE_DTOS.get(i));
         }
 
         // Then / Assert
@@ -144,6 +153,29 @@ public class OrderServiceImplTest {
 
     @Test
     void testSaveOrder() {
+
+        // Given / Arrange
+        final Long PET_ID = 2L;
+        final OrderRequestDto ORDER_REQUEST_DTO = OrderRequestDto.builder()
+                .petId(PET_ID)
+                .quantity(4)
+                .status(OrderStatus.PLACED.getValue())
+                .complete(true)
+                .build();
+        final Order ORDER = orderMapper.toOrder(ORDER_REQUEST_DTO);
+        final Pet PET_BY_ID = Pet.builder()
+                .id(PET_ID)
+                .name("Pet_Name")
+                .status(PetStatus.AVAILABLE)
+                .build();
+
+        // When / Act
+        when(mockPetRepository.findById(PET_ID)).thenReturn(Optional.of(PET_BY_ID));
+        when(mockOrderMapper.toOrder(ORDER_REQUEST_DTO)).thenReturn(ORDER);
+
+        // Then / Assert
+        orderService.saveOrder(ORDER_REQUEST_DTO);
+        verify(mockOrderRepository, times(1)).save(ORDER);
     }
 
     @Test
