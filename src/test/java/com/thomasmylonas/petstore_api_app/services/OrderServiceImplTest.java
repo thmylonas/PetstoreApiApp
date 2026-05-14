@@ -15,6 +15,7 @@ import com.thomasmylonas.petstore_api_app.services.mappers.OrderMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -57,9 +58,11 @@ public class OrderServiceImplTest {
     }
 
     @Test
-    public void testFindInventoriesByPetStatus() {
+    @DisplayName(value = "Given: INVENTORY_RESPONSE_DTOS, When: findInventoriesByPetStatus is called, Then: inventoriesByPetStatus is returned")
+    public void test_Given_InventoryResponseDtos_When_FindInventoriesByPetStatusIsCalled_Then_InventoriesByPetStatusIsReturned() {
 
         // Given / Arrange
+
         final List<InventoryResponseDto> INVENTORY_RESPONSE_DTOS = List.of(InventoryResponseDto.builder()
                         .status(PetStatus.AVAILABLE)
                         .quantities(3L)
@@ -75,20 +78,25 @@ public class OrderServiceImplTest {
         );
 
         // When / Act
+
         when(mockOrderRepository.findInventoriesByPetStatus()).thenReturn(Optional.of(INVENTORY_RESPONSE_DTOS));
 
-        // Then / Assert
         List<InventoryResponseDto> inventoriesByPetStatus = orderService.findInventoriesByPetStatus();
+
+        // Then / Assert
+
         log.info("InventoriesByPetStatus: {}", inventoriesByPetStatus);
         assertEquals(INVENTORY_RESPONSE_DTOS, inventoriesByPetStatus);
     }
 
     @Test
-    public void testFindOrderById() {
+    @DisplayName(value = "Given: Order, When: findOrderById is called, Then: orderById is returned")
+    public void test_Given_Order_When_FindOrderByIdIsCalled_Then_OrderByIdIsReturned() {
 
         // Given / Arrange
+
         final Long ORDER_ID = 1L;
-        final Order ORDER_BY_ID = Order.builder()
+        final Order ORDER = Order.builder()
                 .id(ORDER_ID)
                 .quantity(4)
                 .shipDate(LocalDateTime.now())
@@ -105,19 +113,24 @@ public class OrderServiceImplTest {
                 .build();
 
         // When / Act
-        when(mockOrderRepository.findById(ORDER_ID)).thenReturn(Optional.of(ORDER_BY_ID));
-        when(mockOrderMapper.fromOrder(ORDER_BY_ID)).thenReturn(ORDER_RESPONSE_DTO);
+
+        when(mockOrderRepository.findById(ORDER_ID)).thenReturn(Optional.of(ORDER));
+        when(mockOrderMapper.fromOrder(ORDER)).thenReturn(ORDER_RESPONSE_DTO);
+
+        OrderResponseDto orderById = orderService.findOrderById(ORDER_ID);
 
         // Then / Assert
-        OrderResponseDto orderById = orderService.findOrderById(1L);
+
         log.info("OrderById: {}", orderById);
         assertEquals(ORDER_RESPONSE_DTO, orderById);
     }
 
     @Test
-    public void testFindAllOrders() {
+    @DisplayName(value = "Given: Orders, When: findAllOrders is called, Then: allOrders are returned")
+    public void test_Given_Orders_When_FindAllOrdersIsCalled_Then_AllOrdersAreReturned() {
 
         // Given / Arrange
+
         final List<Long> RANDOM_ORDER_IDS = Stream.generate(() -> HelperClass.RANDOM.nextLong(100)).limit(10).distinct().toList();
         final List<OrderResponseDto> ORDER_RESPONSE_DTOS = TestDataProvider.ORDER_REQUEST_DTOS.stream()
                 .map(orderRequestDto -> OrderResponseDto.builder()
@@ -140,21 +153,26 @@ public class OrderServiceImplTest {
                 ).toList();
 
         // When / Act
+
         when(mockOrderRepository.findAll()).thenReturn(ORDERS);
         for (int i = 0; i < ORDERS.size(); i++) {
             when(mockOrderMapper.fromOrder(ORDERS.get(i))).thenReturn(ORDER_RESPONSE_DTOS.get(i));
         }
 
-        // Then / Assert
         List<OrderResponseDto> allOrders = orderService.findAllOrders();
+
+        // Then / Assert
+
         log.info("AllOrders: {}", allOrders);
         assertEquals(ORDER_RESPONSE_DTOS, allOrders);
     }
 
     @Test
-    void testSaveOrder() {
+    @DisplayName(value = "Given: Order, When: saveOrder is called, Then: Verify that saveOrder is called once")
+    void test_Given_Order_When_SaveOrderIsCalled_Then_VerifyIsCalledOnce() {
 
         // Given / Arrange
+
         final Long PET_ID = 2L;
         final OrderRequestDto ORDER_REQUEST_DTO = OrderRequestDto.builder()
                 .petId(PET_ID)
@@ -170,11 +188,14 @@ public class OrderServiceImplTest {
                 .build();
 
         // When / Act
+
         when(mockPetRepository.findById(PET_ID)).thenReturn(Optional.of(PET_BY_ID));
         when(mockOrderMapper.toOrder(ORDER_REQUEST_DTO)).thenReturn(ORDER);
 
-        // Then / Assert
         orderService.saveOrder(ORDER_REQUEST_DTO);
+
+        // Then / Assert
+
         verify(mockOrderRepository, times(1)).save(ORDER);
     }
 
