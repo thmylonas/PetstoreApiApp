@@ -77,15 +77,15 @@ public class OrderServiceImplTest {
                         .build()
         );
 
-        // When / Act
-
         when(mockOrderRepository.findInventoriesByPetStatus()).thenReturn(Optional.of(INVENTORY_RESPONSE_DTOS));
 
+        // When / Act
+
         List<InventoryResponseDto> inventoriesByPetStatus = orderService.findInventoriesByPetStatus();
+        log.info("InventoriesByPetStatus: {}", inventoriesByPetStatus);
 
         // Then / Assert
 
-        log.info("InventoriesByPetStatus: {}", inventoriesByPetStatus);
         assertEquals(INVENTORY_RESPONSE_DTOS, inventoriesByPetStatus);
     }
 
@@ -112,16 +112,16 @@ public class OrderServiceImplTest {
                 .complete(true)
                 .build();
 
-        // When / Act
-
         when(mockOrderRepository.findById(ORDER_ID)).thenReturn(Optional.of(ORDER));
         when(mockOrderMapper.fromOrder(ORDER)).thenReturn(ORDER_RESPONSE_DTO);
 
+        // When / Act
+
         OrderResponseDto orderById = orderService.findOrderById(ORDER_ID);
+        log.info("OrderById: {}", orderById);
 
         // Then / Assert
 
-        log.info("OrderById: {}", orderById);
         assertEquals(ORDER_RESPONSE_DTO, orderById);
     }
 
@@ -152,18 +152,18 @@ public class OrderServiceImplTest {
                         .build()
                 ).toList();
 
-        // When / Act
-
         when(mockOrderRepository.findAll()).thenReturn(ORDERS);
         for (int i = 0; i < ORDERS.size(); i++) {
             when(mockOrderMapper.fromOrder(ORDERS.get(i))).thenReturn(ORDER_RESPONSE_DTOS.get(i));
         }
 
+        // When / Act
+
         List<OrderResponseDto> allOrders = orderService.findAllOrders();
+        log.info("AllOrders: {}", allOrders);
 
         // Then / Assert
 
-        log.info("AllOrders: {}", allOrders);
         assertEquals(ORDER_RESPONSE_DTOS, allOrders);
     }
 
@@ -180,22 +180,36 @@ public class OrderServiceImplTest {
                 .status(OrderStatus.PLACED.getValue())
                 .complete(true)
                 .build();
-        final Order ORDER = orderMapper.toOrder(ORDER_REQUEST_DTO);
+        final Order ORDER = Order.builder()
+                .quantity(4)
+                .status(OrderStatus.PLACED)
+                .complete(true)
+                .build();
+        final OrderResponseDto ORDER_RESPONSE_DTO = OrderResponseDto.builder()
+                .quantity(4)
+                .status(OrderStatus.PLACED.getValue())
+                .complete(true)
+                .build();
         final Pet PET_BY_ID = Pet.builder()
                 .id(PET_ID)
                 .name("Pet_Name")
                 .status(PetStatus.AVAILABLE)
                 .build();
 
-        // When / Act
-
         when(mockPetRepository.findById(PET_ID)).thenReturn(Optional.of(PET_BY_ID));
         when(mockOrderMapper.toOrder(ORDER_REQUEST_DTO)).thenReturn(ORDER);
-        verify(mockOrderRepository, times(1)).save(ORDER);
+        when(mockOrderMapper.fromOrder(ORDER)).thenReturn(ORDER_RESPONSE_DTO);
+        when(mockOrderRepository.save(ORDER)).thenReturn(ORDER);
+
+        // When / Act
+
+        OrderResponseDto orderResponseDto = orderService.saveOrder(ORDER_REQUEST_DTO);
+        log.info("orderResponseDto: {}", orderResponseDto);
 
         // Then / Assert
 
-        verify(orderService, times(1)).saveOrder(ORDER_REQUEST_DTO);
+        verify(mockOrderRepository, times(1)).save(ORDER);
+        assertEquals(ORDER_RESPONSE_DTO, orderResponseDto);
     }
 
     @Test
@@ -203,16 +217,35 @@ public class OrderServiceImplTest {
     void test_Given_Orders_When_SaveAllOrdersIsCalled_Then_VerifyIsCalledOnce() {
 
         // Given / Arrange
+
+        final Long PET_ID = 2L;
+        final Pet PET_BY_ID = Pet.builder()
+                .id(PET_ID)
+                .name("Pet_Name")
+                .status(PetStatus.AVAILABLE)
+                .build();
         final List<OrderRequestDto> ORDER_REQUEST_DTOS = TestDataProvider.ORDER_REQUEST_DTOS;
+        List<OrderResponseDto> ORDER_RESPONSE_DTOS = ORDER_REQUEST_DTOS.stream()
+                .map(orderRequestDto -> orderMapper.toOrder(orderRequestDto))
+                .map(order -> {
+                            order.setPet(PET_BY_ID);
+                            return orderMapper.fromOrder(order);
+                        }
+                )
+                .toList();
+
+//        System.out.println();
+//        for (OrderRequestDto orderRequestDto : ORDER_REQUEST_DTOS) {
+//            verify(orderService, times(1)).saveOrder(orderRequestDto);
+//        }
 
         // When / Act
-        for (OrderRequestDto orderRequestDto : ORDER_REQUEST_DTOS) {
-            verify(orderService, times(1)).saveOrder(orderRequestDto);
-        }
+
+        List<OrderResponseDto> orderResponseDtos = orderService.saveAllOrders(ORDER_REQUEST_DTOS);
+        log.info("orderResponseDtos: {}", orderResponseDtos);
 
         // Then / Assert
-
-        verify(orderService, times(1)).saveAllOrders(ORDER_REQUEST_DTOS);
+        assertEquals(ORDER_RESPONSE_DTOS, orderResponseDtos);
     }
 
     @Test
