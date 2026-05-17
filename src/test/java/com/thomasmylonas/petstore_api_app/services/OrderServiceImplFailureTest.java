@@ -40,7 +40,7 @@ public class OrderServiceImplFailureTest {
     }
 
     @Test
-    @DisplayName(value = "When: FindInventoriesByPetStatus is called, Then: RequestedResourceNotFoundException is thrown")
+    @DisplayName(value = "When: findInventoriesByPetStatus is called, Then: RequestedResourceNotFoundException is thrown")
     public void test_When_FindInventoriesByPetStatusIsCalled_Then_RequestedResourceNotFoundExceptionIsThrown() {
 
         // Given / Arrange
@@ -53,7 +53,7 @@ public class OrderServiceImplFailureTest {
     }
 
     @Test
-    @DisplayName(value = "When: FindOrderById is called, Then: RequestedResourceNotFoundException is thrown")
+    @DisplayName(value = "When: findOrderById is called, Then: RequestedResourceNotFoundException is thrown")
     public void test_When_FindOrderByIdIsCalled_Then_RequestedResourceNotFoundExceptionIsThrown() {
 
         // Given / Arrange
@@ -91,7 +91,7 @@ public class OrderServiceImplFailureTest {
     }
 
     @Test
-    @DisplayName(value = "Given: OrderId, When: DeleteOrderById is called, Then: IllegalArgumentException is thrown")
+    @DisplayName(value = "Given: OrderId, When: deleteOrderById is called, Then: IllegalArgumentException is thrown")
     public void test_Given_OrderId_When_DeleteOrderByIdIsCalled_Then_IllegalArgumentExceptionIsThrown() {
 
         // Given / Arrange

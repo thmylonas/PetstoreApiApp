@@ -1,8 +1,8 @@
 package com.thomasmylonas.petstore_api_app.services;
 
-import com.thomasmylonas.petstore_api_app.dtos.user_dtos.UserResponseDto;
 import com.thomasmylonas.petstore_api_app.entities.User;
 import com.thomasmylonas.petstore_api_app.enums.UserStatus;
+import com.thomasmylonas.petstore_api_app.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.petstore_api_app.repositories.UserRepository;
 import com.thomasmylonas.petstore_api_app.services.mappers.UserMapper;
 import org.junit.jupiter.api.AfterEach;
@@ -14,13 +14,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class UserServiceImplSuccessTest {
+class UserServiceImplFailureTest {
 
     @Mock
     private UserRepository mockUserRepository;
@@ -48,8 +46,8 @@ class UserServiceImplSuccessTest {
     }
 
     @Test
-    @DisplayName(value = "Given: Username, When: findUserByUsername is called, Then: UserByUsername is returned")
-    public void test_Given_Username_When_FindUserByUsernameIsCalled_Then_UserByUsernameIsReturned() {
+    @DisplayName(value = "When: FindUserByUsername is called, Then: RequestedResourceNotFoundException is thrown")
+    public void test_When_FindUserByUsernameIsCalled_Then_RequestedResourceNotFoundExceptionIsThrown() {
 
         // Given / Arrange
 
@@ -63,26 +61,11 @@ class UserServiceImplSuccessTest {
                 .phone("Phone")
                 .userStatus(UserStatus.USER_STATUS_1)
                 .build();
-        final UserResponseDto USER_RESPONSE_DTO = UserResponseDto.builder()
-                .id(1L)
-                .username(USER.getUsername())
-                .firstName(USER.getFirstName())
-                .lastName(USER.getLastName())
-                .email(USER.getEmail())
-                .password(USER.getPassword())
-                .phone(USER.getPhone())
-                .userStatus(USER.getUserStatus().getValue())
-                .build();
-        when(mockUserRepository.findByUsername(USER.getUsername())).thenReturn(Optional.of(USER));
-        when(mockUserMapper.fromUser(USER)).thenReturn(USER_RESPONSE_DTO);
+        when(mockUserRepository.findByUsername(USER.getUsername())).thenThrow(RequestedResourceNotFoundException.class);
 
-        // When / Act
+        // When / Act - Then / Assert
 
-        UserResponseDto userByUsername = userService.findUserByUsername(USER.getUsername());
-
-        // Then / Assert
-
-        assertEquals(USER_RESPONSE_DTO, userByUsername);
+        assertThrows(RequestedResourceNotFoundException.class, () -> userService.findUserByUsername(USER.getUsername()));
     }
 
     @Test
