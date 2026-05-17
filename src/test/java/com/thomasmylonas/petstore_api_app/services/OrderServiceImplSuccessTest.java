@@ -87,8 +87,8 @@ public class OrderServiceImplSuccessTest {
     }
 
     @Test
-    @DisplayName(value = "Given: Order, When: findOrderById is called, Then: orderById is returned")
-    public void test_Given_Order_When_FindOrderByIdIsCalled_Then_OrderByIdIsReturned() {
+    @DisplayName(value = "Given: OrderId, When: findOrderById is called, Then: orderById is returned")
+    public void test_Given_OrderId_When_FindOrderByIdIsCalled_Then_OrderByIdIsReturned() {
 
         // Given / Arrange
 
