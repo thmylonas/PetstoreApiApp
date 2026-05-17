@@ -1,7 +1,6 @@
 package com.thomasmylonas.petstore_api_app.services;
 
 import com.thomasmylonas.petstore_api_app.dtos.order_dtos.OrderRequestDto;
-import com.thomasmylonas.petstore_api_app.entities.Order;
 import com.thomasmylonas.petstore_api_app.enums.OrderStatus;
 import com.thomasmylonas.petstore_api_app.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.petstore_api_app.repositories.OrderRepository;
@@ -68,8 +67,8 @@ public class OrderServiceImplFailureTest {
     }
 
     @Test
-    @DisplayName(value = "Given: Order, When: saveOrder is called, Then: RequestedResourceNotFoundException, IllegalArgumentException are thrown")
-    public void test_Given_Order_When_SaveOrderIsCalled_Then_RequestedResourceNotFoundExceptionAndIllegalArgumentExceptionAreThrown() {
+    @DisplayName(value = "Given: Order, When: saveOrder is called, Then: RequestedResourceNotFoundException is thrown")
+    public void test_Given_Order_When_SaveOrderIsCalled_Then_RequestedResourceNotFoundExceptionIsThrown() {
 
         // Given / Arrange
 
@@ -80,19 +79,15 @@ public class OrderServiceImplFailureTest {
                 .status(OrderStatus.PLACED.getValue())
                 .complete(true)
                 .build();
-        final Order ORDER = Order.builder()
-                .quantity(4)
-                .status(OrderStatus.PLACED)
-                .complete(true)
-                .build();
+        //final Order ORDER = Order.builder().quantity(4).status(OrderStatus.PLACED).complete(true).build();
 
         when(mockPetRepository.findById(PET_ID)).thenThrow(RequestedResourceNotFoundException.class);
-        when(mockOrderRepository.save(ORDER)).thenThrow(IllegalArgumentException.class);
+        //when(mockOrderRepository.save(ORDER)).thenThrow(IllegalArgumentException.class); // Will never happen, because of the "RequestedResourceNotFoundException"
 
         // When / Act -  Then / Assert
 
         assertThrows(RequestedResourceNotFoundException.class, () -> orderService.saveOrder(ORDER_REQUEST_DTO));
-        assertThrows(IllegalArgumentException.class, () -> orderService.saveOrder(ORDER_REQUEST_DTO));
+        //assertThrows(IllegalArgumentException.class, () -> orderService.saveOrder(ORDER_REQUEST_DTO)); // Will never happen, because of the "RequestedResourceNotFoundException"
     }
 
     @Test
