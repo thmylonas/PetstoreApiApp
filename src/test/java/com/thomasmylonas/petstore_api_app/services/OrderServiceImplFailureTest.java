@@ -79,10 +79,9 @@ public class OrderServiceImplFailureTest {
                 .status(OrderStatus.PLACED.getValue())
                 .complete(true)
                 .build();
-        //final Order ORDER = Order.builder().quantity(4).status(OrderStatus.PLACED).complete(true).build();
 
         when(mockPetRepository.findById(PET_ID)).thenThrow(RequestedResourceNotFoundException.class);
-        //when(mockOrderRepository.save(ORDER)).thenThrow(IllegalArgumentException.class); // Will never happen, because of the "RequestedResourceNotFoundException"
+        //when(mockOrderRepository.save(null)).thenThrow(IllegalArgumentException.class); // Will never happen, because of the "RequestedResourceNotFoundException"
 
         // When / Act -  Then / Assert
 
