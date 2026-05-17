@@ -1,5 +1,6 @@
 package com.thomasmylonas.petstore_api_app.services;
 
+import com.thomasmylonas.petstore_api_app.dtos.user_dtos.UserRequestDto;
 import com.thomasmylonas.petstore_api_app.dtos.user_dtos.UserResponseDto;
 import com.thomasmylonas.petstore_api_app.entities.User;
 import com.thomasmylonas.petstore_api_app.enums.UserStatus;
@@ -137,7 +138,55 @@ class UserServiceImplSuccessTest {
     }
 
     @Test
-    public void testSaveUser() {
+    @DisplayName(value = "Given: User, When: saveUser is called, Then: Verify that saveUser is called once")
+    public void test_Given_User_When_SaveUserIsCalled_Then_VerifyIsCalledOnce() {
+
+        // Given / Arrange
+
+        final Long USER_ID = 1L;
+        final User USER = User.builder()
+                .id(USER_ID)
+                .username("username")
+                .firstName("firstName")
+                .lastName("lastName")
+                .email("username@mail.com")
+                .password("password")
+                .phone("111111111")
+                .userStatus(UserStatus.USER_STATUS_1)
+                .build();
+        final UserRequestDto USER_REQUEST_DTO = UserRequestDto.builder()
+                .username(USER.getUsername())
+                .firstName(USER.getFirstName())
+                .lastName(USER.getLastName())
+                .email(USER.getEmail())
+                .password(USER.getPassword())
+                .phone(USER.getPhone())
+                .userStatus(USER.getUserStatus().getValue())
+                .build();
+        final UserResponseDto USER_RESPONSE_DTO = UserResponseDto.builder()
+                .id(USER.getId())
+                .username(USER.getUsername())
+                .firstName(USER.getFirstName())
+                .lastName(USER.getLastName())
+                .email(USER.getEmail())
+                .password(USER.getPassword())
+                .phone(USER.getPhone())
+                .userStatus(USER.getUserStatus().getValue())
+                .build();
+
+        when(mockUserMapper.toUser(USER_REQUEST_DTO)).thenReturn(USER);
+        when(mockUserMapper.fromUser(USER)).thenReturn(USER_RESPONSE_DTO);
+        when(mockUserRepository.save(USER)).thenReturn(USER);
+
+        // When / Act
+
+        UserResponseDto userResponseDto = userService.saveUser(USER_REQUEST_DTO);
+        log.info("userResponseDto: {}", userResponseDto);
+
+        // Then / Assert
+
+        verify(mockUserRepository, times(1)).save(USER);
+        assertEquals(USER_RESPONSE_DTO, userResponseDto);
     }
 
     @Test

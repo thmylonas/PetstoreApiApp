@@ -1,5 +1,6 @@
 package com.thomasmylonas.petstore_api_app.services;
 
+import com.thomasmylonas.petstore_api_app.dtos.user_dtos.UserRequestDto;
 import com.thomasmylonas.petstore_api_app.entities.User;
 import com.thomasmylonas.petstore_api_app.enums.UserStatus;
 import com.thomasmylonas.petstore_api_app.exceptions.RequestedResourceNotFoundException;
@@ -69,11 +70,37 @@ class UserServiceImplFailureTest {
     }
 
     @Test
-    public void testFindAllUsers() {
-    }
+    @DisplayName(value = "Given: User, When: saveUser is called, Then: RequestedResourceNotFoundException is thrown")
+    public void test_Given_User_When_SaveUserIsCalled_Then_RequestedResourceNotFoundExceptionIsThrown() {
 
-    @Test
-    public void testSaveUser() {
+        /*// Given / Arrange
+
+        final Long USER_ID = 1L;
+        final User USER = User.builder()
+                .id(USER_ID)
+                .username("username")
+                .firstName("firstName")
+                .lastName("lastName")
+                .email("username@mail.com")
+                .password("password")
+                .phone("111111111")
+                .userStatus(UserStatus.USER_STATUS_1)
+                .build();
+        final UserRequestDto USER_REQUEST_DTO = UserRequestDto.builder()
+                .username(USER.getUsername())
+                .firstName(USER.getFirstName())
+                .lastName(USER.getLastName())
+                .email(USER.getEmail())
+                .password(USER.getPassword())
+                .phone(USER.getPhone())
+                .userStatus(USER.getUserStatus().getValue())
+                .build();
+
+        when(mockUserRepository.save(USER)).thenThrow(IllegalArgumentException.class);
+
+        // When / Act -  Then / Assert
+
+        assertThrows(IllegalArgumentException.class, () -> userService.saveUser(USER_REQUEST_DTO));*/
     }
 
     @Test

@@ -170,21 +170,21 @@ public class OrderServiceImplSuccessTest {
         // Given / Arrange
 
         final Long PET_ID = 2L;
-        final OrderRequestDto ORDER_REQUEST_DTO = OrderRequestDto.builder()
-                .petId(PET_ID)
-                .quantity(4)
-                .status(OrderStatus.PLACED.getValue())
-                .complete(true)
-                .build();
         final Order ORDER = Order.builder()
                 .quantity(4)
                 .status(OrderStatus.PLACED)
                 .complete(true)
                 .build();
+        final OrderRequestDto ORDER_REQUEST_DTO = OrderRequestDto.builder()
+                .petId(PET_ID)
+                .quantity(ORDER.getQuantity())
+                .status(ORDER.getStatus().getValue())
+                .complete(ORDER.isComplete())
+                .build();
         final OrderResponseDto ORDER_RESPONSE_DTO = OrderResponseDto.builder()
-                .quantity(4)
-                .status(OrderStatus.PLACED.getValue())
-                .complete(true)
+                .quantity(ORDER.getQuantity())
+                .status(ORDER.getStatus().getValue())
+                .complete(ORDER.isComplete())
                 .build();
         final Pet PET_BY_ID = Pet.builder()
                 .id(PET_ID)
