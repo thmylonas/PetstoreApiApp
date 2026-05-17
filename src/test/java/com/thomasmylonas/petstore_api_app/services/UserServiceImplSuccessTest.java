@@ -194,6 +194,31 @@ class UserServiceImplSuccessTest {
     }
 
     @Test
-    public void testDeleteUserByUsername() {
+    @DisplayName(value = "Given: Username, When: deleteUserByUsername is called, Then: UserService::deleteUserByUsername is called once")
+    public void test_Given_Username_When_DeleteUserByUsernameIsCalled_Then_UserServiceDeleteUserByUsernameIsCalledOnce() {
+
+        // Given / Arrange
+
+        final Long USER_ID = 1L;
+        final User USER = User.builder()
+                .id(USER_ID)
+                .username("username")
+                .firstName("firstName")
+                .lastName("lastName")
+                .email("username@mail.com")
+                .password("password")
+                .phone("111111111")
+                .userStatus(UserStatus.USER_STATUS_1)
+                .build();
+        when(mockUserRepository.findByUsername(USER.getUsername())).thenReturn(Optional.of(USER));
+        doNothing().when(mockUserRepository).delete(USER);
+
+        // When / Act
+
+        userService.deleteUserByUsername(USER.getUsername());
+
+        // Then / Assert
+
+        verify(mockUserRepository, times(1)).delete(USER);
     }
 }

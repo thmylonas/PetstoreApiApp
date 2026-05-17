@@ -264,7 +264,7 @@ public class OrderServiceImplSuccessTest {
     }
 
     @Test
-    @DisplayName(value = "Given: OrderId, When: DeleteOrderById is called, Then: OrderService::DeleteOrderById is called once")
+    @DisplayName(value = "Given: OrderId, When: deleteOrderById is called, Then: OrderService::deleteOrderById is called once")
     public void test_Given_OrderId_When_DeleteOrderByIdIsCalled_Then_OrderServiceDeleteOrderByIdIsCalledOnce() {
 
         // Given / Arrange
@@ -277,6 +277,7 @@ public class OrderServiceImplSuccessTest {
         orderService.deleteOrderById(ORDER_ID);
 
         // Then / Assert
+
         verify(mockOrderRepository, times(1)).deleteById(ORDER_ID);
     }
 }
