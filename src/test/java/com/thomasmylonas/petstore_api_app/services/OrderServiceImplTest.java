@@ -169,7 +169,7 @@ public class OrderServiceImplTest {
 
     @Test
     @DisplayName(value = "Given: Order, When: saveOrder is called, Then: Verify that saveOrder is called once")
-    void test_Given_Order_When_SaveOrderIsCalled_Then_VerifyIsCalledOnce() {
+    public void test_Given_Order_When_SaveOrderIsCalled_Then_VerifyIsCalledOnce() {
 
         // Given / Arrange
 
@@ -214,7 +214,7 @@ public class OrderServiceImplTest {
 
     @Test
     @DisplayName(value = "Given: Orders, When: saveAllOrders is called, Then: Verify that saveAllOrders is called once")
-    void test_Given_Orders_When_SaveAllOrdersIsCalled_Then_VerifyIsCalledOnce() {
+    public void test_Given_Orders_When_SaveAllOrdersIsCalled_Then_VerifyIsCalledOnce() {
 
         /*
         // Given / Arrange
@@ -268,6 +268,18 @@ public class OrderServiceImplTest {
     }
 
     @Test
-    void testDeleteOrderById() {
+    public void testDeleteOrderById() {
+
+        // Given / Arrange
+
+        final Long ORDER_ID = 1L;
+        doNothing().when(mockOrderRepository).deleteById(ORDER_ID);
+
+        // When / Act
+
+        orderService.deleteOrderById(ORDER_ID);
+
+        // Then / Assert
+        verify(mockOrderRepository, times(1)).deleteById(ORDER_ID);
     }
 }
