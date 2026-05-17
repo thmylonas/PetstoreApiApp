@@ -32,7 +32,7 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @Slf4j
-public class OrderServiceImplTest {
+public class OrderServiceImplSuccessTest {
 
     @Mock
     private OrderRepository mockOrderRepository;
@@ -43,14 +43,11 @@ public class OrderServiceImplTest {
     @Mock
     private OrderMapper mockOrderMapper;
 
-    private OrderMapper orderMapper;
-
     @InjectMocks
     private OrderServiceImpl orderService;
 
     @BeforeEach
     void setUp() {
-        orderMapper = new OrderMapper();
     }
 
     @AfterEach
@@ -213,8 +210,8 @@ public class OrderServiceImplTest {
     }
 
     @Test
-    @DisplayName(value = "Given: Orders, When: saveAllOrders is called, Then: Verify that saveAllOrders is called once")
-    public void test_Given_Orders_When_SaveAllOrdersIsCalled_Then_VerifyIsCalledOnce() {
+    @DisplayName(value = "")
+    public void testSaveAllOrders() {
 
         /*
         // Given / Arrange
@@ -268,7 +265,8 @@ public class OrderServiceImplTest {
     }
 
     @Test
-    public void testDeleteOrderById() {
+    @DisplayName(value = "Given: OrderId, When: DeleteOrderById is called, Then: OrderService::DeleteOrderById is called once")
+    public void test_Given_OrderId_When_DeleteOrderByIdIsCalled_Then_OrderServiceDeleteOrderByIdIsCalledOnce() {
 
         // Given / Arrange
 
