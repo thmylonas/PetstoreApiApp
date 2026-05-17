@@ -128,10 +128,9 @@ public class OrderServiceImplSuccessTest {
 
         // Given / Arrange
 
-        final List<Long> RANDOM_ORDER_IDS = Stream.generate(() -> HelperClass.RANDOM.nextLong(100)).limit(10).distinct().toList();
         final List<OrderResponseDto> ORDER_RESPONSE_DTOS = TestDataProvider.ORDER_REQUEST_DTOS.stream()
                 .map(orderRequestDto -> OrderResponseDto.builder()
-                        .id(RANDOM_ORDER_IDS.get(HelperClass.RANDOM.nextInt(RANDOM_ORDER_IDS.size())))
+                        .id(HelperClass.RANDOM_ORDER_IDS.get(HelperClass.RANDOM.nextInt(HelperClass.RANDOM_ORDER_IDS.size())))
                         .petId(orderRequestDto.petId())
                         .quantity(orderRequestDto.quantity())
                         .shipDate(LocalDateTime.now())
@@ -141,7 +140,7 @@ public class OrderServiceImplSuccessTest {
                 ).toList();
         final List<Order> ORDERS = TestDataProvider.ORDER_REQUEST_DTOS.stream()
                 .map(orderRequestDto -> Order.builder()
-                        .id(RANDOM_ORDER_IDS.get(HelperClass.RANDOM.nextInt(RANDOM_ORDER_IDS.size())))
+                        .id(HelperClass.RANDOM_ORDER_IDS.get(HelperClass.RANDOM.nextInt(HelperClass.RANDOM_ORDER_IDS.size())))
                         .quantity(orderRequestDto.quantity())
                         .shipDate(LocalDateTime.now())
                         .status(OrderStatus.valueOfOrderStatus(orderRequestDto.status()))
