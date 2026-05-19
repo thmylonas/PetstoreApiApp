@@ -15,6 +15,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -52,14 +54,15 @@ class UserServiceImplFailureTest {
 
         // Given / Arrange
 
+        final Long USER_ID = 1L;
         final User USER = User.builder()
-                .id(1L)
+                .id(USER_ID)
                 .username("username")
                 .firstName("First_Name")
                 .lastName("Last_Name")
-                .email("Email")
-                .password("Password")
-                .phone("Phone")
+                .email("username@mail.com")
+                .password("password")
+                .phone("111111111")
                 .userStatus(UserStatus.USER_STATUS_1)
                 .build();
         when(mockUserRepository.findByUsername(USER.getUsername())).thenThrow(RequestedResourceNotFoundException.class);
@@ -77,8 +80,8 @@ class UserServiceImplFailureTest {
 
         final UserRequestDto USER_REQUEST_DTO = UserRequestDto.builder()
                 .username("username")
-                .firstName("firstName")
-                .lastName("lastName")
+                .firstName("First_Name")
+                .lastName("Last_Name")
                 .email("username@mail.com")
                 .password("password")
                 .phone("111111111")
@@ -97,6 +100,30 @@ class UserServiceImplFailureTest {
     }
 
     @Test
-    public void testDeleteUserByUsername() {
+    @DisplayName(value = "Given: OrderId, When: deleteUserByUsername is called, Then: IllegalArgumentException is thrown")
+    public void test_Given_OrderId_When_DeleteUserByUsernameIsCalled_Then_IllegalArgumentExceptionIsThrown() {
+
+        // Given / Arrange
+
+        final Long USER_ID = 1L;
+        final User USER = User.builder()
+                .id(USER_ID)
+                .username("username")
+                .firstName("First_Name")
+                .lastName("Last_Name")
+                .email("username@mail.com")
+                .password("password")
+                .phone("111111111")
+                .userStatus(UserStatus.USER_STATUS_1)
+                .build();
+        when(mockUserRepository.findByUsername(USER.getUsername())).thenReturn(Optional.of(USER));
+
+        // When / Act
+
+        userService.deleteUserByUsername(USER.getUsername());
+
+        // Then / Assert
+
+        verify(mockUserRepository, times(1)).delete(USER);
     }
 }
