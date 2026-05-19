@@ -15,8 +15,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -100,8 +98,8 @@ class UserServiceImplFailureTest {
     }
 
     @Test
-    @DisplayName(value = "Given: OrderId, When: deleteUserByUsername is called, Then: IllegalArgumentException is thrown")
-    public void test_Given_OrderId_When_DeleteUserByUsernameIsCalled_Then_IllegalArgumentExceptionIsThrown() {
+    @DisplayName(value = "Given: username, When: deleteUserByUsername is called, Then: RequestedResourceNotFoundException is thrown")
+    public void test_Given_Username_When_DeleteUserByUsernameIsCalled_Then_RequestedResourceNotFoundExceptionIsThrown() {
 
         // Given / Arrange
 
@@ -116,14 +114,13 @@ class UserServiceImplFailureTest {
                 .phone("111111111")
                 .userStatus(UserStatus.USER_STATUS_1)
                 .build();
-        when(mockUserRepository.findByUsername(USER.getUsername())).thenReturn(Optional.of(USER));
+        when(mockUserRepository.findByUsername(USER.getUsername())).thenThrow(RequestedResourceNotFoundException.class);
+        //doThrow(IllegalArgumentException.class).when(mockUserRepository).delete(null); // Will never happen, because of the "RequestedResourceNotFoundException"
 
-        // When / Act
+        // When / Act - Then / Assert
 
-        userService.deleteUserByUsername(USER.getUsername());
-
-        // Then / Assert
-
-        verify(mockUserRepository, times(1)).delete(USER);
+        verify(mockUserRepository, never()).delete(USER);
+        assertThrows(RequestedResourceNotFoundException.class, () -> userService.deleteUserByUsername(USER.getUsername()));
+        //assertThrows(IllegalArgumentException.class, () -> userService.deleteUserByUsername(USER.getUsername())); // Will never happen, because of the "RequestedResourceNotFoundException"
     }
 }
