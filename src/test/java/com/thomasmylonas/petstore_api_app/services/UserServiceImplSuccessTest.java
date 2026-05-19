@@ -26,7 +26,7 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @Slf4j
-class UserServiceImplSuccessTest {
+public class UserServiceImplSuccessTest {
 
     @Mock
     private UserRepository mockUserRepository;
