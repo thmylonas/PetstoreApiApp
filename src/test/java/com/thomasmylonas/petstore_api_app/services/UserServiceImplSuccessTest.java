@@ -191,7 +191,65 @@ class UserServiceImplSuccessTest {
     }
 
     @Test
-    public void testUpdateUser() {
+    @DisplayName(value = "When: UsernameToUpdate and UserRequestDto, When: updateUser is called, Then: userResponseDto is returned")
+    public void test_When_UsernameToUpdate_And_UserRequestDto_When_UpdateUserIsCalled_Then_UserResponseDtoIsReturned() {
+
+        // Given / Arrange
+
+        final String USERNAME_TO_UPDATE = "username";
+
+        final Long USER_ID = 1L;
+        final User USER = User.builder()
+                .id(USER_ID)
+                .username("username")
+                .firstName("First_Name")
+                .lastName("Last_Name")
+                .email("username@mail.com")
+                .password("password")
+                .phone("111111111")
+                .userStatus(UserStatus.USER_STATUS_1)
+                .build();
+        final UserRequestDto USER_REQUEST_DTO = UserRequestDto.builder()
+                .username("new_username")
+                .firstName("New_First_Name")
+                .lastName("New_Last_Name")
+                .email("new-username@mail.com")
+                .password("new_password")
+                .phone("222222222")
+                .userStatus(UserStatus.USER_STATUS_2.getValue())
+                .build();
+        final User USER_UPDATED = User.builder()
+                .id(USER_ID)
+                .username(USER_REQUEST_DTO.username())
+                .firstName(USER_REQUEST_DTO.firstName())
+                .lastName(USER_REQUEST_DTO.lastName())
+                .email(USER_REQUEST_DTO.email())
+                .password(USER_REQUEST_DTO.password())
+                .phone(USER_REQUEST_DTO.phone())
+                .userStatus(UserStatus.valueOfUserStatus(USER_REQUEST_DTO.userStatus()))
+                .build();
+        final UserResponseDto USER_RESPONSE_DTO = UserResponseDto.builder()
+                .id(USER.getId())
+                .username(USER_REQUEST_DTO.username())
+                .firstName(USER_REQUEST_DTO.firstName())
+                .lastName(USER_REQUEST_DTO.lastName())
+                .email(USER_REQUEST_DTO.email())
+                .password(USER_REQUEST_DTO.password())
+                .phone(USER_REQUEST_DTO.phone())
+                .userStatus(USER_REQUEST_DTO.userStatus())
+                .build();
+
+        when(mockUserRepository.findByUsername(USERNAME_TO_UPDATE)).thenReturn(Optional.of(USER));
+        when(mockUserRepository.save(USER)).thenReturn(USER_UPDATED);
+        when(mockUserMapper.fromUser(USER_UPDATED)).thenReturn(USER_RESPONSE_DTO);
+
+        // When / Act
+
+        UserResponseDto userResponseDto = userService.updateUser(USERNAME_TO_UPDATE, USER_REQUEST_DTO);
+        log.info("userResponseDto: {}", userResponseDto);
+
+        // Then / Assert
+        assertEquals(USER_RESPONSE_DTO, userResponseDto);
     }
 
     @Test
