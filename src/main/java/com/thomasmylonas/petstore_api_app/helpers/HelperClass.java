@@ -10,7 +10,9 @@ public class HelperClass {
 
     public static final Random RANDOM = new Random();
 
-    public static final List<Long> RANDOM_ORDER_IDS = Stream.generate(() -> HelperClass.RANDOM.nextLong(100)).limit(10).distinct().toList();
+    public static List<Long> randomLongNumbers(int amount) {
+        return Stream.generate(() -> HelperClass.RANDOM.nextLong(100)).limit(amount).distinct().toList();
+    }
 
     public static String stacktrace(Exception e) {
         StringWriter sw = new StringWriter();

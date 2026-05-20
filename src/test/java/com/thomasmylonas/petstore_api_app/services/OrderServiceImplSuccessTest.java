@@ -33,6 +33,8 @@ import static org.mockito.Mockito.*;
 @Slf4j
 public class OrderServiceImplSuccessTest {
 
+    public final List<Long> RANDOM_IDS = HelperClass.randomLongNumbers(10);
+
     @Mock
     private OrderRepository mockOrderRepository;
 
@@ -129,7 +131,7 @@ public class OrderServiceImplSuccessTest {
 
         final List<OrderResponseDto> ORDER_RESPONSE_DTOS = TestDataProvider.ORDER_REQUEST_DTOS.stream()
                 .map(orderRequestDto -> OrderResponseDto.builder()
-                        .id(HelperClass.RANDOM_ORDER_IDS.get(HelperClass.RANDOM.nextInt(HelperClass.RANDOM_ORDER_IDS.size())))
+                        .id(RANDOM_IDS.get(HelperClass.RANDOM.nextInt(RANDOM_IDS.size())))
                         .petId(orderRequestDto.petId())
                         .quantity(orderRequestDto.quantity())
                         .shipDate(LocalDateTime.now())
@@ -139,7 +141,7 @@ public class OrderServiceImplSuccessTest {
                 ).toList();
         final List<Order> ORDERS = TestDataProvider.ORDER_REQUEST_DTOS.stream()
                 .map(orderRequestDto -> Order.builder()
-                        .id(HelperClass.RANDOM_ORDER_IDS.get(HelperClass.RANDOM.nextInt(HelperClass.RANDOM_ORDER_IDS.size())))
+                        .id(RANDOM_IDS.get(HelperClass.RANDOM.nextInt(RANDOM_IDS.size())))
                         .quantity(orderRequestDto.quantity())
                         .shipDate(LocalDateTime.now())
                         .status(OrderStatus.valueOfOrderStatus(orderRequestDto.status()))

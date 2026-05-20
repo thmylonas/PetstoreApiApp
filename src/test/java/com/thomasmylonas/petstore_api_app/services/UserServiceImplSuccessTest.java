@@ -28,6 +28,8 @@ import static org.mockito.Mockito.*;
 @Slf4j
 public class UserServiceImplSuccessTest {
 
+    public final List<Long> RANDOM_IDS = HelperClass.randomLongNumbers(10);
+
     @Mock
     private UserRepository mockUserRepository;
 
@@ -100,7 +102,7 @@ public class UserServiceImplSuccessTest {
 
         List<UserResponseDto> USER_RESPONSE_DTOS = TestDataProvider.USER_REQUEST_DTOS.stream()
                 .map(userRequestDto -> UserResponseDto.builder()
-                        .id(HelperClass.RANDOM_ORDER_IDS.get(HelperClass.RANDOM.nextInt(HelperClass.RANDOM_ORDER_IDS.size())))
+                        .id(RANDOM_IDS.get(HelperClass.RANDOM.nextInt(RANDOM_IDS.size())))
                         .username(userRequestDto.username())
                         .firstName(userRequestDto.firstName())
                         .lastName(userRequestDto.lastName())
@@ -112,7 +114,7 @@ public class UserServiceImplSuccessTest {
                 ).toList();
         List<User> USERS = TestDataProvider.USER_REQUEST_DTOS.stream()
                 .map(userRequestDto -> User.builder()
-                        .id(HelperClass.RANDOM_ORDER_IDS.get(HelperClass.RANDOM.nextInt(HelperClass.RANDOM_ORDER_IDS.size())))
+                        .id(RANDOM_IDS.get(HelperClass.RANDOM.nextInt(RANDOM_IDS.size())))
                         .username(userRequestDto.username())
                         .firstName(userRequestDto.firstName())
                         .lastName(userRequestDto.lastName())
