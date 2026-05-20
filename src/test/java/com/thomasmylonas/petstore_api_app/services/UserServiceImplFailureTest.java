@@ -5,6 +5,7 @@ import com.thomasmylonas.petstore_api_app.entities.User;
 import com.thomasmylonas.petstore_api_app.enums.UserStatus;
 import com.thomasmylonas.petstore_api_app.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.petstore_api_app.repositories.UserRepository;
+import com.thomasmylonas.petstore_api_app.services.mappers.UserMapper;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -22,6 +23,9 @@ public class UserServiceImplFailureTest {
 
     @Mock
     private UserRepository mockUserRepository;
+
+    @Mock
+    private UserMapper mockUserMapper;
 
     @InjectMocks
     private UserServiceImpl userService;
@@ -82,6 +86,7 @@ public class UserServiceImplFailureTest {
                 .userStatus(UserStatus.USER_STATUS_1.getValue())
                 .build();
 
+        when(mockUserMapper.toUser(USER_REQUEST_DTO)).thenReturn(null);
         when(mockUserRepository.save(null)).thenThrow(IllegalArgumentException.class);
 
         // When / Act -  Then / Assert
