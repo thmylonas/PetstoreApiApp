@@ -5,7 +5,6 @@ import com.thomasmylonas.petstore_api_app.enums.OrderStatus;
 import com.thomasmylonas.petstore_api_app.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.petstore_api_app.repositories.OrderRepository;
 import com.thomasmylonas.petstore_api_app.repositories.PetRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -18,8 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
-@Slf4j
+@ExtendWith(value = MockitoExtension.class)
 public class OrderServiceImplFailureTest {
 
     @Mock

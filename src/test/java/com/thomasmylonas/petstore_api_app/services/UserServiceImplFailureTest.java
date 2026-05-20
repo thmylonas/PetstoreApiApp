@@ -18,7 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
+@ExtendWith(value = MockitoExtension.class)
 public class UserServiceImplFailureTest {
 
     @Mock
