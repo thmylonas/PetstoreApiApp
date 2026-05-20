@@ -5,7 +5,6 @@ import com.thomasmylonas.petstore_api_app.entities.User;
 import com.thomasmylonas.petstore_api_app.enums.UserStatus;
 import com.thomasmylonas.petstore_api_app.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.petstore_api_app.repositories.UserRepository;
-import com.thomasmylonas.petstore_api_app.services.mappers.UserMapper;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -23,9 +22,6 @@ public class UserServiceImplFailureTest {
 
     @Mock
     private UserRepository mockUserRepository;
-
-    @Mock
-    private UserMapper mockUserMapper;
 
     @InjectMocks
     private UserServiceImpl userService;
@@ -94,7 +90,41 @@ public class UserServiceImplFailureTest {
     }
 
     @Test
-    public void testUpdateUser() {
+    @DisplayName(value = "Given: UsernameToUpdate and UserRequestDto, When: updateUser is called, Then: RequestedResourceNotFoundException is thrown")
+    public void test_Given_UsernameToUpdate_And_UserRequestDto_When_UpdateUserIsCalled_Then_RequestedResourceNotFoundExceptionIsThrown() {
+
+        // Given / Arrange
+
+        final String USERNAME_TO_UPDATE = "username";
+
+        final Long USER_ID = 1L;
+        final User USER = User.builder()
+                .id(USER_ID)
+                .username("username")
+                .firstName("First_Name")
+                .lastName("Last_Name")
+                .email("username@mail.com")
+                .password("password")
+                .phone("111111111")
+                .userStatus(UserStatus.USER_STATUS_1)
+                .build();
+        final UserRequestDto USER_REQUEST_DTO = UserRequestDto.builder()
+                .username("new_username")
+                .firstName("New_First_Name")
+                .lastName("New_Last_Name")
+                .email("new-username@mail.com")
+                .password("new_password")
+                .phone("222222222")
+                .userStatus(UserStatus.USER_STATUS_2.getValue())
+                .build();
+        when(mockUserRepository.findByUsername(USER.getUsername())).thenThrow(RequestedResourceNotFoundException.class);
+        //doThrow(IllegalArgumentException.class).when(mockUserRepository).save(null); // Will never happen, because of the "RequestedResourceNotFoundException"
+
+        // When / Act - Then / Assert
+
+        verify(mockUserRepository, never()).save(USER);
+        assertThrows(RequestedResourceNotFoundException.class, () -> userService.updateUser(USERNAME_TO_UPDATE, USER_REQUEST_DTO));
+        //assertThrows(IllegalArgumentException.class, () -> userService.updateUser(USERNAME_TO_UPDATE, USER_REQUEST_DTO)); // Will never happen, because of the "RequestedResourceNotFoundException"
     }
 
     @Test

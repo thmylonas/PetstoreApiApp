@@ -191,8 +191,8 @@ public class UserServiceImplSuccessTest {
     }
 
     @Test
-    @DisplayName(value = "When: UsernameToUpdate and UserRequestDto, When: updateUser is called, Then: userResponseDto is returned")
-    public void test_When_UsernameToUpdate_And_UserRequestDto_When_UpdateUserIsCalled_Then_UserResponseDtoIsReturned() {
+    @DisplayName(value = "Given: UsernameToUpdate and UserRequestDto, When: updateUser is called, Then: userResponseDto is returned")
+    public void test_Given_UsernameToUpdate_And_UserRequestDto_When_UpdateUserIsCalled_Then_UserResponseDtoIsReturned() {
 
         // Given / Arrange
 
