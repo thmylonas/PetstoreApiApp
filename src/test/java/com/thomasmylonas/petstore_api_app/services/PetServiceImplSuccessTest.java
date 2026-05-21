@@ -7,7 +7,6 @@ import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetResponseDto;
 import com.thomasmylonas.petstore_api_app.entities.Category;
 import com.thomasmylonas.petstore_api_app.entities.Pet;
 import com.thomasmylonas.petstore_api_app.enums.PetStatus;
-import com.thomasmylonas.petstore_api_app.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.petstore_api_app.helpers.HelperClass;
 import com.thomasmylonas.petstore_api_app.helpers.TestDataProvider;
 import com.thomasmylonas.petstore_api_app.repositories.CategoryRepository;
@@ -377,6 +376,42 @@ public class PetServiceImplSuccessTest {
     }
 
     @Test
-    public void updatePetWithForm() {
+    @DisplayName(value = "Given: PetIdToUpdate and PetName and PetStatus, When: updatePetWithForm is called, Then: petResponseDto is returned")
+    public void test_Given_PetIdToUpdate_And_PetName_And_PetStatus_When_UpdatePetWithFormIsCalled_Then_PetResponseDtoIsReturned() {
+
+        // Given / Arrange
+
+        final Long PET_ID_TO_UPDATE = 1L;
+        final String PET_NAME = "New_Pet_Name";
+        final String PET_STATUS = PetStatus.PENDING.getValue();
+
+        final Pet PET_TO_UPDATE = Pet.builder()
+                .id(PET_ID_TO_UPDATE)
+                .name("Pet_Name")
+                .status(PetStatus.AVAILABLE)
+                .build();
+        final Pet PET_UPDATED = Pet.builder()
+                .id(PET_ID_TO_UPDATE)
+                .name(PET_NAME)
+                .status(PetStatus.valueOfPetStatus(PET_STATUS))
+                .build();
+        final PetResponseDto PET_RESPONSE_DTO = PetResponseDto.builder()
+                .id(PET_ID_TO_UPDATE)
+                .name(PET_NAME)
+                .status(PET_STATUS)
+                .build();
+
+        when(mockPetRepository.findById(PET_ID_TO_UPDATE)).thenReturn(Optional.of(PET_TO_UPDATE));
+        when(mockPetRepository.save(PET_TO_UPDATE)).thenReturn(PET_UPDATED);
+        when(mockPetMapper.fromPet(PET_UPDATED)).thenReturn(PET_RESPONSE_DTO);
+
+        // When / Act
+
+        PetResponseDto petResponseDto = petService.updatePetWithForm(PET_ID_TO_UPDATE, PET_NAME, PET_STATUS);
+        log.info("petResponseDto: {}", petResponseDto);
+
+        // Then / Assert
+
+        assertEquals(PET_RESPONSE_DTO, petResponseDto);
     }
 }
