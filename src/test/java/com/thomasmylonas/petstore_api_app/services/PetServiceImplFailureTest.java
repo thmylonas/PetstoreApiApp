@@ -1,5 +1,6 @@
 package com.thomasmylonas.petstore_api_app.services;
 
+import com.thomasmylonas.petstore_api_app.enums.PetStatus;
 import com.thomasmylonas.petstore_api_app.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.petstore_api_app.repositories.CategoryRepository;
 import com.thomasmylonas.petstore_api_app.repositories.PetRepository;
@@ -124,9 +125,9 @@ public class PetServiceImplFailureTest {
 
         // When / Act - Then / Assert
 
-        verify(mockPetRepository, never()).save(any());
         assertThrows(RequestedResourceNotFoundException.class, () -> petService.updatePet(PET_ID_TO_UPDATE, any()));
         //assertThrows(IllegalArgumentException.class, () -> petService.updatePet(PET_ID_TO_UPDATE, any())); // Will never happen, because of the "RequestedResourceNotFoundException"
+        verify(mockPetRepository, never()).save(any());
     }
 
     @Test
@@ -144,13 +145,22 @@ public class PetServiceImplFailureTest {
     }
 
     @Test
-    @DisplayName(value = "Given: PetIdToUpdate and PetRequestDto, When: updatePetWithForm is called, Then: RequestedResourceNotFoundException is thrown")
-    public void test_Given_PetIdToUpdate_And_PetRequestDto_When_UpdatePetWithFormIsCalled_Then_RequestedResourceNotFoundExceptionIsThrown() {
+    @DisplayName(value = "Given: PetIdToUpdate and PetName and PetStatus, When: updatePetWithForm is called, Then: RequestedResourceNotFoundException is thrown")
+    public void test_Given_PetIdToUpdate_And_PetName_And_PetStatus_When_UpdatePetWithFormIsCalled_Then_RequestedResourceNotFoundExceptionIsThrown() {
 
         // Given / Arrange
 
-        // When / Act
+        final Long PET_ID_TO_UPDATE = 1L;
+        final String PET_NAME = "New_Pet_Name";
+        final String PET_STATUS = PetStatus.PENDING.getValue();
 
-        // Then / Assert
+        when(mockPetRepository.findById(PET_ID_TO_UPDATE)).thenThrow(RequestedResourceNotFoundException.class);
+        //doThrow(IllegalArgumentException.class).when(mockPetRepository).save(null); // Will never happen, because of the "RequestedResourceNotFoundException"
+
+        // When / Act - Then / Assert
+
+        assertThrows(RequestedResourceNotFoundException.class, () -> petService.updatePetWithForm(PET_ID_TO_UPDATE, PET_NAME, PET_STATUS));
+        //assertThrows(IllegalArgumentException.class, () -> petService.updatePetWithForm(PET_ID_TO_UPDATE, PET_NAME, PET_STATUS)); // Will never happen, because of the "RequestedResourceNotFoundException"
+        verify(mockPetRepository, never()).save(any());
     }
 }
