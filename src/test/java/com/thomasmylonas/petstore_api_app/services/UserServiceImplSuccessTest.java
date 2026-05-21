@@ -88,6 +88,7 @@ public class UserServiceImplSuccessTest {
         // When / Act
 
         UserResponseDto userByUsername = userService.findUserByUsername(USER.getUsername());
+        log.info("UserByUsername: {}", userByUsername);
 
         // Then / Assert
 

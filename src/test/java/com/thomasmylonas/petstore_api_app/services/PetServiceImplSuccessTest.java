@@ -80,7 +80,38 @@ public class PetServiceImplSuccessTest {
     }
 
     @Test
-    public void findPetsByName() {
+    @DisplayName(value = "Given: PetName, When: findPetsByName is called, Then: petResponseDtos are returned")
+    public void test_Given_PetName_When_FindPetsByNameIsCalled_Then_PetResponseDtosAreReturned() {
+
+        // Given / Arrange
+
+        final Long PET_ID = 1L;
+        final String PET_NAME = "tom";
+        final List<Pet> PETS = List.of(Pet.builder()
+                .id(PET_ID)
+                .name(PET_NAME)
+                .status(PetStatus.AVAILABLE)
+                .build());
+        final List<PetResponseDto> PET_RESPONSE_DTOS = PETS.stream()
+                .map(pet -> PetResponseDto.builder()
+                        .id(pet.getId())
+                        .name(pet.getName())
+                        .status(pet.getStatus().getValue())
+                        .build()
+                ).toList();
+        when(mockPetRepository.findByName(PET_NAME)).thenReturn(Optional.of(PETS));
+        for (int i = 0; i < PETS.size(); i++) {
+            when(mockPetMapper.fromPet(PETS.get(i))).thenReturn(PET_RESPONSE_DTOS.get(i));
+        }
+
+        // When / Act
+
+        List<PetResponseDto> petResponseDtos = petService.findPetsByName(PET_NAME);
+        log.info("PetResponseDtos: {}", petResponseDtos);
+
+        // Then / Assert
+
+        assertEquals(PET_RESPONSE_DTOS, petResponseDtos);
     }
 
     @Test
