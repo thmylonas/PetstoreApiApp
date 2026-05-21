@@ -16,7 +16,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Sort;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -122,7 +124,47 @@ public class PetServiceImplSuccessTest {
     }
 
     @Test
-    public void findAllPetsSorted() {
+    @DisplayName(value = "Given: Pets, When: findAllPetsSorted is called, Then: allPets are returned")
+    public void test_Given_Pets_When_FindAllPetsSortedIsCalled_Then_AllPetsAreReturned() {
+
+        // Given / Arrange
+
+        final String SORT_BY = "name";
+        final String SORT_DIRECTION = "asc";
+        final Sort SORT = Sort.by(SORT_BY).ascending();
+
+        final List<PetResponseDto> PET_RESPONSE_DTOS = TestDataProvider.PET_REQUEST_DTOS.stream()
+                .map(petRequestDto -> PetResponseDto.builder()
+                        .id(RANDOM_IDS.get(HelperClass.RANDOM.nextInt(RANDOM_IDS.size())))
+                        .name(petRequestDto.name())
+                        .status(petRequestDto.status())
+                        .build()
+                )
+                .sorted(Comparator.comparing(PetResponseDto::name))
+                .toList();
+        final List<Pet> PETS = TestDataProvider.PET_REQUEST_DTOS.stream()
+                .map(petRequestDto -> Pet.builder()
+                        .id(RANDOM_IDS.get(HelperClass.RANDOM.nextInt(RANDOM_IDS.size())))
+                        .name(petRequestDto.name())
+                        .status(PetStatus.valueOfPetStatus(petRequestDto.status()))
+                        .build()
+                )
+                .sorted(Comparator.comparing(Pet::getName))
+                .toList();
+
+        when(mockPetRepository.findAll(SORT)).thenReturn(PETS);
+        for (int i = 0; i < PETS.size(); i++) {
+            when(mockPetMapper.fromPet(PETS.get(i))).thenReturn(PET_RESPONSE_DTOS.get(i));
+        }
+
+        // When / Act
+
+        List<PetResponseDto> allPets = petService.findAllPetsSorted(SORT_BY, SORT_DIRECTION);
+        log.info("AllPets: {}", allPets);
+
+        // Then / Assert
+
+        assertEquals(PET_RESPONSE_DTOS, allPets);
     }
 
     @Test
