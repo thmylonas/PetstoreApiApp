@@ -20,9 +20,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -153,14 +152,17 @@ public class PetServiceImplFailureTest {
     }
 
     @Test
-    @DisplayName(value = "Given: PetId, When: deletePetById is called, Then: PetService::deletePetById is called once")
-    public void test_Given_PetId_When_DeletePetByIdIsCalled_Then_PetServiceDeletePetByIdIsCalledOnce() {
+    @DisplayName(value = "Given: PetId, When: deletePetById is called, Then: IllegalArgumentException is thrown")
+    public void test_Given_PetId_When_DeletePetByIdIsCalled_Then_IllegalArgumentExceptionIsThrown() {
 
         // Given / Arrange
 
-        // When / Act
+        final Long PET_ID = 1L;
+        doThrow(IllegalArgumentException.class).when(mockPetRepository).deleteById(PET_ID);
 
-        // Then / Assert
+        // When / Act - Then / Assert
+
+        assertThrows(IllegalArgumentException.class, () -> petService.deletePetById(PET_ID));
     }
 
     @Test
