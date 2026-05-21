@@ -1,10 +1,5 @@
 package com.thomasmylonas.petstore_api_app.services;
 
-import com.thomasmylonas.petstore_api_app.dtos.category_dtos.CategoryRequestDto;
-import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetRequestDto;
-import com.thomasmylonas.petstore_api_app.entities.Category;
-import com.thomasmylonas.petstore_api_app.entities.Pet;
-import com.thomasmylonas.petstore_api_app.enums.PetStatus;
 import com.thomasmylonas.petstore_api_app.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.petstore_api_app.repositories.CategoryRepository;
 import com.thomasmylonas.petstore_api_app.repositories.PetRepository;
@@ -20,11 +15,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(value = MockitoExtension.class)
 @Slf4j
@@ -120,35 +112,21 @@ public class PetServiceImplFailureTest {
     }
 
     @Test
-    @DisplayName(value = "Given: PetIdToUpdate and PetRequestDto, When: updatePet is called, Then: RequestedResourceNotFoundException is thrown")
-    public void test_Given_PetIdToUpdate_And_PetRequestDto_When_UpdatePetIsCalled_Then_RequestedResourceNotFoundExceptionIsThrown() {
+    @DisplayName(value = "Given: PetIdToUpdate, When: updatePet is called, Then: RequestedResourceNotFoundException is thrown")
+    public void test_Given_PetIdToUpdate_When_UpdatePetIsCalled_Then_RequestedResourceNotFoundExceptionIsThrown() {
 
         // Given / Arrange
 
-        final Long PET_ID = 1L;
-        final Pet PET = Pet.builder()
-                .id(PET_ID)
-                .name("Pet_Name")
-                .status(PetStatus.AVAILABLE)
-                .category(Category.builder()
-                        .name("Pet_Category")
-                        .build())
-                .build();
-        final PetRequestDto PET_REQUEST_DTO = PetRequestDto.builder()
-                .name("New_Pet_Name")
-                .status(PetStatus.PENDING.getValue())
-                .categoryRequestDto(CategoryRequestDto.builder()
-                        .name("New_Pet_Category")
-                        .build())
-                .build();
-        when(mockPetRepository.findById(PET.getId())).thenThrow(RequestedResourceNotFoundException.class);
+        final Long PET_ID_TO_UPDATE = 1L;
+
+        when(mockPetRepository.findById(PET_ID_TO_UPDATE)).thenThrow(RequestedResourceNotFoundException.class);
         //doThrow(IllegalArgumentException.class).when(mockPetRepository).save(null); // Will never happen, because of the "RequestedResourceNotFoundException"
 
         // When / Act - Then / Assert
 
-        verify(mockPetRepository, never()).save(PET);
-        assertThrows(RequestedResourceNotFoundException.class, () -> petService.updatePet(PET_ID, PET_REQUEST_DTO));
-        //assertThrows(IllegalArgumentException.class, () -> petService.updatePet(PET_ID, PET_REQUEST_DTO)); // Will never happen, because of the "RequestedResourceNotFoundException"
+        verify(mockPetRepository, never()).save(any());
+        assertThrows(RequestedResourceNotFoundException.class, () -> petService.updatePet(PET_ID_TO_UPDATE, any()));
+        //assertThrows(IllegalArgumentException.class, () -> petService.updatePet(PET_ID_TO_UPDATE, any())); // Will never happen, because of the "RequestedResourceNotFoundException"
     }
 
     @Test
