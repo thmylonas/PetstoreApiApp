@@ -1,11 +1,17 @@
 package com.thomasmylonas.petstore_api_app.services;
 
+import com.thomasmylonas.petstore_api_app.dtos.category_dtos.CategoryRequestDto;
+import com.thomasmylonas.petstore_api_app.dtos.category_dtos.CategoryResponseDto;
+import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetRequestDto;
 import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetResponseDto;
+import com.thomasmylonas.petstore_api_app.entities.Category;
 import com.thomasmylonas.petstore_api_app.entities.Pet;
 import com.thomasmylonas.petstore_api_app.enums.PetStatus;
 import com.thomasmylonas.petstore_api_app.helpers.HelperClass;
 import com.thomasmylonas.petstore_api_app.helpers.TestDataProvider;
+import com.thomasmylonas.petstore_api_app.repositories.CategoryRepository;
 import com.thomasmylonas.petstore_api_app.repositories.PetRepository;
+import com.thomasmylonas.petstore_api_app.services.mappers.CategoryMapper;
 import com.thomasmylonas.petstore_api_app.services.mappers.PetMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
@@ -35,7 +41,13 @@ public class PetServiceImplSuccessTest {
     private PetRepository mockPetRepository;
 
     @Mock
+    private CategoryRepository mockCategoryRepository;
+
+    @Mock
     private PetMapper mockPetMapper;
+
+    @Mock
+    private CategoryMapper mockCategoryMapper;
 
     @InjectMocks
     private PetServiceImpl petService;
@@ -235,11 +247,53 @@ public class PetServiceImplSuccessTest {
     }
 
     @Test
-    public void savePet() {
-    }
+    @DisplayName(value = "Given: Pet, When: savePet is called, Then: Verify that savePet is called once")
+    public void test_Given_Pet_When_SavePetIsCalled_Then_VerifyIsCalledOnce() {
 
-    @Test
-    public void saveAllPets() {
+        // Given / Arrange
+
+        final Long PET_ID = 1L;
+        final Pet PET = Pet.builder()
+                .id(PET_ID)
+                .name("Pet_Name")
+                .status(PetStatus.AVAILABLE)
+                .category(Category.builder()
+                        .name("Pet_Category")
+                        .build())
+                .build();
+        final PetRequestDto PET_REQUEST_DTO = PetRequestDto.builder()
+                .name(PET.getName())
+                .status(PET.getStatus().getValue())
+                .categoryRequestDto(CategoryRequestDto.builder()
+                        .name(PET.getCategory().getName())
+                        .build())
+                .build();
+        final PetResponseDto PET_RESPONSE_DTO = PetResponseDto.builder()
+                .id(PET.getId())
+                .name(PET.getName())
+                .status(PET.getStatus().getValue())
+                .categoryResponseDto(CategoryResponseDto.builder()
+                        .name(PET.getCategory().getName())
+                        .build())
+                .build();
+
+        when(mockCategoryRepository.findByName(PET.getCategory().getName())).thenReturn(Optional.of(List.of(PET.getCategory())));
+        when(mockPetMapper.toPet(PET_REQUEST_DTO)).thenReturn(PET);
+        when(mockCategoryMapper.toCategory(PET_REQUEST_DTO.categoryRequestDto())).thenReturn(PET.getCategory());
+        when(mockPetMapper.fromPet(PET)).thenReturn(PET_RESPONSE_DTO);
+        when(mockPetRepository.save(PET)).thenReturn(PET);
+        //when(mockCategoryRepository.save(PET.getCategory())).thenReturn(PET.getCategory()); // Will never happen, because "!List.of(PET.getCategory()).isEmpty()"
+
+        // When / Act
+
+        PetResponseDto petResponseDto = petService.savePet(PET_REQUEST_DTO);
+        log.info("petResponseDto: {}", petResponseDto);
+
+        // Then / Assert
+
+        //verify(mockCategoryRepository, times(1)).save(PET.getCategory()); // Will never happen, because "!List.of(PET.getCategory()).isEmpty()"
+        verify(mockPetRepository, times(1)).save(PET);
+        assertEquals(PET_RESPONSE_DTO, petResponseDto);
     }
 
     @Test
