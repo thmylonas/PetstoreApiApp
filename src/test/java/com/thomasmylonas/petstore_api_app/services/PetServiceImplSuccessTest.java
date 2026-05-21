@@ -330,7 +330,21 @@ public class PetServiceImplSuccessTest {
     }
 
     @Test
-    public void deletePetById() {
+    @DisplayName(value = "Given: PetId, When: deletePetById is called, Then: PetService::deletePetById is called once")
+    public void test_Given_PetId_When_DeletePetByIdIsCalled_Then_PetServiceDeletePetByIdIsCalledOnce() {
+
+        // Given / Arrange
+
+        final Long PET_ID = 1L;
+        doNothing().when(mockPetRepository).deleteById(PET_ID);
+
+        // When / Act
+
+        petService.deletePetById(PET_ID);
+
+        // Then / Assert
+
+        verify(mockPetRepository, times(1)).deleteById(PET_ID);
     }
 
     @Test
