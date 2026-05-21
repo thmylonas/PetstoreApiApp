@@ -4,9 +4,13 @@ import com.thomasmylonas.petstore_api_app.dtos.category_dtos.CategoryRequestDto;
 import com.thomasmylonas.petstore_api_app.dtos.category_dtos.CategoryResponseDto;
 import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetRequestDto;
 import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetResponseDto;
+import com.thomasmylonas.petstore_api_app.dtos.user_dtos.UserRequestDto;
 import com.thomasmylonas.petstore_api_app.entities.Category;
 import com.thomasmylonas.petstore_api_app.entities.Pet;
+import com.thomasmylonas.petstore_api_app.entities.User;
 import com.thomasmylonas.petstore_api_app.enums.PetStatus;
+import com.thomasmylonas.petstore_api_app.enums.UserStatus;
+import com.thomasmylonas.petstore_api_app.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.petstore_api_app.helpers.HelperClass;
 import com.thomasmylonas.petstore_api_app.helpers.TestDataProvider;
 import com.thomasmylonas.petstore_api_app.repositories.CategoryRepository;
@@ -297,7 +301,35 @@ public class PetServiceImplSuccessTest {
     }
 
     @Test
-    public void updatePet() {
+    @DisplayName(value = "Given: PetIdToUpdate and PetRequestDto, When: updatePet is called, Then: RequestedResourceNotFoundException is thrown")
+    public void test_Given_PetIdToUpdate_And_PetRequestDto_When_UpdatePetIsCalled_Then_RequestedResourceNotFoundExceptionIsThrown() {
+
+        // Given / Arrange
+
+        final Long PET_ID = 1L;
+        final Pet PET = Pet.builder()
+                .id(PET_ID)
+                .name("Pet_Name")
+                .status(PetStatus.AVAILABLE)
+                .category(Category.builder()
+                        .name("Pet_Category")
+                        .build())
+                .build();
+        final PetRequestDto PET_REQUEST_DTO = PetRequestDto.builder()
+                .name("New_Pet_Name")
+                .status(PetStatus.PENDING.getValue())
+                .categoryRequestDto(CategoryRequestDto.builder()
+                        .name("New_Pet_Category")
+                        .build())
+                .build();
+        when(mockPetRepository.findById(PET.getId())).thenThrow(RequestedResourceNotFoundException.class);
+        //doThrow(IllegalArgumentException.class).when(mockPetRepository).save(null); // Will never happen, because of the "RequestedResourceNotFoundException"
+
+        // When / Act - Then / Assert
+
+        verify(mockPetRepository, never()).save(PET);
+        assertThrows(RequestedResourceNotFoundException.class, () -> petService.updatePet(PET_ID, PET_REQUEST_DTO));
+        //assertThrows(IllegalArgumentException.class, () -> petService.updatePet(PET_ID, PET_REQUEST_DTO)); // Will never happen, because of the "RequestedResourceNotFoundException"
     }
 
     @Test
