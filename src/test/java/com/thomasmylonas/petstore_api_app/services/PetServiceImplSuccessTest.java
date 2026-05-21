@@ -115,7 +115,43 @@ public class PetServiceImplSuccessTest {
     }
 
     @Test
-    public void findPetsByStatus() {
+    @DisplayName(value = "Given: PetStatus, When: findPetsByStatus is called, Then: petResponseDtos are returned")
+    public void test_Given_PetStatus_When_FindPetsByStatusIsCalled_Then_PetResponseDtosAreReturned() {
+
+        // Given / Arrange
+
+        final String PET_STATUS = PetStatus.AVAILABLE.getValue();
+        final List<Pet> PETS = TestDataProvider.PET_REQUEST_DTOS.stream()
+                .filter(petRequestDto -> petRequestDto.status().equalsIgnoreCase(PET_STATUS.toLowerCase()))
+                .map(petRequestDto -> Pet.builder()
+                        .id(RANDOM_IDS.get(HelperClass.RANDOM.nextInt(RANDOM_IDS.size())))
+                        .name(petRequestDto.name())
+                        .status(PetStatus.valueOfPetStatus(petRequestDto.status()))
+                        .build())
+                .toList();
+        final List<PetResponseDto> PET_RESPONSE_DTOS = TestDataProvider.PET_REQUEST_DTOS.stream()
+                .filter(petRequestDto -> petRequestDto.status().equalsIgnoreCase(PET_STATUS.toLowerCase()))
+                .map(petRequestDto -> PetResponseDto.builder()
+                        .id(RANDOM_IDS.get(HelperClass.RANDOM.nextInt(RANDOM_IDS.size())))
+                        .name(petRequestDto.name())
+                        .status(petRequestDto.status())
+                        .build())
+                .toList();
+        for (String s : PET_STATUS.split(",")) {
+            when(mockPetRepository.findByStatus(PetStatus.valueOfPetStatus(s))).thenReturn(Optional.of(PETS));
+        }
+        for (int i = 0; i < PETS.size(); i++) {
+            when(mockPetMapper.fromPet(PETS.get(i))).thenReturn(PET_RESPONSE_DTOS.get(i));
+        }
+
+        // When / Act
+
+        List<PetResponseDto> petResponseDtos = petService.findPetsByStatus(PET_STATUS);
+        log.info("PetResponseDtos: {}", petResponseDtos);
+
+        // Then / Assert
+
+        assertEquals(PET_RESPONSE_DTOS, petResponseDtos);
     }
 
     @Test
