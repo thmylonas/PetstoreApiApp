@@ -252,6 +252,7 @@ public class UserServiceImplSuccessTest {
         log.info("userResponseDto: {}", userResponseDto);
 
         // Then / Assert
+
         assertEquals(USER_RESPONSE_DTO, userResponseDto);
     }
 

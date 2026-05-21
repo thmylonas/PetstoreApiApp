@@ -298,20 +298,12 @@ public class PetServiceImplSuccessTest {
     }
 
     @Test
-    @DisplayName(value = "Given: PetIdToUpdate and PetRequestDto, When: updatePet is called, Then: RequestedResourceNotFoundException is thrown")
-    public void test_Given_PetIdToUpdate_And_PetRequestDto_When_UpdatePetIsCalled_Then_RequestedResourceNotFoundExceptionIsThrown() {
+    @DisplayName(value = "Given: PetIdToUpdate and PetRequestDto, When: updatePet is called, Then: petResponseDto is returned")
+    public void test_Given_PetIdToUpdate_And_PetRequestDto_When_UpdatePetIsCalled_Then_PetResponseDtoIsReturned() {
 
         // Given / Arrange
 
-        final Long PET_ID = 1L;
-        final Pet PET = Pet.builder()
-                .id(PET_ID)
-                .name("Pet_Name")
-                .status(PetStatus.AVAILABLE)
-                .category(Category.builder()
-                        .name("Pet_Category")
-                        .build())
-                .build();
+        final Long PET_ID_TO_UPDATE = 1L;
         final PetRequestDto PET_REQUEST_DTO = PetRequestDto.builder()
                 .name("New_Pet_Name")
                 .status(PetStatus.PENDING.getValue())
@@ -319,14 +311,51 @@ public class PetServiceImplSuccessTest {
                         .name("New_Pet_Category")
                         .build())
                 .build();
-        when(mockPetRepository.findById(PET.getId())).thenThrow(RequestedResourceNotFoundException.class);
-        //doThrow(IllegalArgumentException.class).when(mockPetRepository).save(null); // Will never happen, because of the "RequestedResourceNotFoundException"
+        final Pet PET = Pet.builder()
+                .name(PET_REQUEST_DTO.name())
+                .status(PetStatus.valueOfPetStatus(PET_REQUEST_DTO.status()))
+                .category(Category.builder()
+                        .name(PET_REQUEST_DTO.categoryRequestDto().name())
+                        .build())
+                .build();
+        final Pet PET_TO_UPDATE = Pet.builder()
+                .id(PET_ID_TO_UPDATE)
+                .name("Pet_Name")
+                .status(PetStatus.AVAILABLE)
+                .category(Category.builder()
+                        .name("Pet_Category")
+                        .build())
+                .build();
+        final Pet PET_UPDATED = Pet.builder()
+                .id(PET_ID_TO_UPDATE)
+                .name(PET_REQUEST_DTO.name())
+                .status(PetStatus.valueOfPetStatus(PET_REQUEST_DTO.status()))
+                .category(Category.builder()
+                        .name(PET_REQUEST_DTO.categoryRequestDto().name())
+                        .build())
+                .build();
+        final PetResponseDto PET_RESPONSE_DTO = PetResponseDto.builder()
+                .id(PET_ID_TO_UPDATE)
+                .name(PET_REQUEST_DTO.name())
+                .status(PET_REQUEST_DTO.status())
+                .categoryResponseDto(CategoryResponseDto.builder()
+                        .name(PET_REQUEST_DTO.categoryRequestDto().name())
+                        .build())
+                .build();
 
-        // When / Act - Then / Assert
+        when(mockPetRepository.findById(PET_ID_TO_UPDATE)).thenReturn(Optional.of(PET_TO_UPDATE));
+        when(mockPetMapper.toPet(PET_REQUEST_DTO)).thenReturn(PET);
+        when(mockPetRepository.save(PET_TO_UPDATE)).thenReturn(PET_UPDATED);
+        when(mockPetMapper.fromPet(PET_UPDATED)).thenReturn(PET_RESPONSE_DTO);
 
-        verify(mockPetRepository, never()).save(PET);
-        assertThrows(RequestedResourceNotFoundException.class, () -> petService.updatePet(PET_ID, PET_REQUEST_DTO));
-        //assertThrows(IllegalArgumentException.class, () -> petService.updatePet(PET_ID, PET_REQUEST_DTO)); // Will never happen, because of the "RequestedResourceNotFoundException"
+        // When / Act
+
+        PetResponseDto petResponseDto = petService.updatePet(PET_ID_TO_UPDATE, PET_REQUEST_DTO);
+        log.info("petResponseDto: {}", petResponseDto);
+
+        // Then / Assert
+
+        assertEquals(PET_RESPONSE_DTO, petResponseDto);
     }
 
     @Test
