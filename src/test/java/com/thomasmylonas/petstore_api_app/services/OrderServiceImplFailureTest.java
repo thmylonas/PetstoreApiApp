@@ -70,7 +70,7 @@ public class OrderServiceImplFailureTest {
 
         // Given / Arrange
 
-        final Long PET_ID = 2L;
+        final Long PET_ID = 1L;
         final OrderRequestDto ORDER_REQUEST_DTO = OrderRequestDto.builder()
                 .petId(PET_ID)
                 .quantity(4)
