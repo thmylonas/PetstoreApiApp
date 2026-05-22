@@ -73,36 +73,18 @@ public class PetServiceImplFailureTest {
     }
 
     @Test
-    @DisplayName(value = "Given: PetStatus, When: findPetsByStatus is called, Then: petResponseDtos are returned")
-    public void test_Given_PetStatus_When_FindPetsByStatusIsCalled_Then_PetResponseDtosAreReturned() {
+    @DisplayName(value = "Given: PetStatus, When: findPetsByStatus is called, Then: RequestedResourceNotFoundException is thrown")
+    public void test_Given_PetStatus_When_FindPetsByStatusIsCalled_Then_RequestedResourceNotFoundExceptionIsThrown() {
 
         // Given / Arrange
 
-        // When / Act
+        final String PET_STATUS = PetStatus.AVAILABLE.getValue();
 
-        // Then / Assert
-    }
+        doThrow(RequestedResourceNotFoundException.class).when(mockPetRepository).findByStatus(any());
 
-    @Test
-    @DisplayName(value = "Given: Pets, When: findAllPets is called, Then: allPets are returned")
-    public void test_Given_Pets_When_FindAllPetsIsCalled_Then_AllPetsAreReturned() {
+        // When / Act - Then / Assert
 
-        // Given / Arrange
-
-        // When / Act
-
-        // Then / Assert
-    }
-
-    @Test
-    @DisplayName(value = "Given: Pets, When: findAllPetsSorted is called, Then: allPets are returned")
-    public void test_Given_Pets_When_FindAllPetsSortedIsCalled_Then_AllPetsAreReturned() {
-
-        // Given / Arrange
-
-        // When / Act
-
-        // Then / Assert
+        assertThrows(RequestedResourceNotFoundException.class, () -> petService.findPetsByStatus(PET_STATUS));
     }
 
     @Test
