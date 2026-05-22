@@ -51,14 +51,16 @@ public class PetServiceImplFailureTest {
     }
 
     @Test
-    @DisplayName(value = "Given: PetId, When: findPetById is called, Then: petById is returned")
-    public void test_Given_PetId_When_FindPetByIdIsCalled_Then_PetByIdIsReturned() {
+    @DisplayName(value = "When: findPetById is called, Then: RequestedResourceNotFoundException is thrown")
+    public void test_When_FindPetByIdIsCalled_Then_RequestedResourceNotFoundExceptionIsThrown() {
 
         // Given / Arrange
 
-        // When / Act
+        when(mockPetRepository.findById(any())).thenThrow(RequestedResourceNotFoundException.class);
 
-        // Then / Assert
+        // When / Act - Then / Assert
+
+        assertThrows(RequestedResourceNotFoundException.class, () -> petService.findPetById(any()));
     }
 
     @Test
