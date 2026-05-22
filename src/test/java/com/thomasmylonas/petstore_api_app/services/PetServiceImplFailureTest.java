@@ -1,5 +1,9 @@
 package com.thomasmylonas.petstore_api_app.services;
 
+import com.thomasmylonas.petstore_api_app.dtos.category_dtos.CategoryRequestDto;
+import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetRequestDto;
+import com.thomasmylonas.petstore_api_app.entities.Category;
+import com.thomasmylonas.petstore_api_app.entities.Pet;
 import com.thomasmylonas.petstore_api_app.enums.PetStatus;
 import com.thomasmylonas.petstore_api_app.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.petstore_api_app.repositories.CategoryRepository;
@@ -102,14 +106,48 @@ public class PetServiceImplFailureTest {
     }
 
     @Test
-    @DisplayName(value = "Given: Pet, When: savePet is called, Then: Verify that savePet is called once")
-    public void test_Given_Pet_When_SavePetIsCalled_Then_VerifyIsCalledOnce() {
+    @DisplayName(value = "Given: PetRequestDto, When: savePet is called, Then: RequestedResourceNotFoundException is thrown")
+    public void test_Given_PetRequestDto_When_SavePetIsCalled_Then_RequestedResourceNotFoundExceptionIsThrown() {
 
         // Given / Arrange
 
-        // When / Act
+        final Long PET_ID = 1L;
+        final Pet PET = Pet.builder()
+                .id(PET_ID)
+                .name("Pet_Name")
+                .status(PetStatus.AVAILABLE)
+                .category(Category.builder()
+                        .name("Pet_Category")
+                        .build())
+                .build();
+        final PetRequestDto PET_REQUEST_DTO = PetRequestDto.builder()
+                .name(PET.getName())
+                .status(PET.getStatus().getValue())
+                .categoryRequestDto(CategoryRequestDto.builder()
+                        .name(PET.getCategory().getName())
+                        .build())
+                .build();
 
-        // Then / Assert
+        when(mockPetMapper.toPet(any())).thenReturn(PET);
+        when(mockCategoryMapper.toCategory(any())).thenReturn(PET.getCategory());
+        when(mockCategoryRepository.findByName(any())).thenThrow(RequestedResourceNotFoundException.class);
+
+        // When / Act -  Then / Assert
+
+        assertThrows(RequestedResourceNotFoundException.class, () -> petService.savePet(PET_REQUEST_DTO));
+    }
+
+    @Test
+    @DisplayName(value = "When: savePet is called, Then: NullPointerException is thrown")
+    public void test_When_SavePetIsCalled_Then_NullPointerExceptionIsThrown() {
+
+        // Given / Arrange
+
+        when(mockPetMapper.toPet(any())).thenReturn(null);
+
+        // When / Act -  Then / Assert
+
+        assertThrows(NullPointerException.class, () -> petService.savePet(null));
     }
 
     @Test

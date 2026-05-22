@@ -247,8 +247,8 @@ public class PetServiceImplSuccessTest {
     }
 
     @Test
-    @DisplayName(value = "Given: Pet, When: savePet is called, Then: Verify that savePet is called once")
-    public void test_Given_Pet_When_SavePetIsCalled_Then_VerifyIsCalledOnce() {
+    @DisplayName(value = "Given: PetRequestDto, When: savePet is called, Then: Verify that savePet is called once")
+    public void test_Given_PetRequestDto_When_SavePetIsCalled_Then_VerifyIsCalledOnce() {
 
         // Given / Arrange
 
