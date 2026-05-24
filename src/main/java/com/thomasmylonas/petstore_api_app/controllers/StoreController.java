@@ -30,7 +30,6 @@ import java.util.Map;
 @RestController
 @RequestMapping(path = "/api/v1/store")
 @RequiredArgsConstructor
-@Slf4j
 @Validated
 public class StoreController {
 
