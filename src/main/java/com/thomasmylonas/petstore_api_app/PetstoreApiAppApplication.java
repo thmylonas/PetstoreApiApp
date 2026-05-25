@@ -34,7 +34,7 @@ public class PetstoreApiAppApplication {
     }
 
     @Bean
-    @Profile(value = {"dev", "test"})
+    @Profile(value = {"dev"})
     public CommandLineRunner commandLineRunner() {
         return args -> {
             petService.saveAllPets(TestDataProvider.PET_REQUEST_DTOS);
