@@ -25,17 +25,13 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:properties/properties.properties")
 public class PetstoreApiAppApplication {
 
-    private final PetService petService;
-    private final OrderService orderService;
-    private final UserService userService;
-
     public static void main(String[] args) {
         SpringApplication.run(PetstoreApiAppApplication.class, args);
     }
 
     @Bean
     @Profile(value = {"dev"})
-    public CommandLineRunner commandLineRunner() {
+    public CommandLineRunner commandLineRunner(PetService petService, OrderService orderService, UserService userService) {
         return args -> {
             petService.saveAllPets(TestDataProvider.PET_REQUEST_DTOS);
             orderService.saveAllOrders(TestDataProvider.ORDER_REQUEST_DTOS);

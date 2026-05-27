@@ -7,19 +7,22 @@ import com.thomasmylonas.petstore_api_app.dtos.photo_url_dtos.PhotoUrlResponseDt
 import com.thomasmylonas.petstore_api_app.dtos.tag_dtos.TagResponseDto;
 import com.thomasmylonas.petstore_api_app.enums.PetStatus;
 import com.thomasmylonas.petstore_api_app.models.ResponseBuilder;
+import com.thomasmylonas.petstore_api_app.models.ResponseSuccess;
 import com.thomasmylonas.petstore_api_app.services.PetService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -28,12 +31,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.mockito.Mockito.*;
 //import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
-@AutoConfigureMockMvc
+//@SpringBootTest
+//@AutoConfigureMockMvc
+@WebMvcTest(controllers = {PetController.class})
+//@ContextConfiguration(classes = PetstoreApiAppApplication.class)
 @ActiveProfiles(profiles = {"test"})
-//@ContextConfiguration(classes= {PetstoreApiAppApplication.class})
-//@WebMvcTest(controllers = {PetController.class})
-//@ExtendWith(MockitoExtension.class)
 @Slf4j
 public class PetControllerTest {
 
@@ -41,13 +43,12 @@ public class PetControllerTest {
     private MockMvc mockMvc;
 
     @MockitoBean
-//    @MockBean
     private PetService mockPetService;
 
     @Autowired
     private ObjectMapper objectMapper;
 
-    @Autowired
+    @MockitoBean
     private ResponseBuilder responseBuilder;
 
 
@@ -90,9 +91,20 @@ public class PetControllerTest {
 
         String petResponseDtoJson = objectMapper.writeValueAsString(petResponseDto);
         Map<String, PetResponseDto> petResponseMap = Map.of("pet_response", petResponseDto);
-        String petResponseMapJson = objectMapper.writeValueAsString(petResponseMap);
+        final ResponseSuccess RESPONSE_SUCCESS = ResponseSuccess.builder()
+                .timestamp(LocalDateTime.now())
+                .statusCode(HttpStatus.OK.toString())
+                .message("Hello")
+                .path("")
+                .data(petResponseMap)
+                .build();
 
-        when(mockPetService.findPetById(PET_ID)).thenReturn(petResponseDto);
+        String petResponseMapJson = objectMapper.writeValueAsString(petResponseMap);
+        String RESPONSE_SUCCESS_JSON = objectMapper.writeValueAsString(RESPONSE_SUCCESS);
+
+        when(mockPetService.findPetById(any())).thenReturn(petResponseDto);
+        when(responseBuilder.buildResponseSuccess(HttpStatus.OK, "Success: The Pet with ID " + PET_ID + " is found!", Map.of("pet_response", petResponseDto)))
+                .thenReturn(ResponseEntity.ok().body(RESPONSE_SUCCESS));
 
         mockMvc.perform(get("/api/v1/pets/" + PET_ID))
                 .andExpect(status().isOk())
@@ -106,7 +118,6 @@ public class PetControllerTest {
 
         log.info("petResponseDtoJson: {}", petResponseDtoJson);
         log.info("petResponseMapJson: {}", petResponseMapJson);
-        // https://youtu.be/9-mX5MACs5U?si=oQRACTiHIpx5Z_OF
     }
 
     @Test
