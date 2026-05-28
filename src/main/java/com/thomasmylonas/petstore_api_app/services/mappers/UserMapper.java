@@ -4,11 +4,9 @@ import com.thomasmylonas.petstore_api_app.dtos.user_dtos.UserRequestDto;
 import com.thomasmylonas.petstore_api_app.dtos.user_dtos.UserResponseDto;
 import com.thomasmylonas.petstore_api_app.entities.User;
 import com.thomasmylonas.petstore_api_app.enums.UserStatus;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class UserMapper {
 
     public UserResponseDto fromUser(User user) {
