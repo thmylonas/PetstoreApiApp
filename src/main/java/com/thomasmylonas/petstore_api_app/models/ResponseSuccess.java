@@ -23,6 +23,6 @@ public record ResponseSuccess(
         String path, // "request URL"
 
         @JsonProperty(value = "data")
-        Map<String, ?> data
+        Map<String, ?> data // The resource to be returned
 ) {
 }
