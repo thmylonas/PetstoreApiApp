@@ -10,17 +10,17 @@ import java.util.ArrayList;
 @Service
 public class CategoryMapper {
 
-    public CategoryResponseDto fromCategory(Category category) {
-        return CategoryResponseDto.builder()
-                .id(category.getId())
-                .name(category.getName())
-                .build();
-    }
-
     public Category toCategory(CategoryRequestDto categoryRequestDto) {
         return Category.builder()
                 .name(categoryRequestDto.name())
                 .pets(new ArrayList<>())
+                .build();
+    }
+
+    public CategoryResponseDto fromCategory(Category category) {
+        return CategoryResponseDto.builder()
+                .id(category.getId())
+                .name(category.getName())
                 .build();
     }
 }

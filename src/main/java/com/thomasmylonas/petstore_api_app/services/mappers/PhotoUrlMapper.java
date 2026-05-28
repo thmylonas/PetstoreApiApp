@@ -8,16 +8,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class PhotoUrlMapper {
 
+    public PhotoUrl toPhotoUrl(PhotoUrlRequestDto photoUrlRequestDto) {
+        return PhotoUrl.builder()
+                .name(photoUrlRequestDto.name())
+                .build();
+    }
+
     public PhotoUrlResponseDto fromPhotoUrl(PhotoUrl photoUrl) {
         return PhotoUrlResponseDto.builder()
                 .id(photoUrl.getId())
                 .name(photoUrl.getName())
-                .build();
-    }
-
-    public PhotoUrl toPhotoUrl(PhotoUrlRequestDto photoUrlRequestDto) {
-        return PhotoUrl.builder()
-                .name(photoUrlRequestDto.name())
                 .build();
     }
 }

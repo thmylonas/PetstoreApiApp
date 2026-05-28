@@ -23,24 +23,6 @@ public class PetMapper {
     private final TagMapper tagMapper;
     private final PhotoUrlMapper photoUrlMapper;
 
-    public PetResponseDto fromPet(Pet pet) {
-
-        List<TagResponseDto> tagResponseDtos = pet.getTags().stream()
-                .map(tagMapper::fromTag)
-                .toList();
-        List<PhotoUrlResponseDto> photoUrlResponseDtos = pet.getPhotoUrls().stream()
-                .map(photoUrlMapper::fromPhotoUrl)
-                .toList();
-        return PetResponseDto.builder()
-                .id(pet.getId())
-                .name(pet.getName())
-                .status(pet.getStatus().getValue())
-                .categoryResponseDto(categoryMapper.fromCategory(pet.getCategory()))
-                .tagResponseDtos(tagResponseDtos)
-                .photoUrlResponseDtos(photoUrlResponseDtos)
-                .build();
-    }
-
     public Pet toPet(PetRequestDto petRequestDto) {
 
         List<Tag> tags = petRequestDto.tagRequestDtos().stream()
@@ -64,5 +46,23 @@ public class PetMapper {
         tags.forEach(pet::addTag);
         photoUrls.forEach(pet::addPhotoUrl);
         return pet;
+    }
+
+    public PetResponseDto fromPet(Pet pet) {
+
+        List<TagResponseDto> tagResponseDtos = pet.getTags().stream()
+                .map(tagMapper::fromTag)
+                .toList();
+        List<PhotoUrlResponseDto> photoUrlResponseDtos = pet.getPhotoUrls().stream()
+                .map(photoUrlMapper::fromPhotoUrl)
+                .toList();
+        return PetResponseDto.builder()
+                .id(pet.getId())
+                .name(pet.getName())
+                .status(pet.getStatus().getValue())
+                .categoryResponseDto(categoryMapper.fromCategory(pet.getCategory()))
+                .tagResponseDtos(tagResponseDtos)
+                .photoUrlResponseDtos(photoUrlResponseDtos)
+                .build();
     }
 }

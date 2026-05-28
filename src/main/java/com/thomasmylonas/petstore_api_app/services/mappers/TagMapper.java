@@ -8,16 +8,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class TagMapper {
 
+    public Tag toTag(TagRequestDto tagRequestDto) {
+        return Tag.builder()
+                .name(tagRequestDto.name())
+                .build();
+    }
+
     public TagResponseDto fromTag(Tag tag) {
         return TagResponseDto.builder()
                 .id(tag.getId())
                 .name(tag.getName())
-                .build();
-    }
-
-    public Tag toTag(TagRequestDto tagRequestDto) {
-        return Tag.builder()
-                .name(tagRequestDto.name())
                 .build();
     }
 }

@@ -9,6 +9,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserMapper {
 
+    public User toUser(UserRequestDto userRequestDto) {
+        return User.builder()
+                .username(userRequestDto.username())
+                .firstName(userRequestDto.firstName())
+                .lastName(userRequestDto.lastName())
+                .email(userRequestDto.email())
+                .password(userRequestDto.password())
+                .phone(userRequestDto.phone())
+                .userStatus(UserStatus.valueOfUserStatus(userRequestDto.userStatus()))
+                .build();
+    }
+
     public UserResponseDto fromUser(User user) {
         return UserResponseDto.builder()
                 .id(user.getId())
@@ -19,18 +31,6 @@ public class UserMapper {
                 .password(user.getPassword())
                 .phone(user.getPhone())
                 .userStatus(user.getUserStatus().getValue())
-                .build();
-    }
-
-    public User toUser(UserRequestDto userRequestDto) {
-        return User.builder()
-                .username(userRequestDto.username())
-                .firstName(userRequestDto.firstName())
-                .lastName(userRequestDto.lastName())
-                .email(userRequestDto.email())
-                .password(userRequestDto.password())
-                .phone(userRequestDto.phone())
-                .userStatus(UserStatus.valueOfUserStatus(userRequestDto.userStatus()))
                 .build();
     }
 }
