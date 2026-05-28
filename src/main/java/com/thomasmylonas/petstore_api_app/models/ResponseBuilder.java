@@ -2,6 +2,7 @@ package com.thomasmylonas.petstore_api_app.models;
 
 import com.thomasmylonas.petstore_api_app.helpers.HelperClass;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -36,7 +37,7 @@ public class ResponseBuilder {
                 .path(path)
                 .data(data)
                 .build();
-        return ResponseEntity.status(httpStatus).header("Location", path).body(responseSuccess);
+        return ResponseEntity.status(httpStatus).header(HttpHeaders.LOCATION, path).body(responseSuccess);
     }
 
     public ResponseEntity<ResponseError> buildResponseError(Exception e, HttpStatus httpStatus, Map<String, ?> errorMessages, WebRequest request) {
