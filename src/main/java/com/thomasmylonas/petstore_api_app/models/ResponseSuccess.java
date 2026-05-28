@@ -20,7 +20,7 @@ public record ResponseSuccess(
         String message,
 
         @JsonProperty(value = "path")
-        String path,
+        String path, // "request URL"
 
         @JsonProperty(value = "data")
         Map<String, ?> data
