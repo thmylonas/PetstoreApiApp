@@ -1,0 +1,38 @@
+[
+  {
+    "username": "lorak",
+    "first_name": "Karolina Miroslavina",
+    "last_name": "Kuek",
+    "email": "lorak@mail.com",
+    "password": "lorak",
+    "phone": "696969691",
+    "user_status": 1
+  },
+  {
+    "username": "jasmine",
+    "first_name": "Jasmine Lvovna",
+    "last_name": "Manakhimova",
+    "email": "jasmine@mail.com",
+    "password": "jasmine",
+    "phone": "696969692",
+    "user_status": 0
+  },
+  {
+    "username": "liubanya",
+    "first_name": "Liubanya",
+    "last_name": "Liubanya",
+    "email": "liubanya@mail.com",
+    "password": "liubanya",
+    "phone": "696969693",
+    "user_status": 1
+  },
+  {
+    "username": "marina",
+    "first_name": "Marina",
+    "last_name": "Devyatova",
+    "email": "marina@mail.com",
+    "password": "marina",
+    "phone": "696969694",
+    "user_status": 0
+  }
+]
