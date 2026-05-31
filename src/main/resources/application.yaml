@@ -9,6 +9,33 @@ spring:
     active: prod
   config:
     import: optional:file:.env[.properties]
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          auth_code_thymeleaf_client:
+#            client-id: auth_code_thymeleaf_client
+#            client-secret: OSVbZyU9NtOiWnAO1wqf0J6DRsrcja9B
+#            scope:
+#              - openid
+#              - profile
+#              - roles
+#            authorization-grant-type: authorization_code
+#            redirect-uri: http://localhost:8080/login/oauth2/code/auth_code_thymeleaf_client
+#          client_creds_client:
+#            client-id: client_creds_client
+#            client-secret: j5POznBiG37q0gfjPyGm1WQRw9simH0J
+#            scope:
+#              - openid
+#              - profile
+#              - roles
+#            authorization-grant-type: client_credentials
+#        provider:
+#          keyloak:
+#            issuer-uri: http://localhost:9000/realms/oauth2_realm_tom
+#      resourceserver:
+#        jwt:
+#          jwk-set-uri: http://localhost:9000/realms/oauth2_realm_tom/protocol/openid-connect/certs
 
 logging:
   level:
