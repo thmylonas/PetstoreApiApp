@@ -297,8 +297,8 @@ public class PetServiceImplSuccessTest {
     }
 
     @Test
-    @DisplayName(value = "Given: PetIdToUpdate and PetRequestDto, When: updatePet is called, Then: petResponseDto is returned")
-    public void test_Given_PetIdToUpdate_And_PetRequestDto_When_UpdatePetIsCalled_Then_PetResponseDtoIsReturned() {
+    @DisplayName(value = "Given: PetRequestDto and PetIdToUpdate, When: updatePet is called, Then: petResponseDto is returned")
+    public void test_Given_PetRequestDto_And_PetIdToUpdate_When_UpdatePetIsCalled_Then_PetResponseDtoIsReturned() {
 
         // Given / Arrange
 
