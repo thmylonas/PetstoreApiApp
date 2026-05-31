@@ -20,7 +20,7 @@ public interface UserService {
 
     List<UserResponseDto> saveAllUsers(List<UserRequestDto> userRequestDtos);
 
-    UserResponseDto updateUser(String username, UserRequestDto userRequestDto) throws RequestedResourceNotFoundException;
+    UserResponseDto updateUser(UserRequestDto userRequestDto, String username) throws RequestedResourceNotFoundException;
 
     void deleteUserByUsername(String username) throws RequestedResourceNotFoundException;
 }

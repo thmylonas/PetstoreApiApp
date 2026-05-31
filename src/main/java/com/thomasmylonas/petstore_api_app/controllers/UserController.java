@@ -105,13 +105,13 @@ public class UserController {
 
     @PutMapping(path = {"/{username}"})
     @ResponseStatus(value = HttpStatus.OK)
-    public ResponseEntity<ResponseSuccess> updateUser(@PathVariable(value = "username")
+    public ResponseEntity<ResponseSuccess> updateUser(@RequestBody @Valid UserRequestDto userRequestDto,
+                                                      @PathVariable(value = "username")
                                                       @NotBlank(message = "The 'username' must not be null and must contain at least one non-whitespace character")
                                                       @Size(min = 3, max = 15, message = "The 'username' size must be between 3 and 15 characters (included)")
-                                                      String userUsername,
-                                                      @RequestBody @Valid UserRequestDto userRequestDto) { // "http://localhost:8080/api/v1/users/{id}"
+                                                      String userUsername) { // "http://localhost:8080/api/v1/users/{id}"
         final String message = "Success: The User with username " + userUsername + " has been updated successfully!";
-        UserResponseDto updatedUserResponseDto = userService.updateUser(userUsername, userRequestDto);
+        UserResponseDto updatedUserResponseDto = userService.updateUser(userRequestDto, userUsername);
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("updated_user_response", updatedUserResponseDto));
     }
 

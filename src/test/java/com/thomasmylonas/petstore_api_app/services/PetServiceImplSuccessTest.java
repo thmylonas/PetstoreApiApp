@@ -349,7 +349,7 @@ public class PetServiceImplSuccessTest {
 
         // When / Act
 
-        PetResponseDto petResponseDto = petService.updatePet(PET_ID_TO_UPDATE, PET_REQUEST_DTO);
+        PetResponseDto petResponseDto = petService.updatePet(PET_REQUEST_DTO, PET_ID_TO_UPDATE);
         log.info("petResponseDto: {}", petResponseDto);
 
         // Then / Assert

@@ -22,7 +22,7 @@ public interface PetService {
 
     List<PetResponseDto> saveAllPets(List<PetRequestDto> petRequestDtos);
 
-    PetResponseDto updatePet(Long id, PetRequestDto petRequestDto) throws RequestedResourceNotFoundException;
+    PetResponseDto updatePet(PetRequestDto petRequestDto, Long id) throws RequestedResourceNotFoundException;
 
     void deletePetById(Long id) throws RequestedResourceNotFoundException;
 

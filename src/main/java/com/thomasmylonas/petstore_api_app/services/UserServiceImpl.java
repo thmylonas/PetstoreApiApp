@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponseDto updateUser(String username, UserRequestDto userRequestDto) throws RequestedResourceNotFoundException {
+    public UserResponseDto updateUser(UserRequestDto userRequestDto, String username) throws RequestedResourceNotFoundException {
 
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RequestedResourceNotFoundException("The user with username " + username + " is not found!"));

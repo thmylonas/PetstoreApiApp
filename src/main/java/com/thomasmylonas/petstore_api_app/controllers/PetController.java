@@ -111,12 +111,12 @@ public class PetController {
 
     @PutMapping(path = {"/{id}"})
     @ResponseStatus(value = HttpStatus.OK)
-    public ResponseEntity<ResponseSuccess> updatePet(@PathVariable(value = "id")
+    public ResponseEntity<ResponseSuccess> updatePet(@RequestBody @Valid PetRequestDto petRequestDto,
+                                                     @PathVariable(value = "id")
                                                      @PositiveOrZero(message = "The 'id' must be a positive number or 0")
-                                                     Long petId,
-                                                     @RequestBody @Valid PetRequestDto petRequestDto) { // "http://localhost:8080/api/v1/pets/{id}"
+                                                     Long petId) { // "http://localhost:8080/api/v1/pets/{id}"
         final String message = "Success: The Pet with ID " + petId + " has been updated successfully!";
-        PetResponseDto updatedPetResponseDto = petService.updatePet(petId, petRequestDto);
+        PetResponseDto updatedPetResponseDto = petService.updatePet(petRequestDto, petId);
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("updated_pet_response", updatedPetResponseDto));
     }
 

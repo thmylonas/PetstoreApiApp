@@ -248,7 +248,7 @@ public class UserServiceImplSuccessTest {
 
         // When / Act
 
-        UserResponseDto userResponseDto = userService.updateUser(USERNAME_TO_UPDATE, USER_REQUEST_DTO);
+        UserResponseDto userResponseDto = userService.updateUser(USER_REQUEST_DTO, USERNAME_TO_UPDATE);
         log.info("userResponseDto: {}", userResponseDto);
 
         // Then / Assert

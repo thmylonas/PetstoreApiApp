@@ -107,7 +107,7 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    public PetResponseDto updatePet(Long id, PetRequestDto petRequestDto) {
+    public PetResponseDto updatePet(PetRequestDto petRequestDto, Long id) {
 
         Pet petToUpdate = petRepository.findById(id)
                 .orElseThrow(() -> new RequestedResourceNotFoundException(Pet.class.getSimpleName(), id));

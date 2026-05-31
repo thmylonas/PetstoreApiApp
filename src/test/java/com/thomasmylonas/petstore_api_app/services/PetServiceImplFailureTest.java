@@ -149,8 +149,8 @@ public class PetServiceImplFailureTest {
 
         // When / Act - Then / Assert
 
-        assertThrows(RequestedResourceNotFoundException.class, () -> petService.updatePet(PET_ID_TO_UPDATE, any()));
-        //assertThrows(IllegalArgumentException.class, () -> petService.updatePet(PET_ID_TO_UPDATE, any())); // Will never happen, because of the "RequestedResourceNotFoundException"
+        assertThrows(RequestedResourceNotFoundException.class, () -> petService.updatePet(any(), PET_ID_TO_UPDATE));
+        //assertThrows(IllegalArgumentException.class, () -> petService.updatePet(any(), PET_ID_TO_UPDATE)); // Will never happen, because of the "RequestedResourceNotFoundException"
         verify(mockPetRepository, never()).save(any());
     }
 

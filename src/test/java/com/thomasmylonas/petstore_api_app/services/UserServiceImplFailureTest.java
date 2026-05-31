@@ -86,8 +86,8 @@ public class UserServiceImplFailureTest {
         // When / Act - Then / Assert
 
         verify(mockUserRepository, never()).save(any());
-        assertThrows(RequestedResourceNotFoundException.class, () -> userService.updateUser(USERNAME_TO_UPDATE, any()));
-        //assertThrows(IllegalArgumentException.class, () -> userService.updateUser(USERNAME_TO_UPDATE, any())); // Will never happen, because of the "RequestedResourceNotFoundException"
+        assertThrows(RequestedResourceNotFoundException.class, () -> userService.updateUser(any(), USERNAME_TO_UPDATE));
+        //assertThrows(IllegalArgumentException.class, () -> userService.updateUser(any(), USERNAME_TO_UPDATE)); // Will never happen, because of the "RequestedResourceNotFoundException"
     }
 
     @Test
