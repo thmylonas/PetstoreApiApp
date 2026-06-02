@@ -33,8 +33,8 @@ import java.util.List;
 public class Pet {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Pets_Sequence_Generator")
-    @SequenceGenerator(name = "Pets_Sequence_Generator", sequenceName = "Pets_Id_Seq", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Pets_Id_Seq_Generator")
+    @SequenceGenerator(name = "Pets_Id_Seq_Generator", sequenceName = "Pets_Id_Seq", initialValue = 1, allocationSize = 1)
     @Column(name = "Id")
     private Long id;
 

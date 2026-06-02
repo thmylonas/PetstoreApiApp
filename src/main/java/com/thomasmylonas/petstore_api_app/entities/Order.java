@@ -30,8 +30,8 @@ import java.time.LocalDateTime;
 public class Order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Orders_Sequence_Generator")
-    @SequenceGenerator(name = "Orders_Sequence_Generator", sequenceName = "Orders_Id_Seq", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Orders_Id_Seq_Generator")
+    @SequenceGenerator(name = "Orders_Id_Seq_Generator", sequenceName = "Orders_Id_Seq", initialValue = 1, allocationSize = 1)
     @Column(name = "Id")
     private Long id;
 

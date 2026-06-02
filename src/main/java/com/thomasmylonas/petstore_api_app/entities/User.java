@@ -28,8 +28,8 @@ import java.util.Objects;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Users_Sequence_Generator")
-    @SequenceGenerator(name = "Users_Sequence_Generator", sequenceName = "Users_Id_Seq", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Users_Id_Seq_Generator")
+    @SequenceGenerator(name = "Users_Id_Seq_Generator", sequenceName = "Users_Id_Seq", initialValue = 1, allocationSize = 1)
     @Column(name = "Id")
     private Long id;
 
