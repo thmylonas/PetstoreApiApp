@@ -20,7 +20,7 @@ public record ResponseError(
         Map<String, ?> errorMessages,
 
         @JsonProperty(value = "path")
-        String path,
+        String path, // "request URL"
 
         @JsonProperty(value = "stacktrace")
         String stacktrace // Optional
