@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping(path = "/api/v1/pets")
+@RequestMapping(path = {"/api/v1/pets"})
 @RequiredArgsConstructor
 @Validated
 public class PetController {

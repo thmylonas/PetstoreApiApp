@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping(path = "/api/v1/store")
+@RequestMapping(path = {"/api/v1/store"})
 @RequiredArgsConstructor
 @Validated
 public class StoreController {

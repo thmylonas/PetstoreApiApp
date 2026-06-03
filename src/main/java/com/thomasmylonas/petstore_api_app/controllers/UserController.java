@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping(path = "/api/v1/users")
+@RequestMapping(path = {"/api/v1/users"})
 @RequiredArgsConstructor
 @Validated
 public class UserController {
