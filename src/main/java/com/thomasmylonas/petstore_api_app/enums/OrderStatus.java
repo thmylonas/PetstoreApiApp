@@ -1,12 +1,12 @@
 package com.thomasmylonas.petstore_api_app.enums;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 import java.util.Arrays;
 
 @Getter
-@AllArgsConstructor
+@RequiredArgsConstructor
 public enum OrderStatus {
 
     PLACED("placed"),
