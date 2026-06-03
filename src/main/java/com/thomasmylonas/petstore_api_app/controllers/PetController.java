@@ -99,7 +99,7 @@ public class PetController {
         return responseBuilder.buildResponseSuccess(HttpStatus.CREATED, message, savedPetUri, Map.of("saved_pet_response", savedPetResponseDto));
     }
 
-    @PostMapping("/all")
+    @PostMapping(path = {"/all"})
     @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<ResponseSuccess> saveAllPets(@RequestBody
                                                        @NotEmpty(message = "The 'petRequestDtos' must not be null or empty")

@@ -93,7 +93,7 @@ public class UserController {
         return responseBuilder.buildResponseSuccess(HttpStatus.CREATED, message, savedUserUri, Map.of("saved_user_response", savedUserResponseDto));
     }
 
-    @PostMapping("/all")
+    @PostMapping(path = {"/all"})
     @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<ResponseSuccess> saveAllUsers(@RequestBody
                                                         @NotEmpty(message = "The 'userRequestDtos' must not be null or empty")
