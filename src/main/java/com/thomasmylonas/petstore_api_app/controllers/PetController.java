@@ -131,6 +131,7 @@ public class PetController {
     }
 
     @PostMapping(path = {"/update-pet-with-form"}) //consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE}
+    @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<ResponseSuccess> updatePetWithForm(@ModelAttribute(value = "id")
                                                              @PositiveOrZero(message = "The 'id' must be a positive number or 0")
                                                              Long petId,
