@@ -40,21 +40,21 @@ public class ResponseBuilder {
         return ResponseEntity.status(httpStatus).header(HttpHeaders.LOCATION, path).body(responseSuccess);
     }
 
-    public ResponseEntity<ResponseError> buildResponseError(Exception e, HttpStatus httpStatus, Map<String, ?> errorMessages, WebRequest request) {
+    public ResponseEntity<ResponseError> buildResponseError(Exception e, HttpStatus httpStatus, Map<String, ?> errorMessages, WebRequest webRequest) {
 
         ResponseError.ResponseErrorBuilder responseErrorBuilder = ResponseError.builder()
                 .timestamp(LocalDateTime.now())
                 .statusCode(httpStatus.toString())
                 .errorMessages(errorMessages)
                 .path(ServletUriComponentsBuilder.fromCurrentRequest().toUriString());
-        if (printStacktrace && isTraceParameterEnabled(request)) {
+        if (printStacktrace && isTraceParameterEnabled(webRequest)) {
             responseErrorBuilder.stacktrace(HelperClass.stacktrace(e));
         }
         return ResponseEntity.status(httpStatus).body(responseErrorBuilder.build());
     }
 
-    private boolean isTraceParameterEnabled(WebRequest request) {
-        String[] traceValues = request.getParameterValues("trace");
+    private boolean isTraceParameterEnabled(WebRequest webRequest) {
+        String[] traceValues = webRequest.getParameterValues("trace");
         return Objects.nonNull(traceValues) && traceValues.length > 0 && Arrays.asList(traceValues).contains("true");
     }
 }
