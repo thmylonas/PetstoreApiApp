@@ -25,7 +25,7 @@ public class ResponseBuilder {
     private boolean printStacktrace;
 
     public ResponseEntity<ResponseSuccess> buildResponseSuccess(HttpStatus httpStatus, String message, Map<String, ?> data) {
-        return buildResponseSuccess(httpStatus, message, ServletUriComponentsBuilder.fromCurrentRequest().toUriString(), data);
+        return buildResponseSuccess(httpStatus, message, ServletUriComponentsBuilder.fromCurrentRequest().build().toUriString(), data);
     }
 
     public ResponseEntity<ResponseSuccess> buildResponseSuccess(HttpStatus httpStatus, String message, String path, Map<String, ?> data) {
@@ -46,7 +46,7 @@ public class ResponseBuilder {
                 .timestamp(LocalDateTime.now())
                 .statusCode(httpStatus.toString())
                 .errorMessages(errorMessages)
-                .path(ServletUriComponentsBuilder.fromCurrentRequest().toUriString());
+                .path(ServletUriComponentsBuilder.fromCurrentRequest().build().toUriString());
         if (printStacktrace && isTraceParameterEnabled(webRequest)) {
             responseErrorBuilder.stacktrace(HelperClass.stacktrace(e));
         }
