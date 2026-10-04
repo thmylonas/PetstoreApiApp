@@ -1,5 +1,14 @@
 server:
   port: 8080
+  ssl:
+    enabled: true
+    key-alias: petstore_keystore
+    key-store: classpath:ssl/petstore_keystore.p12
+    key-store-type: PKCS12
+    #key-password: ${ENV_SSL_KEYSTORE_PASSWORD}
+    key-store-password: ${ENV_SSL_KEYSTORE_PASSWORD}
+    #enabled-protocols:
+    #  - TLSv1.3
 
 #Datasource - H2-Database: Basic properties
 spring:

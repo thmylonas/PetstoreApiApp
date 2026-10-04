@@ -14,6 +14,12 @@ public class SecurityConfig {
 
     /*public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
+        // https://docs.spring.io/spring-security/reference/servlet/exploits/http.html
+        http.authorizeHttpRequests(authorize -> authorize
+                .anyRequest().permitAll()
+        );
+        http.redirectToHttps(Customizer.withDefaults());
+        //////////////////////////
         http.authorizeHttpRequests(authorize -> authorize
                 .anyRequest().authenticated()
         );

@@ -1129,3 +1129,43 @@ Videos in MockMvc testing
 -  https://youtu.be/hVGxWipmWSk?si=yGxOttAD82iqlQcx
 
 ========================================================================================================================
+
+Create a Keystore (p12) and save it into "PetstoreApiApp/src/resources/ssl"
+-------------------------------------------------------------------------------
+
+keytool -genkeypair -alias petstore_keystore -keyalg RSA -keysize 2048 -storetype PKCS12 -validity 3650 -keystore petstore_keystore.p12
+
+Enter keystore password:
+
+Re-enter new password:
+
+Enter the distinguished name. Provide a single dot (.) to leave a sub-component empty or press ENTER to use the default value in braces.
+What is your first and last name?
+  [Unknown]:  Thomas Mylonas
+What is the name of your organizational unit?
+  [Unknown]:  com.thomasmylonas
+What is the name of your organization?
+  [Unknown]:  com.thomasmylonas
+What is the name of your City or Locality?
+  [Unknown]:  Volos
+What is the name of your State or Province?
+  [Unknown]:  Magnesia
+What is the two-letter country code for this unit?
+  [Unknown]:  GR
+Is CN=Thomas Mylonas, OU=com.thomasmylonas, O=com.thomasmylonas, L=Volos, ST=Magnesia, C=GR correct?
+  [no]:  y
+
+Generating 2,048 bit RSA key pair and self-signed certificate (SHA384withRSA) with a validity of 3,650 days
+        for: CN=Thomas Mylonas, OU=com.thomasmylonas, O=com.thomasmylonas, L=Volos, ST=Magnesia, C=GR
+
+========================================================================================================================
+
+Export the Certificate (crt) and save it into "PetstoreApiApp/src/resources/ssl"
+------------------------------------------------------------------------------------
+
+keytool -exportcert -keystore petstore_keystore.p12 -alias petstore_keystore -file petstore_keystore.crt
+Enter keystore password:
+
+Certificate stored in file <petstore_keystore.crt>
+
+========================================================================================================================
