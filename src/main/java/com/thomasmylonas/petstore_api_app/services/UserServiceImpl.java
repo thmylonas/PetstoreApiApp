@@ -5,7 +5,7 @@ import com.thomasmylonas.petstore_api_app.api.dtos.user_dtos.UserResponseDto;
 import com.thomasmylonas.petstore_api_app.api.entities.User;
 import com.thomasmylonas.petstore_api_app.api.enums.UserStatus;
 import com.thomasmylonas.petstore_api_app.api.exceptions.RequestedResourceNotFoundException;
-import com.thomasmylonas.petstore_api_app.repositories.UserRepository;
+import com.thomasmylonas.petstore_api_app.api.repositories.UserRepository;
 import com.thomasmylonas.petstore_api_app.services.mappers.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

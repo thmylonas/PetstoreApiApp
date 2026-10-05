@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_app.validation;
+package com.thomasmylonas.petstore_api_app.api.validation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
@@ -14,11 +14,11 @@ import java.lang.annotation.Target;
  */
 @Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = BooleanTypeValidator.class)
+@Constraint(validatedBy = OrderStatusTypeValidator.class)
 @Documented
-public @interface ValidateBooleanType {
+public @interface ValidateOrderStatusType {
 
-    String message() default "Invalid 'BooleanType': It should be either true or false";
+    String message() default "Invalid 'OrderStatusType': It should be either 'placed' or 'approved' or 'delivered' (case insensitive)";
 
     Class<?>[] groups() default {};
 

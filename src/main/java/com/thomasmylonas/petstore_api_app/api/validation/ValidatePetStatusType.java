@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_app.validation;
+package com.thomasmylonas.petstore_api_app.api.validation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

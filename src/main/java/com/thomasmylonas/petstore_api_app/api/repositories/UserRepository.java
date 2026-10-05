@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_app.repositories;
+package com.thomasmylonas.petstore_api_app.api.repositories;
 
 import com.thomasmylonas.petstore_api_app.api.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;

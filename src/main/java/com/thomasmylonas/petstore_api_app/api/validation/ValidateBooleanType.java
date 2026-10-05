@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_app.validation;
+package com.thomasmylonas.petstore_api_app.api.validation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
@@ -14,11 +14,11 @@ import java.lang.annotation.Target;
  */
 @Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = UserStatusTypeValidator.class)
+@Constraint(validatedBy = BooleanTypeValidator.class)
 @Documented
-public @interface ValidateUserStatusType {
+public @interface ValidateBooleanType {
 
-    String message() default "Invalid 'UserStatusType': It should be either 0 or 1";
+    String message() default "Invalid 'BooleanType': It should be either true or false";
 
     Class<?>[] groups() default {};
 

@@ -1,8 +1,8 @@
 package com.thomasmylonas.petstore_api_app.api.dtos.order_dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.thomasmylonas.petstore_api_app.validation.ValidateBooleanType;
-import com.thomasmylonas.petstore_api_app.validation.ValidateOrderStatusType;
+import com.thomasmylonas.petstore_api_app.api.validation.ValidateBooleanType;
+import com.thomasmylonas.petstore_api_app.api.validation.ValidateOrderStatusType;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Builder;
 

@@ -1,7 +1,7 @@
 package com.thomasmylonas.petstore_api_app.api.dtos.user_dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.thomasmylonas.petstore_api_app.validation.ValidateUserStatusType;
+import com.thomasmylonas.petstore_api_app.api.validation.ValidateUserStatusType;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

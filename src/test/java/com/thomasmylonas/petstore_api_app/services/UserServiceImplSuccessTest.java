@@ -6,7 +6,7 @@ import com.thomasmylonas.petstore_api_app.api.entities.User;
 import com.thomasmylonas.petstore_api_app.api.enums.UserStatus;
 import com.thomasmylonas.petstore_api_app.helpers.HelperClass;
 import com.thomasmylonas.petstore_api_app.helpers.TestDataProvider;
-import com.thomasmylonas.petstore_api_app.repositories.UserRepository;
+import com.thomasmylonas.petstore_api_app.api.repositories.UserRepository;
 import com.thomasmylonas.petstore_api_app.services.mappers.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;

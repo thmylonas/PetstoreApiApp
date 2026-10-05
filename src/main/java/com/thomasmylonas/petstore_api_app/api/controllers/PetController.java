@@ -5,7 +5,7 @@ import com.thomasmylonas.petstore_api_app.api.dtos.pet_dtos.PetResponseDto;
 import com.thomasmylonas.petstore_api_app.api.models.ResponseBuilder;
 import com.thomasmylonas.petstore_api_app.api.models.ResponseSuccess;
 import com.thomasmylonas.petstore_api_app.services.PetService;
-import com.thomasmylonas.petstore_api_app.validation.ValidatePetStatusType;
+import com.thomasmylonas.petstore_api_app.api.validation.ValidatePetStatusType;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
