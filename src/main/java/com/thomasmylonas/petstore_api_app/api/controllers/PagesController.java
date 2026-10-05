@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_app.controllers;
+package com.thomasmylonas.petstore_api_app.api.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_app.controllers.advice_controllers;
+package com.thomasmylonas.petstore_api_app.api.controllers.advice_controllers;
 
 import com.thomasmylonas.petstore_api_app.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.petstore_api_app.models.ResponseBuilder;

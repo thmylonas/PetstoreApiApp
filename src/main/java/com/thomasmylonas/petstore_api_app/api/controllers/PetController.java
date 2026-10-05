@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_app.controllers;
+package com.thomasmylonas.petstore_api_app.api.controllers;
 
 import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetRequestDto;
 import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetResponseDto;

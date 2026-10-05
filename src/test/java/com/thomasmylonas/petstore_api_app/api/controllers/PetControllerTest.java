@@ -1,6 +1,7 @@
-package com.thomasmylonas.petstore_api_app.controllers;
+package com.thomasmylonas.petstore_api_app.api.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.thomasmylonas.petstore_api_app.api.controllers.PetController;
 import com.thomasmylonas.petstore_api_app.dtos.category_dtos.CategoryResponseDto;
 import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetResponseDto;
 import com.thomasmylonas.petstore_api_app.dtos.photo_url_dtos.PhotoUrlResponseDto;
