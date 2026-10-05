@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_app.services;
+package com.thomasmylonas.petstore_api_app.api.services;
 
 import com.thomasmylonas.petstore_api_app.api.dtos.order_dtos.OrderRequestDto;
 import com.thomasmylonas.petstore_api_app.api.dtos.order_dtos.OrderResponseDto;
@@ -8,7 +8,7 @@ import com.thomasmylonas.petstore_api_app.api.entities.Pet;
 import com.thomasmylonas.petstore_api_app.api.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.petstore_api_app.api.repositories.OrderRepository;
 import com.thomasmylonas.petstore_api_app.api.repositories.PetRepository;
-import com.thomasmylonas.petstore_api_app.services.mappers.OrderMapper;
+import com.thomasmylonas.petstore_api_app.api.services.mappers.OrderMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_app.services.mappers;
+package com.thomasmylonas.petstore_api_app.api.services.mappers;
 
 import com.thomasmylonas.petstore_api_app.api.dtos.tag_dtos.TagRequestDto;
 import com.thomasmylonas.petstore_api_app.api.dtos.tag_dtos.TagResponseDto;

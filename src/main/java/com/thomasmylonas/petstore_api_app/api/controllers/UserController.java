@@ -4,7 +4,7 @@ import com.thomasmylonas.petstore_api_app.api.dtos.user_dtos.UserRequestDto;
 import com.thomasmylonas.petstore_api_app.api.dtos.user_dtos.UserResponseDto;
 import com.thomasmylonas.petstore_api_app.api.models.ResponseBuilder;
 import com.thomasmylonas.petstore_api_app.api.models.ResponseSuccess;
-import com.thomasmylonas.petstore_api_app.services.UserService;
+import com.thomasmylonas.petstore_api_app.api.services.UserService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;

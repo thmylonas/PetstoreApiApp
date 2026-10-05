@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_app.services;
+package com.thomasmylonas.petstore_api_app.api.services;
 
 import com.thomasmylonas.petstore_api_app.api.dtos.order_dtos.OrderRequestDto;
 import com.thomasmylonas.petstore_api_app.api.dtos.order_dtos.OrderResponseDto;
@@ -7,11 +7,12 @@ import com.thomasmylonas.petstore_api_app.api.entities.Order;
 import com.thomasmylonas.petstore_api_app.api.entities.Pet;
 import com.thomasmylonas.petstore_api_app.api.enums.OrderStatus;
 import com.thomasmylonas.petstore_api_app.api.enums.PetStatus;
+import com.thomasmylonas.petstore_api_app.api.services.OrderServiceImpl;
 import com.thomasmylonas.petstore_api_app.helpers.HelperClass;
 import com.thomasmylonas.petstore_api_app.helpers.TestDataProvider;
 import com.thomasmylonas.petstore_api_app.api.repositories.OrderRepository;
 import com.thomasmylonas.petstore_api_app.api.repositories.PetRepository;
-import com.thomasmylonas.petstore_api_app.services.mappers.OrderMapper;
+import com.thomasmylonas.petstore_api_app.api.services.mappers.OrderMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

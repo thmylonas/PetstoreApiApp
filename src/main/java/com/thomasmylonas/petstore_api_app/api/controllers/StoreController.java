@@ -3,7 +3,7 @@ package com.thomasmylonas.petstore_api_app.api.controllers;
 import com.thomasmylonas.petstore_api_app.api.dtos.order_dtos.OrderRequestDto;
 import com.thomasmylonas.petstore_api_app.api.dtos.order_dtos.OrderResponseDto;
 import com.thomasmylonas.petstore_api_app.api.dtos.pet_dtos.InventoryResponseDto;
-import com.thomasmylonas.petstore_api_app.services.OrderService;
+import com.thomasmylonas.petstore_api_app.api.services.OrderService;
 import com.thomasmylonas.petstore_api_app.api.models.ResponseBuilder;
 import com.thomasmylonas.petstore_api_app.api.models.ResponseSuccess;
 import jakarta.validation.Valid;

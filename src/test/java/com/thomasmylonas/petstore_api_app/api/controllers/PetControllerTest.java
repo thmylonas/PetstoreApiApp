@@ -8,7 +8,7 @@ import com.thomasmylonas.petstore_api_app.api.dtos.tag_dtos.TagResponseDto;
 import com.thomasmylonas.petstore_api_app.api.enums.PetStatus;
 import com.thomasmylonas.petstore_api_app.api.models.ResponseBuilder;
 import com.thomasmylonas.petstore_api_app.api.models.ResponseSuccess;
-import com.thomasmylonas.petstore_api_app.services.PetService;
+import com.thomasmylonas.petstore_api_app.api.services.PetService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

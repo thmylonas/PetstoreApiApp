@@ -1,9 +1,9 @@
 package com.thomasmylonas.petstore_api_app;
 
 import com.thomasmylonas.petstore_api_app.helpers.TestDataProvider;
-import com.thomasmylonas.petstore_api_app.services.OrderService;
-import com.thomasmylonas.petstore_api_app.services.PetService;
-import com.thomasmylonas.petstore_api_app.services.UserService;
+import com.thomasmylonas.petstore_api_app.api.services.OrderService;
+import com.thomasmylonas.petstore_api_app.api.services.PetService;
+import com.thomasmylonas.petstore_api_app.api.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

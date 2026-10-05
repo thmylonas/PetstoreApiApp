@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_app.services;
+package com.thomasmylonas.petstore_api_app.api.services;
 
 import com.thomasmylonas.petstore_api_app.api.dtos.category_dtos.CategoryRequestDto;
 import com.thomasmylonas.petstore_api_app.api.dtos.pet_dtos.PetRequestDto;
@@ -8,8 +8,9 @@ import com.thomasmylonas.petstore_api_app.api.enums.PetStatus;
 import com.thomasmylonas.petstore_api_app.api.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.petstore_api_app.api.repositories.CategoryRepository;
 import com.thomasmylonas.petstore_api_app.api.repositories.PetRepository;
-import com.thomasmylonas.petstore_api_app.services.mappers.CategoryMapper;
-import com.thomasmylonas.petstore_api_app.services.mappers.PetMapper;
+import com.thomasmylonas.petstore_api_app.api.services.PetServiceImpl;
+import com.thomasmylonas.petstore_api_app.api.services.mappers.CategoryMapper;
+import com.thomasmylonas.petstore_api_app.api.services.mappers.PetMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
