@@ -1,7 +1,7 @@
 package com.thomasmylonas.petstore_api_app.services;
 
-import com.thomasmylonas.petstore_api_app.dtos.category_dtos.CategoryRequestDto;
-import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetRequestDto;
+import com.thomasmylonas.petstore_api_app.api.dtos.category_dtos.CategoryRequestDto;
+import com.thomasmylonas.petstore_api_app.api.dtos.pet_dtos.PetRequestDto;
 import com.thomasmylonas.petstore_api_app.entities.Category;
 import com.thomasmylonas.petstore_api_app.entities.Pet;
 import com.thomasmylonas.petstore_api_app.enums.PetStatus;

@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_app.dtos.photo_url_dtos;
+package com.thomasmylonas.petstore_api_app.api.dtos.photo_url_dtos;
 
 import lombok.Builder;
 

@@ -1,6 +1,6 @@
 package com.thomasmylonas.petstore_api_app.repositories;
 
-import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.InventoryResponseDto;
+import com.thomasmylonas.petstore_api_app.api.dtos.pet_dtos.InventoryResponseDto;
 import com.thomasmylonas.petstore_api_app.entities.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

@@ -1,11 +1,11 @@
 package com.thomasmylonas.petstore_api_app.helpers;
 
-import com.thomasmylonas.petstore_api_app.dtos.category_dtos.CategoryRequestDto;
-import com.thomasmylonas.petstore_api_app.dtos.order_dtos.OrderRequestDto;
-import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetRequestDto;
-import com.thomasmylonas.petstore_api_app.dtos.photo_url_dtos.PhotoUrlRequestDto;
-import com.thomasmylonas.petstore_api_app.dtos.tag_dtos.TagRequestDto;
-import com.thomasmylonas.petstore_api_app.dtos.user_dtos.UserRequestDto;
+import com.thomasmylonas.petstore_api_app.api.dtos.category_dtos.CategoryRequestDto;
+import com.thomasmylonas.petstore_api_app.api.dtos.order_dtos.OrderRequestDto;
+import com.thomasmylonas.petstore_api_app.api.dtos.pet_dtos.PetRequestDto;
+import com.thomasmylonas.petstore_api_app.api.dtos.photo_url_dtos.PhotoUrlRequestDto;
+import com.thomasmylonas.petstore_api_app.api.dtos.tag_dtos.TagRequestDto;
+import com.thomasmylonas.petstore_api_app.api.dtos.user_dtos.UserRequestDto;
 import com.thomasmylonas.petstore_api_app.enums.OrderStatus;
 import com.thomasmylonas.petstore_api_app.enums.PetStatus;
 

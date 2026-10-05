@@ -1,9 +1,9 @@
 package com.thomasmylonas.petstore_api_app.services.mappers;
 
-import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetRequestDto;
-import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetResponseDto;
-import com.thomasmylonas.petstore_api_app.dtos.photo_url_dtos.PhotoUrlResponseDto;
-import com.thomasmylonas.petstore_api_app.dtos.tag_dtos.TagResponseDto;
+import com.thomasmylonas.petstore_api_app.api.dtos.pet_dtos.PetRequestDto;
+import com.thomasmylonas.petstore_api_app.api.dtos.pet_dtos.PetResponseDto;
+import com.thomasmylonas.petstore_api_app.api.dtos.photo_url_dtos.PhotoUrlResponseDto;
+import com.thomasmylonas.petstore_api_app.api.dtos.tag_dtos.TagResponseDto;
 //import com.thomasmylonas.petstore_api_app.entities.Category;
 import com.thomasmylonas.petstore_api_app.entities.Pet;
 import com.thomasmylonas.petstore_api_app.entities.PhotoUrl;

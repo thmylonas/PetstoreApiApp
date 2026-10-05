@@ -1,7 +1,7 @@
 package com.thomasmylonas.petstore_api_app.services;
 
-import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetRequestDto;
-import com.thomasmylonas.petstore_api_app.dtos.pet_dtos.PetResponseDto;
+import com.thomasmylonas.petstore_api_app.api.dtos.pet_dtos.PetRequestDto;
+import com.thomasmylonas.petstore_api_app.api.dtos.pet_dtos.PetResponseDto;
 import com.thomasmylonas.petstore_api_app.exceptions.RequestedResourceNotFoundException;
 
 import java.util.List;

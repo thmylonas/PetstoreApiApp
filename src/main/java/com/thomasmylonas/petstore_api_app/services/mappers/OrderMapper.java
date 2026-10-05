@@ -1,7 +1,7 @@
 package com.thomasmylonas.petstore_api_app.services.mappers;
 
-import com.thomasmylonas.petstore_api_app.dtos.order_dtos.OrderRequestDto;
-import com.thomasmylonas.petstore_api_app.dtos.order_dtos.OrderResponseDto;
+import com.thomasmylonas.petstore_api_app.api.dtos.order_dtos.OrderRequestDto;
+import com.thomasmylonas.petstore_api_app.api.dtos.order_dtos.OrderResponseDto;
 import com.thomasmylonas.petstore_api_app.entities.Order;
 import com.thomasmylonas.petstore_api_app.enums.OrderStatus;
 import org.springframework.stereotype.Service;

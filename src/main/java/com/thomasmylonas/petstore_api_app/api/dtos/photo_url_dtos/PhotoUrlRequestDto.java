@@ -1,11 +1,11 @@
-package com.thomasmylonas.petstore_api_app.dtos.tag_dtos;
+package com.thomasmylonas.petstore_api_app.api.dtos.photo_url_dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 
 @Builder
-public record TagRequestDto(
+public record PhotoUrlRequestDto(
         @NotBlank(message = "The 'name' must not be null and must contain at least one non-whitespace character")
         @JsonProperty(value = "name")
         String name

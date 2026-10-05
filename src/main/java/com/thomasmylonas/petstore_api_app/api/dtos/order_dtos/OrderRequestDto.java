@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_app.dtos.order_dtos;
+package com.thomasmylonas.petstore_api_app.api.dtos.order_dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.thomasmylonas.petstore_api_app.validation.ValidateBooleanType;

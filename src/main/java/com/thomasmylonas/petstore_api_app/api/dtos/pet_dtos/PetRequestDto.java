@@ -1,9 +1,9 @@
-package com.thomasmylonas.petstore_api_app.dtos.pet_dtos;
+package com.thomasmylonas.petstore_api_app.api.dtos.pet_dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.thomasmylonas.petstore_api_app.dtos.category_dtos.CategoryRequestDto;
-import com.thomasmylonas.petstore_api_app.dtos.photo_url_dtos.PhotoUrlRequestDto;
-import com.thomasmylonas.petstore_api_app.dtos.tag_dtos.TagRequestDto;
+import com.thomasmylonas.petstore_api_app.api.dtos.category_dtos.CategoryRequestDto;
+import com.thomasmylonas.petstore_api_app.api.dtos.photo_url_dtos.PhotoUrlRequestDto;
+import com.thomasmylonas.petstore_api_app.api.dtos.tag_dtos.TagRequestDto;
 import com.thomasmylonas.petstore_api_app.validation.ValidatePetStatusType;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;

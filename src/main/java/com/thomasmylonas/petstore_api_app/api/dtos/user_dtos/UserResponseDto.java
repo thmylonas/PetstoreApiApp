@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_app.dtos.user_dtos;
+package com.thomasmylonas.petstore_api_app.api.dtos.user_dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;

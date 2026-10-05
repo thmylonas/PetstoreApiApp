@@ -1,7 +1,7 @@
 package com.thomasmylonas.petstore_api_app.services;
 
-import com.thomasmylonas.petstore_api_app.dtos.user_dtos.UserRequestDto;
-import com.thomasmylonas.petstore_api_app.dtos.user_dtos.UserResponseDto;
+import com.thomasmylonas.petstore_api_app.api.dtos.user_dtos.UserRequestDto;
+import com.thomasmylonas.petstore_api_app.api.dtos.user_dtos.UserResponseDto;
 import com.thomasmylonas.petstore_api_app.entities.User;
 import com.thomasmylonas.petstore_api_app.enums.UserStatus;
 import com.thomasmylonas.petstore_api_app.exceptions.RequestedResourceNotFoundException;
