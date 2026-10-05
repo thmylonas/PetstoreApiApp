@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_app.entities;
+package com.thomasmylonas.petstore_api_app.api.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

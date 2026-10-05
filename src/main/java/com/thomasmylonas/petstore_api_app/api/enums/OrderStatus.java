@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_app.enums;
+package com.thomasmylonas.petstore_api_app.api.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

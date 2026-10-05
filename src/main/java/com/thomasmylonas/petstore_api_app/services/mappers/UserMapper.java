@@ -2,8 +2,8 @@ package com.thomasmylonas.petstore_api_app.services.mappers;
 
 import com.thomasmylonas.petstore_api_app.api.dtos.user_dtos.UserRequestDto;
 import com.thomasmylonas.petstore_api_app.api.dtos.user_dtos.UserResponseDto;
-import com.thomasmylonas.petstore_api_app.entities.User;
-import com.thomasmylonas.petstore_api_app.enums.UserStatus;
+import com.thomasmylonas.petstore_api_app.api.entities.User;
+import com.thomasmylonas.petstore_api_app.api.enums.UserStatus;
 import org.springframework.stereotype.Service;
 
 @Service

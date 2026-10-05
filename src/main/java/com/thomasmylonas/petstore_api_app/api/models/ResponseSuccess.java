@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_app.models;
+package com.thomasmylonas.petstore_api_app.api.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -10,7 +10,7 @@ import java.util.Map;
 
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public record ResponseError(
+public record ResponseSuccess(
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
         @JsonProperty(value = "timestamp")
         LocalDateTime timestamp,
@@ -18,13 +18,13 @@ public record ResponseError(
         @JsonProperty(value = "status_code")
         String statusCode,
 
-        @JsonProperty(value = "error_messages")
-        Map<String, ?> errorMessages,
+        @JsonProperty(value = "message")
+        String message,
 
         @JsonProperty(value = "path")
         String path, // "request URL"
 
-        @JsonProperty(value = "stacktrace")
-        String stacktrace // Optional
+        @JsonProperty(value = "data")
+        Map<String, ?> data // The resource to be returned
 ) {
 }

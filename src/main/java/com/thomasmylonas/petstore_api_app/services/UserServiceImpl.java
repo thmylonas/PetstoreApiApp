@@ -2,9 +2,9 @@ package com.thomasmylonas.petstore_api_app.services;
 
 import com.thomasmylonas.petstore_api_app.api.dtos.user_dtos.UserRequestDto;
 import com.thomasmylonas.petstore_api_app.api.dtos.user_dtos.UserResponseDto;
-import com.thomasmylonas.petstore_api_app.entities.User;
-import com.thomasmylonas.petstore_api_app.enums.UserStatus;
-import com.thomasmylonas.petstore_api_app.exceptions.RequestedResourceNotFoundException;
+import com.thomasmylonas.petstore_api_app.api.entities.User;
+import com.thomasmylonas.petstore_api_app.api.enums.UserStatus;
+import com.thomasmylonas.petstore_api_app.api.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.petstore_api_app.repositories.UserRepository;
 import com.thomasmylonas.petstore_api_app.services.mappers.UserMapper;
 import lombok.RequiredArgsConstructor;

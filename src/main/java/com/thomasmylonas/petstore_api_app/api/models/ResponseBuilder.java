@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_app.models;
+package com.thomasmylonas.petstore_api_app.api.models;
 
 import com.thomasmylonas.petstore_api_app.helpers.HelperClass;
 import org.springframework.beans.factory.annotation.Value;

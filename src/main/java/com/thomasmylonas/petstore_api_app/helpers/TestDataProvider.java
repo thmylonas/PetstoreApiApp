@@ -6,8 +6,8 @@ import com.thomasmylonas.petstore_api_app.api.dtos.pet_dtos.PetRequestDto;
 import com.thomasmylonas.petstore_api_app.api.dtos.photo_url_dtos.PhotoUrlRequestDto;
 import com.thomasmylonas.petstore_api_app.api.dtos.tag_dtos.TagRequestDto;
 import com.thomasmylonas.petstore_api_app.api.dtos.user_dtos.UserRequestDto;
-import com.thomasmylonas.petstore_api_app.enums.OrderStatus;
-import com.thomasmylonas.petstore_api_app.enums.PetStatus;
+import com.thomasmylonas.petstore_api_app.api.enums.OrderStatus;
+import com.thomasmylonas.petstore_api_app.api.enums.PetStatus;
 
 import java.util.List;
 

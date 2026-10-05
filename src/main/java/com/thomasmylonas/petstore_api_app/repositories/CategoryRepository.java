@@ -1,6 +1,6 @@
 package com.thomasmylonas.petstore_api_app.repositories;
 
-import com.thomasmylonas.petstore_api_app.entities.Category;
+import com.thomasmylonas.petstore_api_app.api.entities.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

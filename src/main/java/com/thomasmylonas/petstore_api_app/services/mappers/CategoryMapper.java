@@ -2,7 +2,7 @@ package com.thomasmylonas.petstore_api_app.services.mappers;
 
 import com.thomasmylonas.petstore_api_app.api.dtos.category_dtos.CategoryRequestDto;
 import com.thomasmylonas.petstore_api_app.api.dtos.category_dtos.CategoryResponseDto;
-import com.thomasmylonas.petstore_api_app.entities.Category;
+import com.thomasmylonas.petstore_api_app.api.entities.Category;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

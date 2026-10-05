@@ -1,8 +1,8 @@
 package com.thomasmylonas.petstore_api_app.api.controllers.advice_controllers;
 
-import com.thomasmylonas.petstore_api_app.exceptions.RequestedResourceNotFoundException;
-import com.thomasmylonas.petstore_api_app.models.ResponseBuilder;
-import com.thomasmylonas.petstore_api_app.models.ResponseError;
+import com.thomasmylonas.petstore_api_app.api.exceptions.RequestedResourceNotFoundException;
+import com.thomasmylonas.petstore_api_app.api.models.ResponseBuilder;
+import com.thomasmylonas.petstore_api_app.api.models.ResponseError;
 import jakarta.validation.ConstraintViolationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

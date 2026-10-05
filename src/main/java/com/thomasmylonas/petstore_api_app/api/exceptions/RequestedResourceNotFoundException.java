@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_app.exceptions;
+package com.thomasmylonas.petstore_api_app.api.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

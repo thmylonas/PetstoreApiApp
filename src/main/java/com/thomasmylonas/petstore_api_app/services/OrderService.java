@@ -3,7 +3,7 @@ package com.thomasmylonas.petstore_api_app.services;
 import com.thomasmylonas.petstore_api_app.api.dtos.order_dtos.OrderRequestDto;
 import com.thomasmylonas.petstore_api_app.api.dtos.order_dtos.OrderResponseDto;
 import com.thomasmylonas.petstore_api_app.api.dtos.pet_dtos.InventoryResponseDto;
-import com.thomasmylonas.petstore_api_app.exceptions.RequestedResourceNotFoundException;
+import com.thomasmylonas.petstore_api_app.api.exceptions.RequestedResourceNotFoundException;
 
 import java.util.List;
 
