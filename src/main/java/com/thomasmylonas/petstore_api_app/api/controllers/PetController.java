@@ -32,16 +32,30 @@ public class PetController {
     private final PetService petService;
     private final ResponseBuilder responseBuilder;
 
+    /**
+     * Endpoint:
+     * - GET, "http://localhost:8080/api/v1/pets/{id}"
+     *
+     * @param petId The "petId"
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @GetMapping(path = {"/{id}"})
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<ResponseSuccess> findPetById(@PathVariable(value = "id")
                                                        @PositiveOrZero(message = "The 'id' must be a positive number or 0")
-                                                       Long petId) { // "http://localhost:8080/api/v1/pets/{id}"
+                                                       Long petId) {
         final String message = "Success: The Pet with ID " + petId + " is found!";
         PetResponseDto petResponseDto = petService.findPetById(petId);
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("pet_response", petResponseDto));
     }
 
+    /**
+     * Endpoint:
+     * - GET, "http://localhost:8080/api/v1/pets/by-name/{name}"
+     *
+     * @param petName The "petName"
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @GetMapping(path = {"/by-name/{name}"})
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<ResponseSuccess> findPetsByName(@PathVariable(value = "name")
@@ -54,11 +68,11 @@ public class PetController {
     }
 
     /**
-     * "http://localhost:8080/api/v1/pets?status=sold"
-     * It returns the list of Pets filtered by status
+     * Endpoint:
+     * - GET, "http://localhost:8080/api/v1/pets?status=sold"
      *
      * @param petStatus status: "available", "pending", "sold", and all the combinations
-     * @return The pets filtered by status
+     * @return The ResponseEntity<ResponseSuccess>
      */
     @GetMapping(params = {"status"})
     @ResponseStatus(value = HttpStatus.OK)
@@ -68,26 +82,47 @@ public class PetController {
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("pets_by_status_response", petByStatusResponseDtos));
     }
 
+    /**
+     * Endpoint:
+     * - GET, "http://localhost:8080/api/v1/pets"
+     *
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @GetMapping
     @ResponseStatus(value = HttpStatus.OK)
-    public ResponseEntity<ResponseSuccess> findAllPets() { // "http://localhost:8080/api/v1/pets"
+    public ResponseEntity<ResponseSuccess> findAllPets() {
         final String message = "Success: The Pets are found!";
         List<PetResponseDto> petResponseDtos = petService.findAllPets();
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("pets_response", petResponseDtos));
     }
 
+    /**
+     * Endpoint:
+     * - GET, "http://localhost:8080/api/v1/pets?sort=field&dir=direction"
+     *
+     * @param sortBy        The "sortBy"
+     * @param sortDirection The "sortDirection"
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @GetMapping(params = {"sort", "dir"})
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<ResponseSuccess> findAllPetsSorted(@RequestParam(value = "sort", defaultValue = "id", required = false) String sortBy,
-                                                             @RequestParam(value = "dir", defaultValue = "asc", required = false) String sortDirection) { // "http://localhost:8080/api/v1/pets?sort=field&dir=direction"
+                                                             @RequestParam(value = "dir", defaultValue = "asc", required = false) String sortDirection) {
         final String message = "Success: The Pets are found!";
         List<PetResponseDto> petResponseDtos = petService.findAllPetsSorted(sortBy, sortDirection);
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("pets_response", petResponseDtos));
     }
 
+    /**
+     * Endpoint:
+     * - POST, "http://localhost:8080/api/v1/pets"
+     *
+     * @param petRequestDto The "petRequestDto"
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
-    public ResponseEntity<ResponseSuccess> savePet(@RequestBody @Valid PetRequestDto petRequestDto) { // "http://localhost:8080/api/v1/pets"
+    public ResponseEntity<ResponseSuccess> savePet(@RequestBody @Valid PetRequestDto petRequestDto) {
 
         final String message = "Created: The Pet has been created successfully!";
         PetResponseDto savedPetResponseDto = petService.savePet(petRequestDto);
@@ -99,37 +134,68 @@ public class PetController {
         return responseBuilder.buildResponseSuccess(HttpStatus.CREATED, message, savedPetUri, Map.of("saved_pet_response", savedPetResponseDto));
     }
 
+    /**
+     * Endpoint:
+     * - POST, "http://localhost:8080/api/v1/pets/all"
+     *
+     * @param petRequestDtos The "petRequestDtos"
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @PostMapping(path = {"/all"})
     @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<ResponseSuccess> saveAllPets(@RequestBody
                                                        @NotEmpty(message = "The 'petRequestDtos' must not be null or empty")
-                                                       List<@Valid PetRequestDto> petRequestDtos) { // "http://localhost:8080/api/v1/pets/all"
+                                                       List<@Valid PetRequestDto> petRequestDtos) {
         final String message = "Created: The Pets have been created successfully!";
         List<PetResponseDto> savedPetResponseDtos = petService.saveAllPets(petRequestDtos);
         return responseBuilder.buildResponseSuccess(HttpStatus.CREATED, message, Map.of("saved_pets_response", savedPetResponseDtos));
     }
 
+    /**
+     * Endpoint:
+     * - PUT, "http://localhost:8080/api/v1/pets/{id}"
+     *
+     * @param petRequestDto The "petRequestDto"
+     * @param petId         The "petId"
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @PutMapping(path = {"/{id}"})
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<ResponseSuccess> updatePet(@RequestBody @Valid PetRequestDto petRequestDto,
                                                      @PathVariable(value = "id")
                                                      @PositiveOrZero(message = "The 'id' must be a positive number or 0")
-                                                     Long petId) { // "http://localhost:8080/api/v1/pets/{id}"
+                                                     Long petId) {
         final String message = "Success: The Pet with ID " + petId + " has been updated successfully!";
         PetResponseDto updatedPetResponseDto = petService.updatePet(petRequestDto, petId);
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("updated_pet_response", updatedPetResponseDto));
     }
 
+    /**
+     * Endpoint:
+     * - DELETE, "http://localhost:8080/api/v1/pets/{id}"
+     *
+     * @param petId The "petId"
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @DeleteMapping(path = {"/{id}"})
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<ResponseSuccess> deletePetById(@PathVariable(value = "id")
                                                          @PositiveOrZero(message = "The 'id' must be a positive number or 0")
-                                                         Long petId) { // "http://localhost:8080/api/v1/pets/{id}"
+                                                         Long petId) {
         final String message = "Success: The Pet with ID " + petId + " has been deleted successfully!";
         petService.deletePetById(petId);
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("message", message));
     }
 
+    /**
+     * Endpoint:
+     * - POST, "http://localhost:8080/api/v1/pets/update-pet-with-form"
+     *
+     * @param petId  The "petId"
+     * @param name   The "name"
+     * @param status The "status"
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @PostMapping(path = {"/update-pet-with-form"}) //consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE}
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<ResponseSuccess> updatePetWithForm(@ModelAttribute(value = "id")
