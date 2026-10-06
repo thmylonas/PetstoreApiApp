@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_app.config;
+package com.thomasmylonas.petstore_api_app.security.config;
 
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
