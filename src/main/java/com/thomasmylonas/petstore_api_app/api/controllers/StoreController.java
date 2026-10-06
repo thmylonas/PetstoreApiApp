@@ -37,35 +37,61 @@ public class StoreController {
     private final OrderService orderService;
     private final ResponseBuilder responseBuilder;
 
+    /**
+     * Endpoint:
+     * - GET, "http://localhost:8080/api/v1/store/inventory"
+     *
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @GetMapping(path = {"/inventory"})
     @ResponseStatus(value = HttpStatus.OK)
-    public ResponseEntity<ResponseSuccess> findInventoriesByPetStatus() { // "http://localhost:8080/api/v1/store/inventory"
+    public ResponseEntity<ResponseSuccess> findInventoriesByPetStatus() {
         final String message = "Success: The Inventories by PetStatus are found!";
         List<InventoryResponseDto> inventoryResponseDtos = orderService.findInventoriesByPetStatus();
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("inventories_by_status", inventoryResponseDtos));
     }
 
+    /**
+     * Endpoint:
+     * - GET, "http://localhost:8080/api/v1/store/order/{id}"
+     *
+     * @param orderId The "orderId"
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @GetMapping(path = {"/order/{id}"})
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<ResponseSuccess> findOrderById(@PathVariable(value = "id")
                                                          @PositiveOrZero(message = "The 'id' must be a positive number or 0")
-                                                         Long orderId) { // "http://localhost:8080/api/v1/store/order/{id}"
+                                                         Long orderId) {
         final String message = "Success: The Order with ID " + orderId + " is found!";
         OrderResponseDto orderResponseDto = orderService.findOrderById(orderId);
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("order_response", orderResponseDto));
     }
 
+    /**
+     * Endpoint:
+     * - GET, "http://localhost:8080/api/v1/store/orders"
+     *
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @GetMapping(path = {"/orders"})
     @ResponseStatus(value = HttpStatus.OK)
-    public ResponseEntity<ResponseSuccess> findAllOrders() { // "http://localhost:8080/api/v1/store/orders"
+    public ResponseEntity<ResponseSuccess> findAllOrders() {
         final String message = "Success: The Orders are found!";
         List<OrderResponseDto> orderResponseDtos = orderService.findAllOrders();
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("orders_response", orderResponseDtos));
     }
 
+    /**
+     * Endpoint:
+     * - POST, "http://localhost:8080/api/v1/store/order"
+     *
+     * @param orderRequestDto The "orderRequestDto"
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @PostMapping(path = {"/order"})
     @ResponseStatus(value = HttpStatus.CREATED)
-    public ResponseEntity<ResponseSuccess> saveOrder(@RequestBody @Valid OrderRequestDto orderRequestDto) { // "http://localhost:8080/api/v1/store/order"
+    public ResponseEntity<ResponseSuccess> saveOrder(@RequestBody @Valid OrderRequestDto orderRequestDto) {
 
         final String message = "Created: The Order has been created successfully!";
         OrderResponseDto orderResponseDto = orderService.saveOrder(orderRequestDto);
@@ -77,21 +103,35 @@ public class StoreController {
         return responseBuilder.buildResponseSuccess(HttpStatus.CREATED, message, savedOrderUri, Map.of("saved_order_response", orderResponseDto));
     }
 
+    /**
+     * Endpoint:
+     * - POST, "http://localhost:8080/api/v1/store/order/all"
+     *
+     * @param orderRequestDtos The "orderRequestDtos"
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @PostMapping(path = {"/order/all"})
     @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<ResponseSuccess> saveAllOrders(@RequestBody
                                                          @NotEmpty(message = "The 'orderRequestDtos' must not be null or empty")
-                                                         List<@Valid OrderRequestDto> orderRequestDtos) { // "http://localhost:8080/api/v1/store/order/all"
+                                                         List<@Valid OrderRequestDto> orderRequestDtos) {
         final String message = "Created: The Orders have been created successfully!";
         List<OrderResponseDto> savedOrderResponseDtos = orderService.saveAllOrders(orderRequestDtos);
         return responseBuilder.buildResponseSuccess(HttpStatus.CREATED, message, Map.of("saved_orders_response", savedOrderResponseDtos));
     }
 
+    /**
+     * Endpoint:
+     * - DELETE, "http://localhost:8080/api/v1/store/order/{id}"
+     *
+     * @param orderId The "orderId"
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @DeleteMapping(path = {"/order/{id}"})
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<ResponseSuccess> deleteOrderById(@PathVariable(value = "id")
                                                            @PositiveOrZero(message = "The 'id' must be a positive number or 0")
-                                                           Long orderId) { // "http://localhost:8080/api/v1/store/order/{id}"
+                                                           Long orderId) {
         final String message = "Success: The Order with ID " + orderId + " has been deleted successfully!";
         orderService.deleteOrderById(orderId);
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("message", message));
