@@ -38,28 +38,49 @@ public class UserController {
     private final UserService userService;
     private final ResponseBuilder responseBuilder;
 
+    /**
+     * Endpoint:
+     * - GET, "http://localhost:8080/api/v1/users/{username}/login"
+     *
+     * @param userUsername The "userUsername"
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @GetMapping(path = {"/{username}/login"})
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<ResponseSuccess> userLogin(@PathVariable(value = "username")
                                                      @NotBlank(message = "The 'username' must not be null and must contain at least one non-whitespace character")
                                                      @Size(min = 3, max = 15, message = "The 'username' size must be between 3 and 15 characters (included)")
-                                                     String userUsername) { // "http://localhost:8080/api/v1/users/{username}/login"
+                                                     String userUsername) {
         final String message = "Success: The User with username " + userUsername + " is logged-in!";
         UserResponseDto userResponseDto = userService.userLogin(userUsername);
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("user_response", userResponseDto));
     }
 
+    /**
+     * Endpoint:
+     * - GET, "http://localhost:8080/api/v1/users/{username}/logout"
+     *
+     * @param userUsername The "userUsername"
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @GetMapping(path = {"/{username}/logout"})
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<ResponseSuccess> userLogout(@PathVariable(value = "username")
                                                       @NotBlank(message = "The 'username' must not be null and must contain at least one non-whitespace character")
                                                       @Size(min = 3, max = 15, message = "The 'username' size must be between 3 and 15 characters (included)")
-                                                      String userUsername) { // "http://localhost:8080/api/v1/users/{username}/logout"
+                                                      String userUsername) {
         final String message = "Success: The User with username " + userUsername + " is logged-out!";
         UserResponseDto userResponseDto = userService.userLogout(userUsername);
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("user_response", userResponseDto));
     }
 
+    /**
+     * Endpoint:
+     * - GET, "http://localhost:8080/api/v1/users/{username}"
+     *
+     * @param userUsername The "userUsername"
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @GetMapping(path = {"/{username}"})
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<ResponseSuccess> findUserByUsername(@PathVariable(value = "username")
@@ -71,17 +92,30 @@ public class UserController {
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("user_by_username_response", userResponseDto));
     }
 
+    /**
+     * Endpoint:
+     * - GET, "http://localhost:8080/api/v1/users"
+     *
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @GetMapping
     @ResponseStatus(value = HttpStatus.OK)
-    public ResponseEntity<ResponseSuccess> findAllUsers() { // "http://localhost:8080/api/v1/users"
+    public ResponseEntity<ResponseSuccess> findAllUsers() {
         final String message = "Success: The Users are found!";
         List<UserResponseDto> userResponseDtos = userService.findAllUsers();
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("users_response", userResponseDtos));
     }
 
+    /**
+     * Endpoint:
+     * - POST, "http://localhost:8080/api/v1/users"
+     *
+     * @param userRequestDto The "userRequestDto"
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
-    public ResponseEntity<ResponseSuccess> saveUser(@RequestBody @Valid UserRequestDto userRequestDto) { // "http://localhost:8080/api/v1/users"
+    public ResponseEntity<ResponseSuccess> saveUser(@RequestBody @Valid UserRequestDto userRequestDto) {
 
         final String message = "Created: The User has been created successfully!";
         UserResponseDto savedUserResponseDto = userService.saveUser(userRequestDto);
@@ -93,34 +127,55 @@ public class UserController {
         return responseBuilder.buildResponseSuccess(HttpStatus.CREATED, message, savedUserUri, Map.of("saved_user_response", savedUserResponseDto));
     }
 
+    /**
+     * Endpoint:
+     * - POST, "http://localhost:8080/api/v1/users/all"
+     *
+     * @param userRequestDtos The "userRequestDtos"
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @PostMapping(path = {"/all"})
     @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<ResponseSuccess> saveAllUsers(@RequestBody
                                                         @NotEmpty(message = "The 'userRequestDtos' must not be null or empty")
-                                                        List<@Valid UserRequestDto> userRequestDtos) { // "http://localhost:8080/api/v1/users/all"
+                                                        List<@Valid UserRequestDto> userRequestDtos) {
         final String message = "Created: The Users have been created successfully!";
         List<UserResponseDto> savedUserResponseDtos = userService.saveAllUsers(userRequestDtos);
         return responseBuilder.buildResponseSuccess(HttpStatus.CREATED, message, Map.of("saved_users_response", savedUserResponseDtos));
     }
 
+    /**
+     * Endpoint:
+     * - PUT, "http://localhost:8080/api/v1/users/{id}"
+     *
+     * @param userUsername The "userUsername"
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @PutMapping(path = {"/{username}"})
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<ResponseSuccess> updateUser(@RequestBody @Valid UserRequestDto userRequestDto,
                                                       @PathVariable(value = "username")
                                                       @NotBlank(message = "The 'username' must not be null and must contain at least one non-whitespace character")
                                                       @Size(min = 3, max = 15, message = "The 'username' size must be between 3 and 15 characters (included)")
-                                                      String userUsername) { // "http://localhost:8080/api/v1/users/{id}"
+                                                      String userUsername) {
         final String message = "Success: The User with username " + userUsername + " has been updated successfully!";
         UserResponseDto updatedUserResponseDto = userService.updateUser(userRequestDto, userUsername);
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("updated_user_response", updatedUserResponseDto));
     }
 
+    /**
+     * Endpoint:
+     * - DELETE, "http://localhost:8080/api/v1/users/{id}"
+     *
+     * @param userUsername The "userUsername"
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @DeleteMapping(path = {"/{username}"})
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<ResponseSuccess> deleteUserByUsername(@PathVariable(value = "username")
                                                                 @NotBlank(message = "The 'username' must not be null and must contain at least one non-whitespace character")
                                                                 @Size(min = 3, max = 15, message = "The 'username' size must be between 3 and 15 characters (included)")
-                                                                String userUsername) { // "http://localhost:8080/api/v1/users/{id}"
+                                                                String userUsername) {
         final String message = "Success: The User with username " + userUsername + " has been deleted successfully!";
         userService.deleteUserByUsername(userUsername);
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("message", message));
