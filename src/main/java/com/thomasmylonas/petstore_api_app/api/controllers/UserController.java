@@ -148,7 +148,8 @@ public class UserController {
      * Endpoint:
      * - PUT, "http://localhost:8080/api/v1/users/{id}"
      *
-     * @param userUsername The "userUsername"
+     * @param userRequestDto The "userRequestDto"
+     * @param userUsername   The "userUsername"
      * @return The ResponseEntity<ResponseSuccess>
      */
     @PutMapping(path = {"/{username}"})
