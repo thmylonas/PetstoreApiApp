@@ -146,7 +146,7 @@ public class UserController {
 
     /**
      * Endpoint:
-     * - PUT, "http://localhost:8080/api/v1/users/{id}"
+     * - PUT, "http://localhost:8080/api/v1/users/{username}"
      *
      * @param userRequestDto The "userRequestDto"
      * @param userUsername   The "userUsername"
@@ -166,7 +166,7 @@ public class UserController {
 
     /**
      * Endpoint:
-     * - DELETE, "http://localhost:8080/api/v1/users/{id}"
+     * - DELETE, "http://localhost:8080/api/v1/users/{username}"
      *
      * @param userUsername The "userUsername"
      * @return The ResponseEntity<ResponseSuccess>
