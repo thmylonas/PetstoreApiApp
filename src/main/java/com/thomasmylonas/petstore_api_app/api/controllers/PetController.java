@@ -71,7 +71,7 @@ public class PetController {
      * Endpoint:
      * - GET, "http://localhost:8080/api/v1/pets?status=sold"
      *
-     * @param petStatus status: "available", "pending", "sold", and all the combinations
+     * @param petStatus The "petStatus": "available", "pending", "sold", and all the combinations
      * @return The ResponseEntity<ResponseSuccess>
      */
     @GetMapping(params = {"status"})
