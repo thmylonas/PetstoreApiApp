@@ -87,9 +87,9 @@ public class UserController {
                                                               @NotBlank(message = "The 'username' must not be null and must contain at least one non-whitespace character")
                                                               @Size(min = 3, max = 15, message = "The 'username' size must be between 3 and 15 characters (included)")
                                                               String userUsername) {
-        final String message = "Success: The Users with name " + userUsername + " are found!";
+        final String message = "Success: The User with username " + userUsername + " is found!";
         UserResponseDto userResponseDto = userService.findUserByUsername(userUsername);
-        return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("user_by_username_response", userResponseDto));
+        return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("user_response", userResponseDto));
     }
 
     /**

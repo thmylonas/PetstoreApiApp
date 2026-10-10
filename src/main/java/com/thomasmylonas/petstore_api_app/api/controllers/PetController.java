@@ -64,7 +64,7 @@ public class PetController {
                                                           String petName) {
         final String message = "Success: The Pets with name " + petName + " are found!";
         List<PetResponseDto> petResponseDtos = petService.findPetsByName(petName);
-        return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("pets_by_name_response", petResponseDtos));
+        return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("pets_response", petResponseDtos));
     }
 
     /**

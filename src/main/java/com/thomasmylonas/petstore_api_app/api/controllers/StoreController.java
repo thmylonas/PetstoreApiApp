@@ -84,33 +84,33 @@ public class StoreController {
 
     /**
      * Endpoint:
-     * - POST, "http://localhost:8080/api/v1/store/order"
+     * - POST, "http://localhost:8080/api/v1/store/orders"
      *
      * @param orderRequestDto The "orderRequestDto"
      * @return The ResponseEntity<ResponseSuccess>
      */
-    @PostMapping(path = {"/order"})
+    @PostMapping(path = {"/orders"})
     @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<ResponseSuccess> saveOrder(@RequestBody @Valid OrderRequestDto orderRequestDto) {
 
         final String message = "Created: The Order has been created successfully!";
-        OrderResponseDto orderResponseDto = orderService.saveOrder(orderRequestDto);
+        OrderResponseDto savedOrderResponseDto = orderService.saveOrder(orderRequestDto);
         String savedOrderUri = ServletUriComponentsBuilder
                 .fromCurrentContextPath() // "http://localhost:8080"
                 .path(REQUEST_MAPPING + "/{id}")
-                .buildAndExpand(orderResponseDto.id())
+                .buildAndExpand(savedOrderResponseDto.id())
                 .toUriString();
-        return responseBuilder.buildResponseSuccess(HttpStatus.CREATED, message, savedOrderUri, Map.of("saved_order_response", orderResponseDto));
+        return responseBuilder.buildResponseSuccess(HttpStatus.CREATED, message, savedOrderUri, Map.of("saved_order_response", savedOrderResponseDto));
     }
 
     /**
      * Endpoint:
-     * - POST, "http://localhost:8080/api/v1/store/order/all"
+     * - POST, "http://localhost:8080/api/v1/store/orders/all"
      *
      * @param orderRequestDtos The "orderRequestDtos"
      * @return The ResponseEntity<ResponseSuccess>
      */
-    @PostMapping(path = {"/order/all"})
+    @PostMapping(path = {"/orders/all"})
     @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<ResponseSuccess> saveAllOrders(@RequestBody
                                                          @NotEmpty(message = "The 'orderRequestDtos' must not be null or empty")
@@ -122,12 +122,12 @@ public class StoreController {
 
     /**
      * Endpoint:
-     * - DELETE, "http://localhost:8080/api/v1/store/order/{id}"
+     * - DELETE, "http://localhost:8080/api/v1/store/orders/{id}"
      *
      * @param orderId The "orderId"
      * @return The ResponseEntity<ResponseSuccess>
      */
-    @DeleteMapping(path = {"/order/{id}"})
+    @DeleteMapping(path = {"/orders/{id}"})
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<ResponseSuccess> deleteOrderById(@PathVariable(value = "id")
                                                            @PositiveOrZero(message = "The 'id' must be a positive number or 0")
