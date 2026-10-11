@@ -10,7 +10,6 @@ import com.thomasmylonas.petstore_api_app.api.repositories.CategoryRepository;
 import com.thomasmylonas.petstore_api_app.api.repositories.PetRepository;
 import com.thomasmylonas.petstore_api_app.api.services.mappers.CategoryMapper;
 import com.thomasmylonas.petstore_api_app.api.services.mappers.PetMapper;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -24,7 +23,6 @@ import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(value = MockitoExtension.class)
-@Slf4j
 public class PetServiceImplFailureTest {
 
     @Mock
