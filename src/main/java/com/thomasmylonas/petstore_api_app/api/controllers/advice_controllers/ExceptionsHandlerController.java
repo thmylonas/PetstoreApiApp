@@ -27,7 +27,7 @@ public class ExceptionsHandlerController {
     @ExceptionHandler(value = {RequestedResourceNotFoundException.class})
     @ResponseStatus(value = HttpStatus.NOT_FOUND) // 404: "Not Found"
     public ResponseEntity<ResponseError> handleRequestedResourceNotFoundException(RequestedResourceNotFoundException e, WebRequest webRequest) {
-        String message = "The resource is not found: " + e.getMessage();
+        final String message = "The resource is not found: " + e.getMessage();
         return responseBuilder.buildResponseError(e, HttpStatus.NOT_FOUND, Map.of("error_message", message), webRequest);
     }
 
@@ -62,5 +62,12 @@ public class ExceptionsHandlerController {
     public ResponseEntity<ResponseError> handleHttpMessageNotReadableException(HttpMessageNotReadableException e, WebRequest webRequest) {
         final String message = "Required request body is missing! - " + e.getMessage();
         return responseBuilder.buildResponseError(e, HttpStatus.BAD_REQUEST, Map.of("error_message", message), webRequest);
+    }
+
+    @ExceptionHandler(value = {Exception.class})
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR) // 500: "Internal Server Error"
+    public ResponseEntity<ResponseError> handleException(Exception e, WebRequest webRequest) {
+        final String message = "Unknown error occurred: " + e.getMessage();
+        return responseBuilder.buildResponseError(e, HttpStatus.INTERNAL_SERVER_ERROR, Map.of("error_message", message), webRequest);
     }
 }
