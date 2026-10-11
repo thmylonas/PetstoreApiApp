@@ -5,7 +5,6 @@ import com.thomasmylonas.petstore_api_app.api.enums.OrderStatus;
 import com.thomasmylonas.petstore_api_app.api.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.petstore_api_app.api.repositories.OrderRepository;
 import com.thomasmylonas.petstore_api_app.api.repositories.PetRepository;
-import com.thomasmylonas.petstore_api_app.api.services.OrderServiceImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

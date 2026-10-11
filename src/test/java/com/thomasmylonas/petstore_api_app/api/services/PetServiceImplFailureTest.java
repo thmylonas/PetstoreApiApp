@@ -8,7 +8,6 @@ import com.thomasmylonas.petstore_api_app.api.enums.PetStatus;
 import com.thomasmylonas.petstore_api_app.api.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.petstore_api_app.api.repositories.CategoryRepository;
 import com.thomasmylonas.petstore_api_app.api.repositories.PetRepository;
-import com.thomasmylonas.petstore_api_app.api.services.PetServiceImpl;
 import com.thomasmylonas.petstore_api_app.api.services.mappers.CategoryMapper;
 import com.thomasmylonas.petstore_api_app.api.services.mappers.PetMapper;
 import lombok.extern.slf4j.Slf4j;

@@ -7,7 +7,6 @@ import com.thomasmylonas.petstore_api_app.api.dtos.pet_dtos.PetResponseDto;
 import com.thomasmylonas.petstore_api_app.api.entities.Category;
 import com.thomasmylonas.petstore_api_app.api.entities.Pet;
 import com.thomasmylonas.petstore_api_app.api.enums.PetStatus;
-import com.thomasmylonas.petstore_api_app.api.services.PetServiceImpl;
 import com.thomasmylonas.petstore_api_app.helpers.HelperClass;
 import com.thomasmylonas.petstore_api_app.helpers.TestDataProvider;
 import com.thomasmylonas.petstore_api_app.api.repositories.CategoryRepository;

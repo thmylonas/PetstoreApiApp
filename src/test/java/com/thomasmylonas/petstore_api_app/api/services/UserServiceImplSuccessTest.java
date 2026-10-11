@@ -4,7 +4,6 @@ import com.thomasmylonas.petstore_api_app.api.dtos.user_dtos.UserRequestDto;
 import com.thomasmylonas.petstore_api_app.api.dtos.user_dtos.UserResponseDto;
 import com.thomasmylonas.petstore_api_app.api.entities.User;
 import com.thomasmylonas.petstore_api_app.api.enums.UserStatus;
-import com.thomasmylonas.petstore_api_app.api.services.UserServiceImpl;
 import com.thomasmylonas.petstore_api_app.helpers.HelperClass;
 import com.thomasmylonas.petstore_api_app.helpers.TestDataProvider;
 import com.thomasmylonas.petstore_api_app.api.repositories.UserRepository;

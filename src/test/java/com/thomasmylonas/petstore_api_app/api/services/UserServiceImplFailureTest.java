@@ -2,7 +2,6 @@ package com.thomasmylonas.petstore_api_app.api.services;
 
 import com.thomasmylonas.petstore_api_app.api.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.petstore_api_app.api.repositories.UserRepository;
-import com.thomasmylonas.petstore_api_app.api.services.UserServiceImpl;
 import com.thomasmylonas.petstore_api_app.api.services.mappers.UserMapper;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
