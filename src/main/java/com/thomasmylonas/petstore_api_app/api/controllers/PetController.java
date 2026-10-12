@@ -44,7 +44,7 @@ public class PetController {
 
     /**
      * Endpoint:
-     * - GET, "http://localhost:8080/api/v1/pets/{id}"
+     * - GET, "https://localhost:8080/api/v1/pets/{id}"
      *
      * @param petId The "petId"
      * @return The ResponseEntity<ResponseSuccess>
@@ -61,7 +61,7 @@ public class PetController {
 
     /**
      * Endpoint:
-     * - GET, "http://localhost:8080/api/v1/pets/by-name/{name}"
+     * - GET, "https://localhost:8080/api/v1/pets/by-name/{name}"
      *
      * @param petName The "petName"
      * @return The ResponseEntity<ResponseSuccess>
@@ -79,7 +79,7 @@ public class PetController {
 
     /**
      * Endpoint:
-     * - GET, "http://localhost:8080/api/v1/pets?status=sold"
+     * - GET, "https://localhost:8080/api/v1/pets?status=sold"
      *
      * @param petStatus The "petStatus": "available", "pending", "sold", and all the combinations
      * @return The ResponseEntity<ResponseSuccess>
@@ -94,7 +94,7 @@ public class PetController {
 
     /**
      * Endpoint:
-     * - GET, "http://localhost:8080/api/v1/pets"
+     * - GET, "https://localhost:8080/api/v1/pets"
      *
      * @return The ResponseEntity<ResponseSuccess>
      */
@@ -108,7 +108,7 @@ public class PetController {
 
     /**
      * Endpoint:
-     * - GET, "http://localhost:8080/api/v1/pets?sort=field&dir=direction"
+     * - GET, "https://localhost:8080/api/v1/pets?sort=field&dir=direction"
      *
      * @param sortBy        The "sortBy"
      * @param sortDirection The "sortDirection"
@@ -125,7 +125,7 @@ public class PetController {
 
     /**
      * Endpoint:
-     * - POST, "http://localhost:8080/api/v1/pets"
+     * - POST, "https://localhost:8080/api/v1/pets"
      *
      * @param petRequestDto The "petRequestDto"
      * @return The ResponseEntity<ResponseSuccess>
@@ -137,7 +137,7 @@ public class PetController {
         final String message = "Created: The Pet has been created successfully!";
         PetResponseDto savedPetResponseDto = petService.savePet(petRequestDto);
         String savedPetUri = ServletUriComponentsBuilder
-                .fromCurrentContextPath() // "http://localhost:8080"
+                .fromCurrentContextPath() // "https://localhost:8080"
                 .path(REQUEST_MAPPING + "/{id}")
                 .buildAndExpand(savedPetResponseDto.id())
                 .toUriString();
@@ -146,7 +146,7 @@ public class PetController {
 
     /**
      * Endpoint:
-     * - POST, "http://localhost:8080/api/v1/pets/all"
+     * - POST, "https://localhost:8080/api/v1/pets/all"
      *
      * @param petRequestDtos The "petRequestDtos"
      * @return The ResponseEntity<ResponseSuccess>
@@ -163,7 +163,7 @@ public class PetController {
 
     /**
      * Endpoint:
-     * - PUT, "http://localhost:8080/api/v1/pets/{id}"
+     * - PUT, "https://localhost:8080/api/v1/pets/{id}"
      *
      * @param petRequestDto The "petRequestDto"
      * @param petId         The "petId"
@@ -182,7 +182,7 @@ public class PetController {
 
     /**
      * Endpoint:
-     * - DELETE, "http://localhost:8080/api/v1/pets/{id}"
+     * - DELETE, "https://localhost:8080/api/v1/pets/{id}"
      *
      * @param petId The "petId"
      * @return The ResponseEntity<ResponseSuccess>
@@ -199,7 +199,7 @@ public class PetController {
 
     /**
      * Endpoint:
-     * - POST, "http://localhost:8080/api/v1/pets/update-pet-with-form"
+     * - POST, "https://localhost:8080/api/v1/pets/update-pet-with-form"
      *
      * @param petId  The "petId"
      * @param name   The "name"

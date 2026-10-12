@@ -39,7 +39,7 @@ public class StoreController {
 
     /**
      * Endpoint:
-     * - GET, "http://localhost:8080/api/v1/store/inventory"
+     * - GET, "https://localhost:8080/api/v1/store/inventory"
      *
      * @return The ResponseEntity<ResponseSuccess>
      */
@@ -53,7 +53,7 @@ public class StoreController {
 
     /**
      * Endpoint:
-     * - GET, "http://localhost:8080/api/v1/store/order/{id}"
+     * - GET, "https://localhost:8080/api/v1/store/order/{id}"
      *
      * @param orderId The "orderId"
      * @return The ResponseEntity<ResponseSuccess>
@@ -70,7 +70,7 @@ public class StoreController {
 
     /**
      * Endpoint:
-     * - GET, "http://localhost:8080/api/v1/store/orders"
+     * - GET, "https://localhost:8080/api/v1/store/orders"
      *
      * @return The ResponseEntity<ResponseSuccess>
      */
@@ -84,7 +84,7 @@ public class StoreController {
 
     /**
      * Endpoint:
-     * - POST, "http://localhost:8080/api/v1/store/orders"
+     * - POST, "https://localhost:8080/api/v1/store/orders"
      *
      * @param orderRequestDto The "orderRequestDto"
      * @return The ResponseEntity<ResponseSuccess>
@@ -96,7 +96,7 @@ public class StoreController {
         final String message = "Created: The Order has been created successfully!";
         OrderResponseDto savedOrderResponseDto = orderService.saveOrder(orderRequestDto);
         String savedOrderUri = ServletUriComponentsBuilder
-                .fromCurrentContextPath() // "http://localhost:8080"
+                .fromCurrentContextPath() // "https://localhost:8080"
                 .path(REQUEST_MAPPING + "/{id}")
                 .buildAndExpand(savedOrderResponseDto.id())
                 .toUriString();
@@ -105,7 +105,7 @@ public class StoreController {
 
     /**
      * Endpoint:
-     * - POST, "http://localhost:8080/api/v1/store/orders/all"
+     * - POST, "https://localhost:8080/api/v1/store/orders/all"
      *
      * @param orderRequestDtos The "orderRequestDtos"
      * @return The ResponseEntity<ResponseSuccess>
@@ -122,7 +122,7 @@ public class StoreController {
 
     /**
      * Endpoint:
-     * - DELETE, "http://localhost:8080/api/v1/store/orders/{id}"
+     * - DELETE, "https://localhost:8080/api/v1/store/orders/{id}"
      *
      * @param orderId The "orderId"
      * @return The ResponseEntity<ResponseSuccess>

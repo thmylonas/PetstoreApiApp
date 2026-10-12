@@ -40,7 +40,7 @@ public class UserController {
 
     /**
      * Endpoint:
-     * - GET, "http://localhost:8080/api/v1/users/{username}/login"
+     * - GET, "https://localhost:8080/api/v1/users/{username}/login"
      *
      * @param userUsername The "userUsername"
      * @return The ResponseEntity<ResponseSuccess>
@@ -58,7 +58,7 @@ public class UserController {
 
     /**
      * Endpoint:
-     * - GET, "http://localhost:8080/api/v1/users/{username}/logout"
+     * - GET, "https://localhost:8080/api/v1/users/{username}/logout"
      *
      * @param userUsername The "userUsername"
      * @return The ResponseEntity<ResponseSuccess>
@@ -76,7 +76,7 @@ public class UserController {
 
     /**
      * Endpoint:
-     * - GET, "http://localhost:8080/api/v1/users/{username}"
+     * - GET, "https://localhost:8080/api/v1/users/{username}"
      *
      * @param userUsername The "userUsername"
      * @return The ResponseEntity<ResponseSuccess>
@@ -94,7 +94,7 @@ public class UserController {
 
     /**
      * Endpoint:
-     * - GET, "http://localhost:8080/api/v1/users"
+     * - GET, "https://localhost:8080/api/v1/users"
      *
      * @return The ResponseEntity<ResponseSuccess>
      */
@@ -108,7 +108,7 @@ public class UserController {
 
     /**
      * Endpoint:
-     * - POST, "http://localhost:8080/api/v1/users"
+     * - POST, "https://localhost:8080/api/v1/users"
      *
      * @param userRequestDto The "userRequestDto"
      * @return The ResponseEntity<ResponseSuccess>
@@ -120,7 +120,7 @@ public class UserController {
         final String message = "Created: The User has been created successfully!";
         UserResponseDto savedUserResponseDto = userService.saveUser(userRequestDto);
         String savedUserUri = ServletUriComponentsBuilder
-                .fromCurrentContextPath() // "http://localhost:8080"
+                .fromCurrentContextPath() // "https://localhost:8080"
                 .path(REQUEST_MAPPING + "/{username}")
                 .buildAndExpand(savedUserResponseDto.username())
                 .toUriString();
@@ -129,7 +129,7 @@ public class UserController {
 
     /**
      * Endpoint:
-     * - POST, "http://localhost:8080/api/v1/users/all"
+     * - POST, "https://localhost:8080/api/v1/users/all"
      *
      * @param userRequestDtos The "userRequestDtos"
      * @return The ResponseEntity<ResponseSuccess>
@@ -146,7 +146,7 @@ public class UserController {
 
     /**
      * Endpoint:
-     * - PUT, "http://localhost:8080/api/v1/users/{username}"
+     * - PUT, "https://localhost:8080/api/v1/users/{username}"
      *
      * @param userRequestDto The "userRequestDto"
      * @param userUsername   The "userUsername"
@@ -166,7 +166,7 @@ public class UserController {
 
     /**
      * Endpoint:
-     * - DELETE, "http://localhost:8080/api/v1/users/{username}"
+     * - DELETE, "https://localhost:8080/api/v1/users/{username}"
      *
      * @param userUsername The "userUsername"
      * @return The ResponseEntity<ResponseSuccess>

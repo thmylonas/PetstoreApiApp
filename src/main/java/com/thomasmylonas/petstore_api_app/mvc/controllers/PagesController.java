@@ -8,7 +8,7 @@ public class PagesController {
 
     /**
      * Endpoint:
-     * - GET, "http://localhost:8080"
+     * - GET, "https://localhost:8080"
      *
      * @return The "home" page
      */
@@ -19,7 +19,7 @@ public class PagesController {
 
     /**
      * Endpoint:
-     * - GET, "http://localhost:8080/pets-home"
+     * - GET, "https://localhost:8080/pets-home"
      *
      * @return The "pets_home" page
      */
@@ -30,7 +30,7 @@ public class PagesController {
 
     /**
      * Endpoint:
-     * - GET, "http://localhost:8080/update-pet-with-form"
+     * - GET, "https://localhost:8080/update-pet-with-form"
      *
      * @return The "update_pet_with_form" page
      */
@@ -42,7 +42,7 @@ public class PagesController {
     /*
     //
      * Endpoint:
-     * - GET, "http://localhost:8080/update-pet-with-form/{id}"
+     * - GET, "https://localhost:8080/update-pet-with-form/{id}"
      *
      * @param petId The "petId"
      * @param model The "model"
