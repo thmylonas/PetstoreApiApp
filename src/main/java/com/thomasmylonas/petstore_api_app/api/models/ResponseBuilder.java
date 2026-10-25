@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.Objects;
 
-@Service
+@Component
 public class ResponseBuilder {
 
     /**
