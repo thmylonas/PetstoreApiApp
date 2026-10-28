@@ -120,7 +120,7 @@ public class PetServiceImpl implements PetService {
             petToUpdate.setStatus(pet.getStatus());
         }
         if (Objects.nonNull(pet.getCategory())) {
-            petToUpdate.setCategory(pet.getCategory()); // TODO: What id the category does not exit?
+            petToUpdate.setCategory(pet.getCategory()); // TODO: What if the category does not exit?
         }
         if (Objects.nonNull(pet.getTags())) {
             petToUpdate.setTags(pet.getTags());

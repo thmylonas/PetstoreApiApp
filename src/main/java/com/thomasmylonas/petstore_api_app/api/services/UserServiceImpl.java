@@ -3,7 +3,6 @@ package com.thomasmylonas.petstore_api_app.api.services;
 import com.thomasmylonas.petstore_api_app.api.dtos.user_dtos.UserRequestDto;
 import com.thomasmylonas.petstore_api_app.api.dtos.user_dtos.UserResponseDto;
 import com.thomasmylonas.petstore_api_app.api.entities.User;
-import com.thomasmylonas.petstore_api_app.api.enums.UserStatus;
 import com.thomasmylonas.petstore_api_app.api.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.petstore_api_app.api.repositories.UserRepository;
 import com.thomasmylonas.petstore_api_app.api.services.mappers.UserMapper;
@@ -46,7 +45,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponseDto saveUser(UserRequestDto userRequestDto) {
-        User savedUser = userRepository.save(userMapper.toUser(userRequestDto));
+        User user = userMapper.toUser(userRequestDto);
+        User savedUser = userRepository.save(user);
         return userMapper.fromUser(savedUser);
     }
 
@@ -58,29 +58,30 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponseDto updateUser(UserRequestDto userRequestDto, String username) throws RequestedResourceNotFoundException {
 
-        User user = userRepository.findByUsername(username)
+        User userToUpdate = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RequestedResourceNotFoundException("The user with username " + username + " is not found!"));
+        User user = userMapper.toUser(userRequestDto);
 
-        if (StringUtils.hasLength(userRequestDto.username())) {
-            user.setUsername(userRequestDto.username());
+        if (StringUtils.hasLength(user.getUsername())) {
+            userToUpdate.setUsername(user.getUsername());
         }
-        if (StringUtils.hasLength(userRequestDto.firstName())) {
-            user.setFirstName(userRequestDto.firstName());
+        if (StringUtils.hasLength(user.getFirstName())) {
+            userToUpdate.setFirstName(user.getFirstName());
         }
-        if (StringUtils.hasLength(userRequestDto.lastName())) {
-            user.setLastName(userRequestDto.lastName());
+        if (StringUtils.hasLength(user.getLastName())) {
+            userToUpdate.setLastName(user.getLastName());
         }
-        if (StringUtils.hasLength(userRequestDto.email())) {
-            user.setEmail(userRequestDto.email());
+        if (StringUtils.hasLength(user.getEmail())) {
+            userToUpdate.setEmail(user.getEmail());
         }
-        if (StringUtils.hasLength(userRequestDto.password())) {
-            user.setPassword(userRequestDto.password());
+        if (StringUtils.hasLength(user.getPassword())) {
+            userToUpdate.setPassword(user.getPassword());
         }
-        if (StringUtils.hasLength(userRequestDto.phone())) {
-            user.setPhone(userRequestDto.phone());
+        if (StringUtils.hasLength(user.getPhone())) {
+            userToUpdate.setPhone(user.getPhone());
         }
-        if (Objects.nonNull(userRequestDto.userStatus())) {
-            user.setUserStatus(UserStatus.valueOfUserStatus(userRequestDto.userStatus()));
+        if (Objects.nonNull(user.getUserStatus())) {
+            userToUpdate.setUserStatus(user.getUserStatus());
         }
         User updatedUser = userRepository.save(user);
         return userMapper.fromUser(updatedUser);
@@ -90,7 +91,7 @@ public class UserServiceImpl implements UserService {
     public void deleteUserByUsername(String username) throws RequestedResourceNotFoundException {
 
         User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new RequestedResourceNotFoundException("The user with username " + username + " is not found!"));
+                .orElseThrow(() -> new RequestedResourceNotFoundException("The user with username " + username + " is not found!")); // RequestedResourceNotFoundException
         userRepository.delete(user);
     }
 }
