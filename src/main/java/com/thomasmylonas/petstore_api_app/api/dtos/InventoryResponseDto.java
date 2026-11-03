@@ -1,4 +1,4 @@
-package com.thomasmylonas.petstore_api_app.api.dtos.pet_dtos;
+package com.thomasmylonas.petstore_api_app.api.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.thomasmylonas.petstore_api_app.api.enums.PetStatus;
