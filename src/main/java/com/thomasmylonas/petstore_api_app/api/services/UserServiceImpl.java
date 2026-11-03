@@ -83,7 +83,7 @@ public class UserServiceImpl implements UserService {
         if (Objects.nonNull(user.getUserStatus())) {
             userToUpdate.setUserStatus(user.getUserStatus());
         }
-        User updatedUser = userRepository.save(user);
+        User updatedUser = userRepository.save(userToUpdate);
         return userMapper.fromUser(updatedUser);
     }
 
