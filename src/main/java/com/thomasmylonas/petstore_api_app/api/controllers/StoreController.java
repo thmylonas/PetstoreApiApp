@@ -53,12 +53,12 @@ public class StoreController {
 
     /**
      * Endpoint:
-     * - GET, "https://localhost:8080/api/v1/store/order/{id}"
+     * - GET, "https://localhost:8080/api/v1/store/orders/{id}"
      *
      * @param orderId The "orderId"
      * @return The ResponseEntity<ResponseSuccess>
      */
-    @GetMapping(path = {"/order/{id}"})
+    @GetMapping(path = {"/orders/{id}"})
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<ResponseSuccess> findOrderById(@PathVariable(value = "id")
                                                          @PositiveOrZero(message = "The 'id' must be a positive number or 0")
